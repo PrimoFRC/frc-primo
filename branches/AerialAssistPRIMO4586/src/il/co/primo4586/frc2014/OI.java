@@ -1,8 +1,10 @@
 
 package il.co.primo4586.frc2014;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -40,5 +42,19 @@ public class OI {
     // Start the command when the button is released  and let it run the command
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
+    public Joystick drivingStick;
+    public JoystickButton button1, button2, button3, button4;
+    
+    public OI()
+    {
+        drivingStick = new Joystick(1);
+    }
+    
+    public Joystick getDrivingStick()
+    {
+        return drivingStick;
+    }
 }
+
+
 

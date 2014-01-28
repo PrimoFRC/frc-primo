@@ -1,5 +1,7 @@
 package il.co.primo4586.frc2014;
 
+import edu.wpi.first.wpilibj.SpeedController;
+
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
@@ -16,4 +18,13 @@ public class RobotMap {
     // number and the module. For example you with a rangefinder:
     // public static final int rangefinderPort = 1;
     // public static final int rangefinderModule = 1;
+    
+    public static SpeedController drivingMotorLeftBack;
+    public static SpeedController drivingMotorRightBack;
+    public static SpeedController drivingMotorLeftFront;
+    public static SpeedController drivingMotorRightFront;
+    
+    public static void init() {
+        
+    }
 }
