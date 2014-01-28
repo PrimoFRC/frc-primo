@@ -37,7 +37,9 @@ public class MoveArmUp extends CommandBase {
     protected void execute()
 	{
 		if (!finished)
+		{
 			collector.moveArm(1);
+		}
 
     }
 
