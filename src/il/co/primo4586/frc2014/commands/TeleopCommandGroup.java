@@ -6,6 +6,7 @@
 package il.co.primo4586.frc2014.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import il.co.primo4586.frc2014.commands.Driver.MechanumDrive;
 
 /**
  *
@@ -29,5 +30,6 @@ public class TeleopCommandGroup extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
+        addParallel(new MechanumDrive());
     }
 }
