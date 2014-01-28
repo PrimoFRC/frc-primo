@@ -16,9 +16,9 @@ public abstract class CommandBase extends Command {
     public static OI oi;
     // Create a single static instance of all of your subsystems
     //public static ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
-
+	public static Collector collector;
     public static Driver driver;
-    
+
     public static void init() {
         // This MUST be here. If the OI creates Commands (which it very likely
         // will), constructing it during the construction of CommandBase (from
@@ -26,6 +26,8 @@ public abstract class CommandBase extends Command {
         // yet. Thus, their requires() statements may grab null pointers. Bad
         // news. Don't move it.
         oi = new OI();
+		collector = new Collector();
+
         driver = new Driver();
 
         // Show what command your subsystem is running on the SmartDashboard
