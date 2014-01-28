@@ -23,9 +23,9 @@ public class Driver extends Subsystem
     SpeedController motorRightBack;
     SpeedController motorLeftFront;
     SpeedController motorRightFront;
-    
+
     RobotDrive driver;
-    
+
     public Driver()
     {
         motorLeftBack = RobotMap.drivingMotorLeftBack;
@@ -35,30 +35,26 @@ public class Driver extends Subsystem
         driver = new RobotDrive(motorLeftFront, motorLeftBack, motorRightFront, motorRightBack);
         driver.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
         driver.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
-}
-        
+	}
+
     public void MecanumDrive(double magnitude, double direction, double rotation)
     {
         driver.mecanumDrive_Polar(magnitude, direction, rotation);
     }
-    
+
     public void ArcadeDrive(Joystick stick)
     {
         driver.arcadeDrive(stick);
     }
-    
-    public void setRight(double power)
-    {
-        motorRightBack.set(power);
-        motorRightFront.set(power);
-    }
-    
-    public void setLeft(double power)
-    {
-        motorLeftBack.set(power);
-        motorLeftFront.set(power);
-    }
 
+    public void driveForward()
+	{
+		motorLeftBack.set(1);
+		motorLeftFront.set(1);
+		motorRightBack.set(-1);
+		motorRightFront.set(-1);
+	}
+	
     public void initDefaultCommand()
     {
         // Set the default command for a subsystem here.
