@@ -24,7 +24,7 @@ public class Collector extends Subsystem
 	DigitalInput collector_middle;
 	DigitalInput collector_bottom;
 
-	int level; //0, 1 or 2 (bottom, middle or top)
+	private int level; //0, 1 or 2 (bottom, middle or top)
 
 	public Collector()
 	{
@@ -55,6 +55,17 @@ public class Collector extends Subsystem
 	{
 		return collector_bottom.get();
 	}
+
+	public int getLevel()
+	{
+		return level;
+	}
+
+	public void setLevel(int newLevel)
+	{
+		level = newLevel;
+	}
+
 
 
 
