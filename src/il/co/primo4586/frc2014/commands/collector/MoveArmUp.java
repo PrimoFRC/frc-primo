@@ -5,6 +5,7 @@
  */
 package il.co.primo4586.frc2014.commands.collector;
 
+import edu.wpi.first.wpilibj.command.Subsystem;
 import il.co.primo4586.frc2014.commands.CommandBase;
 
 /**
@@ -12,10 +13,15 @@ import il.co.primo4586.frc2014.commands.CommandBase;
  * @author Gottlieb
  */
 public class MoveArmUp extends CommandBase {
-    
-    public MoveArmUp() {
+//	private final Subsystem Collector;
+
+    public MoveArmUp()
+	{
+
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+
+		requires(collector);
     }
 
     // Called just before this Command runs the first time
