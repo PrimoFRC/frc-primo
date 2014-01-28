@@ -10,6 +10,7 @@ package il.co.primo4586.frc2014;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import il.co.primo4586.frc2014.commands.CommandBase;
@@ -24,8 +25,11 @@ import il.co.primo4586.frc2014.commands.*;
  */
 public class RobotTemplate extends IterativeRobot {
 
-    Command autonomousCommand;
-
+    
+    CommandGroup autonomousSequence;
+    CommandGroup teleopSequence;
+    public static double distance;
+    public static boolean isHot;
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -35,12 +39,18 @@ public class RobotTemplate extends IterativeRobot {
         //autonomousCommand = new ExampleCommand();
 
         // Initialize all subsystems
+        RobotMap.init();
         CommandBase.init();
+        
+        initMotors();
+        
+        autonomousSequence = new AutonomousCommandGroup();
+        teleopSequence = new TeleopCommandGroup();
     }
 
     public void autonomousInit() {
         // schedule the autonomous command (example)
-        autonomousCommand.start();
+        Scheduler.getInstance().add(autonomousSequence);
     }
 
     /**
@@ -55,7 +65,11 @@ public class RobotTemplate extends IterativeRobot {
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
-        autonomousCommand.cancel();
+        
+        autonomousSequence.cancel();
+        Scheduler.getInstance().add(teleopSequence);
+        Scheduler.getInstance().run();
+        
     }
 
     /**
@@ -71,4 +85,9 @@ public class RobotTemplate extends IterativeRobot {
     public void testPeriodic() {
         LiveWindow.run();
     }
+    
+    public void initMotors()
+     {
+         
+     }
 }
