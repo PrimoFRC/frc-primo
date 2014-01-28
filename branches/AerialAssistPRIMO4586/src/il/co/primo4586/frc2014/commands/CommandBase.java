@@ -17,6 +17,7 @@ public abstract class CommandBase extends Command {
     // Create a single static instance of all of your subsystems
     //public static ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static Collector collector;
+	public static Shooter shooter;
     public static Driver driver;
 
     public static void init() {
@@ -27,7 +28,7 @@ public abstract class CommandBase extends Command {
         // news. Don't move it.
         oi = new OI();
 		collector = new Collector();
-
+		shooter = new Shooter();
         driver = new Driver();
 
         // Show what command your subsystem is running on the SmartDashboard
