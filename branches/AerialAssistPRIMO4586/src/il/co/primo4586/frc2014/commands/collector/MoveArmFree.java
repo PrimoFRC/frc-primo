@@ -44,7 +44,7 @@ public class MoveArmFree extends CommandBase {
 		{
 			finished = true;
 		}
-
+/*
 		 if(getMiddleMicro())
 		 {
 			 if (direction > 0)
@@ -53,7 +53,7 @@ public class MoveArmFree extends CommandBase {
 				 collector.setLevel(0.5);
 
 		 }
-
+*/
     }
 
     // Make this return true when this Command no longer needs to run execute()
