@@ -51,8 +51,7 @@ public class Shooter extends Subsystem {
 		stretcher.set(speed);
                 currentCycles = cycleCounter.getAccumulatorCount() - lastCountCycles;
                 newCountCycles += currentCycles*(long)(Math.abs(speed)/speed);  
-                lastCountCycles += currentCycles;
-                
+                lastCountCycles += currentCycles;  
 	}
 
 	/**------------------------------------
