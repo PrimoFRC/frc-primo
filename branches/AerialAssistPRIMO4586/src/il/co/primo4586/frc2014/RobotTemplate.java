@@ -30,6 +30,8 @@ public class RobotTemplate extends IterativeRobot {
     CommandGroup teleopSequence;
     public static double distance;
     public static boolean isHot;
+    
+    public boolean isFinishedAutonomous;
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -50,6 +52,7 @@ public class RobotTemplate extends IterativeRobot {
 
     public void autonomousInit() {
         // schedule the autonomous command (example)
+        isFinishedAutonomous = false;
         Scheduler.getInstance().add(autonomousSequence);
     }
 
@@ -58,6 +61,11 @@ public class RobotTemplate extends IterativeRobot {
      */
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
+        if (isFinishedAutonomous)
+        {
+            isFinishedAutonomous = false;
+            Scheduler.getInstance().add(autonomousSequence);
+        }
     }
 
     public void teleopInit() {

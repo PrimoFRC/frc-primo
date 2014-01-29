@@ -6,12 +6,16 @@
 package il.co.primo4586.frc2014.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import il.co.primo4586.frc2014.RobotTemplate;
+import il.co.primo4586.frc2014.commands.ImageProcessing.ImageProcessing;
+import il.co.primo4586.frc2014.commands.shooter.*;
 
 /**
  *
  * @author Gottlieb
  */
 public class AutonomousCommandGroup extends CommandGroup {
+    
     
     public AutonomousCommandGroup() {
         // Add Commands here:
@@ -29,5 +33,18 @@ public class AutonomousCommandGroup extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
+        
+        if (RobotTemplate.isHot)
+        {
+            //addSequential(new StretchToDistance(RobotTemplate.distance));
+            addSequential(new Release());
+            addSequential(new Grasp());
+            //addSequential(new StretchToDistance(0));
+            //addParallel(new MoveAfterShooting());
+        }
+        else
+        {
+            addSequential(new ImageProcessing());
+        }
     }
 }
