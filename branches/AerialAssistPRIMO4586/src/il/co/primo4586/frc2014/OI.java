@@ -5,11 +5,9 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import il.co.primo4586.frc2014.commands.collector.MoveArmBottom;
-import il.co.primo4586.frc2014.commands.collector.MoveArmDown;
-import il.co.primo4586.frc2014.commands.collector.MoveArmFree;
-import il.co.primo4586.frc2014.commands.collector.MoveArmTop;
-import il.co.primo4586.frc2014.commands.collector.MoveArmUp;
+import il.co.primo4586.frc2014.commands.Aim;
+import il.co.primo4586.frc2014.commands.collector.*;
+import il.co.primo4586.frc2014.commands.shooter.*;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -49,28 +47,32 @@ public class OI {
     // button.whenReleased(new ExampleCommand());
     public Joystick drivingStick;
     public Joystick operatorStick;
-    public JoystickButton button1, button2, manualLowerCollectorArm, manualRaiseCollectorArm, lowerCollectorArm, raiseCollectorArm, collectorToBottom, collectorToTop, collectorToMiddle ;
+    public JoystickButton manualLowerCollectorArm, manualRaiseCollectorArm, collectorToBottom, collectorToTop, collectorToMiddle ;
+     public JoystickButton shoot , aim;
     public OI()
        
     {
                 drivingStick = new Joystick(1);
-	operatorStick = new Joystick(2);
-                button1 = new JoystickButton(operatorStick, 1);
-		button2 = new JoystickButton(operatorStick, 2);
-		manualLowerCollectorArm = new JoystickButton(operatorStick, 3);
-		manualRaiseCollectorArm = new JoystickButton(operatorStick, 4);
+                operatorStick = new Joystick(2);
+      
+		manualLowerCollectorArm = new JoystickButton(operatorStick, 4);
+		manualRaiseCollectorArm = new JoystickButton(operatorStick, 5);
 		// lowerCollectorArm = new JoystickButton(operatorStick, 5);
 		// raiseCollectorArm = new JoystickButton(operatorStick, 6);
+                
+		collectorToBottom = new JoystickButton(operatorStick, 1);
+		collectorToTop = new JoystickButton(operatorStick, 2);
+		collectorToMiddle = new JoystickButton(operatorStick, 3);
 
-		collectorToBottom = new JoystickButton(operatorStick, 7);
-		collectorToTop = new JoystickButton(operatorStick, 8);
-		collectorToMiddle = new JoystickButton(operatorStick, 9);
-
+                shoot = new JoystickButton(operatorStick, 8);
+                aim = new JoystickButton(operatorStick, 7);
+                
 		collectorToBottom.whenPressed(new MoveArmBottom());
 		collectorToTop.whenPressed(new MoveArmTop());
 		collectorToMiddle.whenPressed(new MoveArmBottom());
 
-
+                shoot.whenPressed(new ReleaseAndGrasp());
+                aim.whenPressed(new Aim());
 
 	//	lowerCollectorArm.whenPressed(new MoveArmDown());
 	//	raiseCollectorArm.whenPressed(new MoveArmUp());
@@ -78,7 +80,7 @@ public class OI {
 		manualLowerCollectorArm.whileHeld(new MoveArmFree(1));
 		manualRaiseCollectorArm.whileHeld(new MoveArmFree(-1));
                 
-
+                
 
     }
 

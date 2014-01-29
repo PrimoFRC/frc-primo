@@ -11,9 +11,9 @@ import il.co.primo4586.frc2014.commands.CommandBase;
  *
  * @author mor meitar idan
  */
-public class StretchToDistance extends CommandBase {
+public class StretchToCycles extends CommandBase {
     
-    public StretchToDistance() {
+    public StretchToCycles() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }

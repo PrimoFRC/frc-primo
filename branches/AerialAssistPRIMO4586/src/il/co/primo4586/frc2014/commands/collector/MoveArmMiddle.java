@@ -26,24 +26,32 @@ private boolean finished;
 	protected void initialize()
 	{
 
-		finished = (collector.getMiddleMicro());
+            finished = (collector.getMiddleMicro());
 
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute()
 	{
-		if (!finished)
+            if (!finished)
+            {
+                if(collector.getAboveMiddle())
 		{
-			if(collector.getAboveMiddle())
-				{
-					collector.moveArm(-1);
-				}
-			else
-				{
-					collector.moveArm(1);
-				}
+                    if (collector.getBottomMicro())
+                    {
+                        collector.setBelowMiddle();
+                    }
+                    collector.moveArm(-1);
+                }
+                else
+		{
+                    if (collector.getTopMicro())
+                    {
+                       collector.setAboveMiddle();
+                    }
+                    collector.moveArm(1);
 		}
+            }
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
