@@ -29,22 +29,22 @@ public class MoveArmFree extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
 
-		finished = (collector.getLevel() == 0);
-		finished = (collector.getLevel() == 2);
+		finished = (collector.getTopMicro());
+		finished |= (collector.getBottomMicro());
 
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
 
-		if(!(collector.getBottomMicro()) && !(collector.getTopMicro()))
+		if(!finished)
 		{
 
 			collector.moveArm(direction);
 
 			if(collector.getMiddleMicro())
 			{
-				if(direction>0)
+				if (direction>0)
 				{
 					collector.getAboveMiddle();
 				}
@@ -54,11 +54,19 @@ public class MoveArmFree extends CommandBase {
 				}
 
 			}
+
+			if(collector.getTopMicro())
+			{
+				finished= true;
+			}
+
+			if(collector.getBottomMicro())
+			{
+				finished= true;
+			}
+
 		}
-		else
-		{
-			finished = true;
-		}
+
 
 
 
@@ -67,7 +75,18 @@ public class MoveArmFree extends CommandBase {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
 
-        return (!oi.manualLowerCollectorArm.get() && !oi.manualRaiseCollectorArm.get()) || finished;
+		if(collector.getTopMicro() && direction>0)
+			{
+				finished= true;
+			}
+
+			if(collector.getBottomMicro() && direction<0)
+			{
+				finished= true;
+			}
+
+
+        return (!oi.manualLowerCollectorArm.get() && !oi.manualRaiseCollectorArm.get()) || finished; //needs to be changed from isHeld to joystick
     }
 
     // Called once after isFinished returns true
