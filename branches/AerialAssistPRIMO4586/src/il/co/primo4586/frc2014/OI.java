@@ -53,7 +53,7 @@ public class OI {
 
     public OI()
     {
-        drivingStick = new Joystick(1);
+                drivingStick = new Joystick(1);
 		button1 = new JoystickButton(operatorStick, 1);
 		button2 = new JoystickButton(operatorStick, 2);
 		manualLowerCollectorArm = new JoystickButton(operatorStick, 3);
