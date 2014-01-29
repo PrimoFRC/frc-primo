@@ -13,9 +13,10 @@ import il.co.primo4586.frc2014.commands.CommandBase;
  */
 public class MoveArmFree extends CommandBase {
 
-	// not finished
+
 	int direction;
 	private boolean finished;
+
 
 
     public MoveArmFree(int direction) {
@@ -27,7 +28,7 @@ public class MoveArmFree extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-		finished = false;
+
 		finished = (collector.getLevel() == 0);
 		finished = (collector.getLevel() == 2);
 
@@ -38,22 +39,29 @@ public class MoveArmFree extends CommandBase {
 
 		if(!(collector.getBottomMicro()) && !(collector.getTopMicro()))
 		{
-		collector.moveArm(direction);
+
+			collector.moveArm(direction);
+
+			if(collector.getMiddleMicro())
+			{
+				if(direction>0)
+				{
+					collector.getAboveMiddle();
+				}
+				else
+				{
+					collector.setBelowMiddle();
+				}
+
+			}
 		}
 		else
 		{
 			finished = true;
 		}
-/*
-		 if(getMiddleMicro())
-		 {
-			 if (direction > 0)
-				 collector.setLevel(1.5);
-			 else
-				 collector.setLevel(0.5);
 
-		 }
-*/
+
+
     }
 
     // Make this return true when this Command no longer needs to run execute()

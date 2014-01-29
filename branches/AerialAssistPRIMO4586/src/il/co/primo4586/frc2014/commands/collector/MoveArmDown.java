@@ -13,6 +13,7 @@ import il.co.primo4586.frc2014.commands.CommandBase;
 public class MoveArmDown extends CommandBase {
 
 	private boolean finished;
+	private int start;
 
     public MoveArmDown() {
         // Use requires() here to declare subsystem dependencies
@@ -23,7 +24,12 @@ public class MoveArmDown extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
 
-		finished = (collector.getLevel() == 0);
+		finished = (collector.getBottomMicro());
+		start = 0;
+		if (collector.getMiddleMicro())
+			start = 1;
+		if (collector.getTopMicro())
+			start = 2;
 
     }
 
@@ -31,21 +37,49 @@ public class MoveArmDown extends CommandBase {
     protected void execute()
 	{
 		if (!finished)
+		{
 			collector.moveArm(-1);
+		}
+
+
 	}
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-		finished &= collector.getMiddleMicro();
-		finished &= collector.getBottomMicro();
+		/*finished &= collector.getMiddleMicro();
+		finished &= collector.getBottomMicro();*/
+		if (start == 1 && collector.getBottomMicro())
+		{
+			finished = true;
+		}
+
+		if (start == 2 && collector.getTopMicro())
+		{
+			finished = true;
+		}
+
+		if (start == 0 && (collector.getBottomMicro() || collector.getMiddleMicro()))
+		{
+			finished = true;
+		}
 
 		return finished;
     }
 
     // Called once after isFinished returns true
-    protected void end() {
+    protected void end()
+	{
 		collector.moveArm(0);
-		collector.setLevel(collector.getLevel()-1);
+
+		if(collector.getMiddleMicro())
+		{
+			collector.setLevel(1);
+		}
+
+		if(collector.getBottomMicro())
+		{
+			collector.setLevel(0);
+		}
     }
 
     // Called when another command which requires one or more of the same
