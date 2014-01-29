@@ -48,13 +48,14 @@ public class OI {
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
     public Joystick drivingStick;
-	public Joystick operatorStick;
+    public Joystick operatorStick;
     public JoystickButton button1, button2, manualLowerCollectorArm, manualRaiseCollectorArm, lowerCollectorArm, raiseCollectorArm, collectorToBottom, collectorToTop, collectorToMiddle ;
-
     public OI()
+       
     {
                 drivingStick = new Joystick(1);
-		button1 = new JoystickButton(operatorStick, 1);
+	operatorStick = new Joystick(2);
+                button1 = new JoystickButton(operatorStick, 1);
 		button2 = new JoystickButton(operatorStick, 2);
 		manualLowerCollectorArm = new JoystickButton(operatorStick, 3);
 		manualRaiseCollectorArm = new JoystickButton(operatorStick, 4);
@@ -76,7 +77,7 @@ public class OI {
 
 		manualLowerCollectorArm.whileHeld(new MoveArmFree(1));
 		manualRaiseCollectorArm.whileHeld(new MoveArmFree(-1));
-
+                
 
 
     }

@@ -36,9 +36,9 @@ public class RobotMap {
 
 
 	public static SpeedController drivingMotorLeftBack;
-    public static SpeedController drivingMotorRightBack;
-    public static SpeedController drivingMotorLeftFront;
-    public static SpeedController drivingMotorRightFront;
+        public static SpeedController drivingMotorRightBack;
+        public static SpeedController drivingMotorLeftFront;
+        public static SpeedController drivingMotorRightFront;
 
 	/**
 	 * shooter properties

@@ -5,38 +5,70 @@
  */
 package il.co.primo4586.frc2014.commands.shooter;
 
+import edu.wpi.first.wpilibj.DriverStationLCD;
+import edu.wpi.first.wpilibj.Joystick;
 import il.co.primo4586.frc2014.commands.CommandBase;
-
 /**
  *
- * @author Gottlieb
+ * @author mor meitar idan
  */
 public class StretchFree extends CommandBase {
+    /**
+     *  Victor stretcher;
+	Talon releaser;
+	AnalogChannel cycleCounter;
+	DigitalInput stretcherStart;
+	DigitalInput stretcherEnd;
+	DigitalInput releaserLock;
+	double stretchCycles, strechDistance;
+        long primeCountCycles; // prime cycles count situations
+        long newCountCycles; // the cycles count since the prime situation 
+     */
+      
+    public Joystick operatorStick;
+    public double direction;
     
-    public StretchFree() {
+    public StretchFree()         
+    {
+        requires(shooter);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
-    protected void initialize() {
+    protected void initialize() 
+    {
+        operatorStick = oi.operatorStick;
+        shooter.initCount();
+        direction = operatorStick.getY() / Math.abs(operatorStick.getY());
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
+    protected void execute() 
+    {
+        direction = operatorStick.getY() / Math.abs(operatorStick.getY());
+        shooter.stretch(direction/2);
+        shooter.initCount();
+        DriverStationLCD.getInstance().println(DriverStationLCD.Line.kUser2, 1, "stretch cycles:" + shooter.getCount());
+        DriverStationLCD.getInstance().updateLCD();
     }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
+    protected boolean isFinished() 
+    {
         return false;
     }
 
     // Called once after isFinished returns true
-    protected void end() {
+    protected void end() 
+    {
+        
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
-    protected void interrupted() {
+    protected void interrupted() 
+    {
+        
     }
 }
