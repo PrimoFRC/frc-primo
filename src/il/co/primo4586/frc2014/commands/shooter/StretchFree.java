@@ -48,7 +48,6 @@ public class StretchFree extends CommandBase {
     {
         direction = operatorStick.getY() / Math.abs(operatorStick.getY());
         shooter.stretch(direction/2);
-        shooter.initCount();
         DriverStationLCD.getInstance().println(DriverStationLCD.Line.kUser2, 1, "stretch cycles:" + shooter.getCount());
         DriverStationLCD.getInstance().updateLCD();
     }

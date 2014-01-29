@@ -43,11 +43,7 @@ private boolean finished;
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished()
 	{
-
-		finished |= collector.getTopMicro();
-
-
-		return finished;
+		return collector.getTopMicro();
 	}
 
 	// Called once after isFinished returns true
