@@ -26,6 +26,10 @@ private boolean finished;
 	{
 
 		finished = (collector.getTopMicro());
+		if (!finished)
+		{
+			collector.moveArm(1);
+		}
 		collector.setAboveMiddle();
 
 	}
@@ -33,11 +37,6 @@ private boolean finished;
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute()
 	{
-
-		if (!finished)
-		{
-			collector.moveArm(1);
-		}
 
 	}
 
@@ -64,5 +63,6 @@ private boolean finished;
 	// subsystems is scheduled to run
 	protected void interrupted()
 	{
+		end();
 	}
 }
