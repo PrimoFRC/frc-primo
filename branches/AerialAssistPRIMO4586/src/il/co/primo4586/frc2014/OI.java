@@ -58,8 +58,8 @@ public class OI {
 		button2 = new JoystickButton(operatorStick, 2);
 		manualLowerCollectorArm = new JoystickButton(operatorStick, 3);
 		manualRaiseCollectorArm = new JoystickButton(operatorStick, 4);
-		lowerCollectorArm = new JoystickButton(operatorStick, 5);
-		raiseCollectorArm = new JoystickButton(operatorStick, 6);
+		// lowerCollectorArm = new JoystickButton(operatorStick, 5);
+		// raiseCollectorArm = new JoystickButton(operatorStick, 6);
 
 		collectorToBottom = new JoystickButton(operatorStick, 7);
 		collectorToTop = new JoystickButton(operatorStick, 8);
@@ -71,8 +71,8 @@ public class OI {
 
 
 
-		lowerCollectorArm.whenPressed(new MoveArmDown());
-		raiseCollectorArm.whenPressed(new MoveArmUp());
+	//	lowerCollectorArm.whenPressed(new MoveArmDown());
+	//	raiseCollectorArm.whenPressed(new MoveArmUp());
 
 		manualLowerCollectorArm.whileHeld(new MoveArmFree(1));
 		manualRaiseCollectorArm.whileHeld(new MoveArmFree(-1));
