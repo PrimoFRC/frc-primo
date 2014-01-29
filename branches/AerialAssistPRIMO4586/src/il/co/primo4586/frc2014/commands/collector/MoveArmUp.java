@@ -5,7 +5,6 @@
  */
 package il.co.primo4586.frc2014.commands.collector;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
 import il.co.primo4586.frc2014.commands.CommandBase;
 
 /**
@@ -29,7 +28,7 @@ public class MoveArmUp extends CommandBase {
     protected void initialize()
 	{
 
-		finished = (collector.getLevel() == 2);
+		finished = (collector.getTopMicro());
 
 
     }
@@ -57,6 +56,17 @@ public class MoveArmUp extends CommandBase {
     // Called once after isFinished returns true
     protected void end() {
 		collector.moveArm(0);
+
+		if(collector.getMiddleMicro())
+		{
+			collector.setLevel(1);
+		}
+
+		if(collector.getTopMicro())
+		{
+			collector.setLevel(2);
+		}
+
 	//	collector.setLevel(collector.getLevel()+1);
     }
 

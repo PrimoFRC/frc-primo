@@ -25,6 +25,8 @@ public class Collector extends Subsystem
 	DigitalInput collector_bottom;
 
 	private int level; //0, 1 or 2 (bottom, middle or top)
+	private boolean isAboveMiddle;
+
 
 	public Collector()
 	{
@@ -64,6 +66,22 @@ public class Collector extends Subsystem
 	public void setLevel(int newLevel)
 	{
 		level = newLevel;
+	}
+
+	public boolean getAboveMiddle()
+	{
+		return isAboveMiddle;
+	}
+
+
+	public void setAboveMiddle()
+	{
+		isAboveMiddle = true;
+	}
+
+	public void setBelowMiddle()
+	{
+		isAboveMiddle = false;
 	}
 
 
