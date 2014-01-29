@@ -48,13 +48,21 @@ public class Driver extends Subsystem
     }
 
     public void driveForward()
-	{
-		motorLeftBack.set(1);
-		motorLeftFront.set(1);
-		motorRightBack.set(-1);
-		motorRightFront.set(-1);
-	}
+    {
+        motorLeftBack.set(1);
+        motorLeftFront.set(1);
+	motorRightBack.set(-1);
+	motorRightFront.set(-1);
+    }
 	
+    public void stop()
+    {
+        motorLeftBack.set(0);
+	motorLeftFront.set(0);
+	motorRightBack.set(0);
+	motorRightFront.set(0);
+    }
+    
     public void initDefaultCommand()
     {
         // Set the default command for a subsystem here.
