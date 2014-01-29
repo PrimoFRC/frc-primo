@@ -9,7 +9,7 @@ import il.co.primo4586.frc2014.commands.CommandBase;
 
 /**
  *
- * @author Gottlieb
+ * @author mor meitar idan
  */
 public class StretchToDistance extends CommandBase {
     
