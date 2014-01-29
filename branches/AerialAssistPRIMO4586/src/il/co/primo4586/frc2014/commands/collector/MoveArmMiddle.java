@@ -33,13 +33,16 @@ private boolean finished;
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute()
 	{
-		if(collector.getAboveMiddle())
+		if (!finished)
 		{
-			collector.moveArm(-1);
-		}
-		else
-		{
-			collector.moveArm(1);
+			if(collector.getAboveMiddle())
+				{
+					collector.moveArm(-1);
+				}
+			else
+				{
+					collector.moveArm(1);
+				}
 		}
 
 
@@ -59,7 +62,7 @@ private boolean finished;
 	{
 
 		collector.moveArm(0);
-		collector.setLevel(1);
+		// collector.setLevel(1);
 
 	}
 
