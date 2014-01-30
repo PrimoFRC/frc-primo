@@ -7,6 +7,7 @@ package il.co.primo4586.frc2014.commands;
 
 import il.co.primo4586.frc2014.commands.shooter.*;
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import il.co.primo4586.frc2014.RobotTemplate;
 import il.co.primo4586.frc2014.commands.Driver.MoveAfterShooting;
 import il.co.primo4586.frc2014.commands.ImageProcessing.ImageProcessing;
@@ -38,16 +39,13 @@ public class AutonomousCommandGroup extends CommandGroup {
 
         if (RobotTemplate.isHot)
         {
-            //addSequential(new StretchToDistance(RobotTemplate.distance));
-            addSequential(new Release());
-            addSequential(new Grasp());
-            //addSequential(new StretchToDistance(0));
+            addSequential(new StretchToCycles(SmartDashboard.getNumber("Power",50)));
+            addSequential(new Shoot());
             addParallel(new MoveAfterShooting());
         }
         else
         {
             addSequential(new ImageProcessing());
-            addSequential(new InitStretcher());
         }
     }
 }

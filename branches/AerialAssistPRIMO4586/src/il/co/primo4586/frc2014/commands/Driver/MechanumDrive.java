@@ -14,7 +14,7 @@ import il.co.primo4586.frc2014.commands.CommandBase;
  */
 public class MechanumDrive extends CommandBase {
     private Joystick drivingStick;
-    
+
     public MechanumDrive() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -23,14 +23,14 @@ public class MechanumDrive extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        drivingStick = CommandBase.oi.getDrivingStick();
+        drivingStick = CommandBase.oi.drivingStick;
         //drivingStick2 = CommandBase.oi.getDrivingStick2();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         double magnitude, direction, rotation;
-        /* 
+        /*
         magnitude = drivingStick1.getY() * drivingStick1.getY();
         magnitude += drivingStick2.getX() * drivingStick2.getX();
         magnitude = MathUtils.pow(magnitude, 0.5);
@@ -43,8 +43,8 @@ public class MechanumDrive extends CommandBase {
         magnitude = drivingStick.getMagnitude() / 2;
         direction = drivingStick.getDirectionDegrees();
         rotation = drivingStick.getRawAxis(4) / 2;
-        driver.MecanumDrive(magnitude, direction, rotation); 
-        
+        driver.MecanumDrive(magnitude, direction, rotation);
+
         //driving.ArcadeDrive(drivingStick);
     }
 

@@ -32,6 +32,7 @@ public class Driver extends Subsystem
         motorRightBack = RobotMap.drivingMotorRightBack;
         motorLeftFront = RobotMap.drivingMotorLeftFront;
         motorRightFront = RobotMap.drivingMotorRightFront;
+
         driver = new RobotDrive(motorLeftFront, motorLeftBack, motorRightFront, motorRightBack);
         driver.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
         driver.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
@@ -51,18 +52,18 @@ public class Driver extends Subsystem
     {
         motorLeftBack.set(1);
         motorLeftFront.set(1);
-	motorRightBack.set(-1);
-	motorRightFront.set(-1);
+		motorRightBack.set(-1);
+		motorRightFront.set(-1);
     }
-	
+
     public void stop()
     {
         motorLeftBack.set(0);
-	motorLeftFront.set(0);
-	motorRightBack.set(0);
-	motorRightFront.set(0);
+		motorLeftFront.set(0);
+		motorRightBack.set(0);
+		motorRightFront.set(0);
     }
-    
+
     public void initDefaultCommand()
     {
         // Set the default command for a subsystem here.

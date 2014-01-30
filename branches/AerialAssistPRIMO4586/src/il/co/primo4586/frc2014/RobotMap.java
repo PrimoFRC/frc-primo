@@ -14,8 +14,11 @@ import edu.wpi.first.wpilibj.SpeedController;
  */
 import edu.wpi.first.wpilibj.AnalogChannel;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.livewindow.LiveWindowSendable;
 public class RobotMap {
     // For example to map the left and right motors, you could define the
     // following variables to use with your drivetrain subsystem.
@@ -26,49 +29,61 @@ public class RobotMap {
     // number and the module. For example you with a rangefinder:
     // public static final int rangefinderPort = 1;
     // public static final int rangefinderModule = 1;
-	public static Talon collectArm;
+	public static SpeedController collectArm;
 
-	public static DigitalInput collector_top;
-
-	public static DigitalInput collector_middle;
-
-	public static DigitalInput collector_bottom;
-
+	public static SpeedController shooterStretcher; // controls the speed of the streaching motor
+	public static SpeedController shooterReleaser; // controls the speed of the realesing motor
 
 	public static SpeedController drivingMotorLeftBack;
-        public static SpeedController drivingMotorRightBack;
-        public static SpeedController drivingMotorLeftFront;
-        public static SpeedController drivingMotorRightFront;
+    public static SpeedController drivingMotorRightBack;
+    public static SpeedController drivingMotorLeftFront;
+    public static SpeedController drivingMotorRightFront;
 
-	/**
-	 * shooter properties
-	 * @ author mor, idan, meitar
-	 */
-	public static Victor shooterStretcher; // controls the speed of the streaching motor
-	public static Talon shooterReleaser; // controls the speed of the realesing motor
-	public static AnalogChannel shooterCycleCounter; // optic sensor for counting the cycles of the streaching motor
+	public static DigitalInput collector_top;
+	public static DigitalInput collector_middle;
+	public static DigitalInput collector_bottom;
+
 	public static DigitalInput shooterStretcherStart; // digital sensor for when the rubber band is at the start
 	public static DigitalInput shooterStretcherEnd; // digital sensor for when the rubber band is at the end
 	public static DigitalInput shooterReleaserLock; // digital sensor for when the hook of the rubber band is locked
 
+	public static AnalogChannel shooterCycleCounter; // optic sensor for counting the cycles of the streaching motor
+	/**
+	 * shooter properties
+	 * @ author mor, idan, meitar
+	 */
+
+
+
+
 	public static void init()
 	{
-		shooterStretcher = new Victor (1);
-		shooterReleaser = new Talon(1);
-		shooterCycleCounter = new AnalogChannel(1);
-		shooterStretcherStart = new DigitalInput(1);
-		shooterStretcherEnd = new DigitalInput(1);
-		shooterReleaserLock = new DigitalInput(1);
-		collectArm = new Talon(1); // need to check if there is two speed controlers or not
+		collectArm = new Talon(7); // need to check if there is two speed controlers or not
 
-		collector_top = new DigitalInput(2);
+		shooterStretcher = new Victor (6);
+		shooterReleaser = new Talon(5);
 
-		collector_middle = new DigitalInput(3);
+		drivingMotorLeftBack = new Jaguar(1);
+		drivingMotorRightBack = new Jaguar(2);
+		drivingMotorLeftFront = new Jaguar(3);
+		drivingMotorRightFront = new Jaguar(4);
 
-		collector_bottom = new DigitalInput(4);
+		collector_top = new DigitalInput(1);
+		collector_middle = new DigitalInput(2);
+		collector_bottom = new DigitalInput(3);
 
+
+		shooterStretcherStart = new DigitalInput(4);
+		shooterStretcherEnd = new DigitalInput(5);
+		shooterReleaserLock = new DigitalInput(6);
+
+		shooterCycleCounter = new AnalogChannel(7);
 
 	}
 
+	public static void initLiveWindow()
+	{
+		LiveWindow.addActuator("Collector", "collectArm", (LiveWindowSendable)collectArm);
+	}
 
 }
