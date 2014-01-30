@@ -71,8 +71,9 @@ public class OI {
 		collectorToTop.whenPressed(new MoveArmTop());
 		collectorToMiddle.whenPressed(new MoveArmBottom());
 
-                shoot.whenPressed(new ReleaseAndGrasp());
+                
                 aim.whenPressed(new Aim());
+                shoot.whenPressed(new Shoot());
 
 	//	lowerCollectorArm.whenPressed(new MoveArmDown());
 	//	raiseCollectorArm.whenPressed(new MoveArmUp());
