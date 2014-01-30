@@ -5,6 +5,7 @@
  */
 package il.co.primo4586.frc2014.commands.Driver;
 
+import il.co.primo4586.frc2014.RobotTemplate;
 import il.co.primo4586.frc2014.commands.CommandBase;
 
 /**
@@ -12,7 +13,7 @@ import il.co.primo4586.frc2014.commands.CommandBase;
  * @author Gottlieb
  */
 public class MoveAfterShooting extends CommandBase {
-    
+
     public MoveAfterShooting() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -26,7 +27,7 @@ public class MoveAfterShooting extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        
+
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -37,6 +38,7 @@ public class MoveAfterShooting extends CommandBase {
     // Called once after isFinished returns true
     protected void end() {
         driver.stop();
+		RobotTemplate.isMovedForwardAutonomous = true;
     }
 
     // Called when another command which requires one or more of the same

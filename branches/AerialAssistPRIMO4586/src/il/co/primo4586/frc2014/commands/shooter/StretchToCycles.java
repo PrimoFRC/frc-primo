@@ -12,27 +12,42 @@ import il.co.primo4586.frc2014.commands.CommandBase;
  * @author mor meitar idan
  */
 public class StretchToCycles extends CommandBase {
-    
-    public StretchToCycles() {
+    private double desiredCycles, currentCycles;
+	private final double cyclesToSpeed=0.01;
+
+    public StretchToCycles(double cycles) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+		desiredCycles = cycles;
+
     }
 
     // Called just before this Command runs the first time
-    protected void initialize() {
+    protected void initialize()
+	{
+		currentCycles = shooter.getCount();
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
+    protected void execute()
+	{
+		currentCycles = shooter.getCount();
+		shooter.stretch(cyclesToSpeed * (desiredCycles-currentCycles));
     }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
+    protected boolean isFinished()
+	{
+		if (-1 < desiredCycles-currentCycles && desiredCycles-currentCycles < 1)
+		{
+			return true;
+		}
         return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
+		shooter.stretch(0);
     }
 
     // Called when another command which requires one or more of the same

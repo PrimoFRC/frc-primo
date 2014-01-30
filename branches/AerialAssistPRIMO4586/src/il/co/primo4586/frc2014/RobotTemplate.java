@@ -8,11 +8,17 @@
 package il.co.primo4586.frc2014;
 
 
+import edu.wpi.first.wpilibj.AnalogChannel;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import il.co.primo4586.frc2014.commands.CommandBase;
 import il.co.primo4586.frc2014.commands.*;
 
@@ -25,27 +31,30 @@ import il.co.primo4586.frc2014.commands.*;
  */
 public class RobotTemplate extends IterativeRobot {
 
-    
+
     CommandGroup autonomousSequence;
     CommandGroup teleopSequence;
     public static double distance;
     public static boolean isHot;
-    
-    public boolean isFinishedAutonomous;
+
+    public static boolean isFinishedAutonomous;
+	public static boolean isMovedForwardAutonomous;
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
     public void robotInit() {
+
+		SmartDashboard.putNumber("Needed Truss Power", 50);
         // instantiate the command used for the autonomous period
         //autonomousCommand = new ExampleCommand();
 
         // Initialize all subsystems
         RobotMap.init();
         CommandBase.init();
-        
+
         initMotors();
-        
+
         autonomousSequence = new AutonomousCommandGroup();
         teleopSequence = new TeleopCommandGroup();
     }
@@ -61,7 +70,7 @@ public class RobotTemplate extends IterativeRobot {
      */
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
-        if (isFinishedAutonomous)
+        if (isFinishedAutonomous && !isMovedForwardAutonomous)
         {
             isFinishedAutonomous = false;
             Scheduler.getInstance().add(autonomousSequence);
@@ -70,14 +79,14 @@ public class RobotTemplate extends IterativeRobot {
 
     public void teleopInit() {
 	// This makes sure that the autonomous stops running when
-        // teleop starts running. If you want the autonomous to 
+        // teleop starts running. If you want the autonomous to
         // continue until interrupted by another command, remove
         // this line or comment it out.
-        
+
         autonomousSequence.cancel();
         Scheduler.getInstance().add(teleopSequence);
         Scheduler.getInstance().run();
-        
+
     }
 
     /**
@@ -86,16 +95,25 @@ public class RobotTemplate extends IterativeRobot {
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
     }
-    
+
     /**
      * This function is called periodically during test mode
      */
     public void testPeriodic() {
         LiveWindow.run();
     }
-    
+
     public void initMotors()
      {
-         
+		RobotMap.collectArm.set(0);
+
+		RobotMap.shooterStretcher.set(0);
+		RobotMap.shooterReleaser.set(0);
+
+		RobotMap.drivingMotorLeftBack.set(0);
+        RobotMap.drivingMotorRightBack.set(0);
+        RobotMap.drivingMotorLeftFront.set(0);
+        RobotMap.drivingMotorRightFront.set(0);
+
      }
 }
