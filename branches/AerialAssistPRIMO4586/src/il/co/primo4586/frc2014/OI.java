@@ -7,8 +7,8 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import il.co.primo4586.frc2014.commands.Aim;
-import il.co.primo4586.frc2014.commands.Shooter.*;
-import il.co.primo4586.frc2014.commands.Collector.*;
+import il.co.primo4586.frc2014.commands.shooter.*;
+import il.co.primo4586.frc2014.commands.collector.*;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -49,40 +49,40 @@ public class OI {
     public Joystick drivingStick;
     public Joystick operatorStick;
     public JoystickButton manualLowerCollectorArm, manualRaiseCollectorArm, collectorToBottom, collectorToTop, collectorToMiddle ;
-     public JoystickButton shoot , aim;
+    public JoystickButton shoot , aim;
     public OI()
-       
+
     {
                 drivingStick = new Joystick(1);
                 operatorStick = new Joystick(2);
-      
+
 		manualLowerCollectorArm = new JoystickButton(operatorStick, 4);
 		manualRaiseCollectorArm = new JoystickButton(operatorStick, 5);
 		// lowerCollectorArm = new JoystickButton(operatorStick, 5);
 		// raiseCollectorArm = new JoystickButton(operatorStick, 6);
-                
+
 		collectorToBottom = new JoystickButton(operatorStick, 1);
 		collectorToTop = new JoystickButton(operatorStick, 2);
 		collectorToMiddle = new JoystickButton(operatorStick, 3);
 
-                shoot = new JoystickButton(operatorStick, 8);
-                aim = new JoystickButton(operatorStick, 7);
-                
+        shoot = new JoystickButton(operatorStick, 8);
+        aim = new JoystickButton(operatorStick, 7);
+
 		collectorToBottom.whenPressed(new MoveArmBottom());
 		collectorToTop.whenPressed(new MoveArmTop());
 		collectorToMiddle.whenPressed(new MoveArmBottom());
 
-                
-                aim.whenPressed(new Aim());
-                shoot.whenPressed(new Shoot());
+
+        aim.whenPressed(new Aim());
+        shoot.whenPressed(new Shoot());
 
 	//	lowerCollectorArm.whenPressed(new MoveArmDown());
 	//	raiseCollectorArm.whenPressed(new MoveArmUp());
 
 		manualLowerCollectorArm.whileHeld(new MoveArmFree(1));
 		manualRaiseCollectorArm.whileHeld(new MoveArmFree(-1));
-                
-                
+
+
 
     }
 

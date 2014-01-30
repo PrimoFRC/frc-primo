@@ -28,9 +28,9 @@ public class Shooter extends Subsystem {
 	DigitalInput releaserLock;
 	double stretchCycles, strechDistance;
         long lastCountCycles; // prime cycles count situations
-        long newCountCycles; // the cycles count since the prime situation 
+        long newCountCycles; // the cycles count since the prime situation
         long currentCycles;
-        
+
 	public Shooter()
 	{
 	stretcher = RobotMap.shooterStretcher; // controls the speed of the streaching motor
@@ -50,8 +50,8 @@ public class Shooter extends Subsystem {
 	{
 		stretcher.set(speed);
                 currentCycles = cycleCounter.getAccumulatorCount() - lastCountCycles;
-                newCountCycles += currentCycles*(long)(Math.abs(speed)/speed);  
-                lastCountCycles += currentCycles;  
+                newCountCycles += currentCycles*(long)(Math.abs(speed)/speed);
+                lastCountCycles += currentCycles;
 	}
 
 	/**------------------------------------
@@ -88,30 +88,30 @@ public class Shooter extends Subsystem {
 	{
 		return releaserLock.get();
 	}
-        
+
         /**------------------------------------
-         * 
+         *
          */
         public void initCount()
         {
                 lastCountCycles = cycleCounter.getAccumulatorCount();
                 newCountCycles = 0;
         }
-                
+
 	/**------------------------------------
 	 *
-	 * 
+	 *
 	 */
 	public long getCount()
 	{
-                return  newCountCycles;
+        return  newCountCycles;
 	}
-        
-       
-        
-       
-        
-        
+
+
+
+
+
+
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());

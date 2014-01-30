@@ -54,7 +54,7 @@ public class MoveArmFree extends CommandBase {
 				}
 
 			}
-
+/*
 			if(collector.getTopMicro())
 			{
 				finished= true;
@@ -64,7 +64,7 @@ public class MoveArmFree extends CommandBase {
 			{
 				finished= true;
 			}
-
+*/
 		}
 
 
