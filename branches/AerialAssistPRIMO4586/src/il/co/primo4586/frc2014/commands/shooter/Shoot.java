@@ -10,9 +10,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  *
  * @author user
  */
-public class ReleaseAndGrasp extends CommandGroup {
+public class Shoot extends CommandGroup {
     
-    public ReleaseAndGrasp() {
+    public Shoot() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -31,5 +31,6 @@ public class ReleaseAndGrasp extends CommandGroup {
         // arm.
         addSequential(new Release());
         addSequential(new Grasp());
+        //addSequential(new initStretcher());
     }
 }
