@@ -2,19 +2,17 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package il.co.primo4586.frc2014.commands;
+package il.co.primo4586.frc2014.commands.Shooter;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import il.co.primo4586.frc2014.commands.ImageProcessing.ImageProcessing;
-import il.co.primo4586.frc2014.commands.Shooter.StretchToCycles;
 
 /**
  *
  * @author user
  */
-public class Aim extends CommandGroup {
+public class Shoot extends CommandGroup {
     
-    public Aim() {
+    public Shoot() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -30,9 +28,9 @@ public class Aim extends CommandGroup {
         // would require.
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
-        // arm.\
-        
-        addSequential(new ImageProcessing());
-        addSequential(new StretchToCycles());
+        // arm.
+        addSequential(new Release());
+        addSequential(new Grasp());
+        //addSequential(new initStretcher());
     }
 }

@@ -5,11 +5,12 @@
  */
 package il.co.primo4586.frc2014.commands;
 
+import il.co.primo4586.frc2014.commands.Shooter.Release;
+import il.co.primo4586.frc2014.commands.Shooter.Grasp;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import il.co.primo4586.frc2014.RobotTemplate;
 import il.co.primo4586.frc2014.commands.Driver.MoveAfterShooting;
 import il.co.primo4586.frc2014.commands.ImageProcessing.ImageProcessing;
-import il.co.primo4586.frc2014.commands.shooter.*;
 
 /**
  *
