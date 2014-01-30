@@ -5,6 +5,7 @@
  */
 package il.co.primo4586.frc2014.commands.shooter;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import il.co.primo4586.frc2014.commands.CommandBase;
 
 /**
@@ -12,8 +13,8 @@ import il.co.primo4586.frc2014.commands.CommandBase;
  * @author mor meitar idan
  */
 public class StretchToCycles extends CommandBase {
-    private double desiredCycles, currentCycles;
-	private final double cyclesToSpeed=0.01;
+    private double desiredCycles, currentCycles, difference ;
+	private final double cyclesToSpeed = SmartDashboard.getNumber("Cycles To Speed", 0.01);
 
     public StretchToCycles(double cycles) {
         // Use requires() here to declare subsystem dependencies
@@ -32,13 +33,18 @@ public class StretchToCycles extends CommandBase {
     protected void execute()
 	{
 		currentCycles = shooter.getCount();
-		shooter.stretch(cyclesToSpeed * (desiredCycles-currentCycles));
+		difference = desiredCycles-currentCycles;
+		if ( (difference > 0 &&  !shooter.getEndMicro()) ||  (difference < 0 &&  !shooter.getStartMicro()) )
+		{
+			shooter.stretch(cyclesToSpeed * (difference));
+		}
+
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished()
 	{
-		if (-1 < desiredCycles-currentCycles && desiredCycles-currentCycles < 1)
+		if (-1 < difference && difference < 1)
 		{
 			return true;
 		}
@@ -53,5 +59,6 @@ public class StretchToCycles extends CommandBase {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+		end();
     }
 }

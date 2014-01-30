@@ -46,50 +46,41 @@ public class OI {
     // Start the command when the button is released  and let it run the command
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
+
     public Joystick drivingStick;
     public Joystick operatorStick;
+
     public JoystickButton manualLowerCollectorArm, manualRaiseCollectorArm, collectorToBottom, collectorToTop, collectorToMiddle ;
-    public JoystickButton shoot , aim;
+    public JoystickButton shoot , aim , trussThrow , initStretcher;
+
+
     public OI()
-
     {
-                drivingStick = new Joystick(1);
-                operatorStick = new Joystick(2);
+		drivingStick = new Joystick(1);
+        operatorStick = new Joystick(2);
 
-		manualLowerCollectorArm = new JoystickButton(operatorStick, 4);
-		manualRaiseCollectorArm = new JoystickButton(operatorStick, 5);
-		// lowerCollectorArm = new JoystickButton(operatorStick, 5);
-		// raiseCollectorArm = new JoystickButton(operatorStick, 6);
 
 		collectorToBottom = new JoystickButton(operatorStick, 1);
 		collectorToTop = new JoystickButton(operatorStick, 2);
 		collectorToMiddle = new JoystickButton(operatorStick, 3);
-
-        shoot = new JoystickButton(operatorStick, 8);
-        aim = new JoystickButton(operatorStick, 7);
 
 		collectorToBottom.whenPressed(new MoveArmBottom());
 		collectorToTop.whenPressed(new MoveArmTop());
 		collectorToMiddle.whenPressed(new MoveArmBottom());
 
 
+		aim = new JoystickButton(operatorStick, 7);
+		shoot = new JoystickButton(operatorStick, 8);
+		trussThrow = new JoystickButton(operatorStick, 6);
+		initStretcher = new JoystickButton(operatorStick, 5);
+
         aim.whenPressed(new Aim());
         shoot.whenPressed(new Shoot());
-
-	//	lowerCollectorArm.whenPressed(new MoveArmDown());
-	//	raiseCollectorArm.whenPressed(new MoveArmUp());
-
-		manualLowerCollectorArm.whileHeld(new MoveArmFree(1));
-		manualRaiseCollectorArm.whileHeld(new MoveArmFree(-1));
-
-
+		trussThrow.whenPressed(new ThrowOverTruss());
+		initStretcher.whenPressed(new InitStretcher());
 
     }
 
-    public Joystick getDrivingStick()
-    {
-        return drivingStick;
-    }
 }
 
 

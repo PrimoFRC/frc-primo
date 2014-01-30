@@ -5,6 +5,7 @@
  */
 package il.co.primo4586.frc2014.commands.collector;
 
+import edu.wpi.first.wpilibj.Joystick;
 import il.co.primo4586.frc2014.commands.CommandBase;
 
 /**
@@ -14,33 +15,31 @@ import il.co.primo4586.frc2014.commands.CommandBase;
 public class MoveArmFree extends CommandBase {
 
 
-	int direction;
+
 	private boolean finished;
+	private Joystick operatorStick;
+	private double direction;
 
 
-
-    public MoveArmFree(int direction) {
+    public MoveArmFree() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
 		requires(collector);
-		this.direction = direction;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
 
-		finished = (collector.getTopMicro());
-		finished |= (collector.getBottomMicro());
-
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+		direction = operatorStick.getY() / Math.abs(operatorStick.getY());
 
-		if(!finished)
+		if(!(direction>0 && collector.getTopMicro()) && !(direction<0 && collector.getBottomMicro()))
 		{
-
 			collector.moveArm(direction);
+
 
 			if(collector.getMiddleMicro())
 			{
@@ -54,20 +53,8 @@ public class MoveArmFree extends CommandBase {
 				}
 
 			}
-/*
-			if(collector.getTopMicro())
-			{
-				finished= true;
-			}
 
-			if(collector.getBottomMicro())
-			{
-				finished= true;
-			}
-*/
 		}
-
-
 
 
     }
@@ -75,28 +62,17 @@ public class MoveArmFree extends CommandBase {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
 
-		if(collector.getTopMicro() && direction>0)
-			{
-				finished= true;
-			}
-
-			if(collector.getBottomMicro() && direction<0)
-			{
-				finished= true;
-			}
-
-
-        return (!oi.manualLowerCollectorArm.get() && !oi.manualRaiseCollectorArm.get()) || finished; //needs to be changed from isHeld to joystick
+        return false;
     }
 
     // Called once after isFinished returns true
-    protected void end()
-	{
-		collector.moveArm(0);
+    protected void end(){
+
 	}
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+
     }
 }

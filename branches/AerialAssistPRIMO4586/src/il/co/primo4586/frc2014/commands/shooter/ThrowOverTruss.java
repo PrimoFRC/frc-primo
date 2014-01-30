@@ -35,7 +35,7 @@ public class ThrowOverTruss extends CommandGroup
 		// a CommandGroup containing them would require both the chassis and the
 		// arm.
 
-		addSequential(new StretchToCycles(SmartDashboard.getNumber("Needed Truss Power",50)));
+		addSequential(new StretchToCycles(SmartDashboard.getNumber("Power",50)));
 		addSequential(new Shoot());
 	}
 }

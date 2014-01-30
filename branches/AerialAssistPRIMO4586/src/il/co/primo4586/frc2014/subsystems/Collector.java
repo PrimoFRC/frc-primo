@@ -6,6 +6,7 @@
 package il.co.primo4586.frc2014.subsystems;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import il.co.primo4586.frc2014.RobotMap;
@@ -19,7 +20,8 @@ public class Collector extends Subsystem
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
-	Talon collectArm;
+	SpeedController collectArm;
+
     DigitalInput collector_top;
 	DigitalInput collector_middle;
 	DigitalInput collector_bottom;
@@ -31,6 +33,7 @@ public class Collector extends Subsystem
 	public Collector()
 	{
 		collectArm = RobotMap.collectArm;
+
 		collector_top = RobotMap.collector_top;
 		collector_middle = RobotMap.collector_middle;
 		collector_bottom = RobotMap.collector_bottom;
@@ -43,30 +46,36 @@ public class Collector extends Subsystem
 		collectArm.set(speed);
 	}
 
+
 	public boolean getTopMicro()
 	{
 		return collector_top.get();
 	}
+
 
 	public boolean getMiddleMicro()
 	{
 		return collector_middle.get();
 	}
 
+
 	public boolean getBottomMicro()
 	{
 		return collector_bottom.get();
 	}
+
 
 	public int getLevel()
 	{
 		return level;
 	}
 
+
 	public void setLevel(int newLevel)
 	{
 		level = newLevel;
 	}
+
 
 	public boolean getAboveMiddle()
 	{
@@ -79,16 +88,11 @@ public class Collector extends Subsystem
 		isAboveMiddle = true;
 	}
 
+
 	public void setBelowMiddle()
 	{
 		isAboveMiddle = false;
 	}
-
-
-
-
-
-
 
 
     public void initDefaultCommand() {
