@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  * @author user
  */
 public class Shoot extends CommandGroup {
-    
+
     public Shoot() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
@@ -31,6 +31,6 @@ public class Shoot extends CommandGroup {
         // arm.
         addSequential(new Release());
         addSequential(new Grasp());
-        //addSequential(new initStretcher());
+        addSequential(new InitStretcher());
     }
 }

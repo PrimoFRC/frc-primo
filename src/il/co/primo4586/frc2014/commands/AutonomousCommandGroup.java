@@ -5,20 +5,20 @@
  */
 package il.co.primo4586.frc2014.commands;
 
-import il.co.primo4586.frc2014.commands.Shooter.Release;
-import il.co.primo4586.frc2014.commands.Shooter.Grasp;
+import il.co.primo4586.frc2014.commands.shooter.*;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import il.co.primo4586.frc2014.RobotTemplate;
 import il.co.primo4586.frc2014.commands.Driver.MoveAfterShooting;
 import il.co.primo4586.frc2014.commands.ImageProcessing.ImageProcessing;
+
 
 /**
  *
  * @author Gottlieb
  */
 public class AutonomousCommandGroup extends CommandGroup {
-    
-    
+
+
     public AutonomousCommandGroup() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
@@ -35,7 +35,7 @@ public class AutonomousCommandGroup extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-        
+
         if (RobotTemplate.isHot)
         {
             //addSequential(new StretchToDistance(RobotTemplate.distance));
@@ -47,7 +47,7 @@ public class AutonomousCommandGroup extends CommandGroup {
         else
         {
             addSequential(new ImageProcessing());
-            //addSequential(new initStretcher());
+            addSequential(new InitStretcher());
         }
     }
 }
