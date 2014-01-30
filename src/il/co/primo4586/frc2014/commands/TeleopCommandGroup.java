@@ -7,8 +7,8 @@ package il.co.primo4586.frc2014.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import il.co.primo4586.frc2014.commands.Driver.MechanumDrive;
-import il.co.primo4586.frc2014.commands.collector.MoveArmFree;
-import il.co.primo4586.frc2014.commands.shooter.StretchFree;
+import il.co.primo4586.frc2014.commands.Collector.MoveArmFree;
+import il.co.primo4586.frc2014.commands.Shooter.StretchFree;
 
 /**
  *

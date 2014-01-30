@@ -1,13 +1,14 @@
 
 package il.co.primo4586.frc2014;
 
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import il.co.primo4586.frc2014.commands.Aim;
-import il.co.primo4586.frc2014.commands.collector.*;
-import il.co.primo4586.frc2014.commands.shooter.*;
+import il.co.primo4586.frc2014.commands.Shooter.*;
+import il.co.primo4586.frc2014.commands.Collector.*;
 
 /**
  * This class is the glue that binds the controls on the physical operator
