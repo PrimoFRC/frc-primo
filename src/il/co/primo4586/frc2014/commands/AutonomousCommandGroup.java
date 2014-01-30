@@ -46,6 +46,7 @@ public class AutonomousCommandGroup extends CommandGroup {
         else
         {
             addSequential(new ImageProcessing());
+            //addSequential(new initStretcher());
         }
     }
 }
