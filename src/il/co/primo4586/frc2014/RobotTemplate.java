@@ -21,6 +21,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import il.co.primo4586.frc2014.commands.CommandBase;
 import il.co.primo4586.frc2014.commands.*;
+import il.co.primo4586.frc2014.commands.shooter.InitStretcher;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -45,7 +46,7 @@ public class RobotTemplate extends IterativeRobot {
      */
     public void robotInit() {
 
-		SmartDashboard.putNumber("Needed Truss Power", 50);
+		initSmartDashboard();
         // instantiate the command used for the autonomous period
         //autonomousCommand = new ExampleCommand();
 
@@ -62,6 +63,7 @@ public class RobotTemplate extends IterativeRobot {
     public void autonomousInit() {
         // schedule the autonomous command (example)
         isFinishedAutonomous = false;
+		Scheduler.getInstance().add(new InitStretcher());
         Scheduler.getInstance().add(autonomousSequence);
     }
 
@@ -104,7 +106,7 @@ public class RobotTemplate extends IterativeRobot {
     }
 
     public void initMotors()
-     {
+    {
 		RobotMap.collectArm.set(0);
 
 		RobotMap.shooterStretcher.set(0);
@@ -115,5 +117,11 @@ public class RobotTemplate extends IterativeRobot {
         RobotMap.drivingMotorLeftFront.set(0);
         RobotMap.drivingMotorRightFront.set(0);
 
-     }
+    }
+
+	public void initSmartDashboard()
+    {
+		SmartDashboard.putNumber("Power", 50);
+		SmartDashboard.putNumber("Cycles To Speed", 0.01);
+	}
 }

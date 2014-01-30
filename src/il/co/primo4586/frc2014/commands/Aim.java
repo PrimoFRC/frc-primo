@@ -36,6 +36,6 @@ public class Aim extends CommandGroup {
         // arm.\
 
         addSequential(new ImageProcessing());
-        addSequential(new StretchToCycles(SmartDashboard.getNumber("Needed Truss Power",50)));//Will Be Function
+        addSequential(new StretchToCycles(SmartDashboard.getNumber("Power",50)));//Will Be Function
     }
 }
