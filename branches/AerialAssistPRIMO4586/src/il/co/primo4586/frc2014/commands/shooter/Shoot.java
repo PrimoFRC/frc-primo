@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  * @author user
  */
 public class Shoot extends CommandGroup {
-
+    
     public Shoot() {
         // Add Commands here:
         // e.g. addSequential(new Command1());

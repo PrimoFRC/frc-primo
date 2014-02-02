@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package il.co.primo4586.frc2014.commands.collector;
+package il.co.primo4586.frc2014.commands.Collector;
 
 import il.co.primo4586.frc2014.commands.CommandBase;
 
@@ -27,6 +27,12 @@ private boolean finished;
 	{
 
             finished = (collector.getMiddleMicro());
+
+	}
+
+	// Called repeatedly when this Command is scheduled to run
+	protected void execute()
+	{
             if (!finished)
             {
                 if(collector.getAboveMiddle())
@@ -47,10 +53,6 @@ private boolean finished;
 		}
             }
 	}
-	protected void execute()
-    {
-
-    }
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished()
