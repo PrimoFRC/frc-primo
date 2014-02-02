@@ -42,7 +42,7 @@ public class Shooter extends Subsystem {
 
 	//cycleCounter = RobotMap.shooterCycleCounter; // optic sensor for counting the cycles of the streaching motor
 
-	stretcherStart = RobotMap.shooterStretcherStart; // digital sensor for when the rubber band is at the start
+	//stretcherStart = RobotMap.shooterStretcherStart; // digital sensor for when the rubber band is at the start
 	stretcherEnd = RobotMap.shooterStretcherEnd; // digital sensor for when the rubber band is at the end
 	//releaserLock = RobotMap.shooterReleaserLock; // digital sensor for when the hook of the rubber band is locked
 	}
@@ -74,7 +74,8 @@ public class Shooter extends Subsystem {
 	 */
 	public boolean getStartMicro()
 	{
-		return stretcherStart.get();
+		//return stretcherStart.get();
+            return false;
 	}
 
 	/**------------------------------------
@@ -83,7 +84,7 @@ public class Shooter extends Subsystem {
 	 */
 	public boolean getEndMicro()
 	{
-		return stretcherEnd.get();
+		return false; //stretcherEnd.get();
 	}
 
 	/**------------------------------------

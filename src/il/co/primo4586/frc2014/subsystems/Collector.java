@@ -43,7 +43,7 @@ public class Collector extends Subsystem
 
 	public void moveArm(double speed)
 	{
-		collectArm.set(speed);
+		collectArm.set(speed * 0.7);
 	}
 
 
