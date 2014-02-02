@@ -24,6 +24,7 @@ public class MechanumDrive extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
         drivingStick = CommandBase.oi.drivingStick;
+        System.out.println("mechanumDrive works");
         //drivingStick2 = CommandBase.oi.getDrivingStick2();
     }
 

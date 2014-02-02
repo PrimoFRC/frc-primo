@@ -30,7 +30,7 @@ public class Shoot extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
         addSequential(new Release());
-        addSequential(new Grasp());
-        addSequential(new InitStretcher());
+        //addSequential(new Grasp());
+        //addSequential(new InitStretcher());
     }
 }

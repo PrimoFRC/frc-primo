@@ -45,7 +45,7 @@ public class RobotTemplate extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
-        System.out.println("fdsafds");
+        System.out.println("robotInit started");
 		initSmartDashboard();
                 System.out.println("smartdashboard works");
         // instantiate the command used for the autonomous period
@@ -53,13 +53,15 @@ public class RobotTemplate extends IterativeRobot {
 
         // Initialize all subsystems
         RobotMap.init();
+        System.out.println("robotMap works");
         CommandBase.init();
-        
+        System.out.println("commandBase works");
         initMotors();
-
+        System.out.println("initMotors works");
         autonomousSequence = new AutonomousCommandGroup();
+        System.out.println("autonoumusGroupCommand works");
         teleopSequence = new TeleopCommandGroup();
-        System.out.println("robotInit works");
+        System.out.println("robotInit finished");
     }
 
     public void autonomousInit() {

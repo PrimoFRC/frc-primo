@@ -40,17 +40,17 @@ public class StretchFree extends CommandBase {
     {
         operatorStick = oi.operatorStick;
         shooter.initCount();
-
+System.out.println("shooterStrechFree works");
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() 
     {
-            direction = operatorStick.getRawAxis(1) / Math.abs(operatorStick.getRawAxis(1));  // check which port is it
-        
-        if ( (direction > 0 &&  !shooter.getEndMicro()) ||  (direction < 0 &&  !shooter.getStartMicro()) )
+            direction = operatorStick.getRawAxis(5);  // check which port is it
+        if ( (direction >= 0 &&  !shooter.getEndMicro()) ||  (direction <= 0 &&  !shooter.getStartMicro()) )
         {
-            shooter.stretch(direction/2);
+            shooter.stretch(direction);
+            System.out.println("direction" + direction);
             DriverStationLCD.getInstance().println(DriverStationLCD.Line.kUser2, 1, "stretch cycles:" + shooter.getCount());
             DriverStationLCD.getInstance().updateLCD();
         }
@@ -65,7 +65,7 @@ public class StretchFree extends CommandBase {
     // Called once after isFinished returns true
     protected void end() 
     {
-        
+        System.out.println("collector ended");
     }
 
     // Called when another command which requires one or more of the same
