@@ -25,18 +25,18 @@ public class MoveArmFree extends CommandBase {
     public MoveArmFree() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-		requires(collector);
+		
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-
+        operatorStick = oi.operatorStick;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-		direction = operatorStick.getY() / Math.abs(operatorStick.getY());
-
+		direction = operatorStick.getY();
+                System.out.println("collectorMoveArmFree direction: " + direction);
 		if(!(direction>0 && collector.getTopMicro()) && !(direction<0 && collector.getBottomMicro()))
 		{
 			collector.moveArm(direction);
@@ -69,12 +69,12 @@ public class MoveArmFree extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end(){
-
+        System.out.println("collector ended");
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-
+System.out.println("collector interrupted");
     }
 }

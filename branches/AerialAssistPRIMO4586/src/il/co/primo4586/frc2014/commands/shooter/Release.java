@@ -6,6 +6,7 @@
 package il.co.primo4586.frc2014.commands.shooter;
 
 
+import edu.wpi.first.wpilibj.DriverStationLCD;
 import il.co.primo4586.frc2014.commands.CommandBase;
 
 /**
@@ -17,7 +18,7 @@ public class Release extends CommandBase {
     //DigitalInput releaserLock;
     public Release() 
     {
-        requires (shooter);
+        
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -25,7 +26,10 @@ public class Release extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() 
     {
-        shooter.release(0.2);
+        //setTimeout(1);
+        shooter.release(0.5);
+        DriverStationLCD.getInstance().println(DriverStationLCD.Line.kUser1, 1, "Shooting");
+        DriverStationLCD.getInstance().updateLCD();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -37,7 +41,7 @@ public class Release extends CommandBase {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() 
     {
-        return !shooter.getLockMicro();
+        return !oi.shoot.get();//!shooter.getLockMicro();
        
     }
 
@@ -51,6 +55,6 @@ public class Release extends CommandBase {
     // subsystems is scheduled to run
     protected void interrupted() 
     {
-    
+        end();
     }
 }
