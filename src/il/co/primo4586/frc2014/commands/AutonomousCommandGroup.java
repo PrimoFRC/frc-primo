@@ -5,7 +5,8 @@
  */
 package il.co.primo4586.frc2014.commands;
 
-import il.co.primo4586.frc2014.commands.shooter.*;
+import il.co.primo4586.frc2014.commands.shooter.StretchToCycles;
+import il.co.primo4586.frc2014.commands.shooter.Shoot;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import il.co.primo4586.frc2014.RobotTemplate;
