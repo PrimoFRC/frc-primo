@@ -22,13 +22,13 @@ public class StretchFree extends CommandBase {
 	DigitalInput releaserLock;
 	double stretchCycles, strechDistance;
         long primeCountCycles; // prime cycles count situations
-        long newCountCycles; // the cycles count since the prime situation
+        long newCountCycles; // the cycles count since the prime situation 
      */
-
+      
     private Joystick operatorStick;
     private double direction;
-
-    public StretchFree()
+    
+    public StretchFree()         
     {
         requires(shooter);
         // Use requires() here to declare subsystem dependencies
@@ -36,7 +36,7 @@ public class StretchFree extends CommandBase {
     }
 
     // Called just before this Command runs the first time
-    protected void initialize()
+    protected void initialize() 
     {
         operatorStick = oi.operatorStick;
         shooter.initCount();
@@ -44,10 +44,10 @@ public class StretchFree extends CommandBase {
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute()
+    protected void execute() 
     {
             direction = operatorStick.getRawAxis(1) / Math.abs(operatorStick.getRawAxis(1));  // check which port is it
-
+        
         if ( (direction > 0 &&  !shooter.getEndMicro()) ||  (direction < 0 &&  !shooter.getStartMicro()) )
         {
             shooter.stretch(direction/2);
@@ -57,21 +57,21 @@ public class StretchFree extends CommandBase {
     }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished()
+    protected boolean isFinished() 
     {
         return false;
     }
 
     // Called once after isFinished returns true
-    protected void end()
+    protected void end() 
     {
-
+        
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
-    protected void interrupted()
+    protected void interrupted() 
     {
-
+        
     }
 }

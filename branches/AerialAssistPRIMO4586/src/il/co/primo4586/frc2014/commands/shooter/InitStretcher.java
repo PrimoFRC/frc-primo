@@ -12,7 +12,7 @@ import il.co.primo4586.frc2014.commands.CommandBase;
  * @author meitar
  */
 public class InitStretcher extends CommandBase {
-
+    
     public InitStretcher() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -24,7 +24,7 @@ public class InitStretcher extends CommandBase {
 		if (!shooter.getStartMicro())
 		{
 			shooter.stretch(-1);
-		}
+    }
 
     }
 

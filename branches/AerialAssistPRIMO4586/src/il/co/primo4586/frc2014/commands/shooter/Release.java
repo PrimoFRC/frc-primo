@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package il.co.primo4586.frc2014.commands.shooter;
+package il.co.primo4586.frc2014.commands.Shooter;
 
 
 import il.co.primo4586.frc2014.commands.CommandBase;
@@ -15,7 +15,7 @@ import il.co.primo4586.frc2014.commands.CommandBase;
 public class Release extends CommandBase {
     //Talon releaser;
     //DigitalInput releaserLock;
-    public Release()
+    public Release() 
     {
         requires (shooter);
         // Use requires() here to declare subsystem dependencies
@@ -23,34 +23,34 @@ public class Release extends CommandBase {
     }
 
     // Called just before this Command runs the first time
-    protected void initialize()
+    protected void initialize() 
     {
         shooter.release(0.2);
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute()
+    protected void execute() 
    {
-
+       
    }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished()
+    protected boolean isFinished() 
     {
         return !shooter.getLockMicro();
-
+       
     }
 
     // Called once after isFinished returns true
-    protected void end()
-    {
+    protected void end() 
+    {   
         shooter.release(0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
-    protected void interrupted()
+    protected void interrupted() 
     {
-		end();
+    
     }
 }

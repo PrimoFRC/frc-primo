@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package il.co.primo4586.frc2014.commands.collector;
+package il.co.primo4586.frc2014.commands.Collector;
 
 import il.co.primo4586.frc2014.commands.CommandBase;
 /**
@@ -85,6 +85,5 @@ public class MoveArmDown extends CommandBase {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-
     }
 }
