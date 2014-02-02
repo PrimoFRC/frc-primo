@@ -60,30 +60,30 @@ public class RobotMap {
 	{
 		collectArm = new Talon(7); // need to check if there is two speed controlers or not
 
-		shooterStretcher = new Victor (6);
-		shooterReleaser = new Talon(5);
+		shooterStretcher = new Victor (5);
+		shooterReleaser = new Talon(6);
 
-		drivingMotorLeftBack = new Jaguar(1);
+		drivingMotorLeftBack = new Jaguar(3);
 		drivingMotorRightBack = new Jaguar(2);
-		drivingMotorLeftFront = new Jaguar(3);
+		drivingMotorLeftFront = new Jaguar(1);
 		drivingMotorRightFront = new Jaguar(4);
 
-		collector_top = new DigitalInput(1);
-		collector_middle = new DigitalInput(2);
-		collector_bottom = new DigitalInput(3);
+		//collector_top = new DigitalInput(1);
+		//collector_middle = new DigitalInput(2);
+		//collector_bottom = new DigitalInput(3);
 
 
-		shooterStretcherStart = new DigitalInput(4);
-		shooterStretcherEnd = new DigitalInput(5);
-		shooterReleaserLock = new DigitalInput(6);
+		shooterStretcherStart = new DigitalInput(1);
+		shooterStretcherEnd = new DigitalInput(2);
+		//shooterReleaserLock = new DigitalInput(6);
 
-		shooterCycleCounter = new AnalogChannel(7);
+		//shooterCycleCounter = new AnalogChannel(7);
 
 	}
 
 	public static void initLiveWindow()
 	{
-		LiveWindow.addActuator("Collector", "collectArm", (LiveWindowSendable)collectArm);
+		//LiveWindow.addActuator("Collector", "collectArm", (LiveWindowSendable)collectArm);
 	}
 
 }

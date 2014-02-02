@@ -33,10 +33,10 @@ public class Collector extends Subsystem
 	public Collector()
 	{
 		collectArm = RobotMap.collectArm;
-
-		collector_top = RobotMap.collector_top;
-		collector_middle = RobotMap.collector_middle;
-		collector_bottom = RobotMap.collector_bottom;
+                //להוציא מהערה
+		//collector_top = RobotMap.collector_top;
+		//collector_middle = RobotMap.collector_middle;
+		//collector_bottom = RobotMap.collector_bottom;
 
 	}
 
@@ -49,19 +49,23 @@ public class Collector extends Subsystem
 
 	public boolean getTopMicro()
 	{
-		return collector_top.get();
+		//return collector_top.get();
+            return false;
 	}
 
 
 	public boolean getMiddleMicro()
 	{
-		return collector_middle.get();
+		//return collector_middle.get();
+                return false;
+
 	}
 
 
 	public boolean getBottomMicro()
 	{
-		return collector_bottom.get();
+		//return collector_bottom.get();
+            return false;
 	}
 
 

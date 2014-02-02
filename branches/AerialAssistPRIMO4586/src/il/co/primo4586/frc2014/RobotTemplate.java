@@ -45,19 +45,21 @@ public class RobotTemplate extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
-
+        System.out.println("fdsafds");
 		initSmartDashboard();
+                System.out.println("smartdashboard works");
         // instantiate the command used for the autonomous period
         //autonomousCommand = new ExampleCommand();
 
         // Initialize all subsystems
         RobotMap.init();
         CommandBase.init();
-
+        
         initMotors();
 
         autonomousSequence = new AutonomousCommandGroup();
         teleopSequence = new TeleopCommandGroup();
+        System.out.println("robotInit works");
     }
 
     public void autonomousInit() {
@@ -84,10 +86,12 @@ public class RobotTemplate extends IterativeRobot {
         // teleop starts running. If you want the autonomous to
         // continue until interrupted by another command, remove
         // this line or comment it out.
-
-        autonomousSequence.cancel();
+        System.out.println("teleopInit started");
+        if (autonomousSequence != null)
+            autonomousSequence.cancel();
         Scheduler.getInstance().add(teleopSequence);
         Scheduler.getInstance().run();
+        System.out.println("teleopInit works");
 
     }
 
