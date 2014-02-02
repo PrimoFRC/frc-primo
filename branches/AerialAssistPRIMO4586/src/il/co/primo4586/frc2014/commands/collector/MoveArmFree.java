@@ -5,6 +5,7 @@
  */
 package il.co.primo4586.frc2014.commands.collector;
 
+import edu.wpi.first.wpilibj.DriverStationLCD;
 import edu.wpi.first.wpilibj.Joystick;
 import il.co.primo4586.frc2014.commands.CommandBase;
 
@@ -39,7 +40,8 @@ public class MoveArmFree extends CommandBase {
 		if(!(direction>0 && collector.getTopMicro()) && !(direction<0 && collector.getBottomMicro()))
 		{
 			collector.moveArm(direction);
-
+                        DriverStationLCD.getInstance().println(DriverStationLCD.Line.kUser1, 1, "MoveArmFree");
+                        DriverStationLCD.getInstance().updateLCD();
 
 			if(collector.getMiddleMicro())
 			{

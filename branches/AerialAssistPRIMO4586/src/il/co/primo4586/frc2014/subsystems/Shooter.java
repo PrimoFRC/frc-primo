@@ -40,11 +40,11 @@ public class Shooter extends Subsystem {
 	stretcher = RobotMap.shooterStretcher; // controls the speed of the streaching motor
 	releaser= RobotMap.shooterReleaser; // controls the speed of the realesing motor
 
-	cycleCounter = RobotMap.shooterCycleCounter; // optic sensor for counting the cycles of the streaching motor
+	//cycleCounter = RobotMap.shooterCycleCounter; // optic sensor for counting the cycles of the streaching motor
 
 	stretcherStart = RobotMap.shooterStretcherStart; // digital sensor for when the rubber band is at the start
 	stretcherEnd = RobotMap.shooterStretcherEnd; // digital sensor for when the rubber band is at the end
-	releaserLock = RobotMap.shooterReleaserLock; // digital sensor for when the hook of the rubber band is locked
+	//releaserLock = RobotMap.shooterReleaserLock; // digital sensor for when the hook of the rubber band is locked
 	}
 
 
@@ -55,9 +55,9 @@ public class Shooter extends Subsystem {
 	public void stretch(double speed)
 	{
 		stretcher.set(speed);
-        currentCycles = cycleCounter.getAccumulatorCount() - lastCountCycles;
+       /* currentCycles = cycleCounter.getAccumulatorCount() - lastCountCycles;
         newCountCycles += currentCycles*(long)(Math.abs(speed)/speed);
-        lastCountCycles += currentCycles;
+        lastCountCycles += currentCycles;*/
 	}
 
 	/**------------------------------------
@@ -92,7 +92,8 @@ public class Shooter extends Subsystem {
 	 */
 	public boolean getLockMicro()
 	{
-		return releaserLock.get();
+		//return releaserLock.get();
+            return true;
 	}
 
         /**------------------------------------
@@ -100,7 +101,7 @@ public class Shooter extends Subsystem {
          */
         public void initCount()
         {
-            lastCountCycles = cycleCounter.getAccumulatorCount();
+            //lastCountCycles = cycleCounter.getAccumulatorCount();
             newCountCycles = 0;
         }
 

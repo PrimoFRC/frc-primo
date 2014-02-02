@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package il.co.primo4586.frc2014.commands.Shooter;
+package il.co.primo4586.frc2014.commands.shooter;
 
 import il.co.primo4586.frc2014.commands.CommandBase;
 
@@ -47,5 +47,6 @@ public class Grasp extends CommandBase {
     // subsystems is scheduled to run
     protected void interrupted() 
     {
+        end();
     }
 }
