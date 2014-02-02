@@ -66,7 +66,7 @@ public class OI {
 
 		collectorToBottom.whenPressed(new MoveArmBottom());
 		collectorToTop.whenPressed(new MoveArmTop());
-		collectorToMiddle.whenPressed(new MoveArmBottom());
+		collectorToMiddle.whenPressed(new MoveArmMiddle());
 
 
 		aim = new JoystickButton(operatorStick, 7);
@@ -74,8 +74,8 @@ public class OI {
 		trussThrow = new JoystickButton(operatorStick, 6);
 		initStretcher = new JoystickButton(operatorStick, 5);
 
-        aim.whenPressed(new Aim());
-        shoot.whenPressed(new Shoot());
+                aim.whenPressed(new Aim());
+                shoot.whenPressed(new Shoot());
 		trussThrow.whenPressed(new ThrowOverTruss());
 		initStretcher.whenPressed(new InitStretcher());
 
