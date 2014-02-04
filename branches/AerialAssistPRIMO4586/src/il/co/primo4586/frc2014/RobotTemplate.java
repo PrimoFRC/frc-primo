@@ -46,7 +46,7 @@ public class RobotTemplate extends IterativeRobot {
      */
     public void robotInit() {
         System.out.println("robotInit started");
-		initSmartDashboard();
+		
                 System.out.println("smartdashboard works");
         // instantiate the command used for the autonomous period
         //autonomousCommand = new ExampleCommand();
@@ -61,6 +61,7 @@ public class RobotTemplate extends IterativeRobot {
         autonomousSequence = new AutonomousCommandGroup();
         System.out.println("autonoumusGroupCommand works");
         teleopSequence = new TeleopCommandGroup();
+        initSmartDashboard();
         System.out.println("robotInit finished");
     }
 
@@ -102,6 +103,7 @@ public class RobotTemplate extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        initSmartDashboard();
     }
 
     /**
@@ -130,5 +132,11 @@ public class RobotTemplate extends IterativeRobot {
 		SmartDashboard.putNumber("Power", 50);
 		SmartDashboard.putNumber("Cycles To Speed", 0.01);
                 SmartDashboard.putNumber("Cycles", 0);
+                SmartDashboard.putBoolean("collector top: ", CommandBase.collector.getTopMicro());
+                SmartDashboard.putBoolean("collector bottom: ", CommandBase.collector.getBottomMicro());
+                SmartDashboard.putBoolean("shooter start: ", CommandBase.shooter.getStartMicro());
+                SmartDashboard.putBoolean("shooter end: ", CommandBase.shooter.getEndMicro());
+                SmartDashboard.putBoolean("releaser lock: ", CommandBase.shooter.getLockMicro());
+                SmartDashboard.putBoolean("releaser free: ", CommandBase.shooter.getFreeMicro());
 	}
 }

@@ -38,9 +38,9 @@ public class MoveArmFree extends CommandBase {
     protected void execute() {
 		direction = operatorStick.getY();
                 
-		if((direction > 0.1 &&  !collector.getBottomMicro()) ||  (direction < -0.1 &&  !collector.getTopMicro()) )
+		if((direction > 0.1 &&  !collector.getTopMicro()) ||  (direction < -0.1 &&  !collector.getBottomMicro()) )
 		{
-                        System.out.println("collectorMoveArmFree direction: " + direction);
+                        
                         isZeroed = false;
 			collector.moveArm(direction);
                         DriverStationLCD.getInstance().println(DriverStationLCD.Line.kUser1, 1, "MoveArmFree");

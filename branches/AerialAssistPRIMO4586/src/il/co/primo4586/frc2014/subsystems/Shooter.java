@@ -52,11 +52,11 @@ public class Shooter extends Subsystem {
             releaserLock = RobotMap.shooterReleaserLock; // digital sensor for when the hook of the rubber band is locked
             releaserFree = RobotMap.shooterReleaserFree;
             
-            /*
+            
             cycles = new Counter();
             cycles.setUpSource(cycleCounter);
             cycles.start();
-            */
+            
 	}
 
 
@@ -90,8 +90,8 @@ public class Shooter extends Subsystem {
 	 */
 	public boolean getStartMicro()
 	{
-            return false;
-            //return stretcherStart.get();
+            //return false;
+            return stretcherStart.get();
 	}
 
 	/**------------------------------------
@@ -100,8 +100,8 @@ public class Shooter extends Subsystem {
 	 */
 	public boolean getEndMicro()
 	{
-            return false;
-            //return stretcherEnd.get();
+            //return false;
+            return stretcherEnd.get();
 	}
 
 	/**------------------------------------
@@ -110,14 +110,14 @@ public class Shooter extends Subsystem {
 	 */
 	public boolean getLockMicro()
 	{
-            return false;
-            //return releaserLock.get();
+            //return false;
+            return !releaserLock.get();
 	}
         
         public boolean getFreeMicro()
 	{
-            return false;
-            //return releaserFree.get();
+            //return false;
+            return !releaserFree.get();
 	}
 
         /**------------------------------------

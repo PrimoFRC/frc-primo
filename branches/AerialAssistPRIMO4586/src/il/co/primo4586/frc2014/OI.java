@@ -51,7 +51,7 @@ public class OI {
     public Joystick operatorStick;
 
     public JoystickButton manualLowerCollectorArm, manualRaiseCollectorArm, collectorToBottom, collectorToTop, collectorToMiddle ;
-    public JoystickButton shoot , aim , trussThrow , initStretcher;
+    public JoystickButton shoot , aim , trussThrow , initStretcher , grasp , release;
 
 
     public OI()
@@ -60,7 +60,7 @@ public class OI {
         operatorStick = new Joystick(2);
         System.out.println("joysticks initiated");
         
-        /*
+        
 		collectorToBottom = new JoystickButton(operatorStick, 11);
 		collectorToTop = new JoystickButton(operatorStick, 12);
 	
@@ -68,16 +68,20 @@ public class OI {
 		collectorToBottom.whenPressed(new MoveArmBottom());
 		collectorToTop.whenPressed(new MoveArmTop());
 
+                grasp = new JoystickButton(operatorStick, 7);
+                release = new JoystickButton(operatorStick, 8);
 		aim = new JoystickButton(operatorStick, 2);
 		shoot = new JoystickButton(operatorStick, 1);
 		trussThrow = new JoystickButton(operatorStick, 3);
 		initStretcher = new JoystickButton(operatorStick, 10);
 
+                grasp.whenPressed(new Grasp());
+                release.whenPressed(new Release());
                 aim.whenPressed(new Aim());
                 shoot.whenPressed(new Shoot());
 		trussThrow.whenPressed(new ThrowOverTruss());
 		initStretcher.whenPressed(new InitStretcher());
-                */
+                
 
     }
 
