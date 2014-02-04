@@ -40,14 +40,12 @@ public class StretchFree extends CommandBase {
         isZeroed = false;
         operatorStick = oi.operatorStick;
         shooter.initCount();
-System.out.println("shooterStrechFree works");
+
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() 
     {
-                System.out.println("shooterStart: " + shooter.getStartMicro());
-                System.out.println("shooterEnd: " + shooter.getEndMicro());
             direction = operatorStick.getRawAxis(5);  // check which port is it
         if ( (direction > 0.01 &&  !shooter.getStartMicro()) ||  (direction < -0.01 &&  !shooter.getEndMicro()) )
         {

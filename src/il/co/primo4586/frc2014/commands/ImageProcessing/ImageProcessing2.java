@@ -33,7 +33,7 @@ import il.co.primo4586.frc2014.commands.CommandBase;
  */
 public class  ImageProcessing2 extends CommandBase {
 
-	int loopNum, i, j;
+	int loopNum, i;
 
     //Camera constants used for distance calculation
     final int Y_IMAGE_RES = 480;		//X Image resolution in pixels, should be 120, 240 or 480
@@ -65,6 +65,11 @@ public class  ImageProcessing2 extends CommandBase {
     int horizontalTargets[];
     int verticalTargetCount, horizontalTargetCount;
 
+    BinaryImage filteredImage;
+    BinaryImage thresholdImage;
+    ColorImage image;
+    Scores scores[];
+    
     boolean isHot1;
     int count = 0;
 
@@ -114,7 +119,7 @@ public class  ImageProcessing2 extends CommandBase {
                 //SmartDashboard.putNumber("SaturationHigh", 255);
                 //SmartDashboard.putNumber("IntensityLow", 200);
                 //SmartDashboard.putNumber("IntensityHigh", 255);
-
+        filteredImage = null;
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -124,6 +129,11 @@ public class  ImageProcessing2 extends CommandBase {
 */
     protected void execute() {
         try {
+            
+            switch (loopNum)
+            {
+                case 0:
+                    
                 isHot1 = false;
                 count++;
                 System.out.println("**************** " + count + " ******************");
@@ -147,7 +157,7 @@ public class  ImageProcessing2 extends CommandBase {
                  */
 
 
-                ColorImage image = camera.getImage();     // comment if using stored images
+                /*ColorImage*/ image = camera.getImage();     // comment if using stored images
 
                 //ColorImage image;                           // next 2 lines read image from flash on cRIO
                 //image = new RGBImage("/testImage.jpg");		// get the sample image from the cRIO flash
@@ -155,9 +165,9 @@ public class  ImageProcessing2 extends CommandBase {
 
                 image.write("/vision/original.jpg");
                 //image = new RGBImage("/vision/HybridLine_SmallGreen2.jpg");		// get the sample image from the cRIO flash
-                BinaryImage thresholdImage = image.thresholdHSV(HL, HH, SL, SH, IL, IH);   // keep only red objects
+                /*BinaryImage*/ thresholdImage = image.thresholdHSV(HL, HH, SL, SH, IL, IH);   // keep only red objects
                 thresholdImage.write("/vision/threshold1.bmp");
-                BinaryImage filteredImage = thresholdImage.particleFilter(cc);      // filter out small particles
+                /*BinaryImage */filteredImage = thresholdImage.particleFilter(cc);      // filter out small particles
                 filteredImage.write("/vision/filteredImage1.bmp");
 
                 if (count ==  0 )
@@ -171,12 +181,21 @@ public class  ImageProcessing2 extends CommandBase {
                 }
 
                 //iterate through each particle and score to see if it is a target
-                Scores scores[] = new Scores[filteredImage.getNumberParticles()];
+                /*Scores*/ scores = new Scores[filteredImage.getNumberParticles()];
                 horizontalTargetCount = verticalTargetCount = 0;
-
                 if(filteredImage.getNumberParticles() > 0)
                 {
-			for (int i = 0; i < MAX_PARTICLES && i < filteredImage.getNumberParticles(); i++) {
+                    i = 0;
+                    loopNum = 1;
+                }
+                else
+                {
+                    loopNum = 2;
+                }
+                break;
+                case 1:
+                    if( i < MAX_PARTICLES && i < filteredImage.getNumberParticles())
+                    {
 			ParticleAnalysisReport report = filteredImage.getParticleAnalysisReport(i);
                         scores[i] = new Scores();
 
@@ -208,15 +227,21 @@ public class  ImageProcessing2 extends CommandBase {
 			}
                             System.out.println("rect: " + scores[i].rectangularity + "ARHoriz: " + scores[i].aspectRatioHorizontal);
                             System.out.println("ARVert: " + scores[i].aspectRatioVertical);
-			}
-
-
+                    i++;
+                    }
+                    else
+                    {
+                        loopNum = 2;
+                    }
+/*
 			//Zero out scores and set verticalIndex to first target in case there are no horizontal targets
 			target.totalScore = target.leftScore = target.rightScore = target.tapeWidthScore = target.verticalScore = 0;
 			target.verticalIndex = verticalTargets[0];
 			for (int i = 0; i < verticalTargetCount; i++)
 			{
+                            
 				ParticleAnalysisReport verticalReport = filteredImage.getParticleAnalysisReport(verticalTargets[i]);
+                                
 				for (int j = 0; j < horizontalTargetCount; j++)
 				{
                                     ParticleAnalysisReport horizontalReport = filteredImage.getParticleAnalysisReport(horizontalTargets[j]);
@@ -249,7 +274,7 @@ public class  ImageProcessing2 extends CommandBase {
                                             target.tapeWidthScore = tapeWidthScore;
                                             target.verticalScore = verticalScore;
                                     }
-                                }
+                                } 
                                 //Determine if the best target is a Hot target
                                 target.Hot = hotOrNot(target);
                             }
@@ -273,8 +298,10 @@ public class  ImageProcessing2 extends CommandBase {
                                     RobotTemplate.isHot = isHot1;
                                     SmartDashboard.putBoolean("Hot Target? ", isHot1);
                             }
-                }
-
+                        
+                */
+                break;
+                case 2:
                 /**
                  * all images in Java must be freed after they are used since they are allocated out
                  * of C data structures. Not calling free() will cause the memory to accumulate over
@@ -283,7 +310,11 @@ public class  ImageProcessing2 extends CommandBase {
                 filteredImage.free();
                 thresholdImage.free();
                 image.free();
-
+                loopNum = 3;
+                    break;
+                default:
+                    break;
+        }
 //            } catch (AxisCameraException ex) {        // this is needed if the camera.getImage() is called
 //                ex.printStackTrace();
             } catch (Exception ex) {
@@ -295,7 +326,7 @@ public class  ImageProcessing2 extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return loopNum == 3;
     }
 /**
  * returning the barrel speed controller speed to 0.

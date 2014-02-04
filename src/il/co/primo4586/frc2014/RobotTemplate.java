@@ -94,6 +94,7 @@ public class RobotTemplate extends IterativeRobot {
             autonomousSequence.cancel();
         Scheduler.getInstance().add(teleopSequence);
         Scheduler.getInstance().run();
+        initSmartDashboard();
         System.out.println("teleopInit works");
 
     }
@@ -103,7 +104,7 @@ public class RobotTemplate extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        initSmartDashboard();
+        SmartDashboardPeriodic();  
     }
 
     /**
@@ -132,12 +133,30 @@ public class RobotTemplate extends IterativeRobot {
 		SmartDashboard.putNumber("Power", 50);
 		SmartDashboard.putNumber("Cycles To Speed", 0.01);
                 SmartDashboard.putNumber("Cycles", 0);
-                SmartDashboard.putBoolean("collector top: ", CommandBase.collector.getTopMicro());
-                SmartDashboard.putBoolean("collector bottom: ", CommandBase.collector.getBottomMicro());
-                SmartDashboard.putBoolean("shooter start: ", CommandBase.shooter.getStartMicro());
-                SmartDashboard.putBoolean("shooter end: ", CommandBase.shooter.getEndMicro());
-                SmartDashboard.putBoolean("releaser lock: ", CommandBase.shooter.getLockMicro());
-                SmartDashboard.putBoolean("releaser free: ", CommandBase.shooter.getFreeMicro());
-                SmartDashboard.putBoolean("cycle counter: ", CommandBase.shooter.getCycleMicro());
+                
+                SmartDashboard.putNumber("max free collector power: " , 0.5);
+                SmartDashboard.putNumber("collector down power: " , 0.3);
+                SmartDashboard.putNumber("collector up power: " , 1);
+                
 	}
+        public void SmartDashboardPeriodic()
+        {
+                SmartDashboard.putBoolean("collector top:  ", CommandBase.collector.getTopMicro());
+                SmartDashboard.putBoolean("collector bottom:  ", CommandBase.collector.getBottomMicro());
+                SmartDashboard.putBoolean("shooter start:  ", CommandBase.shooter.getStartMicro());
+                SmartDashboard.putBoolean("shooter end:  ", CommandBase.shooter.getEndMicro());
+                SmartDashboard.putBoolean("releaser lock:  ", CommandBase.shooter.getLockMicro());
+                SmartDashboard.putBoolean("releaser free:  ", CommandBase.shooter.getFreeMicro());
+                SmartDashboard.putBoolean("cycle counter:   ", CommandBase.shooter.getCycleMicro());
+                
+                /*
+                SmartDashboard.putBoolean("tryPort6 ", RobotMap.tryPort6.get());
+                SmartDashboard.putBoolean("tryPort8 ", RobotMap.tryPort8.get());
+                SmartDashboard.putBoolean("tryPort10 ", RobotMap.tryPort10.get());
+                SmartDashboard.putBoolean("tryPort11 ", RobotMap.tryPort11.get());
+                SmartDashboard.putBoolean("tryPort12 ", RobotMap.tryPort12.get());
+                SmartDashboard.putBoolean("tryPort13 ", RobotMap.tryPort13.get());
+                SmartDashboard.putBoolean("tryPort14 ", RobotMap.tryPort14.get());
+                */
+        }
 }
