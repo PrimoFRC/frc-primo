@@ -23,7 +23,7 @@ public class InitStretcher extends CommandBase {
 	{
 		if (!shooter.getStartMicro())
 		{
-			shooter.stretch(-1);
+			shooter.stretch(1);
     }
 
     }

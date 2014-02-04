@@ -24,6 +24,8 @@ public class Release extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() 
     {
+        DriverStationLCD.getInstance().println(DriverStationLCD.Line.kUser3, 1, "free: " + shooter.getFreeMicro());
+        DriverStationLCD.getInstance().updateLCD();
         if (!shooter.getFreeMicro())
         {
             shooter.release(0.5);

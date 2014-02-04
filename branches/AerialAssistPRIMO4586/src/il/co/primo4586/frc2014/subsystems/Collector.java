@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import il.co.primo4586.frc2014.RobotMap;
 
+
 /**
  *
  * @author Gottlieb
@@ -33,9 +34,9 @@ public class Collector extends Subsystem
 	{
 		collectArm = RobotMap.collectArm;
                 //להוציא מהערה
-		//collector_top = RobotMap.collector_top;
+		collector_top = RobotMap.collector_top;
 		//collector_middle = RobotMap.collector_middle;
-		//collector_bottom = RobotMap.collector_bottom;
+		collector_bottom = RobotMap.collector_bottom;
 
 	}
 
@@ -43,14 +44,15 @@ public class Collector extends Subsystem
 	public void moveArm(double speed)
 	{
 		collectArm.set(speed * -0.7);
-                System.out.println ("should move arm");
 	}
 
 
 	public boolean getTopMicro()
 	{
-		//return collector_top.get();
-            return false;
+            System.out.println("collectorTopMicro: " + collector_top.get());
+                
+            return collector_top.get();
+            //return false;
 	}
 
 
@@ -64,8 +66,9 @@ public class Collector extends Subsystem
 
 	public boolean getBottomMicro()
 	{
-		//return collector_bottom.get();
-            return false;
+            System.out.println("collectorBottomMicro: " + collector_bottom.get());
+            return !collector_bottom.get();
+            //return false;
 	}
 
 
