@@ -17,7 +17,7 @@ private boolean finished;
 	{
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
-		requires(collector);
+		
 
 	}
 
@@ -26,10 +26,9 @@ private boolean finished;
 	{
 
 		finished = (collector.getBottomMicro());
-		collector.setBelowMiddle();
 		if (!finished)
 		{
-			collector.moveArm(-1);
+			collector.moveArm(1);
 		}
 	}
 

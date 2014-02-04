@@ -20,6 +20,7 @@ public class MoveArmFree extends CommandBase {
 	private boolean finished;
 	private Joystick operatorStick;
 	private double direction;
+        private boolean isZeroed;
 
 
     public MoveArmFree() {
@@ -36,30 +37,22 @@ public class MoveArmFree extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
 		direction = operatorStick.getY();
-                System.out.println("collectorMoveArmFree direction: " + direction);
-		if(!(direction>0 && collector.getTopMicro()) && !(direction<0 && collector.getBottomMicro()))
+                
+		if((direction > 0.1 &&  !collector.getBottomMicro()) ||  (direction < -0.1 &&  !collector.getTopMicro()) )
 		{
+                        System.out.println("collectorMoveArmFree direction: " + direction);
+                        isZeroed = false;
 			collector.moveArm(direction);
                         DriverStationLCD.getInstance().println(DriverStationLCD.Line.kUser1, 1, "MoveArmFree");
                         DriverStationLCD.getInstance().updateLCD();
-
-			if(collector.getMiddleMicro())
-			{
-				if (direction>0)
-				{
-					collector.getAboveMiddle();
-				}
-				else
-				{
-					collector.setBelowMiddle();
-				}
-
-			}
-
-			}
-
-
 		}
+                
+                else if (!isZeroed)
+                {
+                    shooter.stretch(0);
+                    isZeroed = true;
+                }
+    }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {

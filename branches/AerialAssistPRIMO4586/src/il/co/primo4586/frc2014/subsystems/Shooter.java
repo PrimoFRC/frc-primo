@@ -6,12 +6,16 @@
 package il.co.primo4586.frc2014.subsystems;
 
 import edu.wpi.first.wpilibj.AnalogChannel;
+import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DriverStationLCD;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import il.co.primo4586.frc2014.RobotMap;
+
 
 /**
  *
@@ -24,27 +28,35 @@ public class Shooter extends Subsystem {
 	SpeedController stretcher;
 	SpeedController releaser;
 
-	AnalogChannel cycleCounter;
-
+	DigitalInput cycleCounter;
+        Counter cycles;
 	DigitalInput stretcherStart;
 	DigitalInput stretcherEnd;
 	DigitalInput releaserLock;
+        DigitalInput releaserFree;
 
-	double stretchCycles, strechDistance;
-    long lastCountCycles; // cycles count situation
-    long newCountCycles; // the cycles count since the situation
-    long currentCycles;
+	
+        long lastCountCycles; // cycles count situation
+        long newCountCycles; // the cycles count since the situation
+        long currentCycles;
 
 	public Shooter()
 	{
-	stretcher = RobotMap.shooterStretcher; // controls the speed of the streaching motor
-	releaser= RobotMap.shooterReleaser; // controls the speed of the realesing motor
+            stretcher = RobotMap.shooterStretcher; // controls the speed of the streaching motor
+            releaser= RobotMap.shooterReleaser; // controls the speed of the realesing motor
 
-	//cycleCounter = RobotMap.shooterCycleCounter; // optic sensor for counting the cycles of the streaching motor
+            cycleCounter = RobotMap.shooterCycleCounter; // optic sensor for counting the cycles of the streaching motor
 
-	//stretcherStart = RobotMap.shooterStretcherStart; // digital sensor for when the rubber band is at the start
-	stretcherEnd = RobotMap.shooterStretcherEnd; // digital sensor for when the rubber band is at the end
-	//releaserLock = RobotMap.shooterReleaserLock; // digital sensor for when the hook of the rubber band is locked
+            stretcherStart = RobotMap.shooterStretcherStart; // digital sensor for when the rubber band is at the start
+            stretcherEnd = RobotMap.shooterStretcherEnd; // digital sensor for when the rubber band is at the end
+            releaserLock = RobotMap.shooterReleaserLock; // digital sensor for when the hook of the rubber band is locked
+            releaserFree = RobotMap.shooterReleaserFree;
+            
+            /*
+            cycles = new Counter();
+            cycles.setUpSource(cycleCounter);
+            cycles.start();
+            */
 	}
 
 
@@ -55,9 +67,13 @@ public class Shooter extends Subsystem {
 	public void stretch(double speed)
 	{
 		stretcher.set(speed);
-       /* currentCycles = cycleCounter.getAccumulatorCount() - lastCountCycles;
-        newCountCycles += currentCycles*(long)(Math.abs(speed)/speed);
-        lastCountCycles += currentCycles;*/
+                /*
+                currentCycles = cycles.get() - lastCountCycles;
+                newCountCycles += currentCycles*(long)(Math.abs(speed)/speed);
+                lastCountCycles += currentCycles;
+                SmartDashboard.putNumber("Cycles", newCountCycles);
+                SmartDashboard.putBoolean("Cycles MicroSwitch", cycleCounter.get());
+                */
 	}
 
 	/**------------------------------------
@@ -74,8 +90,8 @@ public class Shooter extends Subsystem {
 	 */
 	public boolean getStartMicro()
 	{
-		//return stretcherStart.get();
             return false;
+            //return stretcherStart.get();
 	}
 
 	/**------------------------------------
@@ -84,7 +100,8 @@ public class Shooter extends Subsystem {
 	 */
 	public boolean getEndMicro()
 	{
-		return false; //stretcherEnd.get();
+            return false;
+            //return stretcherEnd.get();
 	}
 
 	/**------------------------------------
@@ -93,8 +110,14 @@ public class Shooter extends Subsystem {
 	 */
 	public boolean getLockMicro()
 	{
-		//return releaserLock.get();
-            return true;
+            return false;
+            //return releaserLock.get();
+	}
+        
+        public boolean getFreeMicro()
+	{
+            return false;
+            //return releaserFree.get();
 	}
 
         /**------------------------------------
@@ -102,7 +125,8 @@ public class Shooter extends Subsystem {
          */
         public void initCount()
         {
-            //lastCountCycles = cycleCounter.getAccumulatorCount();
+            //cycles.reset();
+            //lastCountCycles = cycles.get();
             newCountCycles = 0;
         }
 
@@ -112,11 +136,9 @@ public class Shooter extends Subsystem {
 	 */
 	public long getCount()
 	{
-        return  newCountCycles;
+            return  newCountCycles;
 	}
-
-
-
+        
 
 
 
