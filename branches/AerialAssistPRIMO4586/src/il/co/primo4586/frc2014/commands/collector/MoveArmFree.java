@@ -7,6 +7,7 @@ package il.co.primo4586.frc2014.commands.collector;
 
 import edu.wpi.first.wpilibj.DriverStationLCD;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import il.co.primo4586.frc2014.commands.CommandBase;
 
 /**
@@ -31,6 +32,7 @@ public class MoveArmFree extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        isZeroed = false;
         operatorStick = oi.operatorStick;
     }
 
@@ -38,18 +40,17 @@ public class MoveArmFree extends CommandBase {
     protected void execute() {
 		direction = operatorStick.getY();
                 
-		if((direction > 0.1 &&  !collector.getTopMicro()) ||  (direction < -0.1 &&  !collector.getBottomMicro()) )
+		if((direction > 0.05 &&  !collector.getTopMicro()) ||  (direction < -0.05 &&  !collector.getBottomMicro()) )
 		{
                         
-                        isZeroed = false;
-			collector.moveArm(direction);
-                        DriverStationLCD.getInstance().println(DriverStationLCD.Line.kUser1, 1, "MoveArmFree");
-                        DriverStationLCD.getInstance().updateLCD();
+                    isZeroed = false;
+                    collector.moveArm(SmartDashboard.getNumber("max free collector power: " , 0.5)*direction);
+                        
 		}
                 
                 else if (!isZeroed)
                 {
-                    shooter.stretch(0);
+                    collector.moveArm(0);
                     isZeroed = true;
                 }
     }

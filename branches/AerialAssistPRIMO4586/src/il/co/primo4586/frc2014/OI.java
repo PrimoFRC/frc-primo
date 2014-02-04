@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import il.co.primo4586.frc2014.commands.Aim;
+import il.co.primo4586.frc2014.commands.Aim2;
 import il.co.primo4586.frc2014.commands.shooter.*;
 import il.co.primo4586.frc2014.commands.collector.*;
 
@@ -51,7 +52,7 @@ public class OI {
     public Joystick operatorStick;
 
     public JoystickButton manualLowerCollectorArm, manualRaiseCollectorArm, collectorToBottom, collectorToTop, collectorToMiddle ;
-    public JoystickButton shoot , aim , trussThrow , initStretcher , grasp , release;
+    public JoystickButton shoot , aim , aim2, trussThrow , initStretcher , grasp , release, moveArmMicroswitches;
 
 
     public OI()
@@ -63,14 +64,17 @@ public class OI {
         
 		collectorToBottom = new JoystickButton(operatorStick, 11);
 		collectorToTop = new JoystickButton(operatorStick, 12);
+                moveArmMicroswitches = new JoystickButton(operatorStick, 4);
 	
                 
 		collectorToBottom.whenPressed(new MoveArmBottom());
 		collectorToTop.whenPressed(new MoveArmTop());
+                moveArmMicroswitches.whenPressed(new MoveArmMicroswitches());
 
                 grasp = new JoystickButton(operatorStick, 7);
                 release = new JoystickButton(operatorStick, 8);
 		aim = new JoystickButton(operatorStick, 2);
+                aim2 = new JoystickButton(operatorStick, 5);
 		shoot = new JoystickButton(operatorStick, 1);
 		trussThrow = new JoystickButton(operatorStick, 3);
 		initStretcher = new JoystickButton(operatorStick, 10);
@@ -78,6 +82,7 @@ public class OI {
                 grasp.whenPressed(new Grasp());
                 release.whenPressed(new Release());
                 aim.whenPressed(new Aim());
+                aim2.whenPressed(new Aim2());
                 shoot.whenPressed(new Shoot());
 		trussThrow.whenPressed(new ThrowOverTruss());
 		initStretcher.whenPressed(new InitStretcher());
