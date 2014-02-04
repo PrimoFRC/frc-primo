@@ -103,6 +103,12 @@ public class Shooter extends Subsystem {
             //return false;
             return stretcherEnd.get();
 	}
+        
+        public boolean getCycleMicro()
+	{
+            //return false;
+            return cycleCounter.get();
+	}
 
 	/**------------------------------------
 	 *

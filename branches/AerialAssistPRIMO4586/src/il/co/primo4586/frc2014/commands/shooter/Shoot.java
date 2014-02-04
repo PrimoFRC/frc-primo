@@ -5,6 +5,7 @@
 package il.co.primo4586.frc2014.commands.shooter;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import il.co.primo4586.frc2014.commands.Wait;
 
 /**
  *
@@ -30,7 +31,8 @@ public class Shoot extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
         addSequential(new Release());
-        //addSequential(new InitStretcher());
+        addSequential(new Wait());
+        addSequential(new InitStretcher());
         addSequential(new Grasp());
     }
 }
