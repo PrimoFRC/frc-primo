@@ -5,6 +5,7 @@
  */
 package il.co.primo4586.frc2014.commands.shooter;
 
+import edu.wpi.first.wpilibj.DriverStationLCD;
 import il.co.primo4586.frc2014.commands.CommandBase;
 
 /**
@@ -21,6 +22,8 @@ public class Grasp extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() 
     {
+        DriverStationLCD.getInstance().println(DriverStationLCD.Line.kUser2, 1, "lock: " + shooter.getLockMicro());
+        DriverStationLCD.getInstance().updateLCD();
          if (!shooter.getLockMicro())
         {
             shooter.release(0.5);

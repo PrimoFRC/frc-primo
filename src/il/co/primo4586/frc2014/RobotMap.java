@@ -68,19 +68,19 @@ public class RobotMap {
 		drivingMotorLeftFront = new Jaguar(1);
 		drivingMotorRightFront = new Jaguar(2);
 
-                /*
-		collector_top = new DigitalInput(6);
+                
+		collector_top = new DigitalInput(8);//8
 		
-		collector_bottom = new DigitalInput(5);
+		collector_bottom = new DigitalInput(6);//6
 
 
-		shooterStretcherStart = new DigitalInput(2);
-		shooterStretcherEnd = new DigitalInput(1);
+		shooterStretcherStart = new DigitalInput(2);//2
+		shooterStretcherEnd = new DigitalInput(1);//1
 		shooterReleaserLock = new DigitalInput(4);
                 shooterReleaserFree = new DigitalInput(3);
 
 		shooterCycleCounter = new DigitalInput(7);
-                */
+                
 	}
 
 	public static void initLiveWindow()
