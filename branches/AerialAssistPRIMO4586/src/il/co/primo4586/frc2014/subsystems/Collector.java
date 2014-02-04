@@ -43,7 +43,7 @@ public class Collector extends Subsystem
 
 	public void moveArm(double speed)
 	{
-		collectArm.set(speed * -0.7);
+		collectArm.set(-speed);
 	}
 
 
@@ -51,8 +51,8 @@ public class Collector extends Subsystem
 	{
             System.out.println("collectorTopMicro: " + collector_top.get());
                 
-            //return collector_top.get();
-            return false;
+            return collector_top.get();
+            //return false;
 	}
 
 
@@ -67,8 +67,8 @@ public class Collector extends Subsystem
 	public boolean getBottomMicro()
 	{
             System.out.println("collectorBottomMicro: " + collector_bottom.get());
-            //return collector_bottom.get();
-            return false;
+            return collector_bottom.get();
+            //return false;
 	}
 
 

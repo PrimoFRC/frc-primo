@@ -4,6 +4,7 @@
  */
 package il.co.primo4586.frc2014.commands.collector;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import il.co.primo4586.frc2014.commands.CommandBase;
 
 /**
@@ -28,7 +29,7 @@ private boolean finished;
 		finished = (collector.getTopMicro());
 		if (!finished)
 		{
-			collector.moveArm(-1);
+			collector.moveArm(SmartDashboard.getNumber("collector up power: " , 1));
 		}
 
 	}

@@ -55,6 +55,7 @@ public class Shooter extends Subsystem {
             
             cycles = new Counter();
             cycles.setUpSource(cycleCounter);
+            
             cycles.start();
             
 	}
@@ -67,13 +68,12 @@ public class Shooter extends Subsystem {
 	public void stretch(double speed)
 	{
 		stretcher.set(speed);
-                /*
                 currentCycles = cycles.get() - lastCountCycles;
-                newCountCycles += currentCycles*(long)(Math.abs(speed)/speed);
+                newCountCycles -= currentCycles*(long)(Math.abs(speed)/speed);
                 lastCountCycles += currentCycles;
                 SmartDashboard.putNumber("Cycles", newCountCycles);
-                SmartDashboard.putBoolean("Cycles MicroSwitch", cycleCounter.get());
-                */
+                //max cycles : 130
+                
 	}
 
 	/**------------------------------------
@@ -131,8 +131,8 @@ public class Shooter extends Subsystem {
          */
         public void initCount()
         {
-            //cycles.reset();
-            //lastCountCycles = cycles.get();
+            cycles.reset();
+            lastCountCycles = cycles.get();
             newCountCycles = 0;
         }
 
