@@ -138,5 +138,6 @@ public class RobotTemplate extends IterativeRobot {
                 SmartDashboard.putBoolean("shooter end: ", CommandBase.shooter.getEndMicro());
                 SmartDashboard.putBoolean("releaser lock: ", CommandBase.shooter.getLockMicro());
                 SmartDashboard.putBoolean("releaser free: ", CommandBase.shooter.getFreeMicro());
+                SmartDashboard.putBoolean("cycle counter: ", CommandBase.shooter.getCycleMicro());
 	}
 }
