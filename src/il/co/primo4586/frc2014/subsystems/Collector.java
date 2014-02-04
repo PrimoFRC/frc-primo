@@ -22,8 +22,7 @@ public class Collector extends Subsystem
 
 	SpeedController collectArm;
 
-    DigitalInput collector_top;
-	DigitalInput collector_middle;
+        DigitalInput collector_top;
 	DigitalInput collector_bottom;
 
 	private int level; //0, 1 or 2 (bottom, middle or top)
@@ -43,7 +42,8 @@ public class Collector extends Subsystem
 
 	public void moveArm(double speed)
 	{
-		collectArm.set(speed * 0.7);
+		collectArm.set(speed * -0.7);
+                System.out.println ("should move arm");
 	}
 
 
@@ -58,7 +58,7 @@ public class Collector extends Subsystem
 	{
 		//return collector_middle.get();
                 return false;
-
+	
 	}
 
 

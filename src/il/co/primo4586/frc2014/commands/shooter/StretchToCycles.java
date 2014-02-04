@@ -36,8 +36,8 @@ public class StretchToCycles extends CommandBase {
 		difference = desiredCycles-currentCycles;
 		if ( (difference > 0 &&  !shooter.getEndMicro()) ||  (difference < 0 &&  !shooter.getStartMicro()) )
 		{
-			shooter.stretch(cyclesToSpeed * (difference));
-    }
+			shooter.stretch(difference / Math.abs(difference));
+                }
 
     }
 

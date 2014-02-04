@@ -27,10 +27,9 @@ public class StretchFree extends CommandBase {
       
     private Joystick operatorStick;
     private double direction;
-    
+    private boolean isZeroed;
     public StretchFree()         
     {
-        requires(shooter);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -38,6 +37,7 @@ public class StretchFree extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() 
     {
+        isZeroed = false;
         operatorStick = oi.operatorStick;
         shooter.initCount();
 System.out.println("shooterStrechFree works");
@@ -47,12 +47,16 @@ System.out.println("shooterStrechFree works");
     protected void execute() 
     {
             direction = operatorStick.getRawAxis(5);  // check which port is it
-        if ( (direction >= 0 &&  !shooter.getEndMicro()) ||  (direction <= 0 &&  !shooter.getStartMicro()) )
+        if ( (direction > 0.01 &&  !shooter.getEndMicro()) ||  (direction < -0.01 &&  !shooter.getStartMicro()) )
         {
+            isZeroed = false;
             shooter.stretch(direction);
-            System.out.println("direction" + direction);
-            DriverStationLCD.getInstance().println(DriverStationLCD.Line.kUser2, 1, "stretch cycles:" + shooter.getCount());
-            DriverStationLCD.getInstance().updateLCD();
+            
+        }
+        else if (!isZeroed)
+        {
+            shooter.stretch(0);
+            isZeroed = true;
         }
     }
 
