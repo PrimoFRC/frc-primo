@@ -129,5 +129,6 @@ public class RobotTemplate extends IterativeRobot {
     {
 		SmartDashboard.putNumber("Power", 50);
 		SmartDashboard.putNumber("Cycles To Speed", 0.01);
+                SmartDashboard.putNumber("Cycles", 0);
 	}
 }

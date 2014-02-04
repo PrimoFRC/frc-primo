@@ -46,11 +46,11 @@ public class RobotMap {
 	public static DigitalInput shooterStretcherStart; // digital sensor for when the rubber band is at the start
 	public static DigitalInput shooterStretcherEnd; // digital sensor for when the rubber band is at the end
 	public static DigitalInput shooterReleaserLock; // digital sensor for when the hook of the rubber band is locked
-
-	public static AnalogChannel shooterCycleCounter; // optic sensor for counting the cycles of the streaching motor
+        public static DigitalInput shooterReleaserFree;
+	public static DigitalInput shooterCycleCounter; // optic sensor for counting the cycles of the streaching motor
 	/**
 	 * shooter properties
-	 * @ author mor, idan, meitar
+	 * @ author mor
 	 */
 
 
@@ -68,17 +68,19 @@ public class RobotMap {
 		drivingMotorLeftFront = new Jaguar(1);
 		drivingMotorRightFront = new Jaguar(2);
 
-		//collector_top = new DigitalInput(1);
-		//collector_middle = new DigitalInput(2);
-		//collector_bottom = new DigitalInput(3);
+                /*
+		collector_top = new DigitalInput(6);
+		
+		collector_bottom = new DigitalInput(5);
 
 
-		//shooterStretcherStart = new DigitalInput(2);
+		shooterStretcherStart = new DigitalInput(2);
 		shooterStretcherEnd = new DigitalInput(1);
-		//shooterReleaserLock = new DigitalInput(6);
+		shooterReleaserLock = new DigitalInput(4);
+                shooterReleaserFree = new DigitalInput(3);
 
-		//shooterCycleCounter = new AnalogChannel(7);
-
+		shooterCycleCounter = new DigitalInput(7);
+                */
 	}
 
 	public static void initLiveWindow()

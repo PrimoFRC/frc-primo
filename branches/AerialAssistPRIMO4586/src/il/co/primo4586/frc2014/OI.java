@@ -59,25 +59,25 @@ public class OI {
 		drivingStick = new Joystick(1);
         operatorStick = new Joystick(2);
         System.out.println("joysticks initiated");
-/*
-		collectorToBottom = new JoystickButton(operatorStick, 1);
-		collectorToTop = new JoystickButton(operatorStick, 2);
-		collectorToMiddle = new JoystickButton(operatorStick, 3);
+        
+        /*
+		collectorToBottom = new JoystickButton(operatorStick, 11);
+		collectorToTop = new JoystickButton(operatorStick, 12);
+	
                 
 		collectorToBottom.whenPressed(new MoveArmBottom());
 		collectorToTop.whenPressed(new MoveArmTop());
-		collectorToMiddle.whenPressed(new MoveArmMiddle());
-*/
 
-		//aim = new JoystickButton(operatorStick, 7);
+		aim = new JoystickButton(operatorStick, 2);
 		shoot = new JoystickButton(operatorStick, 1);
-		//trussThrow = new JoystickButton(operatorStick, 6);
-		//initStretcher = new JoystickButton(operatorStick, 5);
+		trussThrow = new JoystickButton(operatorStick, 3);
+		initStretcher = new JoystickButton(operatorStick, 10);
 
-                //aim.whenPressed(new Aim());
-                shoot.whileHeld(new Release());
-		//trussThrow.whenPressed(new ThrowOverTruss());
-		//initStretcher.whenPressed(new InitStretcher());
+                aim.whenPressed(new Aim());
+                shoot.whenPressed(new Shoot());
+		trussThrow.whenPressed(new ThrowOverTruss());
+		initStretcher.whenPressed(new InitStretcher());
+                */
 
     }
 

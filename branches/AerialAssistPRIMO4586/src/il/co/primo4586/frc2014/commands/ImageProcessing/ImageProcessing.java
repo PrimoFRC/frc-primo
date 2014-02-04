@@ -281,6 +281,8 @@ public class  ImageProcessing extends CommandBase {
                 thresholdImage.free();
                 image.free();
                 
+                RobotTemplate.isFinishedAutonomous = true;
+                
 //            } catch (AxisCameraException ex) {        // this is needed if the camera.getImage() is called
 //                ex.printStackTrace();
             } catch (Exception ex) {

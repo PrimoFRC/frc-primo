@@ -14,7 +14,6 @@ import il.co.primo4586.frc2014.commands.CommandBase;
 public class Grasp extends CommandBase {
     
     public Grasp() {
-        requires(shooter);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -22,7 +21,10 @@ public class Grasp extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() 
     {
-         shooter.release(0.2);
+         if (!shooter.getLockMicro())
+        {
+            shooter.release(0.5);
+        }
     }
 
     // Called repeatedly when this Command is scheduled to run

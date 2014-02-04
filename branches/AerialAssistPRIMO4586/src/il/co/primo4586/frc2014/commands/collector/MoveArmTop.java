@@ -18,7 +18,7 @@ private boolean finished;
 	{
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
-		requires(collector);
+		
 	}
 
 	// Called just before this Command runs the first time
@@ -28,9 +28,8 @@ private boolean finished;
 		finished = (collector.getTopMicro());
 		if (!finished)
 		{
-			collector.moveArm(1);
+			collector.moveArm(-1);
 		}
-		collector.setAboveMiddle();
 
 	}
 
