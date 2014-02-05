@@ -22,8 +22,7 @@ public class Grasp extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() 
     {
-        DriverStationLCD.getInstance().println(DriverStationLCD.Line.kUser2, 1, "lock: " + shooter.getLockMicro());
-        DriverStationLCD.getInstance().updateLCD();
+        
          if (!shooter.getLockMicro())
         {
             shooter.release(0.5);

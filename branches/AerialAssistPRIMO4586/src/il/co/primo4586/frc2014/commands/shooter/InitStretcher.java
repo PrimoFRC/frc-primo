@@ -4,6 +4,7 @@
  */
 package il.co.primo4586.frc2014.commands.shooter;
 
+import edu.wpi.first.wpilibj.Joystick;
 import il.co.primo4586.frc2014.RobotTemplate;
 import il.co.primo4586.frc2014.commands.CommandBase;
 
@@ -13,7 +14,9 @@ import il.co.primo4586.frc2014.commands.CommandBase;
  */
 public class InitStretcher extends CommandBase {
     
+    private Joystick operatorStick;
     public InitStretcher() {
+        
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -21,20 +24,25 @@ public class InitStretcher extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize()
 	{
+            operatorStick = oi.operatorStick;
 		if (!shooter.getStartMicro())
 		{
 			shooter.stretch(1);
-    }
+                }
 
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        if (!shooter.getStartMicro() )
+		{
+			shooter.stretch(1);
+                }
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return shooter.getStartMicro();
+        return shooter.getStartMicro() || operatorStick.getRawAxis(5) != 0;
     }
 
     // Called once after isFinished returns true
