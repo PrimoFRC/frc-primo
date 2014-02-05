@@ -25,7 +25,8 @@ public class StretchToCycles extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize()
-	{
+    {
+                desiredCycles = (SmartDashboard.getNumber("Power"));
 		currentCycles = shooter.getCount();
     }
 
@@ -36,7 +37,7 @@ public class StretchToCycles extends CommandBase {
 		difference = desiredCycles-currentCycles;
 		if ( (difference > 0 &&  !shooter.getEndMicro()) ||  (difference < 0 &&  !shooter.getStartMicro()) )
 		{
-			shooter.stretch(difference / Math.abs(difference));
+			shooter.stretch(-difference / Math.abs(difference));
                 }
 
     }
@@ -44,7 +45,7 @@ public class StretchToCycles extends CommandBase {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished()
 	{
-		if (-1 < difference && difference < 1)
+		if ((-1 <= difference && difference <= 1) || shooter.getEndMicro())
 		{
 			return true;
 		}

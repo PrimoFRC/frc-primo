@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import il.co.primo4586.frc2014.commands.Aim;
 import il.co.primo4586.frc2014.commands.Aim2;
 import il.co.primo4586.frc2014.commands.shooter.*;
@@ -51,25 +52,25 @@ public class OI {
     public Joystick drivingStick;
     public Joystick operatorStick;
 
-    public JoystickButton manualLowerCollectorArm, manualRaiseCollectorArm, collectorToBottom, collectorToTop, collectorToMiddle ;
-    public JoystickButton shoot , aim , aim2, trussThrow , initStretcher , grasp , release, moveArmMicroswitches;
+    public JoystickButton manualLowerCollectorArm, manualRaiseCollectorArm, collectorToBottom, collectorToTop, collectorToMiddle , moveArmMicroswitches , moveArmMicroswitchesDriver ;
+    public JoystickButton shoot , aim , aim2, trussThrow , initStretcher , grasp , release, stretchToCycles;
 
 
     public OI()
     {System.out.println("oi started");
-		drivingStick = new Joystick(1);
+	drivingStick = new Joystick(1);
         operatorStick = new Joystick(2);
         System.out.println("joysticks initiated");
-        
-        
+       
 		collectorToBottom = new JoystickButton(operatorStick, 11);
 		collectorToTop = new JoystickButton(operatorStick, 12);
                 moveArmMicroswitches = new JoystickButton(operatorStick, 4);
-	
+                moveArmMicroswitchesDriver = new JoystickButton(drivingStick, 6);
                 
 		collectorToBottom.whenPressed(new MoveArmBottom());
 		collectorToTop.whenPressed(new MoveArmTop());
                 moveArmMicroswitches.whenPressed(new MoveArmMicroswitches());
+                moveArmMicroswitchesDriver.whenPressed(new MoveArmMicroswitches());
 
                 grasp = new JoystickButton(operatorStick, 7);
                 release = new JoystickButton(operatorStick, 8);
@@ -78,6 +79,7 @@ public class OI {
 		shoot = new JoystickButton(operatorStick, 1);
 		trussThrow = new JoystickButton(operatorStick, 3);
 		initStretcher = new JoystickButton(operatorStick, 10);
+                stretchToCycles = new JoystickButton(operatorStick, 6);
 
                 grasp.whenPressed(new Grasp());
                 release.whenPressed(new Release());
@@ -86,7 +88,7 @@ public class OI {
                 shoot.whenPressed(new Shoot());
 		trussThrow.whenPressed(new ThrowOverTruss());
 		initStretcher.whenPressed(new InitStretcher());
-                
+                stretchToCycles.whenPressed(new StretchToCycles(50));
 
     }
 
