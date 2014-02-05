@@ -122,15 +122,15 @@ public class RobotTemplate extends IterativeRobot {
 		RobotMap.shooterReleaser.set(0);
 
 		RobotMap.drivingMotorLeftBack.set(0);
-        RobotMap.drivingMotorRightBack.set(0);
-        RobotMap.drivingMotorLeftFront.set(0);
-        RobotMap.drivingMotorRightFront.set(0);
+                RobotMap.drivingMotorRightBack.set(0);
+                RobotMap.drivingMotorLeftFront.set(0);
+                RobotMap.drivingMotorRightFront.set(0);
 
     }
 
 	public void initSmartDashboard()
-    {
-		SmartDashboard.putNumber("Power", 50);
+        {
+		SmartDashboard.putNumber("Power", 70);
 		SmartDashboard.putNumber("Cycles To Speed", 0.01);
                 SmartDashboard.putNumber("Cycles", 0);
                 
@@ -142,7 +142,7 @@ public class RobotTemplate extends IterativeRobot {
         public void SmartDashboardPeriodic()
         {
                 SmartDashboard.putBoolean("collector top:  ", CommandBase.collector.getTopMicro());
-                SmartDashboard.putBoolean("collector bottom:  ", CommandBase.collector.getBottomMicro());
+                SmartDashboard.putBoolean("collector bottom:   ", CommandBase.collector.getBottomMicro());
                 SmartDashboard.putBoolean("shooter start:  ", CommandBase.shooter.getStartMicro());
                 SmartDashboard.putBoolean("shooter end:  ", CommandBase.shooter.getEndMicro());
                 SmartDashboard.putBoolean("releaser lock:  ", CommandBase.shooter.getLockMicro());

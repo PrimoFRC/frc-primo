@@ -69,6 +69,8 @@ public class Shooter extends Subsystem {
 	{
 		stretcher.set(speed);
                 currentCycles = cycles.get() - lastCountCycles;
+                SmartDashboard.putNumber("cycles.get", cycles.get());
+                SmartDashboard.putNumber("lastCountCycles", lastCountCycles);
                 newCountCycles -= currentCycles*(long)(Math.abs(speed)/speed);
                 lastCountCycles += currentCycles;
                 SmartDashboard.putNumber("Cycles", newCountCycles);
