@@ -3,22 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package il.co.primo4586.frc2014.commands;
+package il.co.primo4586.frc2014.commands.shooter;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import il.co.primo4586.frc2014.commands.Driver.MechanumDrive;
-
-import il.co.primo4586.frc2014.commands.collector.MoveArmFree;
-import il.co.primo4586.frc2014.commands.shooter.InitStretcher;
-import il.co.primo4586.frc2014.commands.shooter.StretchFree;
+import il.co.primo4586.frc2014.RobotTemplate;
 
 /**
  *
- * @author
+ * @author Gottlieb
  */
-public class TeleopCommandGroup extends CommandGroup {
-
-    public TeleopCommandGroup() {
+public class PassToRobot extends CommandGroup {
+    
+    public PassToRobot() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -34,10 +30,11 @@ public class TeleopCommandGroup extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-
-        //addSequential(new InitCollectorToTop());
-        addParallel(new MechanumDrive());
-        addParallel(new StretchFree());
-        addParallel(new MoveArmFree());
+        addSequential(new InitStretcher());
+        addSequential(new Release());
+        addSequential(new StretchToCycles(50));
+        addSequential(new InitStretcher());
+        addSequential(new Grasp());
+        addSequential(new StretchToCycles(RobotTemplate.defaultStretch));
     }
 }
