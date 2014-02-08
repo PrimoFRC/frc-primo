@@ -5,6 +5,7 @@
 package il.co.primo4586.frc2014.commands.shooter;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import il.co.primo4586.frc2014.RobotTemplate;
 import il.co.primo4586.frc2014.commands.Wait;
 
 /**
@@ -34,5 +35,6 @@ public class Shoot extends CommandGroup {
         addSequential(new Wait());
         addSequential(new InitStretcher());
         addSequential(new Grasp());
+        addSequential(new StretchToCycles(RobotTemplate.defaultStretch));
     }
 }

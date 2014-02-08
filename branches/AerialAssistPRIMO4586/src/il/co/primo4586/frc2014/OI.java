@@ -52,8 +52,8 @@ public class OI {
     public Joystick drivingStick;
     public Joystick operatorStick;
 
-    public JoystickButton manualLowerCollectorArm, manualRaiseCollectorArm, collectorToBottom, collectorToTop, collectorToMiddle , moveArmMicroswitches , moveArmMicroswitchesDriver ;
-    public JoystickButton shoot , aim , aim2, trussThrow , initStretcher , grasp , release, stretchToCycles;
+    public JoystickButton moveArmMicroswitches , moveArmMicroswitchesDriver ;
+    public JoystickButton shoot , aim , aim2, trussThrow , initStretcher , grasp , release, stretchToCycles , passToRobot;
 
 
     public OI()
@@ -62,24 +62,23 @@ public class OI {
         operatorStick = new Joystick(2);
         System.out.println("joysticks initiated");
        
-		collectorToBottom = new JoystickButton(operatorStick, 11);
-		collectorToTop = new JoystickButton(operatorStick, 12);
+		
                 moveArmMicroswitches = new JoystickButton(operatorStick, 4);
                 moveArmMicroswitchesDriver = new JoystickButton(drivingStick, 6);
                 
-		collectorToBottom.whenPressed(new MoveArmBottom());
-		collectorToTop.whenPressed(new MoveArmTop());
+		
                 moveArmMicroswitches.whenPressed(new MoveArmMicroswitches());
                 moveArmMicroswitchesDriver.whenPressed(new MoveArmMicroswitches());
 
                 grasp = new JoystickButton(operatorStick, 7);
                 release = new JoystickButton(operatorStick, 8);
 		aim = new JoystickButton(operatorStick, 2);
-                aim2 = new JoystickButton(operatorStick, 5);
+                aim2 = new JoystickButton(operatorStick, 11);
 		shoot = new JoystickButton(operatorStick, 1);
 		trussThrow = new JoystickButton(operatorStick, 3);
 		initStretcher = new JoystickButton(operatorStick, 10);
                 stretchToCycles = new JoystickButton(operatorStick, 6);
+                passToRobot = new JoystickButton(operatorStick, 5);
 
                 grasp.whenPressed(new Grasp());
                 release.whenPressed(new Release());
@@ -89,6 +88,7 @@ public class OI {
 		trussThrow.whenPressed(new ThrowOverTruss());
 		initStretcher.whenPressed(new InitStretcher());
                 stretchToCycles.whenPressed(new StretchToCycles(50));
+                passToRobot.whenPressed(new PassToRobot());
 
     }
 
