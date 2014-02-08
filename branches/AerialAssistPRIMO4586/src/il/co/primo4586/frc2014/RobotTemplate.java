@@ -35,11 +35,12 @@ public class RobotTemplate extends IterativeRobot {
 
     CommandGroup autonomousSequence;
     CommandGroup teleopSequence;
+    public static final double defaultStretch = 60;
     public static double distance;
     public static boolean isHot;
 
     public static boolean isFinishedAutonomous;
-	public static boolean isMovedForwardAutonomous;
+    public static boolean isMovedForwardAutonomous;
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -62,13 +63,15 @@ public class RobotTemplate extends IterativeRobot {
         System.out.println("autonoumusGroupCommand works");
         teleopSequence = new TeleopCommandGroup();
         initSmartDashboard();
+        SmartDashboard.putData(Scheduler.getInstance());
         System.out.println("robotInit finished");
     }
 
     public void autonomousInit() {
+        initMotors();
         // schedule the autonomous command (example)
         isFinishedAutonomous = false;
-		Scheduler.getInstance().add(new InitStretcher());
+	Scheduler.getInstance().add(new InitStretcher());
         Scheduler.getInstance().add(autonomousSequence);
     }
 
@@ -95,6 +98,7 @@ public class RobotTemplate extends IterativeRobot {
         Scheduler.getInstance().add(teleopSequence);
         Scheduler.getInstance().run();
         initSmartDashboard();
+        initMotors();
         System.out.println("teleopInit works");
 
     }
@@ -136,9 +140,9 @@ public class RobotTemplate extends IterativeRobot {
                 
                 SmartDashboard.putNumber("max free collector power: " , 0.5);
                 SmartDashboard.putNumber("collector down power: " , 0.3);
-                SmartDashboard.putNumber("collector up power: " , 1);
-                
+                SmartDashboard.putNumber("collector up power: " , 1);      
 	}
+        
         public void SmartDashboardPeriodic()
         {
                 SmartDashboard.putBoolean("collector top:  ", CommandBase.collector.getTopMicro());

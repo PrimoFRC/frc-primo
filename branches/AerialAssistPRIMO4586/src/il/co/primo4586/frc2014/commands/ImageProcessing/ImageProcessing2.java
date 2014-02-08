@@ -12,6 +12,7 @@
 package il.co.primo4586.frc2014.commands.ImageProcessing;
 
 import edu.wpi.first.wpilibj.DriverStationLCD;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.camera.AxisCamera;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.WaitCommand;
@@ -34,7 +35,7 @@ import il.co.primo4586.frc2014.commands.CommandBase;
 public class  ImageProcessing2 extends CommandBase {
 
 	int loopNum, i;
-
+        private Timer timer;
     //Camera constants used for distance calculation
     final int Y_IMAGE_RES = 480;		//X Image resolution in pixels, should be 120, 240 or 480
     //final double VIEW_ANGLE = 49;		//Axis M1013
@@ -100,7 +101,9 @@ public class  ImageProcessing2 extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-
+        
+        timer = new Timer();
+        timer.start();
         //camera = RobotMap.camera;  // get an instance of the camera
         camera = AxisCamera.getInstance();
         DriverStationLCD.getInstance().println(DriverStationLCD.Line.kUser1, 1, "camera is working");
@@ -132,8 +135,9 @@ public class  ImageProcessing2 extends CommandBase {
             
             switch (loopNum)
             {
+                
                 case 0:
-                    
+                System.out.println("time(0 before): " + timer.get());
                 isHot1 = false;
                 count++;
                 System.out.println("**************** " + count + " ******************");
@@ -162,7 +166,7 @@ public class  ImageProcessing2 extends CommandBase {
                 //ColorImage image;                           // next 2 lines read image from flash on cRIO
                 //image = new RGBImage("/testImage.jpg");		// get the sample image from the cRIO flash
 
-
+                
                 image.write("/vision/original.jpg");
                 //image = new RGBImage("/vision/HybridLine_SmallGreen2.jpg");		// get the sample image from the cRIO flash
                 /*BinaryImage*/ thresholdImage = image.thresholdHSV(HL, HH, SL, SH, IL, IH);   // keep only red objects
@@ -170,6 +174,7 @@ public class  ImageProcessing2 extends CommandBase {
                 /*BinaryImage */filteredImage = thresholdImage.particleFilter(cc);      // filter out small particles
                 filteredImage.write("/vision/filteredImage1.bmp");
 
+                
                 if (count ==  0 )
                 {
                     image.write("/vision/Roriginal.jpg");
@@ -187,13 +192,16 @@ public class  ImageProcessing2 extends CommandBase {
                 {
                     i = 0;
                     loopNum = 1;
+                    System.out.println("time(1 start): " + timer.get());
                 }
                 else
                 {
                     loopNum = 2;
                 }
+                System.out.println("time(0 after): " + timer.get());
                 break;
                 case 1:
+                    System.out.println("time(1 before): " + timer.get());
                     if( i < MAX_PARTICLES && i < filteredImage.getNumberParticles())
                     {
 			ParticleAnalysisReport report = filteredImage.getParticleAnalysisReport(i);
@@ -232,7 +240,9 @@ public class  ImageProcessing2 extends CommandBase {
                     else
                     {
                         loopNum = 2;
+                        System.out.println("time(1 end): " + timer.get());
                     }
+                    System.out.println("time(1 after): " + timer.get());
 /*
 			//Zero out scores and set verticalIndex to first target in case there are no horizontal targets
 			target.totalScore = target.leftScore = target.rightScore = target.tapeWidthScore = target.verticalScore = 0;
@@ -302,6 +312,7 @@ public class  ImageProcessing2 extends CommandBase {
                 */
                 break;
                 case 2:
+                System.out.println("time(2 before): " + timer.get());
                 /**
                  * all images in Java must be freed after they are used since they are allocated out
                  * of C data structures. Not calling free() will cause the memory to accumulate over
@@ -311,6 +322,7 @@ public class  ImageProcessing2 extends CommandBase {
                 thresholdImage.free();
                 image.free();
                 loopNum = 3;
+                System.out.println("time(2 after): " + timer.get());
                     break;
                 default:
                     break;
@@ -334,7 +346,8 @@ public class  ImageProcessing2 extends CommandBase {
  */
     // Called once after isFinished returns true
     protected void end() {
-
+        SmartDashboard.putNumber("imageprocessing2 time: ", timer.get());
+        timer.stop();
     }
 
     // Called when another command which requires one or more of the same
