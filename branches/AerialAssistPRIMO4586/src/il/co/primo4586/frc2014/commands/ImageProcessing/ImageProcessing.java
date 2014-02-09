@@ -105,12 +105,7 @@ public class  ImageProcessing extends CommandBase {
 	horizontalTargets = new int[MAX_PARTICLES];
         
         
-                //SmartDashboard.putNumber("HueLow", 120);
-                //SmartDashboard.putNumber("HueHigh", 140);
-                //SmartDashboard.putNumber("SaturationLow", 200);
-                //SmartDashboard.putNumber("SaturationHigh", 255);
-                //SmartDashboard.putNumber("IntensityLow", 200);
-                //SmartDashboard.putNumber("IntensityHigh", 255);
+                
                 
     }
 
@@ -130,8 +125,8 @@ public class  ImageProcessing extends CommandBase {
                 }
                 
                 
-                int HL = (int)SmartDashboard.getNumber("HueLow", 110);
-                int HH = (int)SmartDashboard.getNumber("HueHigh", 150);
+                int HL = (int)SmartDashboard.getNumber("HueLow", 40);
+                int HH = (int)SmartDashboard.getNumber("HueHigh", 200);
                 int SL = (int)SmartDashboard.getNumber("SaturationLow", 100);
                 int SH = (int)SmartDashboard.getNumber("SaturationHigh", 255);
                 int IL = (int)SmartDashboard.getNumber("IntensityLow", 120);
@@ -150,21 +145,21 @@ public class  ImageProcessing extends CommandBase {
                 //image = new RGBImage("/testImage.jpg");		// get the sample image from the cRIO flash
                 
                 
-                image.write("/vision/original.jpg");
+                //image.write("/vision/neworiginal.jpg");
                 //image = new RGBImage("/vision/HybridLine_SmallGreen2.jpg");		// get the sample image from the cRIO flash
                 BinaryImage thresholdImage = image.thresholdHSV(HL, HH, SL, SH, IL, IH);   // keep only red objects
-                thresholdImage.write("/vision/threshold1.bmp");
+                //thresholdImage.write("/vision/newthreshold.bmp");
                 BinaryImage filteredImage = thresholdImage.particleFilter(cc);      // filter out small particles
-                filteredImage.write("/vision/filteredImage1.bmp");
+                //filteredImage.write("/vision/newfilteredImage1.bmp");
                 
                 if (count ==  0 )
                 {
-                    image.write("/vision/Roriginal.jpg");
+                    //image.write("/vision/Roriginal.jpg");
                     //image = new RGBImage("/vision/HybridLine_SmallGreen2.jpg");		// get the sample image from the cRIO flash
                     thresholdImage = image.thresholdHSV(HL, HH, SL, SH, IL, IH);   // keep only red objects
-                    thresholdImage.write("/vision/Rthreshold1.bmp");
+                    //thresholdImage.write("/vision/Rthreshold1.bmp");
                     filteredImage = thresholdImage.particleFilter(cc);           // filter out small particles
-                    filteredImage.write("/vision/RfilteredImage1.bmp");
+                    //filteredImage.write("/vision/RfilteredImage1.bmp");
                 }
                 
                 //iterate through each particle and score to see if it is a target

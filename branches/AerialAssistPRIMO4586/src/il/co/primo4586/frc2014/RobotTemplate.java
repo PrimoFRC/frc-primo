@@ -35,7 +35,7 @@ public class RobotTemplate extends IterativeRobot {
 
     CommandGroup autonomousSequence;
     CommandGroup teleopSequence;
-    public static final double defaultStretch = 60;
+    public static final double defaultStretch = 150;
     public static double distance;
     public static boolean isHot;
 
@@ -140,7 +140,17 @@ public class RobotTemplate extends IterativeRobot {
                 
                 SmartDashboard.putNumber("max free collector power: " , 0.5);
                 SmartDashboard.putNumber("collector down power: " , 0.3);
-                SmartDashboard.putNumber("collector up power: " , 1);      
+                SmartDashboard.putNumber("collector up power: " , 1);    
+                
+                SmartDashboard.putNumber("stretcher speed: ", 1);
+                
+                
+                SmartDashboard.putNumber("HueLow", 40);
+                SmartDashboard.putNumber("HueHigh", 200);
+                SmartDashboard.putNumber("SaturationLow", 200);
+                SmartDashboard.putNumber("SaturationHigh", 255);
+                SmartDashboard.putNumber("IntensityLow", 200);
+                SmartDashboard.putNumber("IntensityHigh", 255);
 	}
         
         public void SmartDashboardPeriodic()
@@ -162,5 +172,13 @@ public class RobotTemplate extends IterativeRobot {
                 SmartDashboard.putBoolean("tryPort13 ", RobotMap.tryPort13.get());
                 SmartDashboard.putBoolean("tryPort14 ", RobotMap.tryPort14.get());
                 */
+        }
+        
+        public static double distanceToCycles(double d)
+        {
+            double cycles = 6.2012*d*d*d - 59.433*d*d + 207.01*d - 93.3;
+            System.out.println("cycles: " + cycles);
+            return (cycles);
+            
         }
 }

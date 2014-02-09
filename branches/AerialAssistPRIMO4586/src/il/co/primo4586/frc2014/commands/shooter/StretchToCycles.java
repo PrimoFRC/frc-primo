@@ -13,7 +13,7 @@ import il.co.primo4586.frc2014.commands.CommandBase;
  * @author mor meitar idan
  */
 public class StretchToCycles extends CommandBase {
-    private double desiredCycles, currentCycles, difference ;
+    private double desiredCycles, currentCycles, difference , power ;
 	private final double cyclesToSpeed = SmartDashboard.getNumber("Cycles To Speed", 0.01);
     
     public StretchToCycles(double cycles) {
@@ -26,19 +26,24 @@ public class StretchToCycles extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize()
     {
-                desiredCycles = (SmartDashboard.getNumber("Power"));
+                
 		currentCycles = shooter.getCount();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute()
 	{
-                desiredCycles = (SmartDashboard.getNumber("Power"));
+                
 		currentCycles = shooter.getCount();
 		difference = desiredCycles-currentCycles;
 		if ( (difference > 0 &&  !shooter.getEndMicro()) ||  (difference < 0 &&  !shooter.getStartMicro()) )
 		{
-			shooter.stretch(-difference / Math.abs(difference));
+                    power = -difference / Math.abs(difference);
+                    if (shooter.getCount() < 100 || power > 0)
+                    {
+                        power = 0.7*power;
+                    }
+			shooter.stretch(power);
                 }
 
     }
