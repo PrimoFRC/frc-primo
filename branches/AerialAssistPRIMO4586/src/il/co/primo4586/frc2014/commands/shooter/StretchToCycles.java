@@ -6,6 +6,7 @@
 package il.co.primo4586.frc2014.commands.shooter;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import il.co.primo4586.frc2014.RobotTemplate;
 import il.co.primo4586.frc2014.commands.CommandBase;
 
 /**
@@ -16,17 +17,21 @@ public class StretchToCycles extends CommandBase {
     private double desiredCycles, currentCycles, difference , power ;
 	private final double cyclesToSpeed = SmartDashboard.getNumber("Cycles To Speed", 0.01);
     
-    public StretchToCycles(double cycles) {
+    public StretchToCycles() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-		desiredCycles = cycles;
+		
 
     }
 
     // Called just before this Command runs the first time
     protected void initialize()
     {
-                
+                desiredCycles = 150;
+                if (RobotTemplate.isAimed)
+                {
+                   desiredCycles = distanceToCycles(RobotTemplate.distance);
+                }
 		currentCycles = shooter.getCount();
     }
 
@@ -67,5 +72,13 @@ public class StretchToCycles extends CommandBase {
     // subsystems is scheduled to run
     protected void interrupted() {
 		end();
+    }
+    
+    public static double distanceToCycles(double d)
+    {
+        double cycles = 6.2012*d*d*d - 59.433*d*d + 207.01*d - 93.3;
+        System.out.println("############# cycles: ############ " + cycles);
+        return (cycles);
+            
     }
 }

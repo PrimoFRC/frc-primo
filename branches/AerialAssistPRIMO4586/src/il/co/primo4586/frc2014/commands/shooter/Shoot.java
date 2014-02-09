@@ -35,6 +35,7 @@ public class Shoot extends CommandGroup {
         addSequential(new Wait());
         addSequential(new InitStretcher());
         addSequential(new Grasp());
-        addSequential(new StretchToCycles(RobotTemplate.defaultStretch));
+        addSequential(new SetDefaultStretch());
+        addSequential(new StretchToCycles());
     }
 }

@@ -91,7 +91,7 @@ public class OI {
                 shoot.whenPressed(new Shoot());
 		trussThrow.whenPressed(new ThrowOverTruss());
 		initStretcher.whenPressed(new InitStretcher());
-                stretchToCycles.whenPressed(new StretchToCycles(150));
+                stretchToCycles.whenPressed(new StretchToCycles());
                 passToRobot.whenPressed(new PassToRobot());
                 invertDriving.whenPressed(new InvertDriving());
                 initMotors.whenPressed(new InitMotors());
