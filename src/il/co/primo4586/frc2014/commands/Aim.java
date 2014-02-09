@@ -36,6 +36,7 @@ public class Aim extends CommandGroup {
         // arm.\
 
         addSequential(new ImageProcessing());
-        addSequential(new StretchToCycles(RobotTemplate.distanceToCycles(RobotTemplate.distance)));
+        addSequential(new SetStretchToDistance());
+        addSequential(new StretchToCycles());
     }
 }
