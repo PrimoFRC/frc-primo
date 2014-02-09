@@ -40,7 +40,7 @@ public class AutonomousCommandGroup extends CommandGroup {
 
         if (RobotTemplate.isHot)
         {
-            addSequential(new StretchToCycles(SmartDashboard.getNumber("Power",50)));
+            addSequential(new StretchToCycles());
             addSequential(new Shoot());
             addParallel(new MoveAfterShooting());
         }

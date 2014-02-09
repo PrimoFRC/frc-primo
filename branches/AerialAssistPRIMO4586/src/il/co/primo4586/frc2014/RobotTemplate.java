@@ -38,6 +38,7 @@ public class RobotTemplate extends IterativeRobot {
     public static final double defaultStretch = 150;
     public static double distance;
     public static boolean isHot;
+    public static boolean isAimed = false;
 
     public static boolean isFinishedAutonomous;
     public static boolean isMovedForwardAutonomous;
@@ -174,11 +175,5 @@ public class RobotTemplate extends IterativeRobot {
                 */
         }
         
-        public static double distanceToCycles(double d)
-        {
-            double cycles = 6.2012*d*d*d - 59.433*d*d + 207.01*d - 93.3;
-            System.out.println("cycles: " + cycles);
-            return (cycles);
-            
-        }
+        
 }
