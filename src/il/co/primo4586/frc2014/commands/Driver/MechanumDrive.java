@@ -44,7 +44,7 @@ public class MechanumDrive extends CommandBase {
         */
         magnitude = driver.sign * drivingStick.getMagnitude() / 2;
         direction = drivingStick.getDirectionDegrees();
-        rotation = driver.sign * drivingStick.getRawAxis(4) / 2;
+        rotation = drivingStick.getRawAxis(4) / 2;
         driver.MecanumDrive(magnitude, direction, rotation);
 
         //driving.ArcadeDrive(drivingStick);

@@ -7,6 +7,7 @@ package il.co.primo4586.frc2014.commands.shooter;
 
 import edu.wpi.first.wpilibj.DriverStationLCD;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import il.co.primo4586.frc2014.commands.CommandBase;
 /**
  *
@@ -49,6 +50,10 @@ public class StretchFree extends CommandBase {
             direction = operatorStick.getRawAxis(5);  // check which port is it
         if ( (direction > 0.01 &&  !shooter.getStartMicro()) ||  (direction < -0.01 &&  !shooter.getEndMicro()) )
         {
+            if (shooter.getCount() < 100 || direction > 0)
+            {
+                direction = 0.7*direction;
+            }
             isZeroed = false;
             shooter.stretch(direction);
             

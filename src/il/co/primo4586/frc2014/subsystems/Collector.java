@@ -49,8 +49,7 @@ public class Collector extends Subsystem
 
 	public boolean getTopMicro()
 	{
-            System.out.println("collectorTopMicro: " + collector_top.get());
-                
+            
             return collector_top.get();
             //return false;
 	}
@@ -66,7 +65,7 @@ public class Collector extends Subsystem
 
 	public boolean getBottomMicro()
 	{
-            System.out.println("collectorBottomMicro: " + collector_bottom.get());
+            
             return collector_bottom.get();
             //return false;
 	}

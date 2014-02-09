@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import il.co.primo4586.frc2014.RobotTemplate;
 import il.co.primo4586.frc2014.commands.ImageProcessing.ImageProcessing;
-import il.co.primo4586.frc2014.commands.shooter.StretchToCycles;
+import il.co.primo4586.frc2014.commands.shooter.*;
 
 
 /**
@@ -36,6 +36,6 @@ public class Aim extends CommandGroup {
         // arm.\
 
         addSequential(new ImageProcessing());
-        //addSequential(new StretchToCycles(SmartDashboard.getNumber("Power",50)));//Will Be Function
+        addSequential(new StretchToCycles(RobotTemplate.distanceToCycles(RobotTemplate.distance)));
     }
 }
