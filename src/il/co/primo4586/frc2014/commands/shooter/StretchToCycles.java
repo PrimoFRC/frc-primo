@@ -46,7 +46,7 @@ public class StretchToCycles extends CommandBase {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished()
 	{
-		if ((-1 <= difference && difference <= 1) || (difference > 0 &&  !shooter.getEndMicro()) ||  (difference < 0 &&  !shooter.getStartMicro()) )
+		if ((-1 <= difference && difference <= 1) || (difference > 0 &&  shooter.getEndMicro()) ||  (difference < 0 &&  shooter.getStartMicro()) )
 		{
 			return true;
 		}
