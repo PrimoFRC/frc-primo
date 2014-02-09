@@ -24,6 +24,7 @@ public class MechanumDrive extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
         drivingStick = CommandBase.oi.drivingStick;
+        driver.sign = 1;
         System.out.println("mechanumDrive works");
         //drivingStick2 = CommandBase.oi.getDrivingStick2();
     }
@@ -41,9 +42,9 @@ public class MechanumDrive extends CommandBase {
             direction += 180;
         rotation = drivingStick1.getX();
         */
-        magnitude = drivingStick.getMagnitude() / 2;
+        magnitude = driver.sign * drivingStick.getMagnitude() / 2;
         direction = drivingStick.getDirectionDegrees();
-        rotation = drivingStick.getRawAxis(4) / 2;
+        rotation = driver.sign * drivingStick.getRawAxis(4) / 2;
         driver.MecanumDrive(magnitude, direction, rotation);
 
         //driving.ArcadeDrive(drivingStick);

@@ -24,6 +24,8 @@ public class Driver extends Subsystem
     SpeedController motorLeftFront;
     SpeedController motorRightFront;
 
+    public int sign;
+    
     RobotDrive driver;
 
     public Driver()
