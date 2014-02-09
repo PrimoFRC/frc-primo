@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import il.co.primo4586.frc2014.commands.Aim;
 import il.co.primo4586.frc2014.commands.Aim2;
+import il.co.primo4586.frc2014.commands.Driver.InvertDriving;
+import il.co.primo4586.frc2014.commands.InitMotors;
 import il.co.primo4586.frc2014.commands.shooter.*;
 import il.co.primo4586.frc2014.commands.collector.*;
 
@@ -52,8 +54,8 @@ public class OI {
     public Joystick drivingStick;
     public Joystick operatorStick;
 
-    public JoystickButton moveArmMicroswitches , moveArmMicroswitchesDriver ;
-    public JoystickButton shoot , aim , aim2, trussThrow , initStretcher , grasp , release, stretchToCycles , passToRobot;
+    public JoystickButton moveArmMicroswitches , moveArmMicroswitchesDriver, initMotors ;
+    public JoystickButton shoot , aim , aim2, invertDriving, trussThrow , initStretcher , grasp , release, stretchToCycles , passToRobot;
 
 
     public OI()
@@ -79,6 +81,8 @@ public class OI {
 		initStretcher = new JoystickButton(operatorStick, 10);
                 stretchToCycles = new JoystickButton(operatorStick, 6);
                 passToRobot = new JoystickButton(operatorStick, 5);
+                invertDriving = new JoystickButton(drivingStick, 5);
+                initMotors = new JoystickButton(operatorStick, 9);
 
                 grasp.whenPressed(new Grasp());
                 release.whenPressed(new Release());
@@ -89,6 +93,8 @@ public class OI {
 		initStretcher.whenPressed(new InitStretcher());
                 stretchToCycles.whenPressed(new StretchToCycles(50));
                 passToRobot.whenPressed(new PassToRobot());
+                invertDriving.whenPressed(new InvertDriving());
+                initMotors.whenPressed(new InitMotors());
 
     }
 
