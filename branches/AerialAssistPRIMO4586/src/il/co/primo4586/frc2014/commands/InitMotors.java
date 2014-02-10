@@ -26,6 +26,7 @@ public class InitMotors extends CommandBase {
 		shooter.release(0);
 
 		driver.stop();
+                RobotTemplate.isEmergencyStopped = !RobotTemplate.isEmergencyStopped;
     }
 
     // Called repeatedly when this Command is scheduled to run

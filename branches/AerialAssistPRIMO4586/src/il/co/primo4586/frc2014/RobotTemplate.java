@@ -39,6 +39,7 @@ public class RobotTemplate extends IterativeRobot {
     public static double distance;
     public static boolean isHot;
     public static boolean isAimed = false;
+    public static boolean isEmergencyStopped;
 
     public static boolean isFinishedAutonomous;
     public static boolean isMovedForwardAutonomous;
@@ -64,7 +65,7 @@ public class RobotTemplate extends IterativeRobot {
         System.out.println("autonoumusGroupCommand works");
         teleopSequence = new TeleopCommandGroup();
         initSmartDashboard();
-        SmartDashboard.putData(Scheduler.getInstance());
+        isEmergencyStopped = false;
         System.out.println("robotInit finished");
     }
 
@@ -100,6 +101,7 @@ public class RobotTemplate extends IterativeRobot {
         Scheduler.getInstance().run();
         initSmartDashboard();
         initMotors();
+        isEmergencyStopped = false;
         System.out.println("teleopInit works");
 
     }
@@ -108,8 +110,9 @@ public class RobotTemplate extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-        Scheduler.getInstance().run();
-        SmartDashboardPeriodic();  
+        if (!isEmergencyStopped)
+            Scheduler.getInstance().run();
+        SmartDashboardPeriodic();
     }
 
     /**
@@ -136,7 +139,6 @@ public class RobotTemplate extends IterativeRobot {
 	public void initSmartDashboard()
         {
 		SmartDashboard.putNumber("Power", 70);
-		SmartDashboard.putNumber("Cycles To Speed", 0.01);
                 SmartDashboard.putNumber("Cycles", 0);
                 
                 SmartDashboard.putNumber("max free collector power: " , 0.5);
