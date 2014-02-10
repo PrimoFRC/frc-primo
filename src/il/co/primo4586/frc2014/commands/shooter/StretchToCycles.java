@@ -15,7 +15,6 @@ import il.co.primo4586.frc2014.commands.CommandBase;
  */
 public class StretchToCycles extends CommandBase {
     private double desiredCycles, currentCycles, difference , power ;
-	private final double cyclesToSpeed = SmartDashboard.getNumber("Cycles To Speed", 0.01);
     
     public StretchToCycles() {
         // Use requires() here to declare subsystem dependencies
