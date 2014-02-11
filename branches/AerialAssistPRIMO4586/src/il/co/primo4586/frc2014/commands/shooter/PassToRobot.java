@@ -33,7 +33,7 @@ public class PassToRobot extends CommandGroup {
         addSequential(new SetDefaultStretch());
         addSequential(new InitStretcher());
         addSequential(new Release());
-      //  addSequential(new StretchToCycles());
+        addSequential(new StretchToCycles());
         addSequential(new InitStretcher());
         addSequential(new Grasp());
         addSequential(new StretchToCycles());
