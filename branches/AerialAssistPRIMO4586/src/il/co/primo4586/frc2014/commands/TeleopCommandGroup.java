@@ -39,7 +39,6 @@ public class TeleopCommandGroup extends CommandGroup {
 
         //addSequential(new InitCollectorToTop());
         
-        
         addParallel(new MechanumDrive());
         addParallel(new StretchFree());
         addParallel(new MoveArmFree());
@@ -47,5 +46,8 @@ public class TeleopCommandGroup extends CommandGroup {
         addSequential(new SetDefaultStretch());
         addSequential(new InitStretcher());
         addSequential(new StretchToCycles());
+        
+        
+        
     }
 }
