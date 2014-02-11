@@ -78,6 +78,14 @@ public class RobotTemplate extends IterativeRobot {
         
         timer.reset();
         timer.start();
+        if (teleopSequence != null)
+            teleopSequence.cancel();
+        if (autonomousCheck != null)
+            autonomousCheck.cancel();
+        if (autonomousShoot != null)
+            autonomousShoot.cancel();
+        
+        Scheduler.getInstance().removeAll();
         initMotors();
         // schedule the autonomous command (example)
         isFinishedAutonomous = false;
