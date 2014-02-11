@@ -3,18 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package il.co.primo4586.frc2014.commands.shooter;
+package il.co.primo4586.frc2014.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import il.co.primo4586.frc2014.RobotTemplate;
+import il.co.primo4586.frc2014.commands.ImageProcessing.ImageProcessing;
+import il.co.primo4586.frc2014.commands.shooter.InitStretcher;
+import il.co.primo4586.frc2014.commands.shooter.StretchToCycles;
 
 /**
  *
  * @author Gottlieb
  */
-public class PassToRobot extends CommandGroup {
+public class AutonomousCheckCamera extends CommandGroup {
     
-    public PassToRobot() {
+    public AutonomousCheckCamera() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -30,12 +32,6 @@ public class PassToRobot extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-        addSequential(new SetDefaultStretch());
-        addSequential(new InitStretcher());
-        addSequential(new Release());
-      //  addSequential(new StretchToCycles());
-        addSequential(new InitStretcher());
-        addSequential(new Grasp());
-        addSequential(new StretchToCycles());
+        addSequential(new ImageProcessing());
     }
 }

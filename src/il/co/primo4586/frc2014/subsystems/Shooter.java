@@ -145,6 +145,11 @@ public class Shooter extends Subsystem {
             return  newCountCycles;
 	}
         
+        public void setCount(long cycles)
+	{
+            newCountCycles = cycles;
+	}
+        
 
         
 
