@@ -3,18 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package il.co.primo4586.frc2014.commands.shooter;
+package il.co.primo4586.frc2014.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import il.co.primo4586.frc2014.RobotTemplate;
+import il.co.primo4586.frc2014.commands.Driver.MoveAfterShooting;
+import il.co.primo4586.frc2014.commands.shooter.Grasp;
+import il.co.primo4586.frc2014.commands.shooter.InitStretcher;
+import il.co.primo4586.frc2014.commands.shooter.Release;
+import il.co.primo4586.frc2014.commands.shooter.SetDefaultStretch;
+import il.co.primo4586.frc2014.commands.shooter.SetStretchToDistance;
+import il.co.primo4586.frc2014.commands.shooter.Shoot;
+import il.co.primo4586.frc2014.commands.shooter.StretchToCycles;
 
 /**
  *
  * @author Gottlieb
  */
-public class PassToRobot extends CommandGroup {
+public class AutonomousShoot extends CommandGroup {
     
-    public PassToRobot() {
+    public AutonomousShoot() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -30,12 +37,18 @@ public class PassToRobot extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-        addSequential(new SetDefaultStretch());
-        addSequential(new InitStretcher());
+        addSequential(new SetStretchToDistance());
+        addSequential(new StretchToCycles());
+        
         addSequential(new Release());
-      //  addSequential(new StretchToCycles());
+        addSequential(new Wait());
+        
+        addSequential(new MoveAfterShooting());
+        
         addSequential(new InitStretcher());
         addSequential(new Grasp());
+        addSequential(new SetDefaultStretch());
         addSequential(new StretchToCycles());
+        
     }
 }

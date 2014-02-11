@@ -10,8 +10,10 @@ import il.co.primo4586.frc2014.commands.shooter.Shoot;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import il.co.primo4586.frc2014.RobotTemplate;
+
 import il.co.primo4586.frc2014.commands.Driver.MoveAfterShooting;
 import il.co.primo4586.frc2014.commands.ImageProcessing.ImageProcessing;
+import il.co.primo4586.frc2014.commands.shooter.InitStretcher;
 
 
 /**
@@ -38,6 +40,7 @@ public class AutonomousCommandGroup extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
 
+        SmartDashboard.putBoolean("Hot Target check ", RobotTemplate.isHot);
         if (RobotTemplate.isHot)
         {
             addSequential(new StretchToCycles());
@@ -46,6 +49,7 @@ public class AutonomousCommandGroup extends CommandGroup {
         }
         else
         {
+            addSequential(new InitStretcher());
             addSequential(new ImageProcessing());
         }
     }

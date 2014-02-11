@@ -69,8 +69,8 @@ public class OI {
                 moveArmMicroswitchesDriver = new JoystickButton(drivingStick, 6);
                 
 		
-                //moveArmMicroswitches.whenPressed(new MoveArmMicroswitches());
-                //moveArmMicroswitchesDriver.whenPressed(new MoveArmMicroswitches());
+                moveArmMicroswitches.whenPressed(new MoveArmMicroswitches());
+                moveArmMicroswitchesDriver.whenPressed(new MoveArmMicroswitches());
 
                 grasp = new JoystickButton(operatorStick, 7);
                 release = new JoystickButton(operatorStick, 8);
