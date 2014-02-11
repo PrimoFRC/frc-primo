@@ -10,7 +10,9 @@ import il.co.primo4586.frc2014.commands.Driver.MechanumDrive;
 
 import il.co.primo4586.frc2014.commands.collector.MoveArmFree;
 import il.co.primo4586.frc2014.commands.shooter.InitStretcher;
+import il.co.primo4586.frc2014.commands.shooter.SetDefaultStretch;
 import il.co.primo4586.frc2014.commands.shooter.StretchFree;
+import il.co.primo4586.frc2014.commands.shooter.StretchToCycles;
 
 /**
  *
@@ -36,8 +38,14 @@ public class TeleopCommandGroup extends CommandGroup {
         // arm.
 
         //addSequential(new InitCollectorToTop());
+        
+        
         addParallel(new MechanumDrive());
         addParallel(new StretchFree());
         addParallel(new MoveArmFree());
+        
+        addSequential(new SetDefaultStretch());
+        addSequential(new InitStretcher());
+        addSequential(new StretchToCycles());
     }
 }

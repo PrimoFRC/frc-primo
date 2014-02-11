@@ -27,7 +27,7 @@ public class StretchToCycles extends CommandBase {
     protected void initialize()
     {
                 desiredCycles = 150;
-                if (RobotTemplate.isAimed)
+                if (RobotTemplate.isAimed && RobotTemplate.distance > 2.5 && RobotTemplate.distance < 4.6)
                 {
                    desiredCycles = distanceToCycles(RobotTemplate.distance);
                 }
@@ -55,7 +55,7 @@ public class StretchToCycles extends CommandBase {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished()
 	{
-		if ((-1 <= difference && difference <= 1) || (difference > 0 &&  shooter.getEndMicro()) ||  (difference < 0 &&  shooter.getStartMicro()) )
+		if (((-1 <= difference && difference <= 1) || (difference > 0 &&  shooter.getEndMicro()) ||  (difference < 0 &&  shooter.getStartMicro()) ) || oi.initMotors.get())
 		{
 			return true;
 		}

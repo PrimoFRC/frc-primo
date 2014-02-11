@@ -83,6 +83,7 @@ public class  ImageProcessing extends CommandBase {
     }
     
     public ImageProcessing() {
+        camera = AxisCamera.getInstance();
         // Use requires() here to declare subsystem dependencies
          
          // eg. requires(chassis);
@@ -93,8 +94,10 @@ public class  ImageProcessing extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
         
+        RobotTemplate.distance = 0;
+        SmartDashboard.putNumber("Distance to Target (meters): ", RobotTemplate.distance);
         //camera = RobotMap.camera;  // get an instance of the camera
-        camera = AxisCamera.getInstance();
+        
         DriverStationLCD.getInstance().println(DriverStationLCD.Line.kUser1, 1, "camera is working");
         DriverStationLCD.getInstance().updateLCD();
         cc = new CriteriaCollection();      // create the criteria for the particle filter
@@ -263,7 +266,7 @@ public class  ImageProcessing extends CommandBase {
                                             System.out.println("Distance: " + distance);
                                     }
                                     RobotTemplate.isHot = isHot1;
-                                    SmartDashboard.putBoolean("Hot Target? ", isHot1);
+                                    SmartDashboard.putBoolean("Hot Target? ", RobotTemplate.isHot);
                             }
                 }
 

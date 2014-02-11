@@ -52,10 +52,11 @@ public class Driver extends Subsystem
 
     public void driveForward()
     {
-        motorLeftBack.set(1);
-        motorLeftFront.set(1);
-		motorRightBack.set(-1);
-		motorRightFront.set(-1);
+        double speed = 1;
+        motorLeftBack.set(speed);
+        motorLeftFront.set(speed);
+		motorRightBack.set(-speed);
+		motorRightFront.set(-speed);
     }
 
     public void stop()

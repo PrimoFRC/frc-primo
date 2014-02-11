@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -22,6 +23,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import il.co.primo4586.frc2014.commands.CommandBase;
 import il.co.primo4586.frc2014.commands.*;
 import il.co.primo4586.frc2014.commands.shooter.InitStretcher;
+import il.co.primo4586.frc2014.commands.shooter.StretchToCycles;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -32,8 +34,10 @@ import il.co.primo4586.frc2014.commands.shooter.InitStretcher;
  */
 public class RobotTemplate extends IterativeRobot {
 
-
-    CommandGroup autonomousSequence;
+    Timer timer = new Timer();
+    
+    CommandGroup autonomousCheck;
+    CommandGroup autonomousShoot;
     CommandGroup teleopSequence;
     public static final double defaultStretch = 150;
     public static double distance;
@@ -50,7 +54,7 @@ public class RobotTemplate extends IterativeRobot {
     public void robotInit() {
         System.out.println("robotInit started");
 		
-                System.out.println("smartdashboard works");
+        System.out.println("smartdashboard works");
         // instantiate the command used for the autonomous period
         //autonomousCommand = new ExampleCommand();
 
@@ -61,7 +65,8 @@ public class RobotTemplate extends IterativeRobot {
         System.out.println("commandBase works");
         initMotors();
         System.out.println("initMotors works");
-        autonomousSequence = new AutonomousCommandGroup();
+        autonomousCheck = new AutonomousCheckCamera();
+        autonomousShoot = new AutonomousShoot();
         System.out.println("autonoumusGroupCommand works");
         teleopSequence = new TeleopCommandGroup();
         initSmartDashboard();
@@ -70,11 +75,18 @@ public class RobotTemplate extends IterativeRobot {
     }
 
     public void autonomousInit() {
+        
+        timer.reset();
+        timer.start();
         initMotors();
         // schedule the autonomous command (example)
         isFinishedAutonomous = false;
-	Scheduler.getInstance().add(new InitStretcher());
-        Scheduler.getInstance().add(autonomousSequence);
+        isMovedForwardAutonomous = false;
+        isHot = false;
+        CommandBase.shooter.setCount(150);
+	Scheduler.getInstance().add(new AutonomousInit());
+        
+        
     }
 
     /**
@@ -82,11 +94,30 @@ public class RobotTemplate extends IterativeRobot {
      */
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
-        if (isFinishedAutonomous && !isMovedForwardAutonomous)
+        SmartDashboard.putBoolean("movedForward",isMovedForwardAutonomous);
+        SmartDashboard.putNumber("timer move" , timer.get());
+        if (timer.get() < 5)
         {
-            isFinishedAutonomous = false;
-            Scheduler.getInstance().add(autonomousSequence);
+           if (isFinishedAutonomous && !isHot && !isMovedForwardAutonomous)
+            {
+                isFinishedAutonomous = false;
+            
+                Scheduler.getInstance().add(autonomousCheck);
+            }
+            else if (!isMovedForwardAutonomous && isHot)
+            {
+                timer.stop();
+                isMovedForwardAutonomous = true;
+                Scheduler.getInstance().add(autonomousShoot);
+            } 
         }
+        else if (!isMovedForwardAutonomous)
+        {
+            timer.stop();
+            isMovedForwardAutonomous = true;
+            Scheduler.getInstance().add(autonomousShoot);
+        }
+        
     }
 
     public void teleopInit() {
@@ -95,8 +126,14 @@ public class RobotTemplate extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         System.out.println("teleopInit started");
-        if (autonomousSequence != null)
-            autonomousSequence.cancel();
+        if (teleopSequence != null)
+            teleopSequence.cancel();
+        if (autonomousCheck != null)
+            autonomousCheck.cancel();
+        if (autonomousShoot != null)
+            autonomousShoot.cancel();
+        
+        Scheduler.getInstance().removeAll();
         Scheduler.getInstance().add(teleopSequence);
         Scheduler.getInstance().run();
         initSmartDashboard();
@@ -110,8 +147,10 @@ public class RobotTemplate extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-        if (!isEmergencyStopped)
-            Scheduler.getInstance().run();
+        
+        
+        Scheduler.getInstance().run();
+        
         SmartDashboardPeriodic();
     }
 
@@ -146,14 +185,24 @@ public class RobotTemplate extends IterativeRobot {
                 SmartDashboard.putNumber("collector up power: " , 1);    
                 
                 SmartDashboard.putNumber("stretcher speed: ", 1);
-                
-                
-                SmartDashboard.putNumber("HueLow", 40);
-                SmartDashboard.putNumber("HueHigh", 200);
-                SmartDashboard.putNumber("SaturationLow", 200);
+                /*
+                // for high lighting
+                SmartDashboard.putNumber("HueLow", 60);
+                SmartDashboard.putNumber("HueHigh", 120);
+                SmartDashboard.putNumber("SaturationLow", 30);
+                SmartDashboard.putNumber("SaturationHigh", 240);
+                SmartDashboard.putNumber("IntensityLow", 50);
+                SmartDashboard.putNumber("IntensityHigh", 240);
+                */
+               
+                // for low lighting
+                SmartDashboard.putNumber("HueLow", 100);
+                SmartDashboard.putNumber("HueHigh", 150);
+                SmartDashboard.putNumber("SaturationLow", 100);
                 SmartDashboard.putNumber("SaturationHigh", 255);
-                SmartDashboard.putNumber("IntensityLow", 200);
+                SmartDashboard.putNumber("IntensityLow", 120);
                 SmartDashboard.putNumber("IntensityHigh", 255);
+                
 	}
         
         public void SmartDashboardPeriodic()

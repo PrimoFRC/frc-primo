@@ -34,10 +34,7 @@ public class InitStretcher extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        if (!shooter.getStartMicro() )
-		{
-			shooter.stretch(1);
-                }
+        
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -50,7 +47,6 @@ public class InitStretcher extends CommandBase {
 	{
 		shooter.stretch(0);
 		shooter.initCount();
-		RobotTemplate.isFinishedAutonomous = true;
     }
 
     // Called when another command which requires one or more of the same
