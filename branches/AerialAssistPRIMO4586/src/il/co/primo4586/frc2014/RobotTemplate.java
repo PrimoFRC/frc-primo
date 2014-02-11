@@ -19,9 +19,12 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import il.co.primo4586.frc2014.commands.CommandBase;
 import il.co.primo4586.frc2014.commands.*;
+import il.co.primo4586.frc2014.commands.ImageProcessing.SetHighLighting;
+import il.co.primo4586.frc2014.commands.ImageProcessing.SetLowLighting;
 import il.co.primo4586.frc2014.commands.shooter.InitStretcher;
 import il.co.primo4586.frc2014.commands.shooter.StretchToCycles;
 
@@ -34,6 +37,7 @@ import il.co.primo4586.frc2014.commands.shooter.StretchToCycles;
  */
 public class RobotTemplate extends IterativeRobot {
 
+    public static SendableChooser lighting = new SendableChooser();
     Timer timer = new Timer();
     
     CommandGroup autonomousCheck;
@@ -52,6 +56,7 @@ public class RobotTemplate extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
+        
         System.out.println("robotInit started");
 		
         System.out.println("smartdashboard works");
@@ -142,6 +147,9 @@ public class RobotTemplate extends IterativeRobot {
             autonomousShoot.cancel();
         
         Scheduler.getInstance().removeAll();
+        
+        Scheduler.getInstance().add((Command)lighting.getSelected());
+        
         Scheduler.getInstance().add(teleopSequence);
         Scheduler.getInstance().run();
         initSmartDashboard();
@@ -185,6 +193,7 @@ public class RobotTemplate extends IterativeRobot {
 
 	public void initSmartDashboard()
         {
+                SmartDashboard.putData(FILE_NAME, autonomousCheck);
 		SmartDashboard.putNumber("Power", 70);
                 SmartDashboard.putNumber("Cycles", 0);
                 
@@ -202,7 +211,11 @@ public class RobotTemplate extends IterativeRobot {
                 SmartDashboard.putNumber("IntensityLow", 50);
                 SmartDashboard.putNumber("IntensityHigh", 240);
                 */
-               
+                
+                lighting.addDefault("Low Lighting", new SetLowLighting());
+                lighting.addObject("High Lighting", new SetHighLighting());
+                SmartDashboard.putData("Lighting" , lighting);
+                
                 // for low lighting
                 SmartDashboard.putNumber("HueLow", 100);
                 SmartDashboard.putNumber("HueHigh", 150);
