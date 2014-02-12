@@ -25,6 +25,7 @@ import il.co.primo4586.frc2014.commands.CommandBase;
 import il.co.primo4586.frc2014.commands.*;
 import il.co.primo4586.frc2014.commands.ImageProcessing.SetHighLighting;
 import il.co.primo4586.frc2014.commands.ImageProcessing.SetLowLighting;
+import il.co.primo4586.frc2014.commands.ImageProcessing.SetWeirdLighting;
 import il.co.primo4586.frc2014.commands.shooter.InitStretcher;
 import il.co.primo4586.frc2014.commands.shooter.StretchToCycles;
 
@@ -43,14 +44,22 @@ public class RobotTemplate extends IterativeRobot {
     CommandGroup autonomousCheck;
     CommandGroup autonomousShoot;
     CommandGroup teleopSequence;
+    
     public static final double defaultStretch = 150;
+    public static final double passStretch = 75;
+    
     public static double distance;
+    
     public static boolean isHot;
     public static boolean isAimed = false;
+    public static boolean passTheBall = false;
+    
     public static boolean isEmergencyStopped;
 
     public static boolean isFinishedAutonomous;
     public static boolean isMovedForwardAutonomous;
+    
+    
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -152,7 +161,6 @@ public class RobotTemplate extends IterativeRobot {
         
         Scheduler.getInstance().add(teleopSequence);
         Scheduler.getInstance().run();
-        initSmartDashboard();
         initMotors();
         isEmergencyStopped = false;
         System.out.println("teleopInit works");
@@ -193,36 +201,24 @@ public class RobotTemplate extends IterativeRobot {
 
 	public void initSmartDashboard()
         {
+                SmartDashboard.putNumber("Over stretch: ", 0);
+            
                 SmartDashboard.putData(FILE_NAME, autonomousCheck);
 		SmartDashboard.putNumber("Power", 70);
-                SmartDashboard.putNumber("Cycles", 0);
                 
-                SmartDashboard.putNumber("max free collector power: " , 0.5);
+                
+                SmartDashboard.putNumber("max free collector power: " , 0.8);
                 SmartDashboard.putNumber("collector down power: " , 0.3);
-                SmartDashboard.putNumber("collector up power: " , 1);    
+                SmartDashboard.putNumber("collector up power: " , 0.8);    
                 
-                SmartDashboard.putNumber("stretcher speed: ", 1);
-                /*
-                // for high lighting
-                SmartDashboard.putNumber("HueLow", 60);
-                SmartDashboard.putNumber("HueHigh", 120);
-                SmartDashboard.putNumber("SaturationLow", 30);
-                SmartDashboard.putNumber("SaturationHigh", 240);
-                SmartDashboard.putNumber("IntensityLow", 50);
-                SmartDashboard.putNumber("IntensityHigh", 240);
-                */
+                
+                
                 
                 lighting.addDefault("Low Lighting", new SetLowLighting());
                 lighting.addObject("High Lighting", new SetHighLighting());
+                lighting.addObject("Weird Lighting", new SetWeirdLighting());
                 SmartDashboard.putData("Lighting" , lighting);
                 
-                // for low lighting
-                SmartDashboard.putNumber("HueLow", 100);
-                SmartDashboard.putNumber("HueHigh", 150);
-                SmartDashboard.putNumber("SaturationLow", 100);
-                SmartDashboard.putNumber("SaturationHigh", 255);
-                SmartDashboard.putNumber("IntensityLow", 120);
-                SmartDashboard.putNumber("IntensityHigh", 255);
                 
 	}
         

@@ -54,7 +54,7 @@ public class OI {
     public Joystick drivingStick;
     public Joystick operatorStick;
 
-    public JoystickButton moveArmMicroswitches , moveArmMicroswitchesDriver, initMotors ;
+    public JoystickButton moveArmMicroswitches , moveArmMicroswitchesDriver, moveArmMicroswitchesDriver2, initMotors ;
     public JoystickButton shoot , aim , aim2, invertDriving, trussThrow , initStretcher , grasp , release, stretchToCycles , passToRobot;
 
 
@@ -67,10 +67,12 @@ public class OI {
 		
                 moveArmMicroswitches = new JoystickButton(operatorStick, 4);
                 moveArmMicroswitchesDriver = new JoystickButton(drivingStick, 6);
+                moveArmMicroswitchesDriver2 = new JoystickButton(drivingStick, 8);
                 
 		
                 moveArmMicroswitches.whenPressed(new MoveArmMicroswitches());
                 moveArmMicroswitchesDriver.whenPressed(new MoveArmMicroswitches());
+                moveArmMicroswitchesDriver2.whenPressed(new MoveArmMicroswitches());
 
                 grasp = new JoystickButton(operatorStick, 7);
                 release = new JoystickButton(operatorStick, 8);

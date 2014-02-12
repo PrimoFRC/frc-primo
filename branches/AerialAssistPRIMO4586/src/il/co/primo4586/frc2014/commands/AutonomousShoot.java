@@ -48,7 +48,7 @@ public class AutonomousShoot extends CommandGroup {
         addSequential(new InitStretcher());
         addSequential(new Grasp());
         addSequential(new SetDefaultStretch());
-        addSequential(new StretchToCycles());
+        
         
     }
 }
