@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package il.co.primo4586.frc2014.commands.shooter;
+package il.co.primo4586.frc2014.commands.ImageProcessing;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import il.co.primo4586.frc2014.RobotTemplate;
 import il.co.primo4586.frc2014.commands.CommandBase;
 
@@ -12,17 +13,22 @@ import il.co.primo4586.frc2014.commands.CommandBase;
  *
  * @author Gottlieb
  */
-public class SetDefaultStretch extends CommandBase {
+public class SetWeirdLighting extends CommandBase {
     
-    public SetDefaultStretch() {
+    public SetWeirdLighting() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        RobotTemplate.isAimed = false;
-        RobotTemplate.passTheBall = false;
+
+            SmartDashboard.putNumber("HueLow", 60);
+            SmartDashboard.putNumber("HueHigh", 150);
+            SmartDashboard.putNumber("SaturationLow", 20);
+            SmartDashboard.putNumber("SaturationHigh", 255);
+            SmartDashboard.putNumber("IntensityLow", 200);
+            SmartDashboard.putNumber("IntensityHigh", 255);     
     }
 
     // Called repeatedly when this Command is scheduled to run
