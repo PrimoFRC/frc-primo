@@ -30,12 +30,13 @@ public class PassToRobot extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-        addSequential(new SetDefaultStretch());
+        addSequential(new SetPassStretch());
+        addSequential(new StretchToCycles());
+        addSequential(new Release());
         addSequential(new InitStretcher());
         addSequential(new Release());
-        addSequential(new StretchToCycles());
-        addSequential(new InitStretcher());
         addSequential(new Grasp());
+        addSequential(new SetDefaultStretch());
         addSequential(new StretchToCycles());
     }
 }

@@ -26,10 +26,14 @@ public class StretchToCycles extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize()
     {
-                desiredCycles = 150;
+                desiredCycles = RobotTemplate.defaultStretch;
                 if (RobotTemplate.isAimed && RobotTemplate.distance > 2.5 && RobotTemplate.distance < 4.6)
                 {
                    desiredCycles = distanceToCycles(RobotTemplate.distance);
+                }
+                if (RobotTemplate.passTheBall)
+                {
+                    desiredCycles = RobotTemplate.passStretch;
                 }
 		currentCycles = shooter.getCount();
     }
@@ -75,7 +79,7 @@ public class StretchToCycles extends CommandBase {
     
     public static double distanceToCycles(double d)
     {
-        double cycles = 6.2012*d*d*d - 59.433*d*d + 207.01*d - 93.3;
+        double cycles = (6.2012*d*d*d - 59.433*d*d + 207.01*d - 93.3) + SmartDashboard.getNumber("Over stretch: ");
         System.out.println("############# cycles: ############ " + cycles);
         return (cycles);
             

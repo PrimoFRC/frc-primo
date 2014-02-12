@@ -12,17 +12,16 @@ import il.co.primo4586.frc2014.commands.CommandBase;
  *
  * @author Gottlieb
  */
-public class SetDefaultStretch extends CommandBase {
+public class SetPassStretch extends CommandBase {
     
-    public SetDefaultStretch() {
+    public SetPassStretch() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        RobotTemplate.isAimed = false;
-        RobotTemplate.passTheBall = false;
+        RobotTemplate.passTheBall = true;
     }
 
     // Called repeatedly when this Command is scheduled to run
