@@ -84,8 +84,8 @@ public class RobotMap {
 
 		shooterStretcherStart = new DigitalInput(2);//2
 		shooterStretcherEnd = new DigitalInput(1);//1
-		shooterReleaserLock = new DigitalInput(4);
-                shooterReleaserFree = new DigitalInput(3);
+		shooterReleaserLock = new DigitalInput(3);
+                shooterReleaserFree = new DigitalInput(4);
 
 		shooterCycleCounter = new DigitalInput(5);
                 
