@@ -45,7 +45,7 @@ public class RobotTemplate extends IterativeRobot {
     CommandGroup autonomousShoot;
     CommandGroup teleopSequence;
     
-    public static final double defaultStretch = 110;
+    public static final double defaultStretch = 127;
     public static final double passStretch = 60;
     
     public static double distance;
@@ -105,7 +105,7 @@ public class RobotTemplate extends IterativeRobot {
         isFinishedAutonomous = false;
         isMovedForwardAutonomous = false;
         isHot = false;
-        CommandBase.shooter.setCount(150);
+        CommandBase.shooter.setCount((long)defaultStretch);
 	Scheduler.getInstance().add(new AutonomousInit());
         
         

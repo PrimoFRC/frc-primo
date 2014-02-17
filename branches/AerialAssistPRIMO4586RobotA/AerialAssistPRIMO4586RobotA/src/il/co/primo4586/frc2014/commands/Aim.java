@@ -36,7 +36,7 @@ public class Aim extends CommandGroup {
         // arm.\
 
         addSequential(new ImageProcessing());
-        //addSequential(new SetStretchToDistance());
-        //addSequential(new StretchToCycles());
+        addSequential(new SetStretchToDistance());
+        addSequential(new StretchToCycles());
     }
 }
