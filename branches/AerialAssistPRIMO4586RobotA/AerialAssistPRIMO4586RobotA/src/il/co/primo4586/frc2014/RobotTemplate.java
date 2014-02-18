@@ -47,12 +47,14 @@ public class RobotTemplate extends IterativeRobot {
     
     public static final double defaultStretch = 127;
     public static final double passStretch = 60;
+    public static final double autonomousStretch = 181;
     
     public static double distance;
     
     public static boolean isHot;
     public static boolean isAimed = false;
     public static boolean passTheBall = false;
+    public static boolean shootAutonomous = false;
     
     public static boolean isEmergencyStopped;
 
@@ -105,7 +107,7 @@ public class RobotTemplate extends IterativeRobot {
         isFinishedAutonomous = false;
         isMovedForwardAutonomous = false;
         isHot = false;
-        CommandBase.shooter.setCount((long)defaultStretch);
+        CommandBase.shooter.setCount((long)autonomousStretch);
 	Scheduler.getInstance().add(new AutonomousInit());
         
         

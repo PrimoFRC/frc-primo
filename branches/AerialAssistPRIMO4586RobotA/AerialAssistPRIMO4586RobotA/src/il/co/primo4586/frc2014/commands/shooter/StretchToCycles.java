@@ -35,6 +35,10 @@ public class StretchToCycles extends CommandBase {
                 {
                     desiredCycles = RobotTemplate.passStretch;
                 }
+                if (RobotTemplate.shootAutonomous)
+                {
+                    desiredCycles = RobotTemplate.autonomousStretch;
+                }
 		currentCycles = shooter.getCount();
     }
 
@@ -71,6 +75,7 @@ public class StretchToCycles extends CommandBase {
     // Called once after isFinished returns true
     protected void end() {
 		shooter.stretch(0);
+                RobotTemplate.shootAutonomous = false;
     }
 
     // Called when another command which requires one or more of the same
