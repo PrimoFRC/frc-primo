@@ -51,7 +51,7 @@ public class Collector extends Subsystem
 	public boolean getTopMicro()
 	{
             
-            return collector_top.get();
+            return !collector_top.get();
             //return false;
 	}
 

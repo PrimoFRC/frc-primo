@@ -39,6 +39,7 @@ public class Shooter extends Subsystem {
         long lastCountCycles; // cycles count situation
         long newCountCycles; // the cycles count since the situation
         long currentCycles;
+        double distanceByCycles;
 
 	public Shooter()
 	{
@@ -52,7 +53,7 @@ public class Shooter extends Subsystem {
             releaserLock = RobotMap.shooterReleaserLock; // digital sensor for when the hook of the rubber band is locked
             releaserFree = RobotMap.shooterReleaserFree;
             
-            
+            distanceByCycles = 0;
             cycles = new Counter();
             cycles.setUpSource(cycleCounter);
             
@@ -72,7 +73,7 @@ public class Shooter extends Subsystem {
                 newCountCycles -= currentCycles*(long)(Math.abs(speed)/speed);
                 lastCountCycles += currentCycles;
                 SmartDashboard.putNumber("Cycles", newCountCycles);
-                //max cycles : 130
+                //max cycles : 181
                 
 	}
 
@@ -117,13 +118,13 @@ public class Shooter extends Subsystem {
 	public boolean getLockMicro()
 	{
             //return false;
-            return !releaserLock.get();
+            return releaserLock.get();
 	}
         
         public boolean getFreeMicro()
 	{
             //return false;
-            return !releaserFree.get();
+            return releaserFree.get();
 	}
 
         /**------------------------------------
