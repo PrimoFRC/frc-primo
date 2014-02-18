@@ -37,8 +37,8 @@ public class AutonomousShoot extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-        addSequential(new SetStretchToDistance());
-        addSequential(new StretchToCycles());
+        //addSequential(new SetStretchToDistance());
+        //addSequential(new StretchToCycles());
         
         addSequential(new Release());
         addSequential(new Wait());
