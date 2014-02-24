@@ -50,10 +50,10 @@ public class StretchFree extends CommandBase {
             direction = operatorStick.getRawAxis(5);  // check which port is it
         if ( (direction > 0.01 &&  !shooter.getStartMicro()) ||  (direction < -0.01 &&  !shooter.getEndMicro()) )
         {
-            if (shooter.getCount() < 100 || direction > 0)
-            {
-                direction = 0.7*direction;
-            }
+            //if (shooter.getCount() < 100 || direction > 0)
+            //{
+            //    direction = 0.7*direction;
+            //}
             isZeroed = false;
             shooter.stretch(direction);
             

@@ -89,7 +89,7 @@ public class RobotTemplate extends IterativeRobot {
     }
 
     public void autonomousInit() {
-        
+
         timer.reset();
         timer.start();
         if (teleopSequence != null)
@@ -166,7 +166,7 @@ public class RobotTemplate extends IterativeRobot {
         System.out.println("teleopInit works");
 
     }
-
+    
     /**
      * This function is called periodically during operator control
      */
@@ -219,11 +219,12 @@ public class RobotTemplate extends IterativeRobot {
                 lighting.addObject("Weird Lighting", new SetWeirdLighting());
                 SmartDashboard.putData("Lighting" , lighting);
                 
-                
+                //SmartDashboard.putNumber("expiration: ", 0);
 	}
         
         public void SmartDashboardPeriodic()
         {
+                
                 SmartDashboard.putBoolean("collector top:  ", CommandBase.collector.getTopMicro());
                 SmartDashboard.putBoolean("collector bottom:   ", CommandBase.collector.getBottomMicro());
                 SmartDashboard.putBoolean("shooter start:  ", CommandBase.shooter.getStartMicro());
@@ -232,10 +233,14 @@ public class RobotTemplate extends IterativeRobot {
                 SmartDashboard.putBoolean("releaser free:  ", CommandBase.shooter.getFreeMicro());
                 SmartDashboard.putBoolean("cycle counter:   ", CommandBase.shooter.getCycleMicro());
                 
+                
+                
+                
+                
                 /*
                 SmartDashboard.putBoolean("tryPort6 ", RobotMap.tryPort6.get());
                 SmartDashboard.putBoolean("tryPort8 ", RobotMap.tryPort8.get());
-                SmartDashboard.putBoolean("tryPort10 ", RobotMap.tryPort10.get());
+                SmartDashboard.putBoolean("tryPort10 ", RobotMap.tryort10.get());
                 SmartDashboard.putBoolean("tryPort11 ", RobotMap.tryPort11.get());
                 SmartDashboard.putBoolean("tryPort12 ", RobotMap.tryPort12.get());
                 SmartDashboard.putBoolean("tryPort13 ", RobotMap.tryPort13.get());
