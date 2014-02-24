@@ -47,10 +47,10 @@ public class StretchToCycles extends CommandBase {
 		if ( (difference > 0 &&  !shooter.getEndMicro()) ||  (difference < 0 &&  !shooter.getStartMicro()) )
 		{
                     power = -difference / Math.abs(difference);
-                    if (shooter.getCount() < 100 || power > 0)
-                    {
-                        power = 0.7*power;
-                    }
+                    //if (shooter.getCount() < 100 || power > 0)
+                    //{
+                    //    power = 0.7*power;
+                    //}
 			shooter.stretch(power);
                 }
 

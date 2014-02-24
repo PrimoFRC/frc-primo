@@ -29,15 +29,15 @@ public class RobotMap {
     // number and the module. For example you with a rangefinder:
     // public static final int rangefinderPort = 1;
     // public static final int rangefinderModule = 1;
-	public static SpeedController collectArm;
+	public static Talon collectArm;
 
-	public static SpeedController shooterStretcher; // controls the speed of the streaching motor
-	public static SpeedController shooterReleaser; // controls the speed of the realesing motor
+	public static Talon shooterStretcher; // controls the speed of the streaching motor
+	public static Victor shooterReleaser; // controls the speed of the realesing motor
 
-	public static SpeedController drivingMotorLeftBack;
-    public static SpeedController drivingMotorRightBack;
-    public static SpeedController drivingMotorLeftFront;
-    public static SpeedController drivingMotorRightFront;
+	public static Jaguar drivingMotorLeftBack;
+        public static Jaguar drivingMotorRightBack;
+        public static Jaguar drivingMotorLeftFront;
+        public static Jaguar drivingMotorRightFront;
 
 	public static DigitalInput collector_top;
 	public static DigitalInput collector_middle;
@@ -71,6 +71,7 @@ public class RobotMap {
 
 		shooterStretcher = new Talon(5);
 		shooterReleaser = new Victor(6);
+                
 
 		drivingMotorLeftBack = new Jaguar(3);
 		drivingMotorRightBack = new Jaguar(4);
