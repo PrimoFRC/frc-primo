@@ -22,13 +22,22 @@ public class SetLowLighting extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-
+        
+        /*
         SmartDashboard.putNumber("HueLow", 100);
         SmartDashboard.putNumber("HueHigh", 150);
         SmartDashboard.putNumber("SaturationLow", 100);
         SmartDashboard.putNumber("SaturationHigh", 255);
         SmartDashboard.putNumber("IntensityLow", 120);
-        SmartDashboard.putNumber("IntensityHigh", 255);    
+        SmartDashboard.putNumber("IntensityHigh", 255);
+         */
+        
+        SmartDashboard.putNumber("HueLow", 100);
+        SmartDashboard.putNumber("HueHigh", 255);
+        SmartDashboard.putNumber("SaturationLow", 200);
+        SmartDashboard.putNumber("SaturationHigh", 255);
+        SmartDashboard.putNumber("IntensityLow", 100);
+        SmartDashboard.putNumber("IntensityHigh", 255); 
     }
 
     // Called repeatedly when this Command is scheduled to run

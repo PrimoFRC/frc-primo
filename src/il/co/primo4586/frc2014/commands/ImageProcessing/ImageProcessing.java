@@ -150,7 +150,7 @@ public class  ImageProcessing extends CommandBase {
                 
                 //image.write("/vision/neworiginal.jpg");
                 //image = new RGBImage("/vision/HybridLine_SmallGreen2.jpg");		// get the sample image from the cRIO flash
-                BinaryImage thresholdImage = image.thresholdHSV(HL, HH, SL, SH, IL, IH);   // keep only red objects
+                BinaryImage thresholdImage = image.thresholdRGB(HL, HH, SL, SH, IL, IH);   // keep only red objects
                 //thresholdImage.write("/vision/newthreshold.bmp");
                 BinaryImage filteredImage = thresholdImage.particleFilter(cc);      // filter out small particles
                 //filteredImage.write("/vision/newfilteredImage1.bmp");
@@ -159,7 +159,7 @@ public class  ImageProcessing extends CommandBase {
                 {
                     //image.write("/vision/Roriginal.jpg");
                     //image = new RGBImage("/vision/HybridLine_SmallGreen2.jpg");		// get the sample image from the cRIO flash
-                    thresholdImage = image.thresholdHSV(HL, HH, SL, SH, IL, IH);   // keep only red objects
+                    thresholdImage = image.thresholdRGB(HL, HH, SL, SH, IL, IH);   // keep only red objects
                     //thresholdImage.write("/vision/Rthreshold1.bmp");
                     filteredImage = thresholdImage.particleFilter(cc);           // filter out small particles
                     //filteredImage.write("/vision/RfilteredImage1.bmp");

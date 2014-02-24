@@ -27,7 +27,7 @@ public class InitStretcher extends CommandBase {
             operatorStick = oi.operatorStick;
 		if (!shooter.getStartMicro())
 		{
-			shooter.stretch(1);
+			shooter.stretch(0.7);
                 }
 
     }
