@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.SpeedController;
  * floating around.
  */
 import edu.wpi.first.wpilibj.AnalogChannel;
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.Talon;
@@ -48,6 +49,7 @@ public class RobotMap {
 	public static DigitalInput shooterReleaserLock; // digital sensor for when the hook of the rubber band is locked
         public static DigitalInput shooterReleaserFree;
 	public static DigitalInput shooterCycleCounter; // optic sensor for counting the cycles of the streaching motor
+        
         
         public static DigitalInput tryPort6;
         public static DigitalInput tryPort8;
@@ -89,6 +91,8 @@ public class RobotMap {
 
 		shooterCycleCounter = new DigitalInput(5);
                 
+                
+                /*
                 tryPort6 = new DigitalInput(6);
                 tryPort8 = new DigitalInput(8);
                 tryPort10 = new DigitalInput(10);
@@ -96,6 +100,7 @@ public class RobotMap {
                 tryPort12 = new DigitalInput(12);
                 tryPort13 = new DigitalInput(7);
                 tryPort14 = new DigitalInput(14);
+                */
 	}
 
 	public static void initLiveWindow()

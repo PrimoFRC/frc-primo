@@ -5,7 +5,9 @@
  */
 package il.co.primo4586.frc2014.subsystems;
 
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import il.co.primo4586.frc2014.RobotMap;
 
 /**
  *
@@ -14,7 +16,13 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class ImageProcessing extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-
+    
+    public ImageProcessing()
+    {
+        
+    }
+    
+    
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());

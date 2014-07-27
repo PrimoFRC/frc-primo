@@ -15,6 +15,7 @@ import il.co.primo4586.frc2014.commands.CommandBase;
  */
 public class StretchToCycles extends CommandBase {
     private double desiredCycles, currentCycles, difference , power ;
+    private int zeroPower = 25;
     
     public StretchToCycles() {
         // Use requires() here to declare subsystem dependencies
@@ -51,13 +52,17 @@ public class StretchToCycles extends CommandBase {
 		if ( (difference > 0 &&  !shooter.getEndMicro()) ||  (difference < 0 &&  !shooter.getStartMicro()) )
 		{
                     power = -difference / Math.abs(difference);
-                    /*
-                    if (shooter.getCount() < 100 || power > 0)
+                    
+                    if ((shooter.getCount() > 100 || power > 0) && zeroPower <= 2)
                     {
-                        power = 0.7*power;
+                        //power = 0;
+                        if (zeroPower <= 0)
+                            zeroPower = 10;
+                
                     }
-                            */
-			shooter.stretch(power);
+                    zeroPower = zeroPower-1;
+                    
+                    shooter.stretch(power);
                 }
 
     }
@@ -88,7 +93,7 @@ public class StretchToCycles extends CommandBase {
     {
         double cycles = (-1.261*d*d*d + 19.511*d*d - 72.524*d + 207.4) + SmartDashboard.getNumber("Over stretch: ")*d*d;
         System.out.println("############# cycles: ############ " + cycles);
-        return (cycles);
+        return ((10*cycles)/9);
             
     }
 }
