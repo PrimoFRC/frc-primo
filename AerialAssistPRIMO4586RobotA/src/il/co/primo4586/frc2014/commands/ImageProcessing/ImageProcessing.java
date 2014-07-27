@@ -129,12 +129,13 @@ public class  ImageProcessing extends CommandBase {
                 }
                 
                 
-                int HL = (int)SmartDashboard.getNumber("HueLow", 40);
-                int HH = (int)SmartDashboard.getNumber("HueHigh", 200);
-                int SL = (int)SmartDashboard.getNumber("SaturationLow", 100);
-                int SH = (int)SmartDashboard.getNumber("SaturationHigh", 255);
-                int IL = (int)SmartDashboard.getNumber("IntensityLow", 120);
-                int IH = (int)SmartDashboard.getNumber("IntensityHigh", 255);
+                int HL = (int)SmartDashboard.getNumber("RedLow", 100);
+                int HH = (int)SmartDashboard.getNumber("RedHigh", 255);
+                int SL = (int)SmartDashboard.getNumber("GreenLow", 220);
+                int SH = (int)SmartDashboard.getNumber("GreenHigh", 255);
+                int IL = (int)SmartDashboard.getNumber("BlueLow", 200);
+                int IH = (int)SmartDashboard.getNumber("BlueHigh", 255);
+                
                 /**
                  * Do the image capture with the camera and apply the algorithm described above. This
                  * sample will either get images from the camera or from an image file stored in the top

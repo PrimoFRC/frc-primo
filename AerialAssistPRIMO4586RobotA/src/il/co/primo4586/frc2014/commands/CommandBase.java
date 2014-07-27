@@ -19,6 +19,7 @@ public abstract class CommandBase extends Command {
 	public static Collector collector;
 	public static Shooter shooter;
     public static Driver driver;
+    public static  ImageProcessing imageProc;
 
     public static void init() {
         // This MUST be here. If the OI creates Commands (which it very likely
@@ -33,6 +34,7 @@ public abstract class CommandBase extends Command {
                         System.out.println("commandBase.shooter works");
         driver = new Driver();
                 System.out.println("commandBase.driver works");
+                imageProc = new ImageProcessing();
         oi = new OI();
         // Show what command your subsystem is running on the SmartDashboard
         //SmartDashboard.putData(exampleSubsystem);

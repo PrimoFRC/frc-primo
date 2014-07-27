@@ -29,6 +29,7 @@ public class StretchFree extends CommandBase {
     private Joystick operatorStick;
     private double direction;
     private boolean isZeroed;
+    private int zeroPower = 25;
     public StretchFree()         
     {
         // Use requires() here to declare subsystem dependencies
@@ -47,13 +48,22 @@ public class StretchFree extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() 
     {
+       
             direction = operatorStick.getRawAxis(5);  // check which port is it
         if ( (direction > 0.01 &&  !shooter.getStartMicro()) ||  (direction < -0.01 &&  !shooter.getEndMicro()) )
         {
-            if (shooter.getCount() < 100 || direction > 0)
+            if ((shooter.getCount() > 100) && zeroPower <= 5)
             {
-                //direction = 0.7*direction;
+                //direction = 0;
+                if (zeroPower <= 0)
+                    zeroPower = 10;
+                
             }
+            if (direction > 0)
+            {
+                direction = 0.75*direction;
+            }
+            zeroPower = zeroPower - 1;
             isZeroed = false;
             shooter.stretch(direction);
             
