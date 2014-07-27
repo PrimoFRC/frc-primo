@@ -27,16 +27,18 @@ public class InitStretcher extends CommandBase {
             operatorStick = oi.operatorStick;
 		if (!shooter.getStartMicro())
 		{
-			shooter.stretch(0.9);
+			shooter.stretch(0.75);
                 }
 
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        shooter.showCycles(0.75);
         
     }
 
+    
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return shooter.getStartMicro() || operatorStick.getRawAxis(5) != 0;
@@ -44,9 +46,12 @@ public class InitStretcher extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end()
-	{
-		shooter.stretch(0);
-		shooter.initCount();
+    {
+	shooter.stretch(0);
+        if (shooter.getStartMicro())
+        {
+            shooter.initCount();
+        }
     }
 
     // Called when another command which requires one or more of the same

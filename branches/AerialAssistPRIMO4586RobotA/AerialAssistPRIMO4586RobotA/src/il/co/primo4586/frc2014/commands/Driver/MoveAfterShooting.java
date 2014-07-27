@@ -22,7 +22,7 @@ public class MoveAfterShooting extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
         System.out.println("initialize move");
-        setTimeout(0.5);
+        setTimeout(0.7);
         driver.driveForward();
     }
 

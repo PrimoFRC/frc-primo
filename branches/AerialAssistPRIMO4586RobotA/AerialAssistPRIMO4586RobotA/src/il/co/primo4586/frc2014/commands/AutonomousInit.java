@@ -6,6 +6,8 @@
 package il.co.primo4586.frc2014.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import il.co.primo4586.frc2014.RobotTemplate;
+import il.co.primo4586.frc2014.commands.Driver.MoveAfterShooting;
 import il.co.primo4586.frc2014.commands.ImageProcessing.ImageProcessing;
 import il.co.primo4586.frc2014.commands.shooter.InitStretcher;
 import il.co.primo4586.frc2014.commands.shooter.SetDefaultStretch;
@@ -36,6 +38,10 @@ public class AutonomousInit extends CommandGroup {
         // arm.
         //addSequential(new SetDefaultStretch());
         //addSequential(new StretchToCycles());
+        if (RobotTemplate.moveFirstAutonomous)
+        {
+            addSequential(new MoveAfterShooting());
+        }
         addSequential(new ImageProcessing());
         
     }

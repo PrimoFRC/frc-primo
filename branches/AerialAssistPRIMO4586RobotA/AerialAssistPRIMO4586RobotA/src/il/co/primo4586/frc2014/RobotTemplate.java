@@ -45,11 +45,13 @@ public class RobotTemplate extends IterativeRobot {
     CommandGroup autonomousShoot;
     CommandGroup teleopSequence;
     
-    public static final double defaultStretch = 127;
-    public static final double passStretch = 60;
-    public static final double autonomousStretch = 181;
+    public static double defaultStretch = 141;
+    public static final double passStretch = 67;
+    public static final double autonomousStretch = 141;
     
     public static double distance;
+    
+    public static boolean moveFirstAutonomous = false;
     
     public static boolean isHot;
     public static boolean isAimed = false;
@@ -210,11 +212,11 @@ public class RobotTemplate extends IterativeRobot {
 		SmartDashboard.putNumber("Power", 70);
                 
                 
-                SmartDashboard.putNumber("max free collector power: " , 0.8);
-                SmartDashboard.putNumber("collector down power: " , 0.3);
-                SmartDashboard.putNumber("collector up power: " , 0.8);    
+                SmartDashboard.putNumber("max free collector power: " , 1);
+                SmartDashboard.putNumber("collector down power: " , 0.5);
+                SmartDashboard.putNumber("collector up power: " , 1);    
                 
-                
+                SmartDashboard.putNumber("default stretch:", 141);
                 
                 
                 lighting.addDefault("Low Lighting", new SetLowLighting());
@@ -222,7 +224,15 @@ public class RobotTemplate extends IterativeRobot {
                 lighting.addObject("Weird Lighting", new SetWeirdLighting());
                 SmartDashboard.putData("Lighting" , lighting);
                 
+                SmartDashboard.putNumber("RedLow", 100);
+                SmartDashboard.putNumber("RedHigh", 255);
+                SmartDashboard.putNumber("GreenLow", 200);
+                SmartDashboard.putNumber("GreenHigh", 255);
+                SmartDashboard.putNumber("BlueLow", 100);
+                SmartDashboard.putNumber("BlueHigh", 240);     
+                SmartDashboard.putBoolean("checkcheck", true);
                 
+                SmartDashboard.putNumber("Driving Devide", 1);
 	}
         
         public void SmartDashboardPeriodic()
@@ -234,7 +244,7 @@ public class RobotTemplate extends IterativeRobot {
                 SmartDashboard.putBoolean("releaser lock:  ", CommandBase.shooter.getLockMicro());
                 SmartDashboard.putBoolean("releaser free:  ", CommandBase.shooter.getFreeMicro());
                 SmartDashboard.putBoolean("cycle counter:   ", CommandBase.shooter.getCycleMicro());
-                
+                defaultStretch = SmartDashboard.getNumber("default stretch:", 127);
                 /*
                 SmartDashboard.putBoolean("tryPort6 ", RobotMap.tryPort6.get());
                 SmartDashboard.putBoolean("tryPort8 ", RobotMap.tryPort8.get());

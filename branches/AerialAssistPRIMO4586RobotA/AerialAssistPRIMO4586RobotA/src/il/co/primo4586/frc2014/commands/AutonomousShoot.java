@@ -6,6 +6,7 @@
 package il.co.primo4586.frc2014.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import il.co.primo4586.frc2014.RobotTemplate;
 import il.co.primo4586.frc2014.commands.Driver.MoveAfterShooting;
 import il.co.primo4586.frc2014.commands.shooter.Grasp;
 import il.co.primo4586.frc2014.commands.shooter.InitStretcher;
@@ -43,7 +44,10 @@ public class AutonomousShoot extends CommandGroup {
         addSequential(new Release());
         addSequential(new Wait());
         
+        if (!RobotTemplate.moveFirstAutonomous)
+        {
         addSequential(new MoveAfterShooting());
+        }
         
         addSequential(new InitStretcher());
         addSequential(new Grasp());

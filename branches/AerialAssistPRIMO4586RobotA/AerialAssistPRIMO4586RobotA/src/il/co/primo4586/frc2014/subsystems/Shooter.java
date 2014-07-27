@@ -76,6 +76,13 @@ public class Shooter extends Subsystem {
                 //max cycles : 181
                 
 	}
+        public void showCycles(double speed)
+        {
+            currentCycles = cycles.get() - lastCountCycles;
+            newCountCycles -= currentCycles*(long)(Math.abs(speed)/speed);
+            lastCountCycles += currentCycles;
+            SmartDashboard.putNumber("Cycles", newCountCycles);
+        }
 
 	/**------------------------------------
 	 *

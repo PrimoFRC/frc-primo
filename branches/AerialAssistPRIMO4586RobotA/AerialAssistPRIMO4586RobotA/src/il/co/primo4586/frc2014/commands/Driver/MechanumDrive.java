@@ -6,6 +6,7 @@ package il.co.primo4586.frc2014.commands.Driver;
 
 import com.sun.squawk.util.MathUtils;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import il.co.primo4586.frc2014.commands.CommandBase;
 
 /**
@@ -42,7 +43,7 @@ public class MechanumDrive extends CommandBase {
             direction += 180;
         rotation = drivingStick1.getX();
         */
-        magnitude = driver.sign * drivingStick.getMagnitude() / 2;
+        magnitude = driver.sign * drivingStick.getMagnitude() / SmartDashboard.getNumber("Driving Devide", 1);
         direction = drivingStick.getDirectionDegrees();
         rotation = drivingStick.getRawAxis(4) / 2;
         driver.MecanumDrive(magnitude, direction, rotation);
