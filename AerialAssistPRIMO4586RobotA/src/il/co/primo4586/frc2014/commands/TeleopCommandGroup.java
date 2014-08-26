@@ -46,12 +46,12 @@ public class TeleopCommandGroup extends CommandGroup {
         addParallel(new StretchFree());
         addParallel(new MoveArmFree());
         
-        addSequential(new SetAutonomousStretch());
-        addSequential(new InitStretcher());
-        addSequential(new Release());
-        addSequential(new Wait());
-        addSequential(new Grasp());
-        addSequential(new StretchToCycles());
+        //addSequential(new SetAutonomousStretch());
+        //addSequential(new InitStretcher());
+        //addSequential(new Release());
+        //addSequential(new Wait());
+        //addSequential(new Grasp());
+        //addSequential(new StretchToCycles());
         
         
         
