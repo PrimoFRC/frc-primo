@@ -46,6 +46,12 @@ public class Collector extends Subsystem
             System.out.println("&&&&&  collector should move  &&&&&");
 		collectArm.set(-speed);
 	}
+        
+        public double getArmSpeed()
+	{
+           
+		return -collectArm.get();
+	}
 
 
 	public boolean getTopMicro()
