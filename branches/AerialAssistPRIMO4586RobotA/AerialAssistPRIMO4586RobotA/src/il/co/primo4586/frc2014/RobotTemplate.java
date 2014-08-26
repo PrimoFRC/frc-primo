@@ -213,8 +213,9 @@ public class RobotTemplate extends IterativeRobot {
                 
                 
                 SmartDashboard.putNumber("max free collector power: " , 1);
-                SmartDashboard.putNumber("collector down power: " , 0.5);
-                SmartDashboard.putNumber("collector up power: " , 1);    
+                SmartDashboard.putNumber("collector down power: " , 0.3);
+                SmartDashboard.putNumber("collector up power: " , 1);
+                SmartDashboard.putNumber("down slow power: " , 0.4);
                 
                 SmartDashboard.putNumber("default stretch:", 141);
                 
