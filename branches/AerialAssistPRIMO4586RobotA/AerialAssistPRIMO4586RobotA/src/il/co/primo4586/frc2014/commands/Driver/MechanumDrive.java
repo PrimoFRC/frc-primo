@@ -43,10 +43,26 @@ public class MechanumDrive extends CommandBase {
             direction += 180;
         rotation = drivingStick1.getX();
         */
+        
+        int axis = 4;
+        
+        if(Math.abs(drivingStick.getRawAxis(3))>Math.abs(drivingStick.getRawAxis(4)))
+        {
+           axis = 3;         
+        }
+            
+        
         magnitude = driver.sign * drivingStick.getMagnitude() / SmartDashboard.getNumber("Driving Devide", 1);
         direction = drivingStick.getDirectionDegrees();
-        rotation = drivingStick.getRawAxis(4) / 2;
-        driver.MecanumDrive(magnitude, direction, rotation);
+        rotation = drivingStick.getRawAxis(axis) / 2;
+        //driver.MecanumDrive(magnitude, direction, rotation);
+        double x = driver.sign*drivingStick.getX() / SmartDashboard.getNumber("Driving Devide", 1);
+        double y = driver.sign*drivingStick.getY() / SmartDashboard.getNumber("Driving Devide", 1);
+        double z = drivingStick.getRawAxis(axis)/ SmartDashboard.getNumber("Driving Devide", 1);
+        
+        driver.MecanumDriveTry(x, y, z);
+        
+        //System.out.println("x: " + x + "    y: " + y + "    z: " + z);
 
         //driving.ArcadeDrive(drivingStick);
     }

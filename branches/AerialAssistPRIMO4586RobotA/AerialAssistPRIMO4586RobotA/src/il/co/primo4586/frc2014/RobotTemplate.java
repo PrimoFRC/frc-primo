@@ -216,6 +216,7 @@ public class RobotTemplate extends IterativeRobot {
                 SmartDashboard.putNumber("collector down power: " , 0.3);
                 SmartDashboard.putNumber("collector up power: " , 1);
                 SmartDashboard.putNumber("down slow power: " , 0.4);
+                SmartDashboard.putNumber("up slow power: " , 0.7);
                 
                 SmartDashboard.putNumber("default stretch:", 141);
                 
@@ -233,7 +234,7 @@ public class RobotTemplate extends IterativeRobot {
                 SmartDashboard.putNumber("BlueHigh", 240);     
                 SmartDashboard.putBoolean("checkcheck", true);
                 
-                SmartDashboard.putNumber("Driving Devide", 1);
+                SmartDashboard.putNumber("Driving Devide", 2);
 	}
         
         public void SmartDashboardPeriodic()
