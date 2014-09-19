@@ -44,6 +44,14 @@ public class Driver extends Subsystem
     {
         driver.mecanumDrive_Polar(magnitude, direction, rotation);
     }
+    
+    public void MecanumDriveTry(double x, double y, double z)
+    {
+        setLF(y-x+z);
+        setLB(y+x+z);
+        setRF(y+x-z);
+        setRB(y-x-z);
+    }
 
     public void ArcadeDrive(Joystick stick)
     {
@@ -67,6 +75,26 @@ public class Driver extends Subsystem
 		motorRightFront.set(0);
     }
 
+    public void setLF(double speed)
+    {
+        motorLeftFront.set(speed);
+    }
+    
+    public void setLB(double speed)
+    {
+        motorLeftBack.set(speed);
+    }
+    
+    public void setRF(double speed)
+    {
+        motorRightFront.set(-speed);
+    }
+    
+    public void setRB(double speed)
+    {
+        motorRightBack.set(-speed);
+    }
+    
     public void initDefaultCommand()
     {
         // Set the default command for a subsystem here.
