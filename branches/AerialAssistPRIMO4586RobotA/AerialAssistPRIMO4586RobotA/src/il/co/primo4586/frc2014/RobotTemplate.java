@@ -122,7 +122,7 @@ public class RobotTemplate extends IterativeRobot {
         Scheduler.getInstance().run();
         SmartDashboard.putBoolean("movedForward",isMovedForwardAutonomous);
         SmartDashboard.putNumber("timer move" , timer.get());
-        if (timer.get() < 5)
+        if (timer.get() < 1)
         {
            if (isFinishedAutonomous && !isHot && !isMovedForwardAutonomous)
             {
@@ -216,7 +216,7 @@ public class RobotTemplate extends IterativeRobot {
                 SmartDashboard.putNumber("collector down power: " , 0.3);
                 SmartDashboard.putNumber("collector up power: " , 1);
                 SmartDashboard.putNumber("down slow power: " , 0.4);
-                SmartDashboard.putNumber("up slow power: " , 0.7);
+                SmartDashboard.putNumber("up slow power: " , 1);
                 
                 SmartDashboard.putNumber("default stretch:", 141);
                 
