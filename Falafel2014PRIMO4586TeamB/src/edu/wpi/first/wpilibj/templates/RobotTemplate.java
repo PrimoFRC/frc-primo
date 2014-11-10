@@ -11,6 +11,7 @@ package edu.wpi.first.wpilibj.templates;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.commands.CommandBase;
 import edu.wpi.first.wpilibj.templates.commands.ExampleCommand;
 
@@ -34,7 +35,9 @@ public class RobotTemplate extends IterativeRobot {
         autonomousCommand = new ExampleCommand();
 
         // Initialize all subsystems
+        RobotMap.init();
         CommandBase.init();
+        
     }
 
     public void autonomousInit() {
@@ -62,5 +65,16 @@ public class RobotTemplate extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+    }
+    
+    public void initSmartDashboard()
+    {
+        SmartDashboard.putNumber("number of cycles: ", 0);
+
+    }
+    
+    public void smartDashboardPeriodic()
+    {
+        SmartDashboard.putNumber("number of cycles: ", CommandBase.lifter.getNumOfCycles());
     }
 }
