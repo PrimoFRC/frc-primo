@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.templates.commands.CommandBase;
  */
 public class MoveDoorJoystick extends CommandBase
 {
-
+        boolean isZero;
 	public MoveDoorJoystick()
 	{
 		// Use requires() here to declare subsystem dependencies
@@ -22,11 +22,23 @@ public class MoveDoorJoystick extends CommandBase
 	// Called just before this Command runs the first time
 	protected void initialize()
 	{
+            isZero = true;
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute()
 	{
+            if((!dropper.getCloseMicro() && oi.operatorStick.getRawAxis(3)<-0.01) || (!dropper.getOpenMicro() && oi.operatorStick.getRawAxis(3)>0.01))
+            {
+                dropper.moveDoor(oi.operatorStick.getRawAxis(3));
+                isZero = false;
+            }
+            else if (!isZero)
+            {
+                dropper.moveDoor(0);
+                isZero = true;
+            }
+                
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -38,6 +50,7 @@ public class MoveDoorJoystick extends CommandBase
 	// Called once after isFinished returns true
 	protected void end()
 	{
+            dropper.moveDoor(0);
 	}
 
 	// Called when another command which requires one or more of the same
