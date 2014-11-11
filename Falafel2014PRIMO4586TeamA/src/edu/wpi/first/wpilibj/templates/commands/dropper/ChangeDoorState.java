@@ -26,9 +26,9 @@ public class ChangeDoorState extends CommandBase
 	{
            this.isClosed=(dropper.getCloseMicro()) ;
            if(this.isClosed)
-               dropper.moveDoor(1);//to be tested
+               dropper.moveDoor(0.5);//to be tested
            else
-               dropper.moveDoor(-1);//to be tested
+               dropper.moveDoor(-0.5);//to be tested
 	}
 
 	// Called repeatedly when this Command is scheduled to run

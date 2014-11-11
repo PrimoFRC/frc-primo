@@ -22,7 +22,7 @@ public class MoveForward extends CommandBase {
     protected void initialize() 
     {
         setTimeout(1); //to be tested
-        driver.setSpeedXY(0, 1); //to be tested
+        driver.setSpeedXY(0, 0.5); //to be tested
     }
 
     // Called repeatedly when this Command is scheduled to run

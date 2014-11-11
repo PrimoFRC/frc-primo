@@ -10,15 +10,16 @@ import edu.wpi.first.wpilibj.templates.commands.CommandBase;
  *
  * @author user
  */
-public class LowerScissors extends CommandBase {
+public class LowerScissorsWhilePressed extends CommandBase {
     
-    public LowerScissors() {
+    public LowerScissorsWhilePressed() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        lifter.setSpeedLifter(-0.5);//to be tested
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -27,7 +28,7 @@ public class LowerScissors extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return (!oi.raiseScissors.get() ||lifter.getBottom() );
     }
 
     // Called once after isFinished returns true

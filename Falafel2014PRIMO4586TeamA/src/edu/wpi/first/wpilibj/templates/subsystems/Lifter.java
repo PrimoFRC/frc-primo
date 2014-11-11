@@ -5,6 +5,7 @@
  */
 package edu.wpi.first.wpilibj.templates.subsystems;
 
+import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -19,8 +20,12 @@ public class Lifter extends Subsystem {
     // here. Call these from Commands.
     
   
-    Talon lifterMover1,lifterMover2;
-    DigitalInput top, bottom, cycleSensor;
+     private Talon lifterMover1,lifterMover2;
+     private  DigitalInput top, bottom, cycleSensor;
+     private Counter cycleCounter;
+     
+     
+    
     
     
  
@@ -31,6 +36,7 @@ public class Lifter extends Subsystem {
             top = RobotMap.top;
             bottom = RobotMap.bottom;
             cycleSensor = RobotMap.cycleSensor;
+            cycleCounter = new Counter ();
         }
  
     public void setSpeedLifter(double speed)
@@ -55,8 +61,18 @@ public class Lifter extends Subsystem {
                 return bottom.get();
             }
       
-    
-
+    public int getNumOfCycles ()
+            {
+                return cycleCounter.get();
+            }
+    public void resetCycles()
+    {
+        cycleCounter.reset();
+    }
+   public void startCycles()
+   {
+       cycleCounter.start();
+   }
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
