@@ -6,6 +6,7 @@
 package edu.wpi.first.wpilibj.templates.commands.driver;
 
 import edu.wpi.first.wpilibj.templates.commands.CommandBase;
+import edu.wpi.first.wpilibj.templates.subsystems.Driver;
 
 /**
  *
@@ -24,6 +25,7 @@ public class Drive extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+     driver.arcadeDrive(oi.driverStick);
     }
 
     // Make this return true when this Command no longer needs to run execute()

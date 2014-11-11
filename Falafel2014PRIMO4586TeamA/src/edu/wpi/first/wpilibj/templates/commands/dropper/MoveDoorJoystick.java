@@ -12,7 +12,8 @@ import edu.wpi.first.wpilibj.templates.commands.CommandBase;
  */
 public class MoveDoorJoystick extends CommandBase
 {
-
+    private double speed;
+    private boolean moved=false;
 	public MoveDoorJoystick()
 	{
 		// Use requires() here to declare subsystem dependencies
@@ -27,6 +28,20 @@ public class MoveDoorJoystick extends CommandBase
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute()
 	{
+            this.speed=oi.operatorStick.getRawAxis(5);//to be tested
+            if(this.speed<0.1&&this.speed>-0.1)
+                this.speed=0;
+            if(this.speed!=0)
+            {
+                dropper.moveDoor(this.speed);
+                this.moved=true;
+            }
+            else
+                if(this.moved)
+                {
+                    dropper.moveDoor(this.speed);
+                    this.moved=false;
+                }
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

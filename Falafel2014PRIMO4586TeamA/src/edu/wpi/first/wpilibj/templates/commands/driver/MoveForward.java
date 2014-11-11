@@ -19,7 +19,10 @@ public class MoveForward extends CommandBase {
     }
 
     // Called just before this Command runs the first time
-    protected void initialize() {
+    protected void initialize() 
+    {
+        setTimeout(1); //to be tested
+        driver.setSpeedXY(0, 1); //to be tested
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -28,11 +31,12 @@ public class MoveForward extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return isTimedOut();
     }
 
     // Called once after isFinished returns true
     protected void end() {
+        driver.stopAll();
     }
 
     // Called when another command which requires one or more of the same
