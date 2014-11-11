@@ -22,7 +22,8 @@ public class RobotMap {
     // public static final int rangefinderModule = 1;
     public static DigitalInput top, bottom, cycleSensor, doorClose, doorOpen; 
     public static Jaguar frontLeft, frontRight, backLeft, backRight;
-    public static Talon doorMover, lifterMover;
+    public static Talon doorMover;
+    public static Talon lifterMover;
     
     
     public static void init()
