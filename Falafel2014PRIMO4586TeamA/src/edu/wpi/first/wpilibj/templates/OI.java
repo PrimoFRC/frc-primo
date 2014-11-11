@@ -1,8 +1,10 @@
 
 package edu.wpi.first.wpilibj.templates;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -40,5 +42,23 @@ public class OI {
     // Start the command when the button is released  and let it run the command
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
+    public Joystick driverStick, operatorStick;
+    public JoystickButton changeDoorState, lowerScissors, raiseScissors, hang, moveToBottom, moveToCollection, moveToCycles, moveToHanging, moveToScoringPosition; 
+    public OI()
+    {
+        driverStick=new Joystick(1);
+        operatorStick=new Joystick(2);
+        
+        
+        changeDoorState=new JoystickButton(operatorStick, 1);
+        lowerScissors=new JoystickButton(operatorStick, 3);
+        raiseScissors=new JoystickButton(operatorStick, 4);
+        hang=new JoystickButton(operatorStick, 2);
+        moveToBottom=new JoystickButton(operatorStick, 7);
+        moveToCollection=new JoystickButton(operatorStick, 8);
+        moveToCycles=new JoystickButton(operatorStick, 9);
+        moveToHanging=new JoystickButton(operatorStick, 10);
+        moveToScoringPosition=new JoystickButton(operatorStick, 11);
+      
+    }
 }
-
