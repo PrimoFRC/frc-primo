@@ -5,6 +5,13 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.templates.commands.dropper.ChangeDoorState;
+import edu.wpi.first.wpilibj.templates.commands.dropper.CloseDoorWhilePressed;
+import edu.wpi.first.wpilibj.templates.commands.dropper.OpenDoorWhilePressed;
+import edu.wpi.first.wpilibj.templates.commands.lifter.LowerScissors;
+import edu.wpi.first.wpilibj.templates.commands.lifter.MoveToKnownCycles;
+import edu.wpi.first.wpilibj.templates.commands.lifter.RaiseScissors;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -45,7 +52,8 @@ public class OI {
     public Joystick drivingStick;
     public Joystick operatorStick;
     
-    public JoystickButton changeDoorState, closeDoor, openDoor;
+    public JoystickButton changeDoorState, closeDoor, openDoor, raiseScissors, 
+            lowerScissors, moveToHanging, moveToCollection, moveToScoring, hang;
     
     public OI()
     {
@@ -55,6 +63,24 @@ public class OI {
         changeDoorState = new JoystickButton(operatorStick, 1);
         closeDoor = new JoystickButton(operatorStick, 3);
         openDoor = new JoystickButton(operatorStick, 4);
+        
+        changeDoorState.whenPressed(new ChangeDoorState());
+        closeDoor.whenPressed(new CloseDoorWhilePressed());
+        openDoor.whenPressed(new OpenDoorWhilePressed());
+        
+        raiseScissors = new JoystickButton(operatorStick, 5);
+        lowerScissors = new JoystickButton(operatorStick, 6);
+        moveToCollection = new JoystickButton(operatorStick, 7);
+        moveToHanging = new JoystickButton(operatorStick, 8);
+        moveToScoring = new JoystickButton(operatorStick, 9);
+        hang = new JoystickButton(operatorStick, 10);
+        
+        raiseScissors.whenPressed(new RaiseScissors());
+        lowerScissors.whenPressed(new LowerScissors());
+        moveToCollection.whenPressed(new MoveToKnownCycles((int)SmartDashboard.getNumber("move to collection: ")));
+        moveToHanging.whenPressed(new MoveToKnownCycles((int)SmartDashboard.getNumber("move to hanging: ")));
+        moveToScoring.whenPressed(new MoveToKnownCycles((int)SmartDashboard.getNumber("move to scoring: ")));
+        hang.whenPressed(new MoveToKnownCycles((int)SmartDashboard.getNumber("hang: ")));
     }
     
 }
