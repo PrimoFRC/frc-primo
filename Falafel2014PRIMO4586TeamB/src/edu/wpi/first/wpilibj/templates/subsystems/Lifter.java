@@ -24,10 +24,12 @@ public class Lifter extends Subsystem {
     public DigitalInput hanging;
     
     public DigitalInput cycleSensor;
-    public Counter cycleCounter;
+    public Counter cycleCounterPositive, cycleCounterNegative;
     
     public Talon lifterMover;
     
+    public int cycles = 0;
+    private boolean doCount = true;
     public Lifter()
     {
         top = RobotMap.topLifter;
@@ -36,7 +38,8 @@ public class Lifter extends Subsystem {
         hanging = RobotMap.hanging;
         
         cycleSensor = RobotMap.cycleSensor;
-        cycleCounter = RobotMap.cycleCounter;
+        cycleCounterPositive = RobotMap.cycleCounterPositive;
+        cycleCounterNegative = RobotMap.cycleCounterNegative;
         
         lifterMover = RobotMap.lifterMover;
     }
@@ -66,24 +69,20 @@ public class Lifter extends Subsystem {
         return lifterMover.get();
     }
     
-    public int getNumOfCycles()
-    {
-        return cycleCounter.get();
-    }
-    
     public void resetNumOfCycles()
     {
-        cycleCounter.reset();
+        cycleCounterNegative.reset();
+        cycleCounterPositive.reset();
     }
     
     public void startNumOfCycles()
     {
-        cycleCounter.start();
+        doCount = true;
     }
     
     public void stopNumOfCycles()
     {
-        cycleCounter.stop();
+        doCount = false;
     }
     
     public void setRailSpeed(double railSpeed)
@@ -91,6 +90,32 @@ public class Lifter extends Subsystem {
         lifterMover.set(railSpeed);
     }
     
+    public int countCycles()
+    {
+        if (doCount)
+        {
+            if (getRailSpeed() > 0)
+            {
+                cycleCounterNegative.stop();
+                cycleCounterPositive.start();
+            }
+            else
+            {
+                cycleCounterPositive.stop();
+                cycleCounterNegative.start();
+            }
+            
+            cycles = cycleCounterPositive.get() - cycleCounterNegative.get();
+        }
+        
+        else
+        {
+            cycleCounterNegative.stop();
+            cycleCounterPositive.stop();
+        }
+        
+        return cycles;
+    }
     
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.

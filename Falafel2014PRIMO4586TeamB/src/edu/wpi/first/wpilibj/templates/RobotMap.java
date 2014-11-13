@@ -33,7 +33,7 @@ public class RobotMap {
     public static DigitalInput doorClose;
     
     public static DigitalInput cycleSensor;
-    public static Counter cycleCounter;
+    public static Counter cycleCounterPositive, cycleCounterNegative; 
     
     //speedControllers
     public static Jaguar frontLeft;
@@ -56,8 +56,9 @@ public class RobotMap {
         doorClose = new DigitalInput(4);
         
         cycleSensor = new DigitalInput(5);
-        cycleCounter = new Counter(cycleSensor);
-        
+        cycleCounterPositive = new Counter(cycleSensor);
+        cycleCounterNegative = new Counter(cycleSensor);
+                
         //speedControllers
         frontLeft = new Jaguar(1);
         frontRight = new Jaguar(2);

@@ -12,8 +12,12 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.templates.commands.AutonomousCommand;
 import edu.wpi.first.wpilibj.templates.commands.CommandBase;
 import edu.wpi.first.wpilibj.templates.commands.ExampleCommand;
+import edu.wpi.first.wpilibj.templates.commands.driver.Drive;
+import edu.wpi.first.wpilibj.templates.commands.dropper.MoveDoorJoystick;
+import edu.wpi.first.wpilibj.templates.commands.lifter.ControlScissors;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -37,12 +41,16 @@ public class RobotTemplate extends IterativeRobot {
         // Initialize all subsystems
         RobotMap.init();
         CommandBase.init();
+        initSmartDashboard();
         
     }
 
     public void autonomousInit() {
         // schedule the autonomous command (example)
         autonomousCommand.start();
+        Scheduler.getInstance().removeAll();
+        
+        Scheduler.getInstance().add(new AutonomousCommand());
     }
 
     /**
@@ -57,7 +65,13 @@ public class RobotTemplate extends IterativeRobot {
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
+        Scheduler.getInstance().removeAll();
         autonomousCommand.cancel();
+        Scheduler.getInstance().add(new Drive());
+        Scheduler.getInstance().add(new ControlScissors());
+        Scheduler.getInstance().add(new MoveDoorJoystick());
+        
+        Scheduler.getInstance().run();
     }
 
     /**
@@ -65,16 +79,26 @@ public class RobotTemplate extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        
+        smartDashboardPeriodic();
+                
     }
     
     public void initSmartDashboard()
     {
         SmartDashboard.putNumber("number of cycles: ", 0);
+        SmartDashboard.putNumber("move to cycles: ", 0);
+        SmartDashboard.putNumber("hang: ", 0);
+        SmartDashboard.putNumber("move to hanging: ", 0);
+        SmartDashboard.putNumber("move to collection: ", 0);
+        SmartDashboard.putNumber("move to scoring: ", 0);
+        
 
     }
     
     public void smartDashboardPeriodic()
     {
-        SmartDashboard.putNumber("number of cycles: ", CommandBase.lifter.getNumOfCycles());
+        SmartDashboard.putNumber("number of cycles: ", CommandBase.lifter.countCycles());
+        
     }
 }
