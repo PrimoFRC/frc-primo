@@ -11,8 +11,13 @@ package edu.wpi.first.wpilibj.templates;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.templates.commands.AutonomousCommand;
 import edu.wpi.first.wpilibj.templates.commands.CommandBase;
 import edu.wpi.first.wpilibj.templates.commands.ExampleCommand;
+import edu.wpi.first.wpilibj.templates.commands.driver.Drive;
+import edu.wpi.first.wpilibj.templates.commands.dropper.MoveDoorJoystick;
+import edu.wpi.first.wpilibj.templates.commands.lifter.ControlScissors;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -35,11 +40,15 @@ public class RobotTemplate extends IterativeRobot {
 
         // Initialize all subsystems
         CommandBase.init();
+        RobotMap.init();
+        initSmartDashboard();
+        
     }
 
     public void autonomousInit() {
         // schedule the autonomous command (example)
         autonomousCommand.start();
+        Scheduler.getInstance().add(new AutonomousCommand());
     }
 
     /**
@@ -47,6 +56,7 @@ public class RobotTemplate extends IterativeRobot {
      */
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
+        periodicSmartDashboard();
     }
 
     public void teleopInit() {
@@ -55,6 +65,13 @@ public class RobotTemplate extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         autonomousCommand.cancel();
+        Scheduler.getInstance().removeAll();
+        Scheduler.getInstance().add(new Drive());
+        Scheduler.getInstance().add(new ControlScissors());
+        Scheduler.getInstance().add(new MoveDoorJoystick());
+        Scheduler.getInstance().run();
+        
+        
     }
 
     /**
@@ -62,5 +79,24 @@ public class RobotTemplate extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        periodicSmartDashboard();
+    }
+    public void initSmartDashboard() //to be tested
+    {
+        SmartDashboard.putNumber("Cycles: ", 0);
+        SmartDashboard.putNumber("Target Cycles: ", 0);
+        SmartDashboard.putNumber("Hanged Position in Cycles: ",0);
+        SmartDashboard.putNumber("Collection Position in Cycles: ",0);
+        SmartDashboard.putNumber("Hanging Position in Cycles: ",0);
+        SmartDashboard.putNumber("Scoring Position in Cycles: ",0);
+
+    }
+    public void periodicSmartDashboard()
+    {
+        if (CommandBase.lifter.getSpeedLifter1() > 0) {
+            SmartDashboard.putNumber("Cycles: ", CommandBase.lifter.numOfCycles + CommandBase.lifter.getNumOfCycles());
+        } else {
+            SmartDashboard.putNumber("Cycles: ", CommandBase.lifter.numOfCycles - CommandBase.lifter.getNumOfCycles());
+        }
     }
 }
