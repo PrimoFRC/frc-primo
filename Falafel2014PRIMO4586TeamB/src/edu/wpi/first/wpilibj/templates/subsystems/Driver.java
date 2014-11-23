@@ -37,10 +37,10 @@ public class Driver extends Subsystem {
     
     public void moveForward()
     {
-        frontLeft.set(1);
-        frontRight.set(1);
-        backLeft.set(1);
-        backRight.set(1);
+        frontLeft.set(0.5);
+        frontRight.set(0.5);
+        backLeft.set(0.5);
+        backRight.set(0.5);
     }
     
     public void stop()

@@ -28,7 +28,7 @@ public class MoveDoorJoystick extends CommandBase
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute()
 	{
-            if((!dropper.getCloseMicro() && oi.operatorStick.getRawAxis(3)<-0.01) || (!dropper.getOpenMicro() && oi.operatorStick.getRawAxis(3)>0.01))
+            if((!dropper.getCloseMicro() && oi.operatorStick.getRawAxis(3)<-0.1) || (!dropper.getOpenMicro() && oi.operatorStick.getRawAxis(3)>0.1))
             {
                 dropper.moveDoor(oi.operatorStick.getRawAxis(3));
                 isZero = false;
