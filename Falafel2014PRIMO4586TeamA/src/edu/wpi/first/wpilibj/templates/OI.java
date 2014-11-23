@@ -68,8 +68,8 @@ public class OI {
         
         
         changeDoorState.whenPressed(new ChangeDoorState());
-        lowerScissors.whileHeld(new LowerScissorsWhilePressed());
-        raiseScissors.whileHeld(new RaiseScissorsWhilePressed());
+        lowerScissors.whenPressed(new LowerScissorsWhilePressed());
+        raiseScissors.whenPressed(new RaiseScissorsWhilePressed());
         hang.whenPressed(new MoveToCycles(-2));
         moveToBottom.whenPressed(new MoveToBottom());
         moveToCollection.whenPressed(new MoveToCycles(-3));

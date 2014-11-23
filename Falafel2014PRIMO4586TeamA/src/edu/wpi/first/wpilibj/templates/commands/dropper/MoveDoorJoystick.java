@@ -30,18 +30,18 @@ public class MoveDoorJoystick extends CommandBase
 	{
             this.speed=oi.operatorStick.getRawAxis(5);//to be tested
             if(this.speed<0.1&&this.speed>-0.1)
-                this.speed=0;
-            if(this.speed!=0)
+            {
+                if(this.moved)
+                {
+                    dropper.moveDoor(0);
+                    this.moved=false;
+                }
+            }
+            else
             {
                 dropper.moveDoor(this.speed);
                 this.moved=true;
             }
-            else
-                if(this.moved)
-                {
-                    dropper.moveDoor(this.speed);
-                    this.moved=false;
-                }
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
