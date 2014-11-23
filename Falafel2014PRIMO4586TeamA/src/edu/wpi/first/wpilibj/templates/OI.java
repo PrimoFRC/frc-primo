@@ -5,6 +5,11 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.templates.commands.dropper.ChangeDoorState;
+import edu.wpi.first.wpilibj.templates.commands.lifter.LowerScissorsWhilePressed;
+import edu.wpi.first.wpilibj.templates.commands.lifter.MoveToBottom;
+import edu.wpi.first.wpilibj.templates.commands.lifter.MoveToCycles;
+import edu.wpi.first.wpilibj.templates.commands.lifter.RaiseScissorsWhilePressed;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -59,6 +64,20 @@ public class OI {
         moveToCycles=new JoystickButton(operatorStick, 9);
         moveToHanging=new JoystickButton(operatorStick, 10);
         moveToScoringPosition=new JoystickButton(operatorStick, 11);
+        
+        
+        
+        changeDoorState.whenPressed(new ChangeDoorState());
+        lowerScissors.whileHeld(new LowerScissorsWhilePressed());
+        raiseScissors.whileHeld(new RaiseScissorsWhilePressed());
+        hang.whenPressed(new MoveToCycles(-2));
+        moveToBottom.whenPressed(new MoveToBottom());
+        moveToCollection.whenPressed(new MoveToCycles(-3));
+        moveToCycles.whenPressed(new MoveToCycles());
+        moveToHanging.whenPressed(new MoveToCycles(-4));
+        moveToScoringPosition.whenPressed(new MoveToCycles(-5));
+        
+        
       
     }
 }
