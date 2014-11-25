@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj.templates.commands.ExampleCommand;
 import edu.wpi.first.wpilibj.templates.commands.driver.Drive;
 import edu.wpi.first.wpilibj.templates.commands.dropper.MoveDoorJoystick;
 import edu.wpi.first.wpilibj.templates.commands.lifter.ControlScissors;
+import edu.wpi.first.wpilibj.templates.subsystems.Lifter;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -70,7 +71,8 @@ public class RobotTemplate extends IterativeRobot {
         Scheduler.getInstance().add(new Drive());
         Scheduler.getInstance().add(new ControlScissors());
         Scheduler.getInstance().add(new MoveDoorJoystick());
-        
+        RobotMap.cycleCounterNegative.reset();
+        RobotMap.cycleCounterPositive.reset();
         Scheduler.getInstance().run();
     }
 
@@ -92,13 +94,20 @@ public class RobotTemplate extends IterativeRobot {
         SmartDashboard.putNumber("move to hanging: ", 0);
         SmartDashboard.putNumber("move to collection: ", 0);
         SmartDashboard.putNumber("move to scoring: ", 0);
-        
-
+        SmartDashboard.putBoolean("micro bottom lifter: ", RobotMap.bottomLifter.get());
+        SmartDashboard.putBoolean("micro top lifter: ", RobotMap.topLifter.get());
+        SmartDashboard.putBoolean("micro close door:", RobotMap.doorClose.get());
+        SmartDashboard.putBoolean("micro open door:", RobotMap.doorOpen.get());
+        SmartDashboard.putBoolean("micro cycle sensor:", RobotMap.cycleSensor.get());
     }
     
     public void smartDashboardPeriodic()
     {
         SmartDashboard.putNumber("number of cycles: ", CommandBase.lifter.countCycles());
-        
+        SmartDashboard.putBoolean("micro bottom lifter: ", RobotMap.bottomLifter.get());
+        SmartDashboard.putBoolean("micro top lifter: ", RobotMap.topLifter.get());
+        SmartDashboard.putBoolean("micro close door:", RobotMap.doorClose.get());
+        SmartDashboard.putBoolean("micro open door:", RobotMap.doorOpen.get());
+        SmartDashboard.putBoolean("micro cycle sensor:", RobotMap.cycleSensor.get());
     }
 }

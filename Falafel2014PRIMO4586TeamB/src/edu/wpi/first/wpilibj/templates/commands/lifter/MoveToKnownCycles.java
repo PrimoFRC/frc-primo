@@ -6,6 +6,7 @@
 package edu.wpi.first.wpilibj.templates.commands.lifter;
 
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.commands.CommandBase;
 
 
@@ -18,15 +19,28 @@ public class MoveToKnownCycles extends CommandBase {
     public MoveToKnownCycles(int cycles) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        this.cycles = cycles;
+        switch (cycles)
+        {
+            case 1: this.cycles = (int)SmartDashboard.getNumber("move to collection: ");
+                break;
+            case 2: this.cycles = (int)SmartDashboard.getNumber("move to hanging: ");
+                break;
+            case 3: this.cycles = (int)SmartDashboard.getNumber("move to scoring: ");
+                break;
+            case 4: this.cycles = (int)SmartDashboard.getNumber("hang: ");
+                break;
+        }
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        if (lifter.countCycles() > cycles)
-            lifter.setRailSpeed(-0.5);
-        else if (lifter.countCycles() < cycles)
-            lifter.setRailSpeed(0.5);
+        if(!lifter.getBottomMicro() || !lifter.getTopMicro())
+        {
+            if (lifter.countCycles() > cycles)
+                lifter.setRailSpeed(-0.5);
+            else if (lifter.countCycles() < cycles)
+                lifter.setRailSpeed(0.5);
+        }
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -35,7 +49,7 @@ public class MoveToKnownCycles extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (lifter.countCycles() == cycles);
+        return (lifter.countCycles() == cycles) || !lifter.getBottomMicro() || !lifter.getTopMicro();
     }
 
     // Called once after isFinished returns true

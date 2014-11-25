@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.templates.commands.dropper.ChangeDoorState;
 import edu.wpi.first.wpilibj.templates.commands.dropper.CloseDoorWhilePressed;
 import edu.wpi.first.wpilibj.templates.commands.dropper.OpenDoorWhilePressed;
 import edu.wpi.first.wpilibj.templates.commands.lifter.LowerScissors;
+import edu.wpi.first.wpilibj.templates.commands.lifter.MoveToCycles;
 import edu.wpi.first.wpilibj.templates.commands.lifter.MoveToKnownCycles;
 import edu.wpi.first.wpilibj.templates.commands.lifter.RaiseScissors;
 
@@ -53,7 +54,7 @@ public class OI {
     public Joystick operatorStick;
     
     public JoystickButton changeDoorState, closeDoor, openDoor, raiseScissors, 
-            lowerScissors, moveToHanging, moveToCollection, moveToScoring, hang;
+            lowerScissors, moveToHanging, moveToCollection, moveToScoring, hang, moveToCycles;
     
     public OI()
     {
@@ -74,13 +75,15 @@ public class OI {
         moveToHanging = new JoystickButton(operatorStick, 8);
         moveToScoring = new JoystickButton(operatorStick, 9);
         hang = new JoystickButton(operatorStick, 10);
+        moveToCycles = new JoystickButton(operatorStick, 11);
         
         raiseScissors.whenPressed(new RaiseScissors());
         lowerScissors.whenPressed(new LowerScissors());
-        moveToCollection.whenPressed(new MoveToKnownCycles((int)SmartDashboard.getNumber("move to collection: ")));
-        moveToHanging.whenPressed(new MoveToKnownCycles((int)SmartDashboard.getNumber("move to hanging: ")));
-        moveToScoring.whenPressed(new MoveToKnownCycles((int)SmartDashboard.getNumber("move to scoring: ")));
-        hang.whenPressed(new MoveToKnownCycles((int)SmartDashboard.getNumber("hang: ")));
+        moveToCollection.whenPressed(new MoveToKnownCycles(1));
+        moveToHanging.whenPressed(new MoveToKnownCycles(2));
+        moveToScoring.whenPressed(new MoveToKnownCycles(3));
+        hang.whenPressed(new MoveToKnownCycles(4));
+        moveToCycles.whenPressed(new MoveToCycles());
     }
     
 }
