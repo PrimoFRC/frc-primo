@@ -26,10 +26,11 @@ public class Lifter extends Subsystem {
     public DigitalInput cycleSensor;
     public Counter cycleCounterPositive, cycleCounterNegative;
     
-    public Talon lifterMover;
+    public Talon lifterMover1;
     
     public int cycles = 0;
     private boolean doCount = true;
+    
     public Lifter()
     {
         top = RobotMap.topLifter;
@@ -41,7 +42,7 @@ public class Lifter extends Subsystem {
         cycleCounterPositive = RobotMap.cycleCounterPositive;
         cycleCounterNegative = RobotMap.cycleCounterNegative;
         
-        lifterMover = RobotMap.lifterMover;
+        lifterMover1 = RobotMap.lifterMover1;
     }
     
     public boolean getTopMicro()
@@ -66,7 +67,7 @@ public class Lifter extends Subsystem {
     
     public double getRailSpeed()
     {
-        return lifterMover.get();
+        return lifterMover1.get();
     }
     
     public void resetNumOfCycles()
@@ -87,7 +88,7 @@ public class Lifter extends Subsystem {
     
     public void setRailSpeed(double railSpeed)
     {
-        lifterMover.set(railSpeed);
+        lifterMover1.set(railSpeed);
     }
     
     public int countCycles()
@@ -114,8 +115,7 @@ public class Lifter extends Subsystem {
         }
         if (this.getBottomMicro())
         {
-            cycleCounterNegative.reset();
-            cycleCounterPositive.reset();
+            resetNumOfCycles();
         }
         return cycles;
     }

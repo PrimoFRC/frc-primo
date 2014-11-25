@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.templates.commands.CommandBase;
  */
 public class ControlScissors extends CommandBase {
     boolean isZero;
+    
     public ControlScissors() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
