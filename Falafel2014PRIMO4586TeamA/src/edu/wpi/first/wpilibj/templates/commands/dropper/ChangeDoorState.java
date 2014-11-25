@@ -39,7 +39,11 @@ public class ChangeDoorState extends CommandBase
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished()
 	{
-		return (this.isClosed&&dropper.getOpenMicro())||(!this.isClosed&&dropper.getCloseMicro());
+            if(this.isClosed&&dropper.getOpenMicro())
+                return true;
+            if(!this.isClosed&&dropper.getCloseMicro())
+                return true;
+            return false;
 	}
 
 	// Called once after isFinished returns true

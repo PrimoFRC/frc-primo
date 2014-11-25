@@ -70,12 +70,12 @@ public class OI {
         changeDoorState.whenPressed(new ChangeDoorState());
         lowerScissors.whenPressed(new LowerScissorsWhilePressed());
         raiseScissors.whenPressed(new RaiseScissorsWhilePressed());
-        hang.whenPressed(new MoveToCycles(-2));
+        hang.whenPressed(new MoveToCycles("Hanged Position in Cycles: "));
         moveToBottom.whenPressed(new MoveToBottom());
-        moveToCollection.whenPressed(new MoveToCycles(-3));
+        moveToCollection.whenPressed(new MoveToCycles("Collection Position in Cycles: "));
         moveToCycles.whenPressed(new MoveToCycles());
-        moveToHanging.whenPressed(new MoveToCycles(-4));
-        moveToScoringPosition.whenPressed(new MoveToCycles(-5));
+        moveToHanging.whenPressed(new MoveToCycles("Hanging Position in Cycles: "));
+        moveToScoringPosition.whenPressed(new MoveToCycles("Scoring Position in Cycles: "));
         
         
       

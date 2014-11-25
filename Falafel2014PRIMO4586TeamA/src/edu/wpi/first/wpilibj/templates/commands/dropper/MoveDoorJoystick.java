@@ -28,19 +28,31 @@ public class MoveDoorJoystick extends CommandBase
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute()
 	{
-            this.speed=oi.operatorStick.getRawAxis(5);//to be tested
-            if(this.speed<0.1&&this.speed>-0.1)
-            {
-                if(this.moved)
-                {
-                    dropper.moveDoor(0);
-                    this.moved=false;
+            this.speed = oi.operatorStick.getRawAxis(5);//to be tested
+            if (this.speed > -0.1 && this.speed < 0.1) {
+                this.speed = 0;
+            } else {
+                if (dropper.getOpenMicro() && this.speed > 0) {
+                    this.speed = 0;
+                } else {
+                    if (dropper.getCloseMicro() && this.speed < 0) {
+                        this.speed = 0;
+                    } else {
+                        this.speed = this.speed * 0.5;//to be tested
+                    }
                 }
+
             }
-            else
-            {
+
+            if (this.speed == 0) {
+                if (moved) {
+                    dropper.moveDoor(speed);
+                    moved = false;
+                }
+
+            } else {
                 dropper.moveDoor(this.speed);
-                this.moved=true;
+                moved = true;
             }
 	}
 

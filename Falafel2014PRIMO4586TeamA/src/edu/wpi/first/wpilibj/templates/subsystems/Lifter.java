@@ -38,11 +38,14 @@ public class Lifter extends Subsystem {
  
     public void setSpeedLifter(double speed)
             {
-                if(lifterMover1.getSpeed()>0)
-                    numOfCycles+=cycleCounter.get();
-                else
-                    numOfCycles-=cycleCounter.get();
-                cycleCounter.reset();
+                if(lifterMover1.getSpeed()!=0)
+                    if (lifterMover1.getSpeed() * speed <= 0) {
+                        if (lifterMover1.getSpeed() > 0) 
+                            numOfCycles += cycleCounter.get();
+                        else 
+                            numOfCycles -= cycleCounter.get();
+                        cycleCounter.reset();
+                    }
                 lifterMover1.set(speed);
                 lifterMover2.set (speed);
                 

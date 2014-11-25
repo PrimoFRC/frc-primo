@@ -6,18 +6,16 @@
 package edu.wpi.first.wpilibj.templates.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.commands.driver.MoveForward;
-import edu.wpi.first.wpilibj.templates.commands.dropper.ChangeDoorState;
 import edu.wpi.first.wpilibj.templates.commands.lifter.MoveToCycles;
 
 /**
  *
  * @author lenovo
  */
-public class AutonomousCommand extends CommandGroup {
+public class AutonomousCommandPart1 extends CommandGroup {
     
-    public AutonomousCommand() {
+    public AutonomousCommandPart1() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -33,9 +31,7 @@ public class AutonomousCommand extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-        addSequential(new AutonomousCommandPart1());
-        addSequential(new ChangeDoorState());
-        
-        
+        addParallel(new MoveForward());
+        addSequential(new MoveToCycles());
     }
 }
