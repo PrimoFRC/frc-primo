@@ -92,6 +92,7 @@ public class MoveToCycles extends CommandBase {
     // Called once after isFinished returns true
     protected void end() {
         lifter.setSpeedLifter(0);
+        System.out.println("Lifter Moved to: "+this.target);
     }
 
     // Called when another command which requires one or more of the same

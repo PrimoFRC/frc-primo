@@ -8,6 +8,8 @@
 package edu.wpi.first.wpilibj.templates;
 
 
+import edu.wpi.first.wpilibj.DriverStationLCD;
+import edu.wpi.first.wpilibj.Watchdog;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -36,18 +38,25 @@ public class RobotTemplate extends IterativeRobot {
      */
     public void robotInit() {
         // instantiate the command used for the autonomous period
-        autonomousCommand = new ExampleCommand();
+        autonomousCommand = new AutonomousCommand();
 
         // Initialize all subsystems
+         RobotMap.init();
+         System.out.println("Robot Map Initialised");
         CommandBase.init();
-        RobotMap.init();
+        System.out.println("Command Base Initialised");
         initSmartDashboard();
+        System.out.println("Smart Dashboard Initialised");
+        
         
     }
 
     public void autonomousInit() {
         // schedule the autonomous command (example)
         autonomousCommand.start();
+        System.out.println("Autonomous Command Started");
+        DriverStationLCD.getInstance().println(DriverStationLCD.Line.kMain6, 1, "Autonomous Started");
+        DriverStationLCD.getInstance().updateLCD();
         Scheduler.getInstance().add(new AutonomousCommand());
     }
 
@@ -65,12 +74,13 @@ public class RobotTemplate extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         autonomousCommand.cancel();
+        System.out.println("Autonomous Period Ended");
         Scheduler.getInstance().removeAll();
         Scheduler.getInstance().add(new Drive());
         Scheduler.getInstance().add(new ControlScissors());
         Scheduler.getInstance().add(new MoveDoorJoystick());
         Scheduler.getInstance().run();
-        
+        System.out.println("Teleop Ininitialised");
         
     }
 
