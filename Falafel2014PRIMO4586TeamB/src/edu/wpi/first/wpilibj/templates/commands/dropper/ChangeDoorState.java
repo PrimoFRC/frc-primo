@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.templates.commands.CommandBase;
 public class ChangeDoorState extends CommandBase
 {
         boolean isClosing;
+        
 	public ChangeDoorState()
 	{
 		// Use requires() here to declare subsystem dependencies

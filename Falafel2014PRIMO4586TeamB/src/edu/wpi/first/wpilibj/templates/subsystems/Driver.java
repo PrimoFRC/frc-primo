@@ -37,10 +37,7 @@ public class Driver extends Subsystem {
     
     public void moveForward()
     {
-        frontLeft.set(0.5);
-        frontRight.set(0.5);
-        backLeft.set(0.5);
-        backRight.set(0.5);
+        driver.arcadeDrive(0.5, 0);
     }
     
     public void stop()

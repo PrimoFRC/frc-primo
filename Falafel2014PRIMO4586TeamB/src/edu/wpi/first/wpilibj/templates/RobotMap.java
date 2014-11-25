@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.Victor;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -41,31 +42,32 @@ public class RobotMap {
     public static Jaguar backLeft;
     public static Jaguar backRight;
     
-    public static Talon doorMover;
-    public static Talon lifterMover;
+    public static Victor doorMover;
+    public static Talon lifterMover1, lifterMover2;
     
     public static void init()
     {
         //DigitalInputs
         topLifter = new DigitalInput(1);
-        bottomLifter = new DigitalInput(2);
+        bottomLifter = new DigitalInput(8);
         collection = new DigitalInput(6);
         hanging = new DigitalInput(7);
         
         doorOpen = new DigitalInput(3);
-        doorClose = new DigitalInput(4);
+        doorClose = new DigitalInput(2);
         
-        cycleSensor = new DigitalInput(5);
+        cycleSensor = new DigitalInput(10);
         cycleCounterPositive = new Counter(cycleSensor);
         cycleCounterNegative = new Counter(cycleSensor);
                 
         //speedControllers
-        frontLeft = new Jaguar(1);
-        frontRight = new Jaguar(2);
-        backLeft = new Jaguar(3);
-        backRight = new Jaguar(4);
+        frontLeft = new Jaguar(3);
+        frontRight = new Jaguar(1);
+        backLeft = new Jaguar(4);
+        backRight = new Jaguar(8);
         
-        doorMover = new Talon(5);
-        lifterMover = new Talon(6);
+        doorMover = new Victor(5);
+        lifterMover1 = new Talon(6);
+        lifterMover2 = new Talon(7);
     }
 }

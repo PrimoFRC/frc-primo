@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.templates.commands.CommandBase;
 public class MoveDoorJoystick extends CommandBase
 {
         boolean isZero;
+        
 	public MoveDoorJoystick()
 	{
 		// Use requires() here to declare subsystem dependencies

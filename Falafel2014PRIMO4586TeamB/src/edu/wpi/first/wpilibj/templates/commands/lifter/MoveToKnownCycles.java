@@ -21,13 +21,13 @@ public class MoveToKnownCycles extends CommandBase {
         // eg. requires(chassis);
         switch (cycles)
         {
-            case 1: this.cycles = (int)SmartDashboard.getNumber("move to collection: ");
+            case 1: this.cycles = (int)SmartDashboard.getNumber("move to collection: ",0);
                 break;
-            case 2: this.cycles = (int)SmartDashboard.getNumber("move to hanging: ");
+            case 2: this.cycles = (int)SmartDashboard.getNumber("move to hanging: ",0);
                 break;
-            case 3: this.cycles = (int)SmartDashboard.getNumber("move to scoring: ");
+            case 3: this.cycles = (int)SmartDashboard.getNumber("move to scoring: ",0);
                 break;
-            case 4: this.cycles = (int)SmartDashboard.getNumber("hang: ");
+            case 4: this.cycles = (int)SmartDashboard.getNumber("hang: ",0);
                 break;
         }
     }
