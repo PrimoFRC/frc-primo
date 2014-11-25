@@ -107,13 +107,16 @@ public class Lifter extends Subsystem {
             
             cycles = cycleCounterPositive.get() - cycleCounterNegative.get();
         }
-        
         else
         {
             cycleCounterNegative.stop();
             cycleCounterPositive.stop();
         }
-        
+        if (this.getBottomMicro())
+        {
+            cycleCounterNegative.reset();
+            cycleCounterPositive.reset();
+        }
         return cycles;
     }
     
