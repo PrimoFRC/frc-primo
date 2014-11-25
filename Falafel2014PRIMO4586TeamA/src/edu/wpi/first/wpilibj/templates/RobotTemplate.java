@@ -89,7 +89,6 @@ public class RobotTemplate extends IterativeRobot {
         SmartDashboard.putNumber("Collection Position in Cycles: ",0);
         SmartDashboard.putNumber("Hanging Position in Cycles: ",0);
         SmartDashboard.putNumber("Scoring Position in Cycles: ",0);
-
     }
     public void periodicSmartDashboard()
     {
@@ -98,5 +97,11 @@ public class RobotTemplate extends IterativeRobot {
         } else {
             SmartDashboard.putNumber("Cycles: ", CommandBase.lifter.numOfCycles - CommandBase.lifter.getNumOfCycles());
         }
+        SmartDashboard.putBoolean("Is the Door Closed: ", CommandBase.dropper.getCloseMicro());
+        SmartDashboard.putBoolean("Is the Door Open: ", CommandBase.dropper.getOpenMicro());
+        SmartDashboard.putBoolean("Are the Scissors at the Bottom: ", CommandBase.lifter.getBottom());
+        SmartDashboard.putBoolean("Are the Scissors at the Top: ", CommandBase.lifter.getTop());
+        SmartDashboard.putNumber("Speed of Scissors Engine 1: ", CommandBase.lifter.getSpeedLifter1());
+        SmartDashboard.putNumber("Speed of Scissors Engine 2: ", CommandBase.lifter.getSpeedLifter2());
     }
 }
