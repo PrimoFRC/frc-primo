@@ -25,7 +25,7 @@ public class RobotMap {
     public static Jaguar frontLeft, frontRight, backLeft, backRight;
 
     public static Victor doorMover;
-    public static Talon lifterMover1, lifterMover2;
+    public static Talon lifterMover;
 
 
     
@@ -46,8 +46,7 @@ public class RobotMap {
         
         
         doorMover=new Victor(5);
-        lifterMover1=new Talon(6);
-        lifterMover2 = new Talon(7);
+        lifterMover=new Talon(6);
     }
     
     
