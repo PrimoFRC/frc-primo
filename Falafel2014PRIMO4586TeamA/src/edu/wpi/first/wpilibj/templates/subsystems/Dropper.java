@@ -7,6 +7,7 @@ package edu.wpi.first.wpilibj.templates.subsystems;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.templates.RobotMap;
 
@@ -17,7 +18,7 @@ import edu.wpi.first.wpilibj.templates.RobotMap;
 public class Dropper extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-    private Talon doorMover;
+    private Victor doorMover;
     
     private DigitalInput doorOpen, doorClose;
     

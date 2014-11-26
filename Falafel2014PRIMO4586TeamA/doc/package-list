@@ -1,0 +1,6 @@
+edu.wpi.first.wpilibj.templates
+edu.wpi.first.wpilibj.templates.commands
+edu.wpi.first.wpilibj.templates.commands.driver
+edu.wpi.first.wpilibj.templates.commands.dropper
+edu.wpi.first.wpilibj.templates.commands.lifter
+edu.wpi.first.wpilibj.templates.subsystems

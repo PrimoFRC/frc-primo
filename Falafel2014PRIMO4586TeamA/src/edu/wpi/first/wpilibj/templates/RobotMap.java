@@ -3,6 +3,7 @@ package edu.wpi.first.wpilibj.templates;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.Victor;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -23,7 +24,7 @@ public class RobotMap {
     public static DigitalInput top, bottom, cycleSensor, doorClose, doorOpen; 
     public static Jaguar frontLeft, frontRight, backLeft, backRight;
 
-    public static Talon doorMover;
+    public static Victor doorMover;
     public static Talon lifterMover1, lifterMover2;
 
 
@@ -32,21 +33,21 @@ public class RobotMap {
     public static void init()
     {
         top=new DigitalInput(1);
-        bottom=new DigitalInput(2);
-        cycleSensor=new DigitalInput(3);
-        doorClose=new DigitalInput(4);
-        doorOpen=new DigitalInput(5);
+        bottom=new DigitalInput(8);
+        cycleSensor=new DigitalInput(10);
+        doorClose=new DigitalInput(2);
+        doorOpen=new DigitalInput(3);
         
         
-        frontLeft=new Jaguar(1);
-        frontRight=new Jaguar(2);
-        backLeft=new Jaguar(3);
-        backRight=new Jaguar(4);
+        frontLeft=new Jaguar(3);
+        frontRight=new Jaguar(1);
+        backLeft=new Jaguar(4);
+        backRight=new Jaguar(8);
         
         
-        doorMover=new Talon(1);
-        lifterMover1=new Talon(2);
-        lifterMover2 = new Talon(3);
+        doorMover=new Victor(5);
+        lifterMover1=new Talon(6);
+        lifterMover2 = new Talon(7);
     }
     
     
