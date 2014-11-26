@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.templates.commands.CommandBase;
  */
 public class CloseDoorWhilePressed extends CommandBase
 {
-
+        /* closes the droper door, without microswitchs */
 	public CloseDoorWhilePressed()
 	{
 		// Use requires() here to declare subsystem dependencies
@@ -22,10 +22,9 @@ public class CloseDoorWhilePressed extends CommandBase
 	// Called just before this Command runs the first time
 	protected void initialize()
 	{
-            if (!dropper.getCloseMicro())
-            {
-                dropper.moveDoor(-0.5);
-            }
+            
+                dropper.moveDoor(-0.5);//need check
+            
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -37,7 +36,7 @@ public class CloseDoorWhilePressed extends CommandBase
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished()
 	{
-		return (!oi.closeDoor.get() || dropper.getCloseMicro());
+		return (!oi.closeDoor.get());
 	}
 
 	// Called once after isFinished returns true

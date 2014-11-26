@@ -23,9 +23,9 @@ public class MoveToCycles extends CommandBase {
         if (!lifter.getBottomMicro() || !lifter.getTopMicro())
         {
             if (lifter.countCycles() > SmartDashboard.getNumber("move to cycles: "))
-                lifter.setRailSpeed(-0.5);
+                lifter.setRailSpeed(-0.5);//need check
             else if (lifter.countCycles() < SmartDashboard.getNumber("move to cycles: "))
-                lifter.setRailSpeed(0.5);
+                lifter.setRailSpeed(0.5);//need check
         }
     }
 

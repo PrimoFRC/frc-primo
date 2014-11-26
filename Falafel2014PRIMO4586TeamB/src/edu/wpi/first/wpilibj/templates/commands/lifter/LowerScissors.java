@@ -20,7 +20,7 @@ public class LowerScissors extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
         if (!lifter.getBottomMicro())
-            lifter.setRailSpeed(-0.5);
+            lifter.setRailSpeed(-0.5); //need check
     }
 
     // Called repeatedly when this Command is scheduled to run

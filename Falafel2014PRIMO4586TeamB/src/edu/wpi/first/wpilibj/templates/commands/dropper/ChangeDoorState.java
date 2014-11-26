@@ -27,13 +27,13 @@ public class ChangeDoorState extends CommandBase
             {
                 //opens door
                 isClosing = false;
-                dropper.moveDoor(0.5);
+                dropper.moveDoor(0.5);//need check
             }
             else
             {
                 //closes door
                 isClosing = true;
-                dropper.moveDoor(-0.5);
+                dropper.moveDoor(-0.5);//need check
             }
 	}
 
@@ -48,9 +48,13 @@ public class ChangeDoorState extends CommandBase
 	protected boolean isFinished()
 	{
             if (isClosing)
+            {
 		return dropper.getCloseMicro();
+            }
             else
+            {
                 return dropper.getOpenMicro();
+            }
 	}
 
 	// Called once after isFinished returns true
