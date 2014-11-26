@@ -47,6 +47,8 @@ public class RobotTemplate extends IterativeRobot {
         System.out.println("Command Base Initialised");
         initSmartDashboard();
         System.out.println("Smart Dashboard Initialised");
+        DriverStationLCD.getInstance().println(DriverStationLCD.Line.kUser1, 1, "RobotMap, CommandBase, and SmartDashboard Initialised");
+        DriverStationLCD.getInstance().updateLCD();
         
         
     }
@@ -55,7 +57,7 @@ public class RobotTemplate extends IterativeRobot {
         // schedule the autonomous command (example)
         //autonomousCommand.start();
         System.out.println("Autonomous Command Started");
-        DriverStationLCD.getInstance().println(DriverStationLCD.Line.kUser1, 1, "Autonomous Started");
+        DriverStationLCD.getInstance().println(DriverStationLCD.Line.kUser1, 2, "Autonomous Started");
         DriverStationLCD.getInstance().updateLCD();
         Scheduler.getInstance().removeAll();
         Scheduler.getInstance().add(new AutonomousCommand());
@@ -113,6 +115,5 @@ public class RobotTemplate extends IterativeRobot {
         SmartDashboard.putBoolean("Are the Scissors at the Bottom: ", CommandBase.lifter.getBottom());
         SmartDashboard.putBoolean("Are the Scissors at the Top: ", CommandBase.lifter.getTop());
         SmartDashboard.putNumber("Speed of Scissors Engine 1: ", CommandBase.lifter.getSpeedLifter1());
-        SmartDashboard.putNumber("Speed of Scissors Engine 2: ", CommandBase.lifter.getSpeedLifter2());
     }
 }

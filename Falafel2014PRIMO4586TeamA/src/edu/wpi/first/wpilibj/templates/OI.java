@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.templates.commands.dropper.ChangeDoorState;
+import edu.wpi.first.wpilibj.templates.commands.dropper.ManualyChangeDoorState;
 import edu.wpi.first.wpilibj.templates.commands.lifter.LowerScissorsWhilePressed;
 import edu.wpi.first.wpilibj.templates.commands.lifter.MoveToBottom;
 import edu.wpi.first.wpilibj.templates.commands.lifter.MoveToCycles;
@@ -48,7 +49,8 @@ public class OI {
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
     public Joystick driverStick, operatorStick;
-    public JoystickButton changeDoorState, lowerScissors, raiseScissors, hang, moveToBottom, moveToCollection, moveToCycles, moveToHanging, moveToScoringPosition; 
+    public JoystickButton changeDoorState, lowerScissors, raiseScissors, hang, moveToBottom, moveToCollection, moveToCycles, moveToHanging, moveToScoringPosition;
+    public JoystickButton emergencyOpenDoor, emergencyCloseDoor;
     public OI()
     {
         driverStick=new Joystick(1);
@@ -65,6 +67,9 @@ public class OI {
         moveToHanging=new JoystickButton(operatorStick, 10);
         moveToScoringPosition=new JoystickButton(operatorStick, 11);
         
+        emergencyCloseDoor=new JoystickButton(driverStick, 3);
+        emergencyOpenDoor=new JoystickButton(driverStick, 2);
+        
         
         
         changeDoorState.whenPressed(new ChangeDoorState());
@@ -76,6 +81,9 @@ public class OI {
         moveToCycles.whenPressed(new MoveToCycles());
         moveToHanging.whenPressed(new MoveToCycles("Hanging Position in Cycles: "));
         moveToScoringPosition.whenPressed(new MoveToCycles("Scoring Position in Cycles: "));
+        
+        emergencyCloseDoor.whenPressed(new ManualyChangeDoorState());
+        emergencyOpenDoor.whenPressed(new ManualyChangeDoorState());
         
         
       

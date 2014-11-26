@@ -20,15 +20,14 @@ public class Lifter extends Subsystem {
     // here. Call these from Commands.
     
   
-     private Talon lifterMover1,lifterMover2;
+     private Talon lifterMover;
      private  DigitalInput top, bottom, cycleSensor;
      private Counter cycleCounter;
      public int numOfCycles=0;    
  
     public Lifter()
         {
-            lifterMover1 = RobotMap.lifterMover1;
-            lifterMover2 = RobotMap.lifterMover2;
+            lifterMover = RobotMap.lifterMover;
             top = RobotMap.top;
             bottom = RobotMap.bottom;
             cycleSensor = RobotMap.cycleSensor;
@@ -38,25 +37,20 @@ public class Lifter extends Subsystem {
  
     public void setSpeedLifter(double speed)
             {
-                if(lifterMover1.getSpeed()!=0)
-                    if (lifterMover1.getSpeed() * speed <= 0) {
-                        if (lifterMover1.getSpeed() > 0) 
+                if(lifterMover.getSpeed()!=0)
+                    if (lifterMover.getSpeed() * speed <= 0) {
+                        if (lifterMover.getSpeed() > 0) 
                             numOfCycles += cycleCounter.get();
                         else 
                             numOfCycles -= cycleCounter.get();
                         cycleCounter.reset();
                     }
-                lifterMover1.set(speed);
-                lifterMover2.set (speed);
+                lifterMover.set(speed);
                 
             }
     public double getSpeedLifter1()
             {
-                return lifterMover1.get ();
-            }
-    public double getSpeedLifter2()
-            {
-                return lifterMover2.get ();
+                return lifterMover.get ();
             }
     public boolean getTop()
             {
