@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.templates.commands.CommandBase;
  */
 public class MoveDoorJoystick extends CommandBase
 {
+        //moving door by joystick
         boolean isZero;
         
 	public MoveDoorJoystick()

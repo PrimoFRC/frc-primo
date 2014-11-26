@@ -20,7 +20,7 @@ public class MoveForward extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        setTimeout(2);
+        setTimeout(2);//need check
         
     }
 

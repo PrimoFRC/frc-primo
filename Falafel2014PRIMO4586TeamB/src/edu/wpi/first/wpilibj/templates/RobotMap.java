@@ -45,7 +45,7 @@ public class RobotMap {
     public static Victor doorMover;
     public static Talon lifterMover1, lifterMover2;
     
-    public static void init()
+    public static void init()//need check
     {
         //DigitalInputs
         topLifter = new DigitalInput(1);

@@ -56,7 +56,7 @@ public class OI {
     public JoystickButton changeDoorState, closeDoor, openDoor, raiseScissors, 
             lowerScissors, moveToHanging, moveToCollection, moveToScoring, hang, moveToCycles;
     
-    public OI()
+    public OI() //need check
     {
         drivingStick = new Joystick(1);
         operatorStick = new Joystick(2);
