@@ -38,7 +38,7 @@ public class RobotTemplate extends IterativeRobot {
      */
     public void robotInit() {
         // instantiate the command used for the autonomous period
-        autonomousCommand = new AutonomousCommand();
+        //autonomousCommand = new AutonomousCommand();
 
         // Initialize all subsystems
          RobotMap.init();
@@ -53,10 +53,11 @@ public class RobotTemplate extends IterativeRobot {
 
     public void autonomousInit() {
         // schedule the autonomous command (example)
-        autonomousCommand.start();
+        //autonomousCommand.start();
         System.out.println("Autonomous Command Started");
-        DriverStationLCD.getInstance().println(DriverStationLCD.Line.kMain6, 1, "Autonomous Started");
+        DriverStationLCD.getInstance().println(DriverStationLCD.Line.kUser1, 1, "Autonomous Started");
         DriverStationLCD.getInstance().updateLCD();
+        Scheduler.getInstance().removeAll();
         Scheduler.getInstance().add(new AutonomousCommand());
     }
 
@@ -73,7 +74,7 @@ public class RobotTemplate extends IterativeRobot {
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
-        autonomousCommand.cancel();
+        //autonomousCommand.cancel();
         System.out.println("Autonomous Period Ended");
         Scheduler.getInstance().removeAll();
         Scheduler.getInstance().add(new Drive());

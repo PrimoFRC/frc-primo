@@ -21,12 +21,12 @@ public class MoveForward extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() 
     {
-        setTimeout(1); //to be tested
-        driver.setSpeedXY(0, 0.5); //to be tested
+        setTimeout(5); //to be tested
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        driver.moveForward(0.5); //to be tested
     }
 
     // Make this return true when this Command no longer needs to run execute()

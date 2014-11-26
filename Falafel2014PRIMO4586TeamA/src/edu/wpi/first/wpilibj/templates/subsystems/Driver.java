@@ -22,7 +22,7 @@ public class Driver extends Subsystem
         this.frontLeft=RobotMap.frontLeft;
         this.backLeft=RobotMap.backLeft;
         this.frontRight=RobotMap.frontRight;
-        this.frontLeft=RobotMap.frontLeft;
+        this.backRight=RobotMap.backRight;
         
         this.driver= new RobotDrive(frontLeft, backLeft, frontRight, backRight);
     }
@@ -30,6 +30,10 @@ public class Driver extends Subsystem
     {
         //הפעולה מעניקה למקל נהיגה שליטה על תנועת הרובוט  
         this.driver.arcadeDrive(joystick);
+    }
+    public void moveForward(double speed)
+    {
+        driver.arcadeDrive(speed, 0);
     }
     public void setSpeedXY(double x, double y)
     {
