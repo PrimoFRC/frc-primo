@@ -31,22 +31,22 @@ public class Driver extends Subsystem
     public void arcadeDrive(Joystick joystick)
     {
         //הפעולה מעניקה למקל נהיגה שליטה על תנועת הרובוט  
-        driver.arcadeDrive(joystick.getY()*SmartDashboard.getNumber("Maximum Driving Speed: "), joystick.getX()*SmartDashboard.getNumber("Maximum Driving Speed: "));
+        driver.arcadeDrive(-joystick.getY()*SmartDashboard.getNumber("Maximum Driving Speed: "), -joystick.getX()*SmartDashboard.getNumber("Maximum Spinning Speed: "));
     }
     public void moveForward(double speed)
     {
-        driver.arcadeDrive(speed*SmartDashboard.getNumber("Maximum Driving Speed: "), 0);
+        driver.arcadeDrive(-speed*SmartDashboard.getNumber("Maximum Driving Speed: "), 0);
     }
     public void setSpeedXY(double x, double y)
     {
         //הפעולה מקבלת מהירויות x ו-y
         //הפעולה מזיזה את הרובוט קדימה במהירות -y ומסובבות אותו עם כיוון השעון במהירות x
-        double left=Math.min(Math.max(x+y, -1), 1);
-        double right=left-2*x;
-        this.frontLeft.set(left*SmartDashboard.getNumber("Maximum Driving Speed: "));
-        this.backLeft.set(left*SmartDashboard.getNumber("Maximum Driving Speed: "));
-        this.frontRight.set(right*SmartDashboard.getNumber("Maximum Driving Speed: "));
-        this.backRight.set(right*SmartDashboard.getNumber("Maximum Driving Speed: "));
+        double left=Math.min(Math.max(x*SmartDashboard.getNumber("Maximum Spinning Speed: ")+y*SmartDashboard.getNumber("Maximum Driving Speed: "), -1), 1);
+        double right=left-2*x*SmartDashboard.getNumber("Maximum Spinning Speed: ");
+        this.frontLeft.set(-left);
+        this.backLeft.set(-left);
+        this.frontRight.set(-right);
+        this.backRight.set(-right);
     }
     public void stopAll()
     {
