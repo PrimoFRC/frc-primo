@@ -1,10 +1,12 @@
 
 package edu.wpi.first.wpilibj.templates.subsystems;
 
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.RobotMap;
 
 /**
@@ -29,11 +31,11 @@ public class Driver extends Subsystem
     public void arcadeDrive(Joystick joystick)
     {
         //הפעולה מעניקה למקל נהיגה שליטה על תנועת הרובוט  
-        this.driver.arcadeDrive(joystick);
+        driver.arcadeDrive(joystick.getY()*SmartDashboard.getNumber("Maximum Driving Speed: "), joystick.getX()*SmartDashboard.getNumber("Maximum Driving Speed: "));
     }
     public void moveForward(double speed)
     {
-        driver.arcadeDrive(speed, 0);
+        driver.arcadeDrive(speed*SmartDashboard.getNumber("Maximum Driving Speed: "), 0);
     }
     public void setSpeedXY(double x, double y)
     {
@@ -41,10 +43,10 @@ public class Driver extends Subsystem
         //הפעולה מזיזה את הרובוט קדימה במהירות -y ומסובבות אותו עם כיוון השעון במהירות x
         double left=Math.min(Math.max(x+y, -1), 1);
         double right=left-2*x;
-        this.frontLeft.set(left);
-        this.backLeft.set(left);
-        this.frontRight.set(right);
-        this.backRight.set(right);
+        this.frontLeft.set(left*SmartDashboard.getNumber("Maximum Driving Speed: "));
+        this.backLeft.set(left*SmartDashboard.getNumber("Maximum Driving Speed: "));
+        this.frontRight.set(right*SmartDashboard.getNumber("Maximum Driving Speed: "));
+        this.backRight.set(right*SmartDashboard.getNumber("Maximum Driving Speed: "));
     }
     public void stopAll()
     {
