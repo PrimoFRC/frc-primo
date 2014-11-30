@@ -24,7 +24,7 @@ public class RobotMap {
     public static DigitalInput top, bottom, cycleSensor, doorClose, doorOpen; 
     public static Jaguar frontLeft, frontRight, backLeft, backRight;
 
-    public static Victor doorMover;
+    public static Talon doorMover;
     public static Talon lifterMover;
 
 
@@ -32,21 +32,21 @@ public class RobotMap {
     
     public static void init()
     {
-        top=new DigitalInput(1);
-        bottom=new DigitalInput(8);
+        top=new DigitalInput(3);
+        bottom=new DigitalInput(4);
         cycleSensor=new DigitalInput(10);
-        doorClose=new DigitalInput(2);
-        doorOpen=new DigitalInput(3);
+        doorClose=new DigitalInput(1);
+        doorOpen=new DigitalInput(2);
         
         
-        frontLeft=new Jaguar(3);
-        frontRight=new Jaguar(1);
+        frontLeft=new Jaguar(1);
+        frontRight=new Jaguar(2);
         backLeft=new Jaguar(4);
-        backRight=new Jaguar(8);
+        backRight=new Jaguar(3);
         
         
-        doorMover=new Victor(5);
-        lifterMover=new Talon(6);
+        doorMover=new Talon(6);
+        lifterMover=new Talon(5);
     }
     
     

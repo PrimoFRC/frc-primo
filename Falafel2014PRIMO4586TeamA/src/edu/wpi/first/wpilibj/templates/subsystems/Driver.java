@@ -55,6 +55,22 @@ public class Driver extends Subsystem
         this.frontRight.set(0);
         this.backRight.set(0);
     }
+    public double getFrontLeft()
+    {
+        return frontLeft.getSpeed();
+    }
+    public double getBackLeft()
+    {
+        return backLeft.getSpeed();
+    }
+    public double getFrontRight()
+    {
+        return frontRight.getSpeed();
+    }
+    public double getBackRight()
+    {
+        return backRight.getSpeed();
+    }
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
