@@ -20,7 +20,7 @@ public class RaiseScissorsWhilePressed extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
         
-            lifter.setSpeedLifter(0.5);  //to be tested
+            lifter.setSpeedLifter(1);
         
       
     }

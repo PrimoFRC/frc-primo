@@ -19,7 +19,7 @@ public class LowerScissorsWhilePressed extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        lifter.setSpeedLifter(-0.5);//to be tested
+        lifter.setSpeedLifter(-1);
     }
 
     // Called repeatedly when this Command is scheduled to run

@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.RobotMap;
 
 /**
@@ -37,6 +38,7 @@ public class Lifter extends Subsystem {
  
     public void setSpeedLifter(double speed)
             {
+                speed*=SmartDashboard.getNumber("Maximum Scissors Speed: ");
                 if(lifterMover.getSpeed()!=0)
                     if (lifterMover.getSpeed() * speed <= 0) {
                         if (lifterMover.getSpeed() > 0) 

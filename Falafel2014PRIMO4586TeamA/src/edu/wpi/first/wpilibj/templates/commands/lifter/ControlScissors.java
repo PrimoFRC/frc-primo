@@ -37,9 +37,7 @@ public class ControlScissors extends CommandBase {
             } else {
                 if (lifter.getBottom() && y < 0) {
                     this.y = 0;
-                } else {
-                    this.y = y * 0.5;//to be tested
-                }
+                } 
             }
 
         }

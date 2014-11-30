@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.RobotMap;
 
 /**
@@ -41,7 +42,7 @@ public class Dropper extends Subsystem {
     {
         //הפעולה מקבלת מהירות
         //הפעולה מעניקה את המהיקות למנוע שאחראי על הדלת
-        this.doorMover.set(speed);
+        this.doorMover.set(speed*SmartDashboard.getNumber("Maximum Door Speed: "));
     }
     public double getDoorSpeed()
     {
