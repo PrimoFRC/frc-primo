@@ -33,10 +33,10 @@ public class RobotMap {
     public static void init()
     {
         top=new DigitalInput(3);
-        bottom=new DigitalInput(4);
+        bottom=new DigitalInput(12);
         cycleSensor=new DigitalInput(10);
-        doorClose=new DigitalInput(1);
-        doorOpen=new DigitalInput(2);
+        doorClose=new DigitalInput(5);
+        doorOpen=new DigitalInput(8);
         
         
         frontLeft=new Jaguar(1);

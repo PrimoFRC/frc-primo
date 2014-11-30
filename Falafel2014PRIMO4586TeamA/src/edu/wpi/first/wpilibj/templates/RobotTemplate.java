@@ -104,6 +104,7 @@ public class RobotTemplate extends IterativeRobot {
         SmartDashboard.putNumber("Scoring Position in Cycles: ",0);
         SmartDashboard.putNumber("Maximum Door Speed: ",0.5);
         SmartDashboard.putNumber("Maximum Scissors Speed: ",0.5);
+        SmartDashboard.putNumber("Maximum Spinning Speed: ",0.5);
         SmartDashboard.putNumber("Maximum Driving Speed: ",0.5);
     }
     public void periodicSmartDashboard()
