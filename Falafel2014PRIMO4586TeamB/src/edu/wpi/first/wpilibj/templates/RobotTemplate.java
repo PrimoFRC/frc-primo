@@ -41,8 +41,10 @@ public class RobotTemplate extends IterativeRobot {
 
         // Initialize all subsystems
         RobotMap.init();
-        CommandBase.init();
         initSmartDashboard();
+        CommandBase.init();
+        
+        System.out.println("Robot Init!");
         
     }
 
@@ -94,20 +96,20 @@ public class RobotTemplate extends IterativeRobot {
         SmartDashboard.putNumber("move to hanging: ", 0);
         SmartDashboard.putNumber("move to collection: ", 0);
         SmartDashboard.putNumber("move to scoring: ", 0);
-        SmartDashboard.putBoolean("micro bottom lifter: ", RobotMap.bottomLifter.get());
-        SmartDashboard.putBoolean("micro top lifter: ", RobotMap.topLifter.get());
-        SmartDashboard.putBoolean("micro close door:", RobotMap.doorClose.get());
-        SmartDashboard.putBoolean("micro open door:", RobotMap.doorOpen.get());
-        SmartDashboard.putBoolean("micro cycle sensor:", RobotMap.cycleSensor.get());
+        SmartDashboard.putNumber("lifter move speed: ", 1);
+        SmartDashboard.putNumber("drive move speed: ", 0.7);
+        SmartDashboard.putNumber("door move speed: ", 0.3);
+        SmartDashboard.putNumber("axis limit: ", 0.3);
+        SmartDashboard.putNumber("autonomousTime: ", 0.1);
     }
     
     public void smartDashboardPeriodic()
     {
         SmartDashboard.putNumber("number of cycles: ", CommandBase.lifter.countCycles());
-        SmartDashboard.putBoolean("micro bottom lifter: ", RobotMap.bottomLifter.get());
-        SmartDashboard.putBoolean("micro top lifter: ", RobotMap.topLifter.get());
-        SmartDashboard.putBoolean("micro close door:", RobotMap.doorClose.get());
-        SmartDashboard.putBoolean("micro open door:", RobotMap.doorOpen.get());
-        SmartDashboard.putBoolean("micro cycle sensor:", RobotMap.cycleSensor.get());
+        SmartDashboard.putBoolean("is door open: ", RobotMap.doorOpen.get());
+        SmartDashboard.putBoolean("is door close: ", RobotMap.doorClose.get());
+        SmartDashboard.putBoolean("is lifter at bottom: ", RobotMap.bottomLifter.get());
+        SmartDashboard.putBoolean("is lifter at top: ", RobotMap.topLifter.get());
+       
     }
 }

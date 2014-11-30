@@ -5,6 +5,7 @@
  */
 package edu.wpi.first.wpilibj.templates.commands.driver;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.commands.CommandBase;
 
 /**
@@ -20,7 +21,7 @@ public class MoveForward extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        setTimeout(2);//need check
+        setTimeout(SmartDashboard.getNumber("autonomousTime: "));
         
     }
 

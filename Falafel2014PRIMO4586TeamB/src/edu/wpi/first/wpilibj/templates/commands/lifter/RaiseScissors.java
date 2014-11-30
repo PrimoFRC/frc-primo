@@ -4,6 +4,7 @@
  */
 package edu.wpi.first.wpilibj.templates.commands.lifter;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.commands.CommandBase;
 
 /**
@@ -20,7 +21,7 @@ public class RaiseScissors extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
         if (!lifter.getTopMicro())
-            lifter.setRailSpeed(0.5);//need check
+            lifter.setRailSpeed(1);
     }
 
     // Called repeatedly when this Command is scheduled to run

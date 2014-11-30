@@ -26,11 +26,11 @@ public class ControlScissors extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         
-        if ((!lifter.getBottomMicro() && oi.operatorStick.getY() < -0.1) || (!lifter.getTopMicro() && oi.operatorStick.getY() > 0.1))
+        if ((!lifter.getBottomMicro() && oi.operatorStick.getY() < -0.2) || (!lifter.getTopMicro() && oi.operatorStick.getY() > 0.2))
         {
             lifter.setRailSpeed(oi.operatorStick.getY());
             isZero = false;
-        }
+        } 
         
         else if (!isZero)
         {

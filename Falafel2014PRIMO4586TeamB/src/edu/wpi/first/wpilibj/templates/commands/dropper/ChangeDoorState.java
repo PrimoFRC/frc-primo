@@ -27,13 +27,13 @@ public class ChangeDoorState extends CommandBase
             {
                 //opens door
                 isClosing = false;
-                dropper.moveDoor(0.5);//need check
+                dropper.moveDoor(1);
             }
             else
             {
                 //closes door
                 isClosing = true;
-                dropper.moveDoor(-0.5);//need check
+                dropper.moveDoor(-1);
             }
 	}
 

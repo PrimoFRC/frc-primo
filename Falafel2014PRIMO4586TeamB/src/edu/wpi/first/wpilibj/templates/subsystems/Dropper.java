@@ -7,8 +7,9 @@ package edu.wpi.first.wpilibj.templates.subsystems;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 
-import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.RobotMap;
 
 /**
@@ -18,7 +19,7 @@ import edu.wpi.first.wpilibj.templates.RobotMap;
 public class Dropper extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-    private Victor doorMover;
+    private Talon doorMover;
     
     private DigitalInput doorOpen;
     private DigitalInput doorClose;
@@ -43,7 +44,7 @@ public class Dropper extends Subsystem {
     
     public void moveDoor(double speed)
     {
-        doorMover.set(speed);
+        doorMover.set(SmartDashboard.getNumber("door move speed: ")*speed);
     }
     
     public void initDefaultCommand() {
