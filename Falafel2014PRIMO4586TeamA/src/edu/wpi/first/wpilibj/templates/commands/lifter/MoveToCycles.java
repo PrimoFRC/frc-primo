@@ -59,12 +59,12 @@ public class MoveToCycles extends CommandBase {
             }
         if(target>SmartDashboard.getNumber("Cycles: "))
         {
-            lifter.setSpeedLifter(0.5); //to be tested
+            lifter.setSpeedLifter(1);
             goingBack=false;
         }
         else
         {
-            lifter.setSpeedLifter(-0.5); //to be tested
+            lifter.setSpeedLifter(-1); 
             goingBack=true;
         }
     }

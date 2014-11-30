@@ -22,9 +22,9 @@ public class ManualyChangeDoorState extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
         if(oi.emergencyCloseDoor.get() && !oi.emergencyOpenDoor.get())
-            dropper.moveDoor(0.5);//to be tested
+            dropper.moveDoor(1);
         else if(oi.emergencyOpenDoor.get() && !oi.emergencyCloseDoor.get())
-            dropper.moveDoor(-0.5);//to be tested
+            dropper.moveDoor(-1);
         else
         {
         DriverStationLCD.getInstance().println(DriverStationLCD.Line.kUser1, 4, "Conflicting buttons are being pressed simultaneously, please release one of them");

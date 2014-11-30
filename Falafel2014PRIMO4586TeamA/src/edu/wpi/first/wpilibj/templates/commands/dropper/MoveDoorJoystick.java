@@ -38,7 +38,7 @@ public class MoveDoorJoystick extends CommandBase
                     if (dropper.getCloseMicro() && this.speed < 0) {
                         this.speed = 0;
                     } else {
-                        this.speed = this.speed * 0.5;//to be tested
+                        this.speed = this.speed;
                     }
                 }
 
