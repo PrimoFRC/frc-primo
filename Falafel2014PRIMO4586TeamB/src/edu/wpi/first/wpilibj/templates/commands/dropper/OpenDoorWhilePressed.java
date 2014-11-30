@@ -4,6 +4,7 @@
  */
 package edu.wpi.first.wpilibj.templates.commands.dropper;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.commands.CommandBase;
 
 /**
@@ -22,9 +23,10 @@ public class OpenDoorWhilePressed extends CommandBase
 	// Called just before this Command runs the first time
 	protected void initialize()
 	{
-            
-            dropper.moveDoor(0.5);
-            
+             if (!dropper.getOpenMicro())
+            {
+                dropper.moveDoor(1);
+            }
 	}
 
 	// Called repeatedly when this Command is scheduled to run

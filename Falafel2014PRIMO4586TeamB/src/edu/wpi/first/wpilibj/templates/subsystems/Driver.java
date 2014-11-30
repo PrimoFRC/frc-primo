@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.RobotMap;
 
 /**
@@ -32,12 +33,23 @@ public class Driver extends Subsystem {
      
     public void arcadeDrive(Joystick stick)
     {
-        driver.arcadeDrive(stick);
+        //driver.arcadeDrive(stick);
+        driver.arcadeDrive(-stick.getY()*SmartDashboard.getNumber("drive move speed: "), -stick.getX()*SmartDashboard.getNumber("drive move speed: "));
     }
     
     public void moveForward()
     {
+
+        driver.arcadeDrive(1*SmartDashboard.getNumber("drive move speed: "),0);
+        /*
+        frontLeft.set(-1*SmartDashboard.getNumber("drive move speed: "));
+        frontRight.set(-1*SmartDashboard.getNumber("drive move speed: "));
+        backLeft.set(-1*SmartDashboard.getNumber("drive move speed: "));
+        backRight.set(-1*SmartDashboard.getNumber("drive move speed: "));
+         */
+
         driver.arcadeDrive(0.5, 0);
+
     }
     
     public void stop()

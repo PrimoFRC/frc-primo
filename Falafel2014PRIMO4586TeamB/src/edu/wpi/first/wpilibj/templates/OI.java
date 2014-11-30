@@ -10,8 +10,13 @@ import edu.wpi.first.wpilibj.templates.commands.dropper.ChangeDoorState;
 import edu.wpi.first.wpilibj.templates.commands.dropper.CloseDoorWhilePressed;
 import edu.wpi.first.wpilibj.templates.commands.dropper.OpenDoorWhilePressed;
 import edu.wpi.first.wpilibj.templates.commands.lifter.LowerScissors;
+
+import edu.wpi.first.wpilibj.templates.commands.lifter.MoveToBottom;
+
 import edu.wpi.first.wpilibj.templates.commands.lifter.MoveToCycles;
+
 import edu.wpi.first.wpilibj.templates.commands.lifter.MoveToKnownCycles;
+import edu.wpi.first.wpilibj.templates.commands.lifter.MoveToTop;
 import edu.wpi.first.wpilibj.templates.commands.lifter.RaiseScissors;
 
 /**
@@ -54,7 +59,11 @@ public class OI {
     public Joystick operatorStick;
     
     public JoystickButton changeDoorState, closeDoor, openDoor, raiseScissors, 
-            lowerScissors, moveToHanging, moveToCollection, moveToScoring, hang, moveToCycles;
+
+            lowerScissors, moveToHanging, moveToCollection, moveToScoring, hang, moveToTop, moveToBottom, moveToCycles;
+
+           
+
     
     public OI() //need check
     {
@@ -75,7 +84,12 @@ public class OI {
         moveToHanging = new JoystickButton(operatorStick, 8);
         moveToScoring = new JoystickButton(operatorStick, 9);
         hang = new JoystickButton(operatorStick, 10);
+
+        moveToTop = new JoystickButton(operatorStick, 11);
+        moveToBottom = new JoystickButton(operatorStick, 12);
+
         moveToCycles = new JoystickButton(operatorStick, 11);
+
         
         raiseScissors.whenPressed(new RaiseScissors());
         lowerScissors.whenPressed(new LowerScissors());
@@ -84,6 +98,9 @@ public class OI {
         moveToScoring.whenPressed(new MoveToKnownCycles(3));
         hang.whenPressed(new MoveToKnownCycles(4));
         moveToCycles.whenPressed(new MoveToCycles());
+        moveToTop.whenPressed(new MoveToTop());
+        moveToBottom.whenPressed(new MoveToBottom());
+        
     }
     
 }

@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.RobotMap;
 
 /**
@@ -42,7 +43,7 @@ public class Lifter extends Subsystem {
         cycleCounterPositive = RobotMap.cycleCounterPositive;
         cycleCounterNegative = RobotMap.cycleCounterNegative;
         
-        lifterMover = RobotMap.lifterMover1;
+        lifterMover = RobotMap.lifterMover;
     }
     
     public boolean getTopMicro()
@@ -88,7 +89,7 @@ public class Lifter extends Subsystem {
     
     public void setRailSpeed(double railSpeed)
     {
-        lifterMover.set(railSpeed);
+        lifterMover.set(SmartDashboard.getNumber("lifter move speed: ")*railSpeed);
     }
     
     public int countCycles()

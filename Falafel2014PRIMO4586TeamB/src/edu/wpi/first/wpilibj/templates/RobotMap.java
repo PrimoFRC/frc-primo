@@ -42,32 +42,29 @@ public class RobotMap {
     public static Jaguar backLeft;
     public static Jaguar backRight;
     
-    public static Victor doorMover;
-    public static Talon lifterMover1, lifterMover2;
+    public static Talon doorMover;
+    public static Talon lifterMover;
     
     public static void init()//need check
     {
         //DigitalInputs
-        topLifter = new DigitalInput(1);
-        bottomLifter = new DigitalInput(8);
-        collection = new DigitalInput(6);
-        hanging = new DigitalInput(7);
+        topLifter = new DigitalInput(3);
+        bottomLifter = new DigitalInput(12);
         
-        doorOpen = new DigitalInput(3);
-        doorClose = new DigitalInput(2);
+        doorOpen = new DigitalInput(8);
+        doorClose = new DigitalInput(5);
         
         cycleSensor = new DigitalInput(10);
         cycleCounterPositive = new Counter(cycleSensor);
         cycleCounterNegative = new Counter(cycleSensor);
                 
         //speedControllers
-        frontLeft = new Jaguar(3);
-        frontRight = new Jaguar(1);
+        frontLeft = new Jaguar(1);
+        frontRight = new Jaguar(2);
         backLeft = new Jaguar(4);
-        backRight = new Jaguar(8);
+        backRight = new Jaguar(3);
         
-        doorMover = new Victor(5);
-        lifterMover1 = new Talon(6);
-        lifterMover2 = new Talon(7);
+        doorMover = new Talon(6);
+        lifterMover = new Talon(5);
     }
 }

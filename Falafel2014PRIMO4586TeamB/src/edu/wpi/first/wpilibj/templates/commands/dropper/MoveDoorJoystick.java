@@ -4,6 +4,8 @@
  */
 package edu.wpi.first.wpilibj.templates.commands.dropper;
 
+import com.sun.squawk.platform.posix.natives.LibC;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.commands.CommandBase;
 
 /**
@@ -30,9 +32,10 @@ public class MoveDoorJoystick extends CommandBase
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute()
 	{
-            if((!dropper.getCloseMicro() && oi.operatorStick.getRawAxis(3)<-0.1) || (!dropper.getOpenMicro() && oi.operatorStick.getRawAxis(3)>0.1))
+            if((!dropper.getCloseMicro() && oi.operatorStick.getRawAxis(5)<-SmartDashboard.getNumber("axis limit: ")) ||
+                    (!dropper.getOpenMicro() && oi.operatorStick.getRawAxis(5)> SmartDashboard.getNumber("axis limit: ")))
             {
-                dropper.moveDoor(oi.operatorStick.getRawAxis(3));
+                dropper.moveDoor(oi.operatorStick.getRawAxis(5));
                 isZero = false;
             }
             else if (!isZero)

@@ -35,7 +35,7 @@ public class AutonomousCommand extends CommandGroup {
         // arm.
         
         addParallel(new MoveForward());
-        addSequential(new MoveToKnownCycles(3));
+        //addSequential(new MoveToKnownCycles((int)SmartDashboard.getNumber("move to scoring: ")));
         addSequential(new ChangeDoorState());
     }
 }
