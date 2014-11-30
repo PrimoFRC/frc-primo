@@ -18,7 +18,7 @@ import edu.wpi.first.wpilibj.templates.RobotMap;
 public class Dropper extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-    private Victor doorMover;
+    private Talon doorMover;
     
     private DigitalInput doorOpen, doorClose;
     
@@ -43,7 +43,10 @@ public class Dropper extends Subsystem {
         //הפעולה מעניקה את המהיקות למנוע שאחראי על הדלת
         this.doorMover.set(speed);
     }
-
+    public double getDoorSpeed()
+    {
+        return doorMover.getSpeed();
+    }
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());

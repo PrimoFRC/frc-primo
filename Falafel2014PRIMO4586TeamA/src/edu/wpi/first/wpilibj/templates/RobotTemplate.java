@@ -114,6 +114,11 @@ public class RobotTemplate extends IterativeRobot {
         SmartDashboard.putBoolean("Is the Door Open: ", CommandBase.dropper.getOpenMicro());
         SmartDashboard.putBoolean("Are the Scissors at the Bottom: ", CommandBase.lifter.getBottom());
         SmartDashboard.putBoolean("Are the Scissors at the Top: ", CommandBase.lifter.getTop());
-        SmartDashboard.putNumber("Speed of Scissors Engine 1: ", CommandBase.lifter.getSpeedLifter1());
+        SmartDashboard.putNumber("Speed of Scissors: ", CommandBase.lifter.getSpeedLifter1());
+        SmartDashboard.putNumber("Speed of Door: ", CommandBase.dropper.getDoorSpeed());
+        SmartDashboard.putNumber("Speed of Left Front: ", CommandBase.driver.getFrontLeft());
+        SmartDashboard.putNumber("Speed of Right Front: ", CommandBase.driver.getFrontRight());
+        SmartDashboard.putNumber("Speed of Left Back: ", CommandBase.driver.getBackLeft());
+        SmartDashboard.putNumber("Speed of Right Back: ", CommandBase.driver.getBackRight());
     }
 }
