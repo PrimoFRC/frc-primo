@@ -31,7 +31,7 @@ public class RaiseScissors extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (lifter.getTopMicro() || !oi.raiseScissors.get());
+        return (lifter.getTopMicro() || !oi.raiseScissors.get() || oi.stopAll.get());
     }
 
     // Called once after isFinished returns true

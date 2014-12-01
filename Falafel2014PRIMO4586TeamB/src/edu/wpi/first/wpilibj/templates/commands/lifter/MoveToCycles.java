@@ -36,7 +36,7 @@ public class MoveToCycles extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (lifter.countCycles() == SmartDashboard.getNumber("move to cycles: ") || !lifter.getBottomMicro() || !lifter.getTopMicro());
+        return (lifter.countCycles() == SmartDashboard.getNumber("move to cycles: ") || !lifter.getBottomMicro() || !lifter.getTopMicro() || oi.stopAll.get());
     }
 
     // Called once after isFinished returns true

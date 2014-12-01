@@ -34,7 +34,7 @@ public class Driver extends Subsystem {
     public void arcadeDrive(Joystick stick)
     {
         //driver.arcadeDrive(stick);
-        driver.arcadeDrive(-stick.getY()*SmartDashboard.getNumber("drive move speed: "), -stick.getX()*SmartDashboard.getNumber("drive move speed: "));
+        driver.arcadeDrive(-stick.getY()*SmartDashboard.getNumber("drive move speed: "), -stick.getX()*SmartDashboard.getNumber("drive rotate speed: "));
     }
     
     public void moveForward()
