@@ -25,10 +25,6 @@ public class MoveToKnownCycles extends CommandBase {
                 break;
             case 2: this.cycles = (int)SmartDashboard.getNumber("move to hanging: ",0);
                 break;
-            case 3: this.cycles = (int)SmartDashboard.getNumber("move to scoring: ",0);
-                break;
-            case 4: this.cycles = (int)SmartDashboard.getNumber("hang: ",0);
-                break;
         }
     }
 
@@ -49,7 +45,7 @@ public class MoveToKnownCycles extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (lifter.countCycles() == cycles) || !lifter.getBottomMicro() || !lifter.getTopMicro();
+        return (lifter.countCycles() == cycles) || !lifter.getBottomMicro() || !lifter.getTopMicro() || oi.stopAll.get();
     }
 
     // Called once after isFinished returns true

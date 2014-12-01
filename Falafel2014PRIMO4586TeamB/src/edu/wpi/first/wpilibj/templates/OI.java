@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.templates.commands.StopAll;
 import edu.wpi.first.wpilibj.templates.commands.dropper.ChangeDoorState;
 import edu.wpi.first.wpilibj.templates.commands.dropper.CloseDoorWhilePressed;
 import edu.wpi.first.wpilibj.templates.commands.dropper.OpenDoorWhilePressed;
@@ -60,7 +61,7 @@ public class OI {
     
     public JoystickButton changeDoorState, closeDoor, openDoor, raiseScissors, 
 
-            lowerScissors, moveToHanging, moveToCollection, moveToScoring, hang, moveToTop, moveToBottom, moveToCycles;
+            lowerScissors, moveToHanging, moveToCollection, moveToTop, moveToBottom, moveToCycles,stopAll;
 
            
 
@@ -71,36 +72,38 @@ public class OI {
         operatorStick = new Joystick(2);
                 
         changeDoorState = new JoystickButton(operatorStick, 1);
-        closeDoor = new JoystickButton(operatorStick, 3);
-        openDoor = new JoystickButton(operatorStick, 4);
+        closeDoor = new JoystickButton(operatorStick, 12);
+        openDoor = new JoystickButton(operatorStick, 11);
         
         changeDoorState.whenPressed(new ChangeDoorState());
         closeDoor.whenPressed(new CloseDoorWhilePressed());
         openDoor.whenPressed(new OpenDoorWhilePressed());
         
-        raiseScissors = new JoystickButton(operatorStick, 5);
-        lowerScissors = new JoystickButton(operatorStick, 6);
-        moveToCollection = new JoystickButton(operatorStick, 7);
-        moveToHanging = new JoystickButton(operatorStick, 8);
-        moveToScoring = new JoystickButton(operatorStick, 9);
-        hang = new JoystickButton(operatorStick, 10);
+        raiseScissors = new JoystickButton(operatorStick, 10);
+        lowerScissors = new JoystickButton(operatorStick, 9);
+        moveToCollection = new JoystickButton(operatorStick, 5);
+        moveToHanging = new JoystickButton(operatorStick, 6);
+       // moveToScoring = new JoystickButton(operatorStick, 9);
+        //hang = new JoystickButton(operatorStick, 10);
 
-        moveToTop = new JoystickButton(operatorStick, 11);
-        moveToBottom = new JoystickButton(operatorStick, 12);
+        moveToTop = new JoystickButton(operatorStick, 3); // move to scoring бочен
+        moveToBottom = new JoystickButton(operatorStick, 4);
+       
 
-        moveToCycles = new JoystickButton(operatorStick, 11);
+        moveToCycles = new JoystickButton(operatorStick, 7);
+        stopAll = new JoystickButton(operatorStick, 8);
 
         
         raiseScissors.whenPressed(new RaiseScissors());
         lowerScissors.whenPressed(new LowerScissors());
         moveToCollection.whenPressed(new MoveToKnownCycles(1));
         moveToHanging.whenPressed(new MoveToKnownCycles(2));
-        moveToScoring.whenPressed(new MoveToKnownCycles(3));
-        hang.whenPressed(new MoveToKnownCycles(4));
+        //moveToScoring.whenPressed(new MoveToKnownCycles(3));
+       // hang.whenPressed(new MoveToKnownCycles(4));
         moveToCycles.whenPressed(new MoveToCycles());
         moveToTop.whenPressed(new MoveToTop());
         moveToBottom.whenPressed(new MoveToBottom());
-        
+        stopAll.whenPressed(new StopAll());
     }
     
 }

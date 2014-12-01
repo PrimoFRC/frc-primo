@@ -92,15 +92,15 @@ public class RobotTemplate extends IterativeRobot {
     {
         SmartDashboard.putNumber("number of cycles: ", 0);
         SmartDashboard.putNumber("move to cycles: ", 0);
-        SmartDashboard.putNumber("hang: ", 0);
         SmartDashboard.putNumber("move to hanging: ", 0);
         SmartDashboard.putNumber("move to collection: ", 0);
-        SmartDashboard.putNumber("move to scoring: ", 0);
         SmartDashboard.putNumber("lifter move speed: ", 1);
         SmartDashboard.putNumber("drive move speed: ", 0.7);
         SmartDashboard.putNumber("door move speed: ", 0.3);
+        SmartDashboard.putNumber("drive rotate speed: ", 0.7);
         SmartDashboard.putNumber("axis limit: ", 0.3);
         SmartDashboard.putNumber("autonomousTime: ", 0.1);
+        
     }
     
     public void smartDashboardPeriodic()
@@ -110,6 +110,6 @@ public class RobotTemplate extends IterativeRobot {
         SmartDashboard.putBoolean("is door close: ", RobotMap.doorClose.get());
         SmartDashboard.putBoolean("is lifter at bottom: ", RobotMap.bottomLifter.get());
         SmartDashboard.putBoolean("is lifter at top: ", RobotMap.topLifter.get());
-       
+        SmartDashboard.putBoolean("cycle Sensor: ", RobotMap.cycleSensor.get());
     }
 }
