@@ -30,12 +30,15 @@ public class MoveToBottom extends CommandBase {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         
-                return lifter.getBottomMicro() || oi.stopAll.get();
+                return (lifter.getBottomMicro() || oi.stopAll.get()||lifter.getRailSpeed() != -1);
     }
 
     // Called once after isFinished returns true
     protected void end() {
+        if(lifter.getRailSpeed() == -1)
+        {
         lifter.setRailSpeed(0);
+        }
     }
 
     // Called when another command which requires one or more of the same

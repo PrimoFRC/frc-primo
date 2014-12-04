@@ -99,7 +99,10 @@ public class RobotTemplate extends IterativeRobot {
         SmartDashboard.putNumber("door move speed: ", 0.3);
         SmartDashboard.putNumber("drive rotate speed: ", 0.7);
         SmartDashboard.putNumber("axis limit: ", 0.3);
-        SmartDashboard.putNumber("autonomousTime: ", 0.1);
+        SmartDashboard.putNumber("autonomousTime: ", 2.8);
+        SmartDashboard.putNumber("slowAutonomousTime", 3);
+        SmartDashboard.putNumber("slowAutonomousSpeed", 0.5);
+        SmartDashboard.putNumber("enter waiting time: ", 0.8);
         
     }
     

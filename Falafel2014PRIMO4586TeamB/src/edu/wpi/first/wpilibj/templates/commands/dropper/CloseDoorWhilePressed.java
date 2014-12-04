@@ -23,15 +23,14 @@ public class CloseDoorWhilePressed extends CommandBase
 	// Called just before this Command runs the first time
 	protected void initialize()
 	{
-            if (!dropper.getCloseMicro())
-            {
-                dropper.moveDoor(-1);
-            }
+            
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute()
-	{
+        {
+
+                dropper.moveDoor(-1);
             
 	}
 

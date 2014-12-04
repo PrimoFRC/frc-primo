@@ -8,8 +8,10 @@ package edu.wpi.first.wpilibj.templates.commands;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.commands.driver.MoveForward;
+import edu.wpi.first.wpilibj.templates.commands.driver.MoveForwardSlow;
 import edu.wpi.first.wpilibj.templates.commands.dropper.ChangeDoorState;
 import edu.wpi.first.wpilibj.templates.commands.lifter.MoveToKnownCycles;
+import edu.wpi.first.wpilibj.templates.commands.lifter.MoveToTop;
 
 /**
  *
@@ -35,7 +37,10 @@ public class AutonomousCommand extends CommandGroup {
         // arm.
         
         addParallel(new MoveForward());
-        //addSequential(new MoveToKnownCycles((int)SmartDashboard.getNumber("move to scoring: ")));
-        addSequential(new ChangeDoorState());
+        addSequential(new MoveToTop());
+        addSequential(new MoveForwardSlow(1));
+        addParallel(new ChangeDoorState());
+        addSequential(new Wait());
+        addSequential(new MoveForwardSlow(-0.8));
     }
 }

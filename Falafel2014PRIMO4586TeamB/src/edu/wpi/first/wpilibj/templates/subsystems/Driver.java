@@ -34,13 +34,13 @@ public class Driver extends Subsystem {
     public void arcadeDrive(Joystick stick)
     {
         //driver.arcadeDrive(stick);
-        driver.arcadeDrive(-stick.getY()*SmartDashboard.getNumber("drive move speed: "), -stick.getX()*SmartDashboard.getNumber("drive rotate speed: "));
+        driver.arcadeDrive(-stick.getY()*SmartDashboard.getNumber("drive move speed: "), -stick.getRawAxis(4)*SmartDashboard.getNumber("drive rotate speed: "));
     }
     
-    public void moveForward()
+    public void moveForward(double speed)
     {
 
-        driver.arcadeDrive(1*SmartDashboard.getNumber("drive move speed: "),0);
+        driver.arcadeDrive(speed,0);
         /*
         frontLeft.set(-1*SmartDashboard.getNumber("drive move speed: "));
         frontRight.set(-1*SmartDashboard.getNumber("drive move speed: "));
@@ -48,7 +48,7 @@ public class Driver extends Subsystem {
         backRight.set(-1*SmartDashboard.getNumber("drive move speed: "));
          */
 
-        driver.arcadeDrive(0.5, 0);
+       
 
     }
     
