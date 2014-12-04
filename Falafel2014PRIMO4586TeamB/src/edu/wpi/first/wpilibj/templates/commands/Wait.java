@@ -1,27 +1,26 @@
 /*
- * To change this template, choose Tools | Templates
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.wpi.first.wpilibj.templates.commands.lifter;
+package edu.wpi.first.wpilibj.templates.commands;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.templates.commands.CommandBase;
 
 /**
  *
- * @author user
+ * @author lenovo
  */
-public class LowerScissors extends CommandBase {
+public class Wait extends CommandBase {
     
-    public LowerScissors() {
+    public Wait() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        if (!lifter.getBottomMicro())
-            lifter.setRailSpeed(-1);
+        setTimeout(SmartDashboard.getNumber("enter waiting time: ", 0.8));
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -30,13 +29,12 @@ public class LowerScissors extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        // it would stack the commands, but speed == 0 should do it.
-        return (lifter.getBottomMicro() || !oi.lowerScissors.get() || oi.stopAll.get());
+        return isTimedOut();
     }
-    
+
     // Called once after isFinished returns true
     protected void end() {
-        lifter.setRailSpeed(0);
+        
     }
 
     // Called when another command which requires one or more of the same

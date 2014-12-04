@@ -53,11 +53,11 @@ public class ChangeDoorState extends CommandBase
             }
             else if (isClosing)
             {
-		return dropper.getCloseMicro();
+		return (dropper.getCloseMicro()||(dropper.getCurrentSpeed() != -1));
             }
             else
             {
-                return dropper.getOpenMicro();
+                return (dropper.getOpenMicro()||(dropper.getCurrentSpeed() != 1));
             }
             
 	}
@@ -65,7 +65,10 @@ public class ChangeDoorState extends CommandBase
 	// Called once after isFinished returns true
 	protected void end()
 	{
+            if ((dropper.getCurrentSpeed() == -1 && isClosing) || (dropper.getCurrentSpeed() == 1 && !isClosing))
+            {
             dropper.moveDoor(0);
+            }
 	}
 
 	// Called when another command which requires one or more of the same

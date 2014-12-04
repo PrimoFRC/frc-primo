@@ -54,7 +54,7 @@ public class RobotMap {
         doorOpen = new DigitalInput(8);
         doorClose = new DigitalInput(5);
         
-        cycleSensor = new DigitalInput(10);
+        cycleSensor = new DigitalInput(11);
         cycleCounterPositive = new Counter(cycleSensor);
         cycleCounterNegative = new Counter(cycleSensor);
                 
