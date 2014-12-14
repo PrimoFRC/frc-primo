@@ -30,7 +30,7 @@ import edu.wpi.first.wpilibj.templates.subsystems.Lifter;
 public class RobotTemplate extends IterativeRobot {
 
     Command autonomousCommand;
-
+    boolean stop;
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -83,9 +83,14 @@ public class RobotTemplate extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        stop = Drive.driver.stop;
         
         smartDashboardPeriodic();
-                
+        if (stop)
+        {
+            Scheduler.getInstance().add(new Drive());
+            Drive.driver.stop = false;
+        }
     }
     
     public void initSmartDashboard()

@@ -4,6 +4,7 @@
  */
 package edu.wpi.first.wpilibj.templates.commands.dropper;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.commands.CommandBase;
 
 /**
@@ -23,17 +24,20 @@ public class ChangeDoorState extends CommandBase
 	// Called just before this Command runs the first time
 	protected void initialize()
 	{
-            if (dropper.getCloseMicro())
+            if (oi.safeButton.get())
             {
-                //opens door
-                isClosing = false;
-                dropper.moveDoor(1);
-            }
-            else
-            {
-                //closes door
-                isClosing = true;
-                dropper.moveDoor(-1);
+                if (dropper.getCloseMicro())
+                {
+                    //opens door
+                    isClosing = false;
+                    dropper.moveDoor(1);
+                }
+                else
+                {
+                    //closes door
+                    isClosing = true;
+                    dropper.moveDoor(-1);
+                }
             }
 	}
 
@@ -47,17 +51,18 @@ public class ChangeDoorState extends CommandBase
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished()
 	{
-            if(oi.stopAll.get())
+            System.out.println(dropper.getCurrentSpeed());
+            if(oi.stopAll.get() || dropper.getCurrentSpeed() == 0)
             {
                 return true;
             }
             else if (isClosing)
             {
-		return (dropper.getCloseMicro()||(dropper.getCurrentSpeed() != -1));
+		return (dropper.getCloseMicro()||(dropper.getCurrentSpeed() == 1 * SmartDashboard.getNumber("door move speed: ")));
             }
             else
             {
-                return (dropper.getOpenMicro()||(dropper.getCurrentSpeed() != 1));
+                return (dropper.getOpenMicro()||(dropper.getCurrentSpeed() == -1 * SmartDashboard.getNumber("door move speed: ")));
             }
             
 	}
@@ -65,7 +70,7 @@ public class ChangeDoorState extends CommandBase
 	// Called once after isFinished returns true
 	protected void end()
 	{
-            if ((dropper.getCurrentSpeed() == -1 && isClosing) || (dropper.getCurrentSpeed() == 1 && !isClosing))
+            if ((dropper.getCurrentSpeed() != 1 * SmartDashboard.getNumber("door move speed: ") && isClosing) || (dropper.getCurrentSpeed() != -1 * SmartDashboard.getNumber("door move speed: ") && !isClosing))
             {
             dropper.moveDoor(0);
             }

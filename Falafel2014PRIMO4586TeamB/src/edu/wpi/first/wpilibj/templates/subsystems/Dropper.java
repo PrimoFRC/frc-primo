@@ -44,7 +44,7 @@ public class Dropper extends Subsystem {
     
     public void moveDoor(double speed)
     {
-        doorMover.set(SmartDashboard.getNumber("door move speed: ")*speed);
+        doorMover.set(-SmartDashboard.getNumber("door move speed: ")*speed);
     }
     
     public void stop()
@@ -54,7 +54,7 @@ public class Dropper extends Subsystem {
     }
     public double getCurrentSpeed()
     {
-        return doorMover.get()/SmartDashboard.getNumber("door move speed: ");
+        return -doorMover.get();
     }
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.

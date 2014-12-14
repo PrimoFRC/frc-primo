@@ -5,6 +5,7 @@
  */
 package edu.wpi.first.wpilibj.templates.commands.lifter;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.commands.CommandBase;
 
 /**
@@ -30,12 +31,12 @@ public class MoveToTop extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (lifter.getTopMicro() || oi.stopAll.get()||lifter.getRailSpeed() != 1);
+        return (lifter.getTopMicro() || oi.stopAll.get()||lifter.getRailSpeed() != 1 * SmartDashboard.getNumber("lifter move speed: "));
     }
 
     // Called once after isFinished returns true
     protected void end() {
-        if(lifter.getRailSpeed() == 1)
+        if(lifter.getRailSpeed() == 1 * SmartDashboard.getNumber("lifter move speed: "))
         {
         lifter.setRailSpeed(0);
         }

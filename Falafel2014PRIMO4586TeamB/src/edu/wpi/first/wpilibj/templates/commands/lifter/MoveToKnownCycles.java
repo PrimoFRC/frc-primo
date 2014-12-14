@@ -15,28 +15,36 @@ import edu.wpi.first.wpilibj.templates.commands.CommandBase;
  * @author lenovo
  */
 public class MoveToKnownCycles extends CommandBase {
-    private int cycles;
-    public MoveToKnownCycles(int cycles) {
+    private int cycles, type;
+    private boolean isClosing;
+    public MoveToKnownCycles(int type) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        switch (cycles)
-        {
-            case 1: this.cycles = (int)SmartDashboard.getNumber("move to collection: ",0);
-                break;
-            case 2: this.cycles = (int)SmartDashboard.getNumber("move to hanging: ",0);
-                break;
-        }
+        this.type = type;
+        
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        if(!lifter.getBottomMicro() || !lifter.getTopMicro())
-        {
+            switch (type)
+            {
+                case 1: this.cycles = (int)SmartDashboard.getNumber("move to collection: ",0);
+                    break;
+                case 2: this.cycles = (int)SmartDashboard.getNumber("move to hanging: ",0);
+                    break;
+            }
+            System.out.println(cycles);
             if (lifter.countCycles() > cycles)
-                lifter.setRailSpeed(-0.5);//need check
+            {
+                lifter.setRailSpeed(-1);//need check
+                isClosing = false;
+            }
             else if (lifter.countCycles() < cycles)
-                lifter.setRailSpeed(0.5);//need check
-        }
+            {
+                lifter.setRailSpeed(1);//need check
+                isClosing = true;
+            }
+        
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -45,12 +53,18 @@ public class MoveToKnownCycles extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (lifter.countCycles() == cycles) || !lifter.getBottomMicro() || !lifter.getTopMicro() || oi.stopAll.get();
+        if(lifter.getRailSpeed() > 0)
+            return (lifter.countCycles() == cycles || lifter.getTopMicro() || oi.stopAll.get());
+        else if(lifter.getRailSpeed() < 0)
+            return (lifter.countCycles() == cycles || lifter.getBottomMicro() || oi.stopAll.get());
+        else
+            return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
         lifter.setRailSpeed(0);
+        System.out.println(isClosing);
     }
 
     // Called when another command which requires one or more of the same

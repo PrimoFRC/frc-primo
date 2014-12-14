@@ -61,7 +61,7 @@ public class OI {
     
     public JoystickButton changeDoorState, closeDoor, openDoor, raiseScissors, 
 
-            lowerScissors, moveToHanging, moveToCollection, moveToTop, moveToBottom, moveToCycles,stopAll;
+            lowerScissors, moveToHanging, moveToCollection, moveToTop, moveToBottom, moveToCycles,stopAll,safeButton;
 
            
 
@@ -71,6 +71,8 @@ public class OI {
         drivingStick = new Joystick(1);
         operatorStick = new Joystick(2);
                 
+        safeButton = new JoystickButton(operatorStick, 2);
+        
         changeDoorState = new JoystickButton(operatorStick, 1);
         closeDoor = new JoystickButton(operatorStick, 12);
         openDoor = new JoystickButton(operatorStick, 11);
@@ -85,7 +87,7 @@ public class OI {
         moveToHanging = new JoystickButton(operatorStick, 6);
        // moveToScoring = new JoystickButton(operatorStick, 9);
         //hang = new JoystickButton(operatorStick, 10);
-
+        //yotam was here
         moveToTop = new JoystickButton(operatorStick, 3); // move to scoring бочен
         moveToBottom = new JoystickButton(operatorStick, 4);
        
@@ -98,12 +100,14 @@ public class OI {
         lowerScissors.whenPressed(new LowerScissors());
         moveToCollection.whenPressed(new MoveToKnownCycles(1));
         moveToHanging.whenPressed(new MoveToKnownCycles(2));
+                
         //moveToScoring.whenPressed(new MoveToKnownCycles(3));
        // hang.whenPressed(new MoveToKnownCycles(4));
         moveToCycles.whenPressed(new MoveToCycles());
         moveToTop.whenPressed(new MoveToTop());
         moveToBottom.whenPressed(new MoveToBottom());
-        stopAll.whenPressed(new StopAll());
+        stopAll.whenPressed(new StopAll());;
+        
     }
     
 }

@@ -21,6 +21,8 @@ public class Driver extends Subsystem {
     
     public RobotDrive driver;
     
+    public boolean stop;
+    
     public Driver()
     {
         frontLeft = RobotMap.frontLeft;
@@ -58,7 +60,11 @@ public class Driver extends Subsystem {
         frontRight.set(0);
         backLeft.set(0);
         backRight.set(0);
+        
+        this.stop = true;
     }
+    
+    
     
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
