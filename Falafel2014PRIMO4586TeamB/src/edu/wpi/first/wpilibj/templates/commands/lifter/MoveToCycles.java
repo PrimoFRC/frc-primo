@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.templates.commands.CommandBase;
  * @author user
  */
 public class MoveToCycles extends CommandBase {
-    
+    private boolean isClosing;
     public MoveToCycles() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -20,13 +20,16 @@ public class MoveToCycles extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        if (!lifter.getBottomMicro() || !lifter.getTopMicro())
-        {
             if (lifter.countCycles() > SmartDashboard.getNumber("move to cycles: "))
-                lifter.setRailSpeed(-0.5);//need check
+            {
+                lifter.setRailSpeed(-1);//need check
+                isClosing = false;
+            }
             else if (lifter.countCycles() < SmartDashboard.getNumber("move to cycles: "))
-                lifter.setRailSpeed(0.5);//need check
-        }
+            {
+                lifter.setRailSpeed(1);//need check
+                isClosing = true;
+            }
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -36,7 +39,12 @@ public class MoveToCycles extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (lifter.countCycles() == SmartDashboard.getNumber("move to cycles: ") || !lifter.getBottomMicro() || !lifter.getTopMicro() || oi.stopAll.get());
+        if(lifter.getRailSpeed() > 0)
+            return (lifter.countCycles() == SmartDashboard.getNumber("move to cycles: ") || lifter.getTopMicro() || oi.stopAll.get());
+        else if(lifter.getRailSpeed() < 0)
+            return (lifter.countCycles() == SmartDashboard.getNumber("move to cycles: ") || lifter.getBottomMicro() || oi.stopAll.get());
+        else
+            return true;    
     }
 
     // Called once after isFinished returns true
