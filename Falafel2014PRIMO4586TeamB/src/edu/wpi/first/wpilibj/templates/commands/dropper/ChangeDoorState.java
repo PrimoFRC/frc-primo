@@ -5,6 +5,7 @@
 package edu.wpi.first.wpilibj.templates.commands.dropper;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.templates.RobotTemplate;
 import edu.wpi.first.wpilibj.templates.commands.CommandBase;
 
 /**
@@ -24,7 +25,7 @@ public class ChangeDoorState extends CommandBase
 	// Called just before this Command runs the first time
 	protected void initialize()
 	{
-            if (oi.safeButton.get())
+            if (oi.safeButton.get() || RobotTemplate.isAutonoumus)
             {
                 if (dropper.getCloseMicro())
                 {

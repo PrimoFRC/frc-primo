@@ -85,8 +85,6 @@ public class OI {
         lowerScissors = new JoystickButton(operatorStick, 9);
         moveToCollection = new JoystickButton(operatorStick, 5);
         moveToHanging = new JoystickButton(operatorStick, 6);
-       // moveToScoring = new JoystickButton(operatorStick, 9);
-        //hang = new JoystickButton(operatorStick, 10);
         //yotam was here
         moveToTop = new JoystickButton(operatorStick, 3); // move to scoring бочен
         moveToBottom = new JoystickButton(operatorStick, 4);

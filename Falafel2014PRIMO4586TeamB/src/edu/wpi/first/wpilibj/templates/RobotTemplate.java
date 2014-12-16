@@ -31,6 +31,7 @@ public class RobotTemplate extends IterativeRobot {
 
     Command autonomousCommand;
     boolean stop;
+    public static boolean isAutonoumus;
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -54,6 +55,7 @@ public class RobotTemplate extends IterativeRobot {
         Scheduler.getInstance().removeAll();
         
         Scheduler.getInstance().add(new AutonomousCommand());
+        isAutonoumus = true;
     }
 
     /**
@@ -76,6 +78,7 @@ public class RobotTemplate extends IterativeRobot {
         RobotMap.cycleCounterNegative.reset();
         RobotMap.cycleCounterPositive.reset();
         Scheduler.getInstance().run();
+        isAutonoumus = false;
     }
 
     /**
@@ -83,30 +86,27 @@ public class RobotTemplate extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        stop = Drive.driver.stop;
+        
         
         smartDashboardPeriodic();
-        if (stop)
-        {
-            Scheduler.getInstance().add(new Drive());
-            Drive.driver.stop = false;
-        }
+        
     }
     
     public void initSmartDashboard()
     {
         SmartDashboard.putNumber("number of cycles: ", 0);
         SmartDashboard.putNumber("move to cycles: ", 0);
-        SmartDashboard.putNumber("move to hanging: ", 0);
-        SmartDashboard.putNumber("move to collection: ", 0);
+        SmartDashboard.putNumber("move to hanging: ", 60);
+        SmartDashboard.putNumber("move to collection: ", 6);
         SmartDashboard.putNumber("lifter move speed: ", 1);
-        SmartDashboard.putNumber("drive move speed: ", 0.7);
-        SmartDashboard.putNumber("door move speed: ", 0.3);
-        SmartDashboard.putNumber("drive rotate speed: ", 0.7);
+        SmartDashboard.putNumber("drive move speed: ", 0.8);
+        SmartDashboard.putNumber("door move speed: ", 0.5);
+        SmartDashboard.putNumber("drive rotate speed: ", 0.9);
         SmartDashboard.putNumber("axis limit: ", 0.3);
         SmartDashboard.putNumber("autonomousTime: ", 2.8);
         SmartDashboard.putNumber("slowAutonomousTime", 3);
         SmartDashboard.putNumber("slowAutonomousSpeed", 0.5);
+        SmartDashboard.putNumber("fastAutonomousSpeed", 0.7);
         SmartDashboard.putNumber("enter waiting time: ", 0.8);
         
     }
