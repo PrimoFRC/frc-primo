@@ -27,7 +27,7 @@ public class MoveForward extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        driver.moveForward(SmartDashboard.getNumber("drive move speed: " ,1));
+        driver.moveForward(SmartDashboard.getNumber("fastAutonomousSpeed" ,0.7));
     }
 
     // Make this return true when this Command no longer needs to run execute()
