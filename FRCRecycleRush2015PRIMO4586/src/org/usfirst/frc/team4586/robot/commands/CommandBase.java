@@ -4,11 +4,12 @@ package org.usfirst.frc.team4586.robot.commands;
 import org.usfirst.frc.team4586.robot.OI;
 import org.usfirst.frc.team4586.robot.RobotMap;
 import org.usfirst.frc.team4586.robot.subsystems.BoxLifter;
+import org.usfirst.frc.team4586.robot.subsystems.Driver;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 public abstract class CommandBase extends Command {
-
+	public static Driver driver;
     public static OI oi;
     // Create a single static instance of all of your subsystems
     public static BoxLifter boxLifterFront;
@@ -20,6 +21,7 @@ public abstract class CommandBase extends Command {
         // yet. Thus, their requires() statements may grab null pointers. Bad
         // news. Don't move it.
         oi = new OI();
+        driver = new Driver();
         boxLifterFront=new BoxLifter(RobotMap.checkContactFront1, RobotMap.checkContactFront2, RobotMap.valveFront, RobotMap.lifterFront);
         boxLifterBack = new BoxLifter(RobotMap.checkContactBack1,RobotMap.checkContactBack2, RobotMap.valveBack, RobotMap.lifterBack);
         // Show what command your subsystem is running on the SmartDashboard
