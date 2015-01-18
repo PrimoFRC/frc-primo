@@ -5,6 +5,7 @@ import org.usfirst.frc.team4586.robot.commands.CommandBase;
 import org.usfirst.frc.team4586.robot.subsystems.BoxLifter;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -28,7 +29,7 @@ public class MoveBoxRailUp extends Command {
 	protected void initialize() {
 		if (boxLifter.getCounter() < boxLifter.numOfValves
 				&& boxLifter.getCheckContact1() && boxLifter.getCheckContact2())
-			boxLifter.setSpeed(1);// add SmartDashBoard value
+			boxLifter.setSpeed(SmartDashboard.getNumber("Max speed of rails"));
 
 	}
 
@@ -36,7 +37,7 @@ public class MoveBoxRailUp extends Command {
 	protected void execute() {
 		if (boxLifter.getCounter() < boxLifter.numOfValves
 				&& boxLifter.getCheckContact1() && boxLifter.getCheckContact2()) {
-			boxLifter.setSpeed(1);
+			boxLifter.setSpeed(SmartDashboard.getNumber("Max speed of rails"));
 			if (!boxLifter.getValve())
 				wasReleased = true;
 		}

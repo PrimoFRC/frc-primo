@@ -5,6 +5,7 @@ import org.usfirst.frc.team4586.robot.subsystems.BoxLifter;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -25,7 +26,7 @@ public class MoveBoxRailToBottom extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	if(boxLifter.getCounter()>1)
-    		boxLifter.setSpeed(-1);//add smartDashBoard Field
+    		boxLifter.setSpeed(-SmartDashboard.getNumber("Max speed of rails"));
     }
 
     // Called repeatedly when this Command is scheduled to run
