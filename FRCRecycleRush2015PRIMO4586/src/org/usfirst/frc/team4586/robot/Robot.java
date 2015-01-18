@@ -5,7 +5,12 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import org.usfirst.frc.team4586.robot.commands.CommandBase;
 import org.usfirst.frc.team4586.robot.commands.ExampleCommand;
+import org.usfirst.frc.team4586.robot.commands.driver.MecanumDrive;
+import org.usfirst.frc.team4586.robot.subsystems.Driver;
 import org.usfirst.frc.team4586.robot.subsystems.ExampleSubsystem;
 
 /**
@@ -19,7 +24,6 @@ public class Robot extends IterativeRobot {
 
 	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static OI oi;
-
     Command autonomousCommand;
 
     /**
@@ -27,9 +31,24 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
-		oi = new OI();
+    	
+    	RobotMap.init();
+        //System.out.println("robotMap works");
+        CommandBase.init();
+        //System.out.println("commandBase works");
+        //initMotors();
+        //System.out.println("initMotors works");
+        
+        //System.out.println("autonoumusGroupCommand works");
+        
+        
+       
+        //System.out.println("robotInit finished");
+        
+		
         // instantiate the command used for the autonomous period
-        autonomousCommand = new ExampleCommand();
+        
+        smartDashboardInit();
     }
 	
 	public void disabledPeriodic() {
@@ -54,6 +73,7 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
+        Scheduler.getInstance().add(new MecanumDrive());
     }
 
     /**
@@ -69,12 +89,27 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        smartDashboardPeriodic();
+        SmartDashboard.putNumber("max driving speed", 0.7);
+        System.out.println("SmartDashboard should work");
     }
     
     /**
      * This function is called periodically during test mode
      */
-    public void testPeriodic() {
+    public void testPeriodic() 
+    {
         LiveWindow.run();
+    }
+    
+    public void smartDashboardInit()
+    {
+    	SmartDashboard.putBoolean("autonomus one", false);
+    	SmartDashboard.putNumber("max driving speed", 0.7);
+    }
+    
+    public void smartDashboardPeriodic()
+    {
+    	
     }
 }

@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4586.robot;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.Talon;
 
 /**
@@ -21,6 +22,12 @@ public class RobotMap {
 	// public static int rangefinderModule = 1;
 	public static Talon lifterFront;
 	public static Talon lifterBack;
+	public static Talon binRail;
+	
+	public static Jaguar motorFrontLeft;
+	public static Jaguar motorFrontRight;
+	public static Jaguar motorBackLeft;
+	public static Jaguar motorBackRight;
 
 	public static DigitalInput checkContactFront1;
 	public static DigitalInput checkContactFront2;
@@ -29,11 +36,21 @@ public class RobotMap {
 
 	public static DigitalInput valveFront;
 	public static DigitalInput valveBack;
+	
+	public static DigitalInput binRailSwitch;
+	
+	
 
 	public static void init()// to be tested
 	{
-		lifterFront = new Talon(1);
-		lifterBack = new Talon(2);
+		lifterFront = new Talon(0);
+		lifterBack = new Talon(3);
+		binRail = new Talon(4);
+		
+		motorFrontLeft = new Jaguar(6);
+		motorFrontRight = new Jaguar(1);
+		motorBackLeft = new Jaguar(5);
+		motorBackRight = new Jaguar(2);
 
 		checkContactBack1 = new DigitalInput(1);
 		checkContactBack2 = new DigitalInput(2);
@@ -42,6 +59,7 @@ public class RobotMap {
 
 		valveBack = new DigitalInput(5);
 		valveFront = new DigitalInput(6);
-
+		
+		binRailSwitch= new DigitalInput(7);
 	}
 }

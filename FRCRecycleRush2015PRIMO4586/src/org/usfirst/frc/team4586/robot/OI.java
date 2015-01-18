@@ -37,31 +37,41 @@ public class OI {
     // Start the command when the button is released  and let it run the command
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
-	Joystick operatorStickFront;
-	Joystick operatorStickBack;
+	public Joystick operatorStickFront;
+	public Joystick operatorStickBack;
+	public Joystick drivingStick;
+
+	public JoystickButton moveBoxRailFrontOneUp;
+	public JoystickButton moveBoxRailFrontOneDown;
+	public JoystickButton moveBoxRailFrontBottom;
+
+	public JoystickButton moveBoxRailBackOneUp;
+	public JoystickButton moveBoxRailBackOneDown;
+	public JoystickButton moveBoxRaillBackBottom;
 	
-	JoystickButton moveBoxRailFrontOneUp;
-	JoystickButton moveBoxRailFrontOneDown;
-	JoystickButton moveBoxRailFrontBottom;
-
-
-	JoystickButton moveBoxRailBackOneUp;
-	JoystickButton moveBoxRailBackOneDown;
-	JoystickButton moveBoxRaillBackBottom;
+	public JoystickButton binRailToBottom;
+	public JoystickButton binRailToTop;
+	
+	public JoystickButton invertMotors;
 	
 	public OI() // to be tested
 	{
-		operatorStickFront = new Joystick(1);
-		operatorStickBack = new Joystick(2);
-		
+		//operatorStickFront = new Joystick(2);
+		//operatorStickBack = new Joystick(3);
+		drivingStick = new Joystick(0);
+		/*
 		 moveBoxRailFrontOneUp = new JoystickButton(operatorStickFront,1);
 		 moveBoxRailFrontOneDown = new JoystickButton(operatorStickFront,2);
 		 moveBoxRailFrontBottom = new JoystickButton(operatorStickFront,3);
 
-
 		 moveBoxRailBackOneUp = new JoystickButton(operatorStickBack,1);;
 		 moveBoxRailBackOneDown = new JoystickButton(operatorStickBack,2);;
 		 moveBoxRaillBackBottom = new JoystickButton(operatorStickBack,3);;
+		 
+		 binRailToBottom = new JoystickButton(operatorStickBack,4);
+		 binRailToTop = new JoystickButton(operatorStickBack,5);
+		 */
+		 invertMotors = new JoystickButton(drivingStick,5);
 	}
 }
 
