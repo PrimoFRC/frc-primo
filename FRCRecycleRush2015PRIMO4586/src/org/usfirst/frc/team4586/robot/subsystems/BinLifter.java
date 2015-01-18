@@ -12,12 +12,12 @@ public class BinLifter extends Subsystem {
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-	static Talon binRail;
+	static Talon binRailMotor;
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-    	binRail = RobotMap.binRail;
+    	binRailMotor = RobotMap.binRailMotor;
     }
     public void moveToBottom()
     {
