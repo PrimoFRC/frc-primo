@@ -114,15 +114,15 @@ public class Robot extends IterativeRobot {
     	SmartDashboard.putNumber("autonomus drive back time", 1);
     	SmartDashboard.putNumber("autonomus drive left time", 1);
     	
-    	SmartDashboard.putNumber("accelorometer X", Driver.getAccelorometerX());
-    	SmartDashboard.putNumber("accelorometer Y", Driver.getAccelorometerY());
-    	SmartDashboard.putNumber("accelorometer Z", Driver.getAccelorometerZ());
+    	SmartDashboard.putNumber("accelerometer X", Driver.getAccelorometerX());
+    	SmartDashboard.putNumber("accelerometer Y", Driver.getAccelorometerY());
+    	SmartDashboard.putNumber("accelerometer Z", Driver.getAccelorometerZ());
     }
     
     public void smartDashboardPeriodic()
     {
-    	SmartDashboard.putNumber("accelorometer X", Driver.getAccelorometerX());
-    	SmartDashboard.putNumber("accelorometer Y", Driver.getAccelorometerY());
-    	SmartDashboard.putNumber("accelorometer Z", Driver.getAccelorometerZ());
+    	SmartDashboard.putNumber("accelerometer X", Driver.getAccelorometerX());
+    	SmartDashboard.putNumber("accelerometer Y", Driver.getAccelorometerY());
+    	SmartDashboard.putNumber("accelerometer Z", Driver.getAccelorometerZ());
     }
 }
