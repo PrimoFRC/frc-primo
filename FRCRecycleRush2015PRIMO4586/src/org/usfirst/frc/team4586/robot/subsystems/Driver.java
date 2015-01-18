@@ -2,6 +2,7 @@ package org.usfirst.frc.team4586.robot.subsystems;
 
 import org.usfirst.frc.team4586.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -18,6 +19,8 @@ public class Driver extends Subsystem {
 	static Jaguar motorBackLeft;
 	static Jaguar motorBackRight;
 	
+	static BuiltInAccelerometer accel;
+	
 	public int sign = 1;
 	
 	//RobotDrive drive= new RobotDrive(motorFrontLeft, motorBackLeft, motorFrontRight, motorBackRight);
@@ -31,6 +34,8 @@ public class Driver extends Subsystem {
 		motorFrontRight = RobotMap.motorFrontRight;
 		motorBackLeft = RobotMap.motorBackLeft;
 		motorBackRight = RobotMap.motorBackRight;
+		
+		accel = new BuiltInAccelerometer();
     }
     
     public void stop()
@@ -70,6 +75,18 @@ public class Driver extends Subsystem {
     public void invert()
     {
     	sign*=-1;
+    }
+    public static double getAccelorometerX()
+    {
+    	return accel.getX();
+    }
+    public static double getAccelorometerY()
+    {
+    	return accel.getY();
+    }
+    public static double getAccelorometerZ()
+    {
+    	return accel.getZ();
     }
     
     
