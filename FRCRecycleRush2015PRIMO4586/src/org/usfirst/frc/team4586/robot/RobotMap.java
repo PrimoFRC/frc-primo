@@ -22,7 +22,7 @@ public class RobotMap {
 	// public static int rangefinderModule = 1;
 	public static Talon lifterFront;
 	public static Talon lifterBack;
-	public static Talon binRail;
+	public static Talon binRailMotor;
 	
 	public static Jaguar motorFrontLeft;
 	public static Jaguar motorFrontRight;
@@ -45,7 +45,7 @@ public class RobotMap {
 	{
 		lifterFront = new Talon(0);
 		lifterBack = new Talon(3);
-		binRail = new Talon(4);
+		binRailMotor = new Talon(4);
 		
 		motorFrontLeft = new Jaguar(6);
 		motorFrontRight = new Jaguar(1);
