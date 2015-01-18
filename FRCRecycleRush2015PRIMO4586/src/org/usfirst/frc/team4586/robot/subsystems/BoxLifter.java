@@ -32,7 +32,7 @@ public class BoxLifter extends Subsystem {
 		this.valve = valve;
 		this.count=new Counter();
 		this.count.setUpSource(valve);
-		boxes = 0;
+		boxes = 1;
 	}
 
 	public void setSpeed(double speed) {
@@ -49,15 +49,18 @@ public class BoxLifter extends Subsystem {
     public void incrementCounter()
     {
     	this.boxes++;
+    	if(boxes>6)
+    		boxes-=6;
     }
     public void decrementCounter()
     {
     	this.boxes--;
+    	if(boxes<1)
+    		boxes+=6;
     }
 	public void resetCounter() {
 		this.boxes = 0;
 	}
-
 	public boolean getCheckContact1() {
 		return this.checkContact1.get();
 	}

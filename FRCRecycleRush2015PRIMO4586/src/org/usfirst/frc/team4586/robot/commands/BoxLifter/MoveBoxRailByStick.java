@@ -1,61 +1,63 @@
 package org.usfirst.frc.team4586.robot.commands.BoxLifter;
 
-import org.usfirst.frc.team4586.robot.RobotMap;
+import org.usfirst.frc.team4586.robot.OI;
 import org.usfirst.frc.team4586.robot.commands.CommandBase;
 import org.usfirst.frc.team4586.robot.subsystems.BoxLifter;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class MoveBoxRailUp extends Command {
+public class MoveBoxRailByStick extends Command {
+	private Joystick operatorStick;
 	private BoxLifter boxLifter;
-	private boolean wasReleased;
+	private boolean wasItMoved;
 
-	public MoveBoxRailUp(boolean isFront) {
+	public MoveBoxRailByStick(boolean isFront) {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
-		wasReleased = false;
 		if (isFront) {
+			operatorStick = CommandBase.oi.operatorStickFront;
 			boxLifter = CommandBase.boxLifterFront;
 		} else {
+			operatorStick = CommandBase.oi.operatorStickBack;
 			boxLifter = CommandBase.boxLifterBack;
 		}
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		if (boxLifter.getCounter() < boxLifter.numOfValves
-				&& boxLifter.getCheckContact1() && boxLifter.getCheckContact2())
-			boxLifter.setSpeed(1);// add SmartDashBoard value
-
+		wasItMoved = false;
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		if (boxLifter.getCounter() < boxLifter.numOfValves
-				&& boxLifter.getCheckContact1() && boxLifter.getCheckContact2()) {
-			boxLifter.setSpeed(1);
-			if (!boxLifter.getValve())
-				wasReleased = true;
+		double direction = operatorStick.getY();
+		if (direction > 0.1) {
+			boxLifter.setSpeed(1);// add smartDashboard field
+			wasItMoved = true;
+			if (boxLifter.getValve())
+				boxLifter.incrementCounter();
+		} else if (direction < -0.1) {
+			boxLifter.setSpeed(-1);// add smartDashboard field
+			wasItMoved = true;
+			if (boxLifter.getValve())
+				boxLifter.decrementCounter();
+		} else if (wasItMoved) {
+			boxLifter.setSpeed(0);
+			wasItMoved = false;
 		}
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		if (boxLifter.getCounter() >= boxLifter.numOfValves) {
-			return true;
-		} else if (wasReleased && boxLifter.getValve()) {
-			return true;
-		} else
-			return false;
+		return false;
 	}
 
 	// Called once after isFinished returns true
 	protected void end() {
-		boxLifter.setSpeed(0);
-		boxLifter.incrementCounter();
 	}
 
 	// Called when another command which requires one or more of the same
