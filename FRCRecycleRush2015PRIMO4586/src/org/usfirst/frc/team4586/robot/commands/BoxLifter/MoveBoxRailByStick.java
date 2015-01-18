@@ -6,6 +6,7 @@ import org.usfirst.frc.team4586.robot.subsystems.BoxLifter;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -36,12 +37,12 @@ public class MoveBoxRailByStick extends Command {
 	protected void execute() {
 		double direction = operatorStick.getY();
 		if (direction > 0.1) {
-			boxLifter.setSpeed(1);// add smartDashboard field
+			boxLifter.setSpeed(SmartDashboard.getNumber("Max speed of rails"));
 			wasItMoved = true;
 			if (boxLifter.getValve())
 				boxLifter.incrementCounter();
 		} else if (direction < -0.1) {
-			boxLifter.setSpeed(-1);// add smartDashboard field
+			boxLifter.setSpeed(-SmartDashboard.getNumber("Max speed of rails"));
 			wasItMoved = true;
 			if (boxLifter.getValve())
 				boxLifter.decrementCounter();
