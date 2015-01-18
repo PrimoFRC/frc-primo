@@ -104,8 +104,15 @@ public class Robot extends IterativeRobot {
     
     public void smartDashboardInit()
     {
-    	SmartDashboard.putBoolean("autonomus one", false);
+    	SmartDashboard.putBoolean("Autonomus Take Trash", false);
+    	SmartDashboard.putBoolean("Autonomus Take Box", false);
+    	SmartDashboard.putBoolean("Autonomus Take Trash & Box", false);
+    	SmartDashboard.putBoolean("Autonomus Gever!!!!!!!", false);
+    	
     	SmartDashboard.putNumber("max driving speed", 0.7);
+    	
+    	SmartDashboard.putNumber("autonomus drive back time", 1);
+    	SmartDashboard.putNumber("autonomus drive left time", 1);
     }
     
     public void smartDashboardPeriodic()
