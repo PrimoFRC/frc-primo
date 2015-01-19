@@ -44,5 +44,13 @@ public class BinLifter extends Subsystem {
     {
     	isTop = value;
     }
+    public boolean isBottom()
+    {
+    	return isBottom;
+    }
+    public boolean isTop()
+    {
+    	return isTop;
+    }
 }
 
