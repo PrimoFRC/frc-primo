@@ -62,8 +62,8 @@ public class OI {
 	
 	public OI() // to be tested
 	{
-		operatorStickFront = new Joystick(2);
-		operatorStickBack = new Joystick(3);
+		operatorStickFront = new Joystick(1);
+		operatorStickBack = new Joystick(2);
 		drivingStick = new Joystick(0);
 		
 		 moveBoxRailFrontOneUp = new JoystickButton(operatorStickFront,3);
