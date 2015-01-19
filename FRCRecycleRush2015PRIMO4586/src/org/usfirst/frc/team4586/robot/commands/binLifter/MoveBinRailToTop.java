@@ -20,7 +20,7 @@ public class MoveBinRailToTop extends Command {
     	wasReleased=false;
     	if(!CommandBase.binLifter.isTop())
     	{
-    		CommandBase.binLifter.moveBinRail(-SmartDashboard.getNumber("Max Bin Rail Speed"));
+    		CommandBase.binLifter.moveBinRail(-1);
     	}
     }
 
