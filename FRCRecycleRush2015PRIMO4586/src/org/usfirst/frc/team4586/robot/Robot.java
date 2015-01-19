@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4586.robot.commands.CommandBase;
 import org.usfirst.frc.team4586.robot.commands.ExampleCommand;
+import org.usfirst.frc.team4586.robot.commands.binLifter.MoveBinRailByStick;
 import org.usfirst.frc.team4586.robot.commands.driver.MecanumDrive;
 import org.usfirst.frc.team4586.robot.subsystems.Driver;
 import org.usfirst.frc.team4586.robot.subsystems.ExampleSubsystem;
@@ -72,6 +73,7 @@ public class Robot extends IterativeRobot {
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 		Scheduler.getInstance().add(new MecanumDrive());
+		Scheduler.getInstance().add(new MoveBinRailByStick());
 	}
 
 	/**
@@ -79,7 +81,7 @@ public class Robot extends IterativeRobot {
 	 * to reset subsystems before shutting down.
 	 */
 	public void disabledInit() {
-
+		
 	}
 
 	/**
@@ -135,6 +137,7 @@ public class Robot extends IterativeRobot {
 				CommandBase.boxLifterBack.getCounter());
 		SmartDashboard.putNumber("Speed of Back rail",
 				CommandBase.boxLifterBack.getSpeed());
+		SmartDashboard.putNumber("Max Bin Rail Speed", 0.7);
 
 		SmartDashboard.putNumber("Max speed of rails", 0.7);// to be tested
 	}
