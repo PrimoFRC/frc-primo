@@ -13,9 +13,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class MoveBoxRailToBottom extends Command {
 
 	private BoxLifter boxLifter;
+	private boolean wasReleased ;
     public MoveBoxRailToBottom(boolean isFront) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	
     	if(isFront)
     		boxLifter=CommandBase.boxLifterFront;
     	else
@@ -27,12 +29,21 @@ public class MoveBoxRailToBottom extends Command {
     protected void initialize() {
     	if(boxLifter.getCounter()>1)
     		boxLifter.setSpeed(-SmartDashboard.getNumber("Max speed of rails"));
+    	
+    	wasReleased = ! boxLifter.getValve();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(boxLifter.getValve())
+    	if(!boxLifter.getValve())
+    		wasReleased = true;
+    	else if(boxLifter.getValve() && wasReleased )
+    	{
     		boxLifter.decrementCounter();
+    		wasReleased = false;
+    	}
+    
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()

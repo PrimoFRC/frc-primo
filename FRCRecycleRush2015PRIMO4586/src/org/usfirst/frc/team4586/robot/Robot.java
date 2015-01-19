@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4586.robot.commands.CommandBase;
 import org.usfirst.frc.team4586.robot.commands.ExampleCommand;
+import org.usfirst.frc.team4586.robot.commands.BoxLifter.MoveBoxRailByStick;
 import org.usfirst.frc.team4586.robot.commands.binLifter.MoveBinRailByStick;
 import org.usfirst.frc.team4586.robot.commands.driver.MecanumDrive;
 import org.usfirst.frc.team4586.robot.subsystems.Driver;
@@ -74,6 +75,8 @@ public class Robot extends IterativeRobot {
 			autonomousCommand.cancel();
 		Scheduler.getInstance().add(new MecanumDrive());
 		Scheduler.getInstance().add(new MoveBinRailByStick());
+		Scheduler.getInstance().add(new MoveBoxRailByStick(false));
+		Scheduler.getInstance().add(new MoveBoxRailByStick(true));
 	}
 
 	/**

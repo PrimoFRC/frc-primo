@@ -5,6 +5,9 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import org.usfirst.frc.team4586.robot.commands.ExampleCommand;
+import org.usfirst.frc.team4586.robot.commands.BoxLifter.MoveBoxRailDown;
+import org.usfirst.frc.team4586.robot.commands.BoxLifter.MoveBoxRailToBottom;
+import org.usfirst.frc.team4586.robot.commands.BoxLifter.MoveBoxRailUp;
 import org.usfirst.frc.team4586.robot.commands.binLifter.MoveBinRailToBottom;
 import org.usfirst.frc.team4586.robot.commands.binLifter.MoveBinRailToTop;
 import org.usfirst.frc.team4586.robot.commands.driver.InvertMotors;
@@ -63,18 +66,30 @@ public class OI {
 		operatorStickBack = new Joystick(3);
 		drivingStick = new Joystick(0);
 		
-		 moveBoxRailFrontOneUp = new JoystickButton(operatorStickFront,1);
-		 moveBoxRailFrontOneDown = new JoystickButton(operatorStickFront,2);
-		 moveBoxRailFrontBottom = new JoystickButton(operatorStickFront,3);
+		 moveBoxRailFrontOneUp = new JoystickButton(operatorStickFront,3);
+		 moveBoxRailFrontOneDown = new JoystickButton(operatorStickFront,4);
+		 moveBoxRailFrontBottom = new JoystickButton(operatorStickFront,11);
 
-		 moveBoxRailBackOneUp = new JoystickButton(operatorStickBack,1);;
-		 moveBoxRailBackOneDown = new JoystickButton(operatorStickBack,2);;
-		 moveBoxRaillBackBottom = new JoystickButton(operatorStickBack,3);;
+		 moveBoxRailBackOneUp = new JoystickButton(operatorStickBack,3);
+		 moveBoxRailBackOneDown = new JoystickButton(operatorStickBack,4);
+		 moveBoxRaillBackBottom = new JoystickButton(operatorStickBack,11);
 		 
-		 binRailToBottom = new JoystickButton(operatorStickBack,4);
+		
+		 
+		 binRailToBottom = new JoystickButton(operatorStickBack,6);
 		 binRailToTop = new JoystickButton(operatorStickBack,5);
 		 
 		 invertMotors = new JoystickButton(drivingStick,5);
+		 
+		 
+		 
+		 moveBoxRailFrontOneUp.whenPressed(new MoveBoxRailUp(true));
+		 moveBoxRailFrontOneDown.whenPressed(new MoveBoxRailDown(true));
+		 moveBoxRailFrontBottom.whenPressed(new MoveBoxRailToBottom(true));
+		 
+		 moveBoxRailBackOneUp.whenPressed(new MoveBoxRailUp(false));
+		 moveBoxRailBackOneDown.whenPressed(new MoveBoxRailDown(false));
+		 moveBoxRaillBackBottom.whenPressed(new MoveBoxRailToBottom(false));
 		 
 		 binRailToBottom.whenPressed(new MoveBinRailToBottom());
 		 binRailToTop.whenPressed(new MoveBinRailToTop());
