@@ -4,11 +4,13 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4586.robot.commands.CommandBase;
 import org.usfirst.frc.team4586.robot.commands.ExampleCommand;
 import org.usfirst.frc.team4586.robot.commands.BoxLifter.MoveBoxRailByStick;
+import org.usfirst.frc.team4586.robot.commands.autonomusCommands.*;
 import org.usfirst.frc.team4586.robot.commands.binLifter.MoveBinRailByStick;
 import org.usfirst.frc.team4586.robot.commands.driver.MecanumDrive;
 import org.usfirst.frc.team4586.robot.subsystems.Driver;
@@ -22,11 +24,9 @@ import org.usfirst.frc.team4586.robot.subsystems.ExampleSubsystem;
  * directory.
  */
 public class Robot extends IterativeRobot {
-
-	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
-	public static OI oi;
-	Command autonomousCommand;
-
+	
+	public static SendableChooser autonomousMode = new SendableChooser();
+	
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -55,8 +55,7 @@ public class Robot extends IterativeRobot {
 
 	public void autonomousInit() {
 		// schedule the autonomous command (example)
-		if (autonomousCommand != null)
-			autonomousCommand.start();
+		Scheduler.getInstance().add((Command)autonomousMode.getSelected());
 	}
 
 	/**
@@ -71,12 +70,13 @@ public class Robot extends IterativeRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		if (autonomousCommand != null)
-			autonomousCommand.cancel();
+		Scheduler.getInstance().removeAll(); 
 		Scheduler.getInstance().add(new MecanumDrive());
 		Scheduler.getInstance().add(new MoveBinRailByStick());
 		Scheduler.getInstance().add(new MoveBoxRailByStick(false));
 		Scheduler.getInstance().add(new MoveBoxRailByStick(true));
+		
+		
 	}
 
 	/**
@@ -105,11 +105,20 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void smartDashboardInit() {
+		
+		autonomousMode.addDefault("All", new AutoGeverAll());
+        autonomousMode.addObject("Box", new AutoTakeBox());
+        autonomousMode.addObject("Trash", new AutoTakeTrash());
+        autonomousMode.addObject("Trash & Box", new AutoTakeTrashAndBox());
+        SmartDashboard.putData("Autonomous Mode" , autonomousMode);
+        
+        /*
 		SmartDashboard.putBoolean("Autonomus Take Trash", false);
 		SmartDashboard.putBoolean("Autonomus Take Box", false);
 		SmartDashboard.putBoolean("Autonomus Take Trash & Box", false);
 		SmartDashboard.putBoolean("Autonomus Gever!!!!!!!", false);
-
+		*/
+        
 		SmartDashboard.putNumber("max driving speed", 0.7);
 
 		SmartDashboard.putNumber("autonomus drive back time", 1);
