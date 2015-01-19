@@ -5,6 +5,9 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import org.usfirst.frc.team4586.robot.commands.ExampleCommand;
+import org.usfirst.frc.team4586.robot.commands.binLifter.MoveBinRailToBottom;
+import org.usfirst.frc.team4586.robot.commands.binLifter.MoveBinRailToTop;
+import org.usfirst.frc.team4586.robot.commands.driver.InvertMotors;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -56,10 +59,10 @@ public class OI {
 	
 	public OI() // to be tested
 	{
-		//operatorStickFront = new Joystick(2);
-		//operatorStickBack = new Joystick(3);
+		operatorStickFront = new Joystick(2);
+		operatorStickBack = new Joystick(3);
 		drivingStick = new Joystick(0);
-		/*
+		
 		 moveBoxRailFrontOneUp = new JoystickButton(operatorStickFront,1);
 		 moveBoxRailFrontOneDown = new JoystickButton(operatorStickFront,2);
 		 moveBoxRailFrontBottom = new JoystickButton(operatorStickFront,3);
@@ -70,8 +73,12 @@ public class OI {
 		 
 		 binRailToBottom = new JoystickButton(operatorStickBack,4);
 		 binRailToTop = new JoystickButton(operatorStickBack,5);
-		 */
+		 
 		 invertMotors = new JoystickButton(drivingStick,5);
+		 
+		 binRailToBottom.whenPressed(new MoveBinRailToBottom());
+		 binRailToTop.whenPressed(new MoveBinRailToTop());
+		 invertMotors.whenPressed(new InvertMotors());
 	}
 }
 
