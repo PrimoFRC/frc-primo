@@ -15,7 +15,7 @@ public class MoveBoxRailByStick extends Command {
 	private Joystick operatorStick;
 	private BoxLifter boxLifter;
 	private boolean wasItMoved;
-
+	private boolean wasReleased = false;
 	public MoveBoxRailByStick(boolean isFront) {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
@@ -35,17 +35,27 @@ public class MoveBoxRailByStick extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
+		
+		if(!boxLifter.getValve())
+			wasReleased = true;
+		
 		double direction = operatorStick.getY();
 		if (direction > 0.1) {
-			boxLifter.setSpeed(SmartDashboard.getNumber("Max speed of rails"));
+			boxLifter.setSpeed(direction * SmartDashboard.getNumber("Max speed of rails"));
 			wasItMoved = true;
-			if (boxLifter.getValve())
+			if (boxLifter.getValve() && wasReleased)
+			{
 				boxLifter.incrementCounter();
+				wasReleased = false;
+			}
 		} else if (direction < -0.1) {
-			boxLifter.setSpeed(-SmartDashboard.getNumber("Max speed of rails"));
+			boxLifter.setSpeed(direction * SmartDashboard.getNumber("Max speed of rails"));
 			wasItMoved = true;
-			if (boxLifter.getValve())
+			if (boxLifter.getValve() && wasReleased)
+			{
 				boxLifter.decrementCounter();
+				wasReleased = false;
+			}
 		} else if (wasItMoved) {
 			boxLifter.setSpeed(0);
 			wasItMoved = false;
