@@ -38,7 +38,7 @@ public class MoveBoxRailUp extends Command {
 		if (boxLifter.getCounter() < boxLifter.numOfValves
 				&& boxLifter.getCheckContact1() && boxLifter.getCheckContact2()) {
 			boxLifter.setSpeed(SmartDashboard.getNumber("Max speed of rails"));
-			if (!boxLifter.getValve())
+			if (!boxLifter.getHookState())
 				wasReleased = true;
 		}
 	}
@@ -47,7 +47,7 @@ public class MoveBoxRailUp extends Command {
 	protected boolean isFinished() {
 		if (boxLifter.getCounter() >= boxLifter.numOfValves) {
 			return true;
-		} else if (wasReleased && boxLifter.getValve()) {
+		} else if (wasReleased && boxLifter.getHookState()) {
 			return true;
 		} else
 			return false;

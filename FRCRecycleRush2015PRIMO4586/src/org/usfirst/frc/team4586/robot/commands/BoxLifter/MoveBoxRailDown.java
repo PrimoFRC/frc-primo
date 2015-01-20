@@ -32,7 +32,7 @@ public class MoveBoxRailDown extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		if (!boxLifter.getValve())
+		if (!boxLifter.getHookState())
 			wasReleased = true;
 	}
 
@@ -40,7 +40,7 @@ public class MoveBoxRailDown extends Command {
 	protected boolean isFinished() {
 		if (boxLifter.getCounter() <= 1) {
 			return true;
-		} else if (wasReleased && boxLifter.getValve()) {
+		} else if (wasReleased && boxLifter.getHookState()) {
 			return true;
 		} else
 			return false;

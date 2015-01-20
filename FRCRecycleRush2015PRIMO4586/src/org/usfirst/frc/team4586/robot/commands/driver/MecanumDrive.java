@@ -21,11 +21,12 @@ public class MecanumDrive extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	sign = CommandBase.driver.sign;
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	sign = CommandBase.driver.sign;
     	x = CommandBase.oi.drivingStick.getX()*sign*SmartDashboard.getNumber("max driving speed", 0.7);
     	y = CommandBase.oi.drivingStick.getY()*sign*SmartDashboard.getNumber("max driving speed", 0.7);
     	z = -CommandBase.oi.drivingStick.getRawAxis(4)*SmartDashboard.getNumber("max driving speed", 0.7);

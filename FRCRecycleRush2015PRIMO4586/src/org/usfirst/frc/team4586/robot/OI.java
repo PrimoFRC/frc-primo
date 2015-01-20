@@ -76,8 +76,8 @@ public class OI {
 		 
 		
 		 
-		 binRailToBottom = new JoystickButton(operatorStickBack,6);
-		 binRailToTop = new JoystickButton(operatorStickBack,5);
+		 binRailToBottom = new JoystickButton(operatorStickFront,6);
+		 binRailToTop = new JoystickButton(operatorStickFront,5);
 		 
 		 invertMotors = new JoystickButton(drivingStick,5);
 		 

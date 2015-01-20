@@ -133,7 +133,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putBoolean("Microswitch 2 Front Rail",
 				CommandBase.boxLifterFront.getCheckContact2());
 		SmartDashboard.putBoolean("Valve Front Rail",
-				CommandBase.boxLifterFront.getValve());
+				CommandBase.boxLifterFront.getHookState());
 		SmartDashboard.putNumber("Number of boxes on Front rail",
 				CommandBase.boxLifterFront.getCounter());
 		SmartDashboard.putNumber("Speed of Front rail",
@@ -144,7 +144,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putBoolean("Microswitch 2 Back Rail",
 				CommandBase.boxLifterBack.getCheckContact2());
 		SmartDashboard.putBoolean("Valve Back Rail",
-				CommandBase.boxLifterBack.getValve());
+				CommandBase.boxLifterBack.getHookState());
 		SmartDashboard.putNumber("Number of boxes on Back rail",
 				CommandBase.boxLifterBack.getCounter());
 		SmartDashboard.putNumber("Speed of Back rail",
@@ -157,6 +157,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("move back speed", -0.5);
 
 		SmartDashboard.putNumber("Max speed of rails", 0.7);// to be tested
+		SmartDashboard.putString("bin state", "");
 	}
 
 	public void smartDashboardPeriodic() {
@@ -169,7 +170,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putBoolean("Microswitch 2 Front Rail",
 				CommandBase.boxLifterFront.getCheckContact2());
 		SmartDashboard.putBoolean("Valve Front Rail",
-				CommandBase.boxLifterFront.getValve());
+				CommandBase.boxLifterFront.getHookState());
 		SmartDashboard.putNumber("Number of boxes on Front rail",
 				CommandBase.boxLifterFront.getCounter());
 		SmartDashboard.putNumber("Speed of Front rail",
@@ -180,11 +181,27 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putBoolean("Microswitch 2 Back Rail",
 				CommandBase.boxLifterBack.getCheckContact2());
 		SmartDashboard.putBoolean("Valve Back Rail",
-				CommandBase.boxLifterBack.getValve());
+				CommandBase.boxLifterBack.getHookState());
 		SmartDashboard.putNumber("Number of boxes on Back rail",
 				CommandBase.boxLifterBack.getCounter());
 		SmartDashboard.putNumber("Speed of Back rail",
 				CommandBase.boxLifterBack.getSpeed());
 		SmartDashboard.putBoolean("micro bin rail", CommandBase.binLifter.isBinRailSwitch());
+		if(CommandBase.binLifter.isTop())
+		{
+			SmartDashboard.putString("bin state", "top");
+		}
+		else if (CommandBase.binLifter.isBottom())
+		{
+			SmartDashboard.putString("bin state", "bottom");
+		}
+		else if((CommandBase.binLifter.isBottom())&&(CommandBase.binLifter.isTop()))
+		{
+			SmartDashboard.putString("bin state", "buggggggg!!!!!!!!");
+		}
+		else
+		{
+			SmartDashboard.putString("bin state", "middle");
+		}
 	}
 }

@@ -15,7 +15,7 @@ public class MoveBoxRailByStick extends Command {
 	private Joystick operatorStick;
 	private BoxLifter boxLifter;
 	private boolean wasItMoved;
-	private boolean wasReleased = false;
+	private boolean wasReleased;
 	public MoveBoxRailByStick(boolean isFront) {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
@@ -31,27 +31,28 @@ public class MoveBoxRailByStick extends Command {
 	// Called just before this Command runs the first time
 	protected void initialize() {
 		wasItMoved = false;
+		wasReleased = false;
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		
-		if(!boxLifter.getValve())
+		if(!boxLifter.getHookState())
 			wasReleased = true;
 		
-		double direction = operatorStick.getY();
-		if (direction > 0.1) {
-			boxLifter.setSpeed(direction * SmartDashboard.getNumber("Max speed of rails"));
+		double yAxis = operatorStick.getY();
+		if (yAxis > 0.1) {
+			boxLifter.setSpeed(yAxis * SmartDashboard.getNumber("Max speed of rails"));
 			wasItMoved = true;
-			if (boxLifter.getValve() && wasReleased)
+			if (boxLifter.getHookState() && wasReleased)
 			{
 				boxLifter.incrementCounter();
 				wasReleased = false;
 			}
-		} else if (direction < -0.1) {
-			boxLifter.setSpeed(direction * SmartDashboard.getNumber("Max speed of rails"));
+		} else if (yAxis < -0.1) {
+			boxLifter.setSpeed(yAxis * SmartDashboard.getNumber("Max speed of rails"));
 			wasItMoved = true;
-			if (boxLifter.getValve() && wasReleased)
+			if (boxLifter.getHookState() && wasReleased)
 			{
 				boxLifter.decrementCounter();
 				wasReleased = false;
