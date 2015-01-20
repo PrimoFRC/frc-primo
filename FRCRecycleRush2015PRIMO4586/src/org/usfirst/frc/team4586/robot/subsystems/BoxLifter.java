@@ -19,19 +19,19 @@ public class BoxLifter extends Subsystem {
 	private DigitalInput checkContact1;
 	private DigitalInput checkContact2;;
 
-	private DigitalInput valve;
-    private Counter count;
+	private DigitalInput hookInPlace;
+    //private Counter count;
 	private int boxes;
 
 	public BoxLifter(DigitalInput checkContact1, DigitalInput checkContact2,
-			DigitalInput valve, Talon lifter) {
+			DigitalInput hookInPlace, Talon lifter) {
 		super();
 		this.checkContact1 = checkContact1;
 		this.checkContact2 = checkContact2;
 		this.lifter = lifter;
-		this.valve = valve;
-		this.count=new Counter();
-		this.count.setUpSource(valve);
+		this.hookInPlace = hookInPlace;
+		//this.count=new Counter();
+		//this.count.setUpSource(hookInPlace);
 		boxes = 1;
 	}
 
@@ -69,8 +69,8 @@ public class BoxLifter extends Subsystem {
 		return this.checkContact2.get();
 	}
 
-	public boolean getValve() {
-		return this.valve.get();
+	public boolean getHookState() {
+		return this.hookInPlace.get();
 	}
 
 	public void initDefaultCommand() {

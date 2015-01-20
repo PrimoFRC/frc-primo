@@ -30,14 +30,14 @@ public class MoveBoxRailToBottom extends Command {
     	if(boxLifter.getCounter()>1)
     		boxLifter.setSpeed(-SmartDashboard.getNumber("Max speed of rails"));
     	
-    	wasReleased = ! boxLifter.getValve();
+    	wasReleased = ! boxLifter.getHookState();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(!boxLifter.getValve())
+    	if(!boxLifter.getHookState())
     		wasReleased = true;
-    	else if(boxLifter.getValve() && wasReleased )
+    	else if(boxLifter.getHookState() && wasReleased )
     	{
     		boxLifter.decrementCounter();
     		wasReleased = false;
