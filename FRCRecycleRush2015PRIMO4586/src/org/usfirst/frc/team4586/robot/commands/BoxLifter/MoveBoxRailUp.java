@@ -28,8 +28,9 @@ public class MoveBoxRailUp extends Command {
 	// Called just before this Command runs the first time
 	protected void initialize() {
 		if (boxLifter.getCounter() < boxLifter.numOfValves
-				&& boxLifter.getCheckContact1() && boxLifter.getCheckContact2())
+				&& boxLifter.getCheckContact1() && boxLifter.getCheckContact2()){
 			boxLifter.setSpeed(SmartDashboard.getNumber("Max speed of rails"));
+		}
 
 	}
 
@@ -39,7 +40,11 @@ public class MoveBoxRailUp extends Command {
 				&& boxLifter.getCheckContact1() && boxLifter.getCheckContact2()) {
 			boxLifter.setSpeed(SmartDashboard.getNumber("Max speed of rails"));
 			if (!boxLifter.getHookState())
+			{
+				if(!wasReleased)
+					boxLifter.incrementCounter();
 				wasReleased = true;
+			}
 		}
 	}
 
@@ -56,7 +61,7 @@ public class MoveBoxRailUp extends Command {
 	// Called once after isFinished returns true
 	protected void end() {
 		boxLifter.setSpeed(0);
-		boxLifter.incrementCounter();
+	
 	}
 
 	// Called when another command which requires one or more of the same
