@@ -151,6 +151,10 @@ public class Robot extends IterativeRobot {
 				CommandBase.boxLifterBack.getSpeed());
 		SmartDashboard.putNumber("Max Bin Rail Speed", 0.7);
 		SmartDashboard.putBoolean("micro bin rail", CommandBase.binLifter.isBinRailSwitch());
+		
+		SmartDashboard.putNumber("Move Rail Down Time", 1);
+		SmartDashboard.putNumber("move left speed", 0.5);
+		SmartDashboard.putNumber("move back speed", -0.5);
 
 		SmartDashboard.putNumber("Max speed of rails", 0.7);// to be tested
 	}

@@ -1,5 +1,7 @@
 package org.usfirst.frc.team4586.robot.commands.autonomusCommands;
 
+import org.usfirst.frc.team4586.robot.commands.binLifter.MoveBinRailToBottom;
+import org.usfirst.frc.team4586.robot.commands.binLifter.MoveBinRailToTop;
 import org.usfirst.frc.team4586.robot.commands.driver.MoveRobot;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -29,9 +31,9 @@ public class AutoTakeTrash extends CommandGroup {
         // arm.
     	
     	
-    	//addSequential(new MoveBinRail(1));	//lifting the trash
-    	addSequential(new MoveRobot(0, -1, 0, SmartDashboard.getNumber("autonomus drive back time")));	//move robot back
-    	//addSequential(new MoveBinRail(-1));
+    	addSequential(new MoveBinRailToTop());	//lifting the trash
+    	addSequential(new MoveRobot(0, SmartDashboard.getNumber("move back speed"), 0, SmartDashboard.getNumber("autonomus drive back time")));	//move robot back
+    	addSequential(new MoveBinRailToBottom());
     	
     }
 }
