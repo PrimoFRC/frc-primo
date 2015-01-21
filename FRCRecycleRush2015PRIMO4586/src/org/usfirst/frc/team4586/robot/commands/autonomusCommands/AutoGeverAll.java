@@ -33,12 +33,15 @@ public class AutoGeverAll extends CommandGroup {
     	
     	for(int i = 0; i < 2; i++)
     	{
-    		addSequential(new MoveBoxRailByTime(0.5,2));
-    		addSequential(new MoveRobot(SmartDashboard.getNumber("move left speed", 0.5), 0, 0, SmartDashboard.getNumber("autonomus drive left time")));
+    		addSequential(new MoveBoxRailUp(true));
+    		addSequential(new MoveRobot(0, -1, 0, 0.5, false));
+    		addSequential(new MoveRobot(1, 0, 0, 1,true));
+    		addSequential(new MoveRobot(0, 1, 0, 0.5, false));
     	}
     	
-    	addSequential(new MoveBoxRailByTime(0.5,2));
-    	addSequential(new MoveRobot(0, SmartDashboard.getNumber("move back speed"), 0, SmartDashboard.getNumber("autonomus drive back time")));	//move back
-    	
+    	addSequential(new MoveBoxRailUp(true));
+    	addSequential(new MoveRobot(0, -1, 0, 1,false));	//move back
+    	addSequential(new MoveBoxRailByTime(-0.5, 2));
+    	addSequential(new MoveRobot(0, -1, 0, 1,false));
     }
 }

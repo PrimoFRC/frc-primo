@@ -1,6 +1,5 @@
 package org.usfirst.frc.team4586.robot.commands.BoxLifter;
 
-import org.usfirst.frc.team4586.robot.OI;
 import org.usfirst.frc.team4586.robot.commands.CommandBase;
 import org.usfirst.frc.team4586.robot.subsystems.BoxLifter;
 

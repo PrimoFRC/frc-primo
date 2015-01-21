@@ -31,8 +31,8 @@ public class AutoTakeBox extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	
-    	addSequential(new MoveBoxRailByTime(0.5,2));
-    	addSequential(new MoveRobot(0, SmartDashboard.getNumber("move back speed"), 0, SmartDashboard.getNumber("autonomus drive back time")));
+    	addSequential(new MoveBoxRailUp(true));
+    	addSequential(new MoveRobot(0, -1, 0, 1,false));
     	addSequential(new MoveBoxRailByTime(-0.5,2));
     }
 }
