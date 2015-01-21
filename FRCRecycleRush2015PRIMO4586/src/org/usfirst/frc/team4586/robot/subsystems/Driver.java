@@ -20,8 +20,12 @@ public class Driver extends Subsystem {
 	static Jaguar motorBackRight;
 	
 	static BuiltInAccelerometer accel;
+
+	double xSpeed, xPlace, ySpeed, yPlace;
+	
 	
 	public int sign = 1;
+	
 	
 	//RobotDrive drive= new RobotDrive(motorFrontLeft, motorBackLeft, motorFrontRight, motorBackRight);
     public void initDefaultCommand() {
@@ -34,6 +38,11 @@ public class Driver extends Subsystem {
 		motorFrontRight = RobotMap.motorFrontRight;
 		motorBackLeft = RobotMap.motorBackLeft;
 		motorBackRight = RobotMap.motorBackRight;
+		
+		xSpeed = 0;
+		ySpeed = 0;
+		xPlace = 0;
+		yPlace = 0;
 		
 		accel = new BuiltInAccelerometer();
     }
@@ -88,7 +97,38 @@ public class Driver extends Subsystem {
     {
     	return accel.getZ();
     }
-    
+    public double getXPlace()
+    {
+    	return this.xPlace;
+    }
+    public double getYPlace()
+    {
+    	return this.yPlace;
+    }
+    public double getXSpeed()
+    {
+    	return this.xSpeed;
+    }
+    public double getYSpeed()
+    {
+    	return this.ySpeed;
+    }
+    public void setXPlace(double xPlace)
+    {
+    	this.xPlace = xPlace;
+    }
+    public void setYPlace(double yPlace)
+    {
+    	this.yPlace = yPlace;
+    }
+    public void setXSpeed(double xSpeed)
+    {
+    	this.xSpeed = xSpeed;
+    }
+    public void setYSpeed(double ySpeed)
+    {
+    	this.ySpeed = ySpeed;
+    }
     
     
     

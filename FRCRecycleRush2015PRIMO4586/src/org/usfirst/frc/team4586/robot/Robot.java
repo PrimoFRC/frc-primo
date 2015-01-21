@@ -12,6 +12,7 @@ import org.usfirst.frc.team4586.robot.commands.ExampleCommand;
 import org.usfirst.frc.team4586.robot.commands.BoxLifter.MoveBoxRailByStick;
 import org.usfirst.frc.team4586.robot.commands.autonomusCommands.*;
 import org.usfirst.frc.team4586.robot.commands.binLifter.MoveBinRailByStick;
+import org.usfirst.frc.team4586.robot.commands.driver.Accelerometer;
 import org.usfirst.frc.team4586.robot.commands.driver.MecanumDrive;
 import org.usfirst.frc.team4586.robot.subsystems.Driver;
 import org.usfirst.frc.team4586.robot.subsystems.ExampleSubsystem;
@@ -24,6 +25,7 @@ import org.usfirst.frc.team4586.robot.subsystems.ExampleSubsystem;
  * directory.
  */
 public class Robot extends IterativeRobot {
+	
 	
 	public static SendableChooser autonomousMode = new SendableChooser();
 	
@@ -45,7 +47,7 @@ public class Robot extends IterativeRobot {
 		// System.out.println("robotInit finished");
 
 		// instantiate the command used for the autonomous period
-
+		
 		smartDashboardInit();
 	}
 
@@ -75,6 +77,7 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().add(new MoveBinRailByStick());
 		Scheduler.getInstance().add(new MoveBoxRailByStick(false));
 		Scheduler.getInstance().add(new MoveBoxRailByStick(true));
+		Scheduler.getInstance().add(new Accelerometer());
 		
 		
 	}
@@ -127,6 +130,11 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("accelerometer X", Driver.getAccelorometerX());
 		SmartDashboard.putNumber("accelerometer Y", Driver.getAccelorometerY());
 		SmartDashboard.putNumber("accelerometer Z", Driver.getAccelorometerZ());
+		SmartDashboard.putNumber("Robot X Place", CommandBase.driver.getXPlace());
+		SmartDashboard.putNumber("Robot Y Place", CommandBase.driver.getYPlace());
+		SmartDashboard.putNumber("Robot X Speed", CommandBase.driver.getXSpeed());
+		SmartDashboard.putNumber("Robot Y Speed", CommandBase.driver.getYSpeed());
+		
 
 		SmartDashboard.putBoolean("Microswitch 1 Front Rail",
 				CommandBase.boxLifterFront.getCheckContact1());
@@ -164,6 +172,10 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("accelerometer X", Driver.getAccelorometerX());
 		SmartDashboard.putNumber("accelerometer Y", Driver.getAccelorometerY());
 		SmartDashboard.putNumber("accelerometer Z", Driver.getAccelorometerZ());
+		SmartDashboard.putNumber("Robot X Place", CommandBase.driver.getXPlace());
+		SmartDashboard.putNumber("Robot Y Place", CommandBase.driver.getYPlace());
+		SmartDashboard.putNumber("Robot X Speed", CommandBase.driver.getXSpeed());
+		SmartDashboard.putNumber("Robot Y Speed", CommandBase.driver.getYSpeed());
 		
 		SmartDashboard.putBoolean("Microswitch 1 Front Rail",
 				CommandBase.boxLifterFront.getCheckContact1());

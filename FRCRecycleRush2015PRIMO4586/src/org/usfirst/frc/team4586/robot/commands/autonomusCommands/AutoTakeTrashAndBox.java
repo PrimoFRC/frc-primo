@@ -34,10 +34,8 @@ public class AutoTakeTrashAndBox extends CommandGroup {
         // arm.
     	
     	addSequential(new MoveBinRailToTop());	//lifting the trash
-    	addSequential(new MoveRobot(SmartDashboard.getNumber("move left speed", 0.5), 0, 0, 0.5));	
-    	addSequential(new MoveBoxRailByTime(0.5,2));
-    	addSequential(new MoveRobot(0, SmartDashboard.getNumber("move back speed"), 0, SmartDashboard.getNumber("autonomus drive back time")));
-    	addSequential(new MoveBoxRailByTime(-0.5,2));
-    	addSequential(new MoveBinRailToBottom());
+    	addSequential(new MoveRobot(-1, 0, 0, 0.5, true));	
+    	addSequential(new MoveBoxRailUp(true));
+    	addSequential(new MoveRobot(0, -1, 0, 1,false));
     }
 }
