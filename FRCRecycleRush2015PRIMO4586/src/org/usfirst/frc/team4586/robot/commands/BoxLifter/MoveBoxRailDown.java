@@ -37,14 +37,8 @@ public class MoveBoxRailDown extends Command {
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
-	protected boolean isFinished() {
-		if (boxLifter.getCounter() <= 1) {
-			return true;
-		} else if (wasReleased && boxLifter.getHookState()) {
-			return true;
-		} else
-			return false;
-
+	protected boolean isFinished() {		
+		return (boxLifter.getCounter() <= 1 || wasReleased && boxLifter.getHookState() );
 	}
 
 	// Called once after isFinished returns true

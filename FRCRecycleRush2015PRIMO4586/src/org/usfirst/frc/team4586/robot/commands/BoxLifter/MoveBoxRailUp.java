@@ -50,12 +50,7 @@ public class MoveBoxRailUp extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		if (boxLifter.getCounter() >= boxLifter.numOfValves) {
-			return true;
-		} else if (wasReleased && boxLifter.getHookState()) {
-			return true;
-		} else
-			return false;
+		return(boxLifter.getCounter() >= boxLifter.numOfValves || wasReleased && boxLifter.getHookState());
 	}
 
 	// Called once after isFinished returns true
