@@ -12,12 +12,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class MoveBoxRailUp extends Command {
 	private BoxLifter boxLifter;
-	private boolean wasReleased;
+	private boolean wasReleased, wasInitialized;
+	
 
 	public MoveBoxRailUp(boolean isFront) {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		wasReleased = false;
+		wasInitialized = false;
 		if (isFront) {
 			boxLifter = CommandBase.boxLifterFront;
 		} else {
@@ -30,6 +32,7 @@ public class MoveBoxRailUp extends Command {
 		if (boxLifter.getCounter() < boxLifter.numOfValves
 				&& boxLifter.getCheckContact1() && boxLifter.getCheckContact2()){
 			boxLifter.setSpeed(SmartDashboard.getNumber("Max speed of rails"));
+			wasInitialized=true;
 		}
 
 	}
@@ -50,7 +53,7 @@ public class MoveBoxRailUp extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return(boxLifter.getCounter() >= boxLifter.numOfValves || wasReleased && boxLifter.getHookState());
+		return (!wasInitialized && boxLifter.getCounter() >= boxLifter.numOfValves ) || (wasReleased && boxLifter.getHookState());
 	}
 
 	// Called once after isFinished returns true
