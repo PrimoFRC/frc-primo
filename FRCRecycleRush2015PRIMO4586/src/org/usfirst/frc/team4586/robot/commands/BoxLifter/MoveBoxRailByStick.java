@@ -36,8 +36,6 @@ public class MoveBoxRailByStick extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		
-		if(!boxLifter.getHookState())
-			wasReleased = true;
 		
 		double yAxis = operatorStick.getY();
 		if (yAxis > 0.1) {
@@ -53,7 +51,10 @@ public class MoveBoxRailByStick extends Command {
 		} else if (yAxis < -0.1) {
 			boxLifter.setSpeed(yAxis * SmartDashboard.getNumber("Max speed of rails"));
 			wasItMoved = true;
-			if (boxLifter.getHookState() && wasReleased)
+
+			if(!boxLifter.getHookState())
+				wasReleased = true;
+			else if (wasReleased)
 			{
 				boxLifter.decrementCounter();
 				wasReleased = false;
