@@ -43,10 +43,12 @@ public class MoveBoxRailByStick extends Command {
 		if (yAxis > 0.1) {
 			boxLifter.setSpeed(yAxis * SmartDashboard.getNumber("Max speed of rails"));
 			wasItMoved = true;
-			if (boxLifter.getHookState() && wasReleased)
+			if (!boxLifter.getHookState() )
 			{
+				if(!wasReleased)
 				boxLifter.incrementCounter();
-				wasReleased = false;
+				
+				wasReleased = true;
 			}
 		} else if (yAxis < -0.1) {
 			boxLifter.setSpeed(yAxis * SmartDashboard.getNumber("Max speed of rails"));
