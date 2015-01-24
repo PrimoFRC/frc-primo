@@ -25,8 +25,9 @@ public abstract class CommandBase extends Command {
         oi = new OI();
         driver = new Driver();
         binLifter=new BinLifter();
-        boxLifterFront=new BoxLifter(RobotMap.checkContactFront1, RobotMap.checkContactFront2, RobotMap.valveFront, RobotMap.lifterFront);
-        boxLifterBack = new BoxLifter(RobotMap.checkContactBack1,RobotMap.checkContactBack2, RobotMap.valveBack, RobotMap.lifterBack);
+        boxLifterFront=new BoxLifter(RobotMap.checkContactFront1, RobotMap.checkContactFront2, RobotMap.valveFront, RobotMap.lifterFront , RobotMap.lifterFront2);
+        boxLifterBack = new BoxLifter(RobotMap.checkContactBack1,RobotMap.checkContactBack2, RobotMap.valveBack, RobotMap.lifterBack,RobotMap.lifterBack);
+       
         // Show what command your subsystem is running on the SmartDashboard
         
     }
