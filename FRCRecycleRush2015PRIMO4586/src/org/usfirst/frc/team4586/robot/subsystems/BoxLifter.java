@@ -15,6 +15,7 @@ public class BoxLifter extends Subsystem {
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands
 	private Talon lifter;
+	private Talon lifter2;
     
 	private DigitalInput checkContact1;
 	private DigitalInput checkContact2;;
@@ -24,11 +25,12 @@ public class BoxLifter extends Subsystem {
 	private int boxes;
 
 	public BoxLifter(DigitalInput checkContact1, DigitalInput checkContact2,
-			DigitalInput hookInPlace, Talon lifter) {
+			DigitalInput hookInPlace, Talon lifter, Talon lifter2) {
 		super();
 		this.checkContact1 = checkContact1;
 		this.checkContact2 = checkContact2;
 		this.lifter = lifter;
+		this.lifter2=lifter2;
 		this.hookInPlace = hookInPlace;
 		//this.count=new Counter();
 		//this.count.setUpSource(hookInPlace);
@@ -37,6 +39,7 @@ public class BoxLifter extends Subsystem {
 
 	public void setSpeed(double speed) {
 		this.lifter.set(speed);
+		this.lifter2.set(speed);
 	}
 
 	public double getSpeed() {
