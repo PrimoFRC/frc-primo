@@ -44,7 +44,7 @@ public class MoveBoxRailByStick extends Command {
 			if (!boxLifter.getHookState() )
 			{
 				if(!wasReleased)
-				boxLifter.incrementCounter();
+					boxLifter.incrementCounter();
 				
 				wasReleased = true;
 			}
