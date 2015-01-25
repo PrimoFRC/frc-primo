@@ -96,8 +96,6 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		smartDashboardPeriodic();
-		SmartDashboard.putNumber("max driving speed", 0.7);
-		System.out.println("SmartDashboard should work");
 	}
 
 	/**

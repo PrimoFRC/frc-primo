@@ -44,8 +44,8 @@ public class RobotMap {
 
 	public static void init()// to be tested
 	{
-		lifterFront = new Talon(4);
-		lifterFront2 = new Talon(3);
+		lifterFront = new Talon(3);
+		lifterFront2 = new Talon(4);
 		lifterBack = new Talon(8);
 		binRailMotor = new Talon(7);
 		
@@ -54,13 +54,13 @@ public class RobotMap {
 		motorBackLeft = new Jaguar(5);
 		motorBackRight = new Jaguar(2);
 
-		checkContactBack1 = new DigitalInput(1);
-		checkContactBack2 = new DigitalInput(2);
-		checkContactFront1 = new DigitalInput(3);
-		checkContactFront2 = new DigitalInput(4);
+		checkContactBack1 = new DigitalInput(3);
+		checkContactBack2 = new DigitalInput(4);
+		checkContactFront1 = new DigitalInput(0);
+		checkContactFront2 = new DigitalInput(1);
 
 		valveBack = new DigitalInput(5);
-		valveFront = new DigitalInput(6);
+		valveFront = new DigitalInput(2);
 		
 		binRailSwitch= new DigitalInput(7);
 	}

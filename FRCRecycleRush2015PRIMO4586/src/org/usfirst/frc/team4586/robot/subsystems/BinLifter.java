@@ -18,14 +18,16 @@ public class BinLifter extends Subsystem {
 	static Talon binRailMotor;
 	static DigitalInput binRailSwitch;
 	static boolean isTop, isBottom;
-    public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
-    	binRailSwitch = RobotMap.binRailSwitch;
+	
+	
+	public BinLifter()
+	{
+		binRailSwitch = RobotMap.binRailSwitch;
     	binRailMotor = RobotMap.binRailMotor;
     	isBottom = isBinRailSwitch();
     	isTop = false;
-    }
+	}
+	
     
     public void moveBinRail(double speed)
     {
@@ -51,6 +53,12 @@ public class BinLifter extends Subsystem {
     public boolean isTop()
     {
     	return isTop;
+    }
+    
+    public void initDefaultCommand() {
+        // Set the default command for a subsystem here.
+        //setDefaultCommand(new MySpecialCommand());
+    	
     }
 }
 
