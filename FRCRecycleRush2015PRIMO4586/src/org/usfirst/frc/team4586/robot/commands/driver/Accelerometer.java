@@ -41,9 +41,9 @@ public class Accelerometer extends Command {
     	time = timer.get() - lastTime;
     	lastTime = time + lastTime;
     	
-    	xSpeed = xSpeed + time * Driver.getAccelorometerX() * 9.81;
+    	xSpeed = xSpeed + time * round(Driver.getAccelorometerX()) * 9.81;
     	xPlace = xPlace + time * xSpeed;
-    	ySpeed = ySpeed + time * Driver.getAccelorometerY() * 9.81;
+    	ySpeed = ySpeed + time * round(Driver.getAccelorometerY()) * 9.81;
     	yPlace = yPlace + time * ySpeed;
     	
     	driver.setXSpeed(xSpeed);
@@ -53,6 +53,13 @@ public class Accelerometer extends Command {
 
     }
 
+    protected double round(double num)
+    {
+    	num *= 10;
+    	num = (int)num;
+    	return num / 10.0;
+    }
+    
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return false;
