@@ -1,5 +1,6 @@
 package org.usfirst.frc.team4586.robot.commands.autonomusCommands;
 
+import org.usfirst.frc.team4586.robot.commands.BoxLifter.MoveBoxRailUp;
 import org.usfirst.frc.team4586.robot.commands.binLifter.MoveBinRailToBottom;
 import org.usfirst.frc.team4586.robot.commands.binLifter.MoveBinRailToTop;
 import org.usfirst.frc.team4586.robot.commands.driver.MoveRobot;
@@ -31,7 +32,8 @@ public class AutoTakeTrash extends CommandGroup {
         // arm.
     	
     	
-    	addSequential(new MoveBinRailToTop());	//lifting the trash
+    	addSequential(new MoveBoxRailUp(true));
+    	//addSequential(new MoveBinRailToTop());	//lifting the trash
     	addSequential(new MoveRobot(0, -1, 0, 1,false));	//move robot back
     	//addSequential(new MoveBinRailToBottom());
     	

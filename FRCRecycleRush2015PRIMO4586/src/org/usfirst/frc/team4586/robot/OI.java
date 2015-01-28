@@ -8,6 +8,7 @@ import org.usfirst.frc.team4586.robot.commands.ExampleCommand;
 import org.usfirst.frc.team4586.robot.commands.BoxLifter.MoveBoxRailDown;
 import org.usfirst.frc.team4586.robot.commands.BoxLifter.MoveBoxRailToBottom;
 import org.usfirst.frc.team4586.robot.commands.BoxLifter.MoveBoxRailUp;
+import org.usfirst.frc.team4586.robot.commands.BoxLifter.ResetCounter;
 import org.usfirst.frc.team4586.robot.commands.binLifter.MoveBinRailToBottom;
 import org.usfirst.frc.team4586.robot.commands.binLifter.MoveBinRailToTop;
 import org.usfirst.frc.team4586.robot.commands.driver.InvertMotors;
@@ -44,16 +45,17 @@ public class OI {
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
 	public Joystick operatorStickFront;
-	public Joystick operatorStickBack;
+	//public Joystick operatorStickBack;
 	public Joystick drivingStick;
 
+	public JoystickButton resetCounter;
 	public JoystickButton moveBoxRailFrontOneUp;
 	public JoystickButton moveBoxRailFrontOneDown;
 	public JoystickButton moveBoxRailFrontBottom;
 
-	public JoystickButton moveBoxRailBackOneUp;
+	/*public JoystickButton moveBoxRailBackOneUp;
 	public JoystickButton moveBoxRailBackOneDown;
-	public JoystickButton moveBoxRaillBackBottom;
+	public JoystickButton moveBoxRaillBackBottom;*/
 	
 	public JoystickButton binRailToBottom;
 	public JoystickButton binRailToTop;
@@ -63,16 +65,17 @@ public class OI {
 	public OI() // to be tested
 	{
 		operatorStickFront = new Joystick(1);
-		operatorStickBack = new Joystick(2);
+		//operatorStickBack = new Joystick(2);
 		drivingStick = new Joystick(0);
 		
+		 resetCounter = new JoystickButton (operatorStickFront , 7 );
 		 moveBoxRailFrontOneUp = new JoystickButton(operatorStickFront,3);
 		 moveBoxRailFrontOneDown = new JoystickButton(operatorStickFront,4);
 		 moveBoxRailFrontBottom = new JoystickButton(operatorStickFront,11);
 
-		 moveBoxRailBackOneUp = new JoystickButton(operatorStickBack,3);
+		 /*moveBoxRailBackOneUp = new JoystickButton(operatorStickBack,3);
 		 moveBoxRailBackOneDown = new JoystickButton(operatorStickBack,4);
-		 moveBoxRaillBackBottom = new JoystickButton(operatorStickBack,11);
+		 moveBoxRaillBackBottom = new JoystickButton(operatorStickBack,11);*/
 		 
 		
 		 
@@ -82,14 +85,14 @@ public class OI {
 		 invertMotors = new JoystickButton(drivingStick,5);
 		 
 		 
-		 
+		 resetCounter.whenPressed( new ResetCounter() );
 		 moveBoxRailFrontOneUp.whenPressed(new MoveBoxRailUp(true));
 		 moveBoxRailFrontOneDown.whenPressed(new MoveBoxRailDown(true));
 		 moveBoxRailFrontBottom.whenPressed(new MoveBoxRailToBottom(true));
 		 
-		 moveBoxRailBackOneUp.whenPressed(new MoveBoxRailUp(false));
+		 /*moveBoxRailBackOneUp.whenPressed(new MoveBoxRailUp(false));
 		 moveBoxRailBackOneDown.whenPressed(new MoveBoxRailDown(false));
-		 moveBoxRaillBackBottom.whenPressed(new MoveBoxRailToBottom(false));
+		 moveBoxRaillBackBottom.whenPressed(new MoveBoxRailToBottom(false));*/
 		 
 		 binRailToBottom.whenPressed(new MoveBinRailToBottom());
 		 binRailToTop.whenPressed(new MoveBinRailToTop());

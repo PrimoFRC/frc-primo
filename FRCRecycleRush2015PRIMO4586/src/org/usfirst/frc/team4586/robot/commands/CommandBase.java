@@ -15,19 +15,19 @@ public abstract class CommandBase extends Command {
     public static BinLifter binLifter;
     // Create a single static instance of all of your subsystems
     public static BoxLifter boxLifterFront;
-    public static BoxLifter boxLifterBack;
+    //public static BoxLifter boxLifterBack;
     public static void init() {
         // This MUST be here. If the OI creates Commands (which it very likely
         // will), constructing it during the construction of CommandBase (from
         // which commands extend), subsystems are not guaranteed to be
         // yet. Thus, their requires() statements may grab null pointers. Bad
         // news. Don't move it.
-        oi = new OI();
+        
         driver = new Driver();
         binLifter=new BinLifter();
         boxLifterFront=new BoxLifter(RobotMap.checkContactFront1, RobotMap.checkContactFront2, RobotMap.valveFront, RobotMap.lifterFront , RobotMap.lifterFront2);
-        boxLifterBack = new BoxLifter(RobotMap.checkContactBack1,RobotMap.checkContactBack2, RobotMap.valveBack, RobotMap.lifterBack,RobotMap.lifterBack);
-       
+        //boxLifterBack = new BoxLifter(RobotMap.checkContactBack1,RobotMap.checkContactBack2, RobotMap.valveBack, RobotMap.lifterBack,RobotMap.lifterBack);
+        oi = new OI();
         // Show what command your subsystem is running on the SmartDashboard
         
     }

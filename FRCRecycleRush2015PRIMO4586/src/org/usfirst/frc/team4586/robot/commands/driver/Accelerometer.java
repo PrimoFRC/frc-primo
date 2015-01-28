@@ -15,9 +15,9 @@ public class Accelerometer extends Command {
 
 	Timer timer = new Timer();
 	
-	Driver driver = new Driver();
-	
-	double xSpeed, xPlace, ySpeed, yPlace, time, lastTime;
+	Driver driver;
+
+	static double xSpeed, xPlace, ySpeed, yPlace, time, lastTime;
     public Accelerometer() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -39,18 +39,18 @@ public class Accelerometer extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	time = timer.get() - lastTime;
-    	lastTime = time + lastTime;
     	
     	xSpeed = xSpeed + time * round(Driver.getAccelorometerX()) * 9.81;
-    	xPlace = xPlace + time * xSpeed;
     	ySpeed = ySpeed + time * round(Driver.getAccelorometerY()) * 9.81;
+    	xPlace = xPlace + time * xSpeed;
     	yPlace = yPlace + time * ySpeed;
     	
     	driver.setXSpeed(xSpeed);
     	driver.setXPlace(xPlace);
     	driver.setYSpeed(ySpeed);
     	driver.setYPlace(yPlace);
-
+    	
+    	lastTime = time + lastTime;
     }
 
     protected double round(double num)
@@ -72,5 +72,12 @@ public class Accelerometer extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    }
+    
+    public static void resetSpeed()
+    {
+    	xSpeed = 0;
+    	ySpeed = 0;
+    	System.out.println("zero speed");
     }
 }

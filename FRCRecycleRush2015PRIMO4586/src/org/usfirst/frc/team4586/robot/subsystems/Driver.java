@@ -1,17 +1,25 @@
 package org.usfirst.frc.team4586.robot.subsystems;
 
 import org.usfirst.frc.team4586.robot.RobotMap;
+import org.usfirst.frc.team4586.robot.commands.CommandBase;
+import org.usfirst.frc.team4586.robot.commands.driver.Accelerometer;
+
+import com.ni.vision.NIVision.Range;
 
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
+import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
-
+import edu.wpi.first.wpilibj.hal.AccelerometerJNI;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
 public class Driver extends Subsystem {
     
+	
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	static Jaguar motorFrontLeft;
@@ -19,10 +27,12 @@ public class Driver extends Subsystem {
 	static Jaguar motorBackLeft;
 	static Jaguar motorBackRight;
 	
+	static Gyro gyro;
 	static BuiltInAccelerometer accel;
 
-	double xSpeed, xPlace, ySpeed, yPlace;
-	
+	double xSpeed, xPlace, ySpeed, yPlace,
+			angle;
+	static edu.wpi.first.wpilibj.interfaces.Accelerometer.Range range;
 	
 	public int sign = 1;
 	
@@ -44,7 +54,10 @@ public class Driver extends Subsystem {
 		xPlace = 0;
 		yPlace = 0;
 		
+
+		gyro = new Gyro(0);
 		accel = new BuiltInAccelerometer();
+		accel.setRange(edu.wpi.first.wpilibj.interfaces.Accelerometer.Range.k8G);
     }
     
     public void stop()
@@ -62,7 +75,7 @@ public class Driver extends Subsystem {
     
     public void setBL(double speed)
     {
-        motorBackLeft.set(-speed);
+        motorBackLeft.set(-speed * SmartDashboard.getNumber("Back wheels over power: " , 0.7));
     }
     
     public void setFR(double speed)
@@ -72,7 +85,7 @@ public class Driver extends Subsystem {
     
     public void setBR(double speed)
     {
-        motorBackRight.set(speed);
+        motorBackRight.set(speed * SmartDashboard.getNumber("Back wheels over power: " , 0.7));
     }
     public void mecanumDrive(double x, double y, double z)
     {
@@ -112,6 +125,7 @@ public class Driver extends Subsystem {
     public double getYSpeed()
     {
     	return this.ySpeed;
+    	
     }
     public void setXPlace(double xPlace)
     {
@@ -129,6 +143,16 @@ public class Driver extends Subsystem {
     {
     	this.ySpeed = ySpeed;
     }
+    
+    public void resetGyro()
+    {
+    	gyro.reset();
+    }
+    public double getGyro()
+    {
+    	return gyro.getAngle();
+    }
+    
     
     
     

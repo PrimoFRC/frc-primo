@@ -34,8 +34,9 @@ public class MoveRobot extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
+    	z = CommandBase.driver.getGyro()*0.1;
     	CommandBase.driver.mecanumDrive(x*SmartDashboard.getNumber("move left speed", 0.5),
-    			y*SmartDashboard.getNumber("move back speed"), z*SmartDashboard.getNumber("max driving speed"));
+    			-y*SmartDashboard.getNumber("move back speed"), z*SmartDashboard.getNumber("max driving speed"));
     	
     }
 
@@ -47,6 +48,7 @@ public class MoveRobot extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	CommandBase.driver.stop();
+    	Accelerometer.resetSpeed();
     }
 
     // Called when another command which requires one or more of the same

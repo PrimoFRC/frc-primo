@@ -11,7 +11,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class BoxLifter extends Subsystem {
-     public static final int numOfValves=6;
+	private boolean wasReleased;
+    public static final int numOfValves=5;
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands
 	private Talon lifter;
@@ -49,6 +50,11 @@ public class BoxLifter extends Subsystem {
 	public int getCounter() {
 		return this.boxes;
 	}
+	
+	public void setCounter(int level)
+	{
+		this.boxes = level;
+	}
     public void incrementCounter()
     {
     	this.boxes++;
@@ -74,6 +80,31 @@ public class BoxLifter extends Subsystem {
 
 	public boolean getHookState() {
 		return this.hookInPlace.get();
+	}
+	
+	public void count()
+	{
+		if(getSpeed() < 0)
+		{
+			if(!getHookState())
+				wasReleased = true;
+			else if (wasReleased)
+			{
+				decrementCounter();
+				wasReleased = false;
+			}
+		}
+		else if (getSpeed() > 0)
+		{
+		
+			if(getHookState())
+				wasReleased = false;
+			else if (!wasReleased)
+			{
+				incrementCounter();
+				wasReleased = true;
+			}
+		}
 	}
 
 	public void initDefaultCommand() {
