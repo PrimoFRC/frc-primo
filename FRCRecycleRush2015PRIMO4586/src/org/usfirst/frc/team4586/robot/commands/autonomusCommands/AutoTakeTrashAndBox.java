@@ -33,8 +33,11 @@ public class AutoTakeTrashAndBox extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	
-    	addSequential(new MoveBinRailToTop());	//lifting the trash
-    	addSequential(new MoveRobot(-1, 0, 0, 0.5, true));	
+    	addSequential(new MoveBoxRailUp(true));
+    	addSequential(new MoveBoxRailUp(true));
+    	//addSequential(new MoveBinRailToTop());	//lifting the trash
+    	addSequential(new MoveRobot(-1, 0, 0, 1, true));	
+    	addSequential(new MoveRobot(0, 0.5, 0, 1.5,false));
     	addSequential(new MoveBoxRailUp(true));
     	addSequential(new MoveRobot(0, -1, 0, 1,false));
     }

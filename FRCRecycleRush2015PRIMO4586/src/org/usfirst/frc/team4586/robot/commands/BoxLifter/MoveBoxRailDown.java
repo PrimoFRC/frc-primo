@@ -17,17 +17,18 @@ public class MoveBoxRailDown extends Command {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		wasReleased = false;
-		if (isFront) {
+		//if (isFront) {
 			boxLifter = CommandBase.boxLifterFront;
-		} else {
-			boxLifter = CommandBase.boxLifterBack;
-		}
+		//} else {
+			//boxLifter = CommandBase.boxLifterBack;
+		//}
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
+		wasReleased = false;
 		if (boxLifter.getCounter() > 1)
-			boxLifter.setSpeed(-SmartDashboard.getNumber("Max speed of rails"));
+			boxLifter.setSpeed(-SmartDashboard.getNumber("Max speed of rails")*SmartDashboard.getNumber("Down factor"));
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -44,7 +45,8 @@ public class MoveBoxRailDown extends Command {
 	// Called once after isFinished returns true
 	protected void end() {
 		boxLifter.setSpeed(0);
-		boxLifter.decrementCounter();
+		//if ((wasReleased && boxLifter.getHookState()))
+		//boxLifter.decrementCounter();
 	}
 
 	// Called when another command which requires one or more of the same

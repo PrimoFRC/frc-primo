@@ -34,9 +34,11 @@ public class AutoGeverAll extends CommandGroup {
     	for(int i = 0; i < 2; i++)
     	{
     		addSequential(new MoveBoxRailUp(true));
-    		addSequential(new MoveRobot(0, -1, 0, 0.5, false));
-    		addSequential(new MoveRobot(1, 0, 0, 1,true));
-    		addSequential(new MoveRobot(0, 1, 0, 0.5, false));
+    		
+    		addSequential(new MoveRobot(0, -1, 0, 0.75, false));
+    		addSequential(new MoveRobot(0.5, 0, 0, 0.5,true));
+    		addSequential(new MoveRobot(1, 0, 0, 2,true));
+    		addSequential(new MoveRobot(0, 1, 0, 0.75, false));
     	}
     	
     	addSequential(new MoveBoxRailUp(true));

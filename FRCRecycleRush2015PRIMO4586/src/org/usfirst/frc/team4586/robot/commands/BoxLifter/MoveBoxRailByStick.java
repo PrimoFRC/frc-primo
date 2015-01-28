@@ -18,13 +18,13 @@ public class MoveBoxRailByStick extends Command {
 	public MoveBoxRailByStick(boolean isFront) {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
-		if (isFront) {
+		//if (isFront) {
 			operatorStick = CommandBase.oi.operatorStickFront;
 			boxLifter = CommandBase.boxLifterFront;
-		} else {
-			operatorStick = CommandBase.oi.operatorStickBack;
-			boxLifter = CommandBase.boxLifterBack;
-		}
+		//} else {
+		//	operatorStick = CommandBase.oi.operatorStickBack;
+		//boxLifter = CommandBase.boxLifterBack;
+		//}
 	}
 
 	// Called just before this Command runs the first time
@@ -35,12 +35,22 @@ public class MoveBoxRailByStick extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		
+		boxLifter.count();
 		
 		double yAxis = operatorStick.getY();
 		if (yAxis > 0.1) {
 			boxLifter.setSpeed(yAxis * SmartDashboard.getNumber("Max speed of rails"));
 			wasItMoved = true;
+			/*
+			if(boxLifter.getHookState())
+				wasReleased = false;
+			else if (!wasReleased)
+			{
+				boxLifter.incrementCounter();
+				wasReleased = true;
+			}
+			*/
+			/*
 			if (!boxLifter.getHookState() )
 			{
 				if(!wasReleased)
@@ -48,10 +58,12 @@ public class MoveBoxRailByStick extends Command {
 				
 				wasReleased = true;
 			}
+			*/
 		} else if (yAxis < -0.1) {
 			boxLifter.setSpeed(yAxis * SmartDashboard.getNumber("Max speed of rails"));
 			wasItMoved = true;
 
+			/*
 			if(!boxLifter.getHookState())
 				wasReleased = true;
 			else if (wasReleased)
@@ -59,6 +71,8 @@ public class MoveBoxRailByStick extends Command {
 				boxLifter.decrementCounter();
 				wasReleased = false;
 			}
+			*/
+			
 		} else if (wasItMoved) {
 			boxLifter.setSpeed(0);
 			wasItMoved = false;

@@ -49,18 +49,18 @@ public class RobotMap {
 		lifterBack = new Talon(8);
 		binRailMotor = new Talon(7);
 		
-		motorFrontLeft = new Jaguar(6);
-		motorFrontRight = new Jaguar(1);
-		motorBackLeft = new Jaguar(5);
-		motorBackRight = new Jaguar(2);
+		motorFrontLeft = new Jaguar(2);
+		motorFrontRight = new Jaguar(5);
+		motorBackLeft = new Jaguar(1);
+		motorBackRight = new Jaguar(6);
 
-		checkContactBack1 = new DigitalInput(3);
+		checkContactBack1 = new DigitalInput(2);
 		checkContactBack2 = new DigitalInput(4);
 		checkContactFront1 = new DigitalInput(0);
 		checkContactFront2 = new DigitalInput(1);
 
 		valveBack = new DigitalInput(5);
-		valveFront = new DigitalInput(2);
+		valveFront = new DigitalInput(3);
 		
 		binRailSwitch= new DigitalInput(7);
 	}
