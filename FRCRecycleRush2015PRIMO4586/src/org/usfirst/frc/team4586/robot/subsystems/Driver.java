@@ -7,6 +7,7 @@ import org.usfirst.frc.team4586.robot.commands.driver.Accelerometer;
 import com.ni.vision.NIVision.Range;
 
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.RobotDrive;
@@ -26,6 +27,8 @@ public class Driver extends Subsystem {
 	static Jaguar motorFrontRight;
 	static Jaguar motorBackLeft;
 	static Jaguar motorBackRight;
+	
+	static DigitalInput autonomusSwitch;
 	
 	static Gyro gyro;
 	static BuiltInAccelerometer accel;
@@ -48,11 +51,12 @@ public class Driver extends Subsystem {
 		motorFrontRight = RobotMap.motorFrontRight;
 		motorBackLeft = RobotMap.motorBackLeft;
 		motorBackRight = RobotMap.motorBackRight;
-		
 		xSpeed = 0;
 		ySpeed = 0;
 		xPlace = 0;
 		yPlace = 0;
+		
+		autonomusSwitch = RobotMap.autoSwitch;
 		
 
 		gyro = new Gyro(0);
@@ -153,6 +157,10 @@ public class Driver extends Subsystem {
     	return gyro.getAngle();
     }
     
+    public boolean getAutonomusSwitch()
+    {
+    	return autonomusSwitch.get();
+    }
     
     
     

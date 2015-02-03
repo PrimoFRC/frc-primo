@@ -32,8 +32,7 @@ public class AutoTakeBox extends CommandGroup {
         // arm.
     	
     	addSequential(new MoveBoxRailUp(true));
-    	addSequential(new MoveBoxRailUp(true));
-    	addSequential(new MoveRobot(0, -0.5, 0, 2,false));
+    	addSequential(new MoveRobot(0, -0.6, 0, 5,false));
     	//addSequential(new MoveBoxRailByTime(-0.5,1));
     }
 }
