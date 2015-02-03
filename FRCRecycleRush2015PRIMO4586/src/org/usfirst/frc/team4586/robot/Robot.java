@@ -35,6 +35,8 @@ public class Robot extends IterativeRobot {
 	 */
 	public void robotInit() {
 
+		
+		System.out.println("robo init");
 		RobotMap.init();
 		// System.out.println("robotMap works");
 		CommandBase.init();
@@ -57,8 +59,10 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void autonomousInit() {
+		System.out.println("auto init");
+		Scheduler.getInstance().removeAll();
 		CommandBase.driver.resetGyro();
-		Scheduler.getInstance().add(new Accelerometer());
+		//Scheduler.getInstance().add(new Accelerometer());
 		// schedule the autonomous command (example)
 		Scheduler.getInstance().add((Command)autonomousMode.getSelected());
 	}
@@ -77,7 +81,8 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void teleopInit() {
-		
+		System.out.println("tele init");
+		CommandBase.driver.resetGyro();
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
@@ -116,8 +121,10 @@ public class Robot extends IterativeRobot {
 
 	public void smartDashboardInit() {
 		
+		SmartDashboard.putNumber("Gyro factor", 0.05);
+		
 		SmartDashboard.putNumber("Down factor", 0.6);
-		SmartDashboard.putNumber("Back wheels over power: " , 0.86);
+		SmartDashboard.putNumber("Back wheels over power: " , 1);
 		
 		autonomousMode.addDefault("All", new AutoGeverAll());
         autonomousMode.addObject("Box", new AutoTakeBox());
@@ -134,8 +141,8 @@ public class Robot extends IterativeRobot {
         
 		SmartDashboard.putNumber("max driving speed", 0.7);
 
-		SmartDashboard.putNumber("autonomus drive back time", 1);
-		SmartDashboard.putNumber("autonomus drive left time", 1.5);
+		SmartDashboard.putNumber("autonomus drive back time", 0.4);
+		SmartDashboard.putNumber("autonomus drive left time", 0.7);
 
 		SmartDashboard.putNumber("accelerometer X", Driver.getAccelorometerX());
 		SmartDashboard.putNumber("accelerometer Y", Driver.getAccelorometerY());
@@ -152,6 +159,8 @@ public class Robot extends IterativeRobot {
 				CommandBase.boxLifterFront.getCheckContact1());
 		SmartDashboard.putBoolean("Microswitch 2 Front Rail",
 				CommandBase.boxLifterFront.getCheckContact2());
+		SmartDashboard.putBoolean("Autonomus MicroSwitch", 
+				CommandBase.driver.getAutonomusSwitch());
 		SmartDashboard.putBoolean("Valve Front Rail",
 				CommandBase.boxLifterFront.getHookState());
 		SmartDashboard.putNumber("Number of boxes on Front rail",
@@ -173,8 +182,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putBoolean("micro bin rail", CommandBase.binLifter.isBinRailSwitch());
 		
 		SmartDashboard.putNumber("Move Rail Down Time", 1);
-		SmartDashboard.putNumber("move left speed", 0.5);
-		SmartDashboard.putNumber("move back speed", 0.3);
+		SmartDashboard.putNumber("move left speed", 1);
+		SmartDashboard.putNumber("move back speed", 0.6);
 
 		SmartDashboard.putNumber("Max speed of rails", 1);// to be tested
 		SmartDashboard.putString("bin state", "");
@@ -202,6 +211,9 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Speed of Front rail",
 				CommandBase.boxLifterFront.getSpeed());
 
+		SmartDashboard.putBoolean("Autonomus MicroSwitch", 
+				CommandBase.driver.getAutonomusSwitch());
+		
 		/*SmartDashboard.putBoolean("Microswitch 1 Back Rail",
 				CommandBase.boxLifterBack.getCheckContact1());
 		SmartDashboard.putBoolean("Microswitch 2 Back Rail",

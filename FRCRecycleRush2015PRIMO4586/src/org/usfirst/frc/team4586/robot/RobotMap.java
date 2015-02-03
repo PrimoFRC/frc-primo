@@ -29,14 +29,18 @@ public class RobotMap {
 	public static Jaguar motorFrontRight;
 	public static Jaguar motorBackLeft;
 	public static Jaguar motorBackRight;
-
+	
 	public static DigitalInput checkContactFront1;
 	public static DigitalInput checkContactFront2;
+	/*
 	public static DigitalInput checkContactBack1;
 	public static DigitalInput checkContactBack2;
-
+*/
+	
+	public static DigitalInput autoSwitch;
+	
 	public static DigitalInput valveFront;
-	public static DigitalInput valveBack;
+	//public static DigitalInput valveBack;
 	
 	public static DigitalInput binRailSwitch;
 	
@@ -54,13 +58,17 @@ public class RobotMap {
 		motorBackLeft = new Jaguar(1);
 		motorBackRight = new Jaguar(6);
 
-		checkContactBack1 = new DigitalInput(2);
-		checkContactBack2 = new DigitalInput(4);
-		checkContactFront1 = new DigitalInput(0);
-		checkContactFront2 = new DigitalInput(1);
+		/*
+		checkContactBack1 = new DigitalInput(1);
+		checkContactBack2 = new DigitalInput(8);
+		*/
+		checkContactFront1 = new DigitalInput(9);
+		checkContactFront2 = new DigitalInput(4);
+		
+		autoSwitch = new DigitalInput(3);
 
-		valveBack = new DigitalInput(5);
-		valveFront = new DigitalInput(3);
+		//valveBack = new DigitalInput(5);
+		valveFront = new DigitalInput(2);
 		
 		binRailSwitch= new DigitalInput(7);
 	}

@@ -39,8 +39,8 @@ public class MoveBoxRailUp extends Command {
 		wasReleased = false;
 		wasInitialized = false;
 		
-		if (boxLifter.getCounter() < boxLifter.numOfValves)
-				//&& boxLifter.getCheckContact1() && boxLifter.getCheckContact2())
+		if (boxLifter.getCounter() < boxLifter.numOfValves
+				&& boxLifter.getCheckContact1() && boxLifter.getCheckContact2())
 		{
 			if (boxLifter.getCounter() < 3)
 				boxLifter.setSpeed(SmartDashboard.getNumber("Max speed of rails") * SmartDashboard.getNumber("Down factor"));
@@ -64,7 +64,7 @@ public class MoveBoxRailUp extends Command {
 		if (boxLifter.getCounter() < boxLifter.numOfValves
 				&& boxLifter.getCheckContact1() && boxLifter.getCheckContact2()) {
 			
-			if (boxLifter.getCounter() < 3)
+			if (boxLifter.getCounter() < 4)
 				boxLifter.setSpeed(SmartDashboard.getNumber("Max speed of rails") * SmartDashboard.getNumber("Down factor"));
 			else
 				boxLifter.setSpeed(SmartDashboard.getNumber("Max speed of rails"));
@@ -84,6 +84,10 @@ public class MoveBoxRailUp extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
+		if( CommandBase.oi.operatorStickFront.getY() > 0.1 || CommandBase.oi.operatorStickFront.getY() < -0.1)
+		{
+			return true;
+		}
 		return (!wasInitialized && boxLifter.getCounter() >= boxLifter.numOfValves ) || (wasReleased && boxLifter.getHookState()) ;//|| /timer.get()>2;
 	}
 	// Called once after isFinished returns true

@@ -39,6 +39,10 @@ public class MoveBoxRailDown extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {		
+		if( CommandBase.oi.operatorStickFront.getY() > 0.1 || CommandBase.oi.operatorStickFront.getY() < -0.1)
+		{
+			return true;
+		}
 		return (boxLifter.getCounter() <= 1 || (wasReleased && boxLifter.getHookState()));
 	}
 

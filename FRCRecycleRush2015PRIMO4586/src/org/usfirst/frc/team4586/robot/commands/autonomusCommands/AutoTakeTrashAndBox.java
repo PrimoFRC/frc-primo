@@ -36,9 +36,9 @@ public class AutoTakeTrashAndBox extends CommandGroup {
     	addSequential(new MoveBoxRailUp(true));
     	addSequential(new MoveBoxRailUp(true));
     	//addSequential(new MoveBinRailToTop());	//lifting the trash
-    	addSequential(new MoveRobot(-1, 0, 0, 1, true));	
-    	addSequential(new MoveRobot(0, 0.5, 0, 1.5,false));
+    	addSequential(new MoveRobot(-0.3, 0, 0, 3, true));	
+    	addSequential(new MoveRobot(0, 0.3, 0, 1.5,false));
     	addSequential(new MoveBoxRailUp(true));
-    	addSequential(new MoveRobot(0, -1, 0, 1,false));
+    	addSequential(new MoveRobot(0, -0.6, 0, 5,false));
     }
 }
