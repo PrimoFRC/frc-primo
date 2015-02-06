@@ -27,7 +27,7 @@ public class MoveBoxRailDown extends Command {
 	// Called just before this Command runs the first time
 	protected void initialize() {
 		wasReleased = false;
-		if (boxLifter.getCounter() > 1)
+		if (boxLifter.getCounter() > 1 || (boxLifter.getCounter() == 1 && !boxLifter.getHookState()))
 			boxLifter.setSpeed(-SmartDashboard.getNumber("Max speed of rails")*SmartDashboard.getNumber("Down factor"));
 	}
 
@@ -43,7 +43,7 @@ public class MoveBoxRailDown extends Command {
 		{
 			return true;
 		}
-		return (boxLifter.getCounter() <= 1 || (wasReleased && boxLifter.getHookState()));
+		return (!(boxLifter.getCounter() > 1 || (boxLifter.getCounter() == 1 && !boxLifter.getHookState())) || (wasReleased && boxLifter.getHookState()));
 	}
 
 	// Called once after isFinished returns true

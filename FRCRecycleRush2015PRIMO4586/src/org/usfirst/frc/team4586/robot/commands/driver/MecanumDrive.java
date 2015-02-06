@@ -26,6 +26,8 @@ public class MecanumDrive extends Command {
     protected void initialize() {
     	timer.reset();
     	timer.start();
+    	
+    	CommandBase.driver.setSpinFactor(0);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -38,6 +40,8 @@ public class MecanumDrive extends Command {
     	y = CommandBase.oi.drivingStick.getY()*sign*SmartDashboard.getNumber("max driving speed", 0.7);
     	z = -CommandBase.oi.drivingStick.getRawAxis(4)*SmartDashboard.getNumber("max driving speed", 0.7);
     	
+    	z -= CommandBase.driver.getSpinFactor();
+    	y -= Math.abs(CommandBase.driver.getSpinFactor());
     	if (z > -0.05 && z < 0.05 && timer.get() > 1)
     	{
     		z += CommandBase.driver.getGyro()*SmartDashboard.getNumber("Gyro factor", 0.1);
