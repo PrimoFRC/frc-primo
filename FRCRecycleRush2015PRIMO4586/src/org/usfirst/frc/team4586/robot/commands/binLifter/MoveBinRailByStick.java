@@ -16,15 +16,17 @@ public class MoveBinRailByStick extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	
     	isZero=true;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if((CommandBase.oi.operatorStickFront.getRawAxis(5)>0.1)||(CommandBase.oi.operatorStickFront.getRawAxis(5)<-0.1))
+    	int port = 3;
+    	if((CommandBase.oi.operatorStickFront.getRawAxis(port)>0.1)||(CommandBase.oi.operatorStickFront.getRawAxis(port)<-0.1))
     	{
     		isZero=false;
-    		CommandBase.binLifter.moveBinRail(CommandBase.oi.operatorStickFront.getRawAxis(5));
+    		CommandBase.binLifter.moveBinRail(CommandBase.oi.operatorStickFront.getRawAxis(port));
     	}
     	else if (!isZero)
     	{

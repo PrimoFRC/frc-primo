@@ -23,6 +23,7 @@ public class Driver extends Subsystem {
 	
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
+	private double spinFactor;
 	static Jaguar motorFrontLeft;
 	static Jaguar motorFrontRight;
 	static Jaguar motorBackLeft;
@@ -160,6 +161,20 @@ public class Driver extends Subsystem {
     public boolean getAutonomusSwitch()
     {
     	return autonomusSwitch.get();
+    }
+    
+    public void initGyro()
+    {
+    	gyro.initGyro();
+    }
+    
+    public double getSpinFactor()
+    {
+    	return spinFactor;
+    }
+    public void setSpinFactor(double spinFactor)
+    {
+    	this.spinFactor = spinFactor;
     }
     
     

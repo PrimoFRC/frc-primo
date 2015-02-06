@@ -13,6 +13,7 @@ import org.usfirst.frc.team4586.robot.commands.BoxLifter.MoveBoxRailByStick;
 import org.usfirst.frc.team4586.robot.commands.autonomusCommands.*;
 import org.usfirst.frc.team4586.robot.commands.binLifter.MoveBinRailByStick;
 import org.usfirst.frc.team4586.robot.commands.driver.Accelerometer;
+import org.usfirst.frc.team4586.robot.commands.driver.InitGyro;
 import org.usfirst.frc.team4586.robot.commands.driver.MecanumDrive;
 import org.usfirst.frc.team4586.robot.subsystems.Driver;
 import org.usfirst.frc.team4586.robot.subsystems.ExampleSubsystem;
@@ -28,7 +29,7 @@ public class Robot extends IterativeRobot {
 	
 	
 	public static SendableChooser autonomousMode = new SendableChooser();
-	
+	public static SendableChooser initGyro = new SendableChooser();
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -52,6 +53,8 @@ public class Robot extends IterativeRobot {
 		
 		smartDashboardInit();
 		CommandBase.driver.resetGyro();
+		
+		CommandBase.driver.initGyro();
 	}
 
 	public void disabledPeriodic() {
@@ -91,7 +94,7 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().add(new MecanumDrive());
 		Scheduler.getInstance().add(new MoveBinRailByStick());
 		Scheduler.getInstance().add(new MoveBoxRailByStick(true));
-		Scheduler.getInstance().add(new Accelerometer());
+		//Scheduler.getInstance().add(new Accelerometer());
 		
 		
 	}
@@ -120,6 +123,10 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void smartDashboardInit() {
+		//initGyro.addDefault("init Gyro", new InitGyro());
+		//SmartDashboard::PutData("init Gyro",new InitGyro());
+		
+		SmartDashboard.putNumber("Spin factor" , 0.2);
 		
 		SmartDashboard.putNumber("Gyro factor", 0.05);
 		

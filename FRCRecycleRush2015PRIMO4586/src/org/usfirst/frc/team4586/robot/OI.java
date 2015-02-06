@@ -12,6 +12,7 @@ import org.usfirst.frc.team4586.robot.commands.BoxLifter.ResetCounter;
 import org.usfirst.frc.team4586.robot.commands.binLifter.MoveBinRailToBottom;
 import org.usfirst.frc.team4586.robot.commands.binLifter.MoveBinRailToTop;
 import org.usfirst.frc.team4586.robot.commands.driver.ChangeMaxDrivingSpeed;
+import org.usfirst.frc.team4586.robot.commands.driver.InitGyro;
 import org.usfirst.frc.team4586.robot.commands.driver.InvertMotors;
 
 /**
@@ -67,6 +68,7 @@ public class OI {
 	public JoystickButton invertMotors;
 	public JoystickButton increaseDrivingSpeed;
 	public JoystickButton decreaseDrivingSpeed;
+	public JoystickButton initGyro;
 	
 	public OI() // to be tested
 	{
@@ -74,7 +76,7 @@ public class OI {
 		//operatorStickBack = new Joystick(2);
 		drivingStick = new Joystick(0);
 		
-		 resetCounter = new JoystickButton (operatorStickFront , 7 );
+		 resetCounter = new JoystickButton (operatorStickFront , 12 );
 		 moveBoxRailFrontOneUp = new JoystickButton(operatorStickFront,3);
 		 moveBoxRailFrontOneDown = new JoystickButton(operatorStickFront,4);
 		 moveBoxRailFrontBottom = new JoystickButton(operatorStickFront,11);
@@ -87,7 +89,7 @@ public class OI {
 		 
 		 decreaseDrivingSpeed = new JoystickButton(drivingStick, 3);
 		 increaseDrivingSpeed = new JoystickButton(drivingStick, 1);
-		 
+		 initGyro = new JoystickButton(drivingStick, 2);
 		
 		 
 		 binRailToBottom = new JoystickButton(operatorStickFront,6);
@@ -96,7 +98,7 @@ public class OI {
 		 invertMotors = new JoystickButton(drivingStick,4);
 		 
 		 
-		 resetCounter.whenPressed( new ResetCounter() );
+		 resetCounter.whenPressed(new ResetCounter() );
 		 moveBoxRailFrontOneUp.whenPressed(new MoveBoxRailUp(true));
 		 moveBoxRailFrontOneDown.whenPressed(new MoveBoxRailDown(true));
 		 moveBoxRailFrontBottom.whenPressed(new MoveBoxRailToBottom(true));
@@ -111,8 +113,10 @@ public class OI {
 		 binRailToTop.whenPressed(new MoveBinRailToTop());
 		 invertMotors.whenPressed(new InvertMotors());
 		 
+		 
 		 decreaseDrivingSpeed.whenPressed(new ChangeMaxDrivingSpeed(-1));
 		 increaseDrivingSpeed.whenPressed(new ChangeMaxDrivingSpeed(1));
+		 initGyro.whenPressed(new InitGyro());
 	}
 }
 

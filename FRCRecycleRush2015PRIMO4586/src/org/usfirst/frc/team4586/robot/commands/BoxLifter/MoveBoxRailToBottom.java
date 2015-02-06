@@ -52,7 +52,7 @@ public class MoveBoxRailToBottom extends Command {
 		{
 			return true;
 		}
-        return boxLifter.getCounter()<=1;
+        return boxLifter.getCounter()<=1 && boxLifter.getHookState();
     }
 
     // Called once after isFinished returns true

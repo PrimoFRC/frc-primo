@@ -1,28 +1,22 @@
 package org.usfirst.frc.team4586.robot.commands.driver;
 
+import org.usfirst.frc.team4586.robot.commands.CommandBase;
+
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
-public class ChangeMaxDrivingSpeed extends Command {
+public class InitGyro extends Command {
 
-	int sign;
-	
-    public ChangeMaxDrivingSpeed(int sign) {
+    public InitGyro() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	
-    	this.sign = sign;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if(SmartDashboard.getNumber("max driving speed") < 1 && sign > 0
-    			||SmartDashboard.getNumber("max driving speed") > 0 && sign < 0)
-    		SmartDashboard.putNumber("max driving speed", SmartDashboard.getNumber("max driving speed")+(sign*0.05));
-    	
+    	CommandBase.driver.initGyro();
     }
 
     // Called repeatedly when this Command is scheduled to run
