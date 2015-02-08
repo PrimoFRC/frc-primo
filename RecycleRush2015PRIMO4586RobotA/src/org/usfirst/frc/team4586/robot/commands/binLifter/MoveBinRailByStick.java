@@ -23,7 +23,7 @@ public class MoveBinRailByStick extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	int port = 3;
-    	if((CommandBase.oi.operatorStickFront.getRawAxis(port)>0.1)||(CommandBase.oi.operatorStickFront.getRawAxis(port)<-0.1))
+    	/*if((CommandBase.oi.operatorStickFront.getRawAxis(port)>0.1)||(CommandBase.oi.operatorStickFront.getRawAxis(port)<-0.1))
     	{
     		isZero=false;
     		CommandBase.binLifter.moveBinRail(CommandBase.oi.operatorStickFront.getRawAxis(port));
@@ -32,6 +32,19 @@ public class MoveBinRailByStick extends Command {
     	{
     		isZero=true;
     		CommandBase.binLifter.moveBinRail(-0);
+    	}*/
+    	if(CommandBase.oi.operatorStickFront.getPOV()!=-1)
+    	{
+    		isZero=false;
+    		if (CommandBase.oi.operatorStickFront.getPOV()==0)
+    			CommandBase.binLifter.moveBinRail(1);
+    		else if (CommandBase.oi.operatorStickFront.getPOV()==180)
+    			CommandBase.binLifter.moveBinRail(-1);
+    	}
+    	else if (!isZero)
+    	{
+    		isZero=true;
+    		CommandBase.binLifter.moveBinRail(0);
     	}
     }
 

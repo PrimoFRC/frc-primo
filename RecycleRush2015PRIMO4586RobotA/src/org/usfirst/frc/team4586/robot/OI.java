@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import org.usfirst.frc.team4586.robot.commands.ExampleCommand;
+import org.usfirst.frc.team4586.robot.commands.Rumble;
 import org.usfirst.frc.team4586.robot.commands.BoxLifter.MoveBoxRailDown;
 import org.usfirst.frc.team4586.robot.commands.BoxLifter.MoveBoxRailToBottom;
 import org.usfirst.frc.team4586.robot.commands.BoxLifter.MoveBoxRailUp;
@@ -62,13 +63,14 @@ public class OI {
 	public JoystickButton moveBoxRailBackOneDown;
 	public JoystickButton moveBoxRaillBackBottom;*/
 	
-	public JoystickButton binRailToBottom;
-	public JoystickButton binRailToTop;
+	//public JoystickButton binRailToBottom;
+	//public JoystickButton binRailToTop;
 	
 	public JoystickButton invertMotors;
 	public JoystickButton increaseDrivingSpeed;
 	public JoystickButton decreaseDrivingSpeed;
 	public JoystickButton initGyro;
+	public JoystickButton rumble;
 	
 	public OI() // to be tested
 	{
@@ -91,9 +93,10 @@ public class OI {
 		 increaseDrivingSpeed = new JoystickButton(drivingStick, 1);
 		 initGyro = new JoystickButton(drivingStick, 2);
 		
+		 rumble=new JoystickButton(operatorStickFront, 8); //just for fun/testing. may be removed later
 		 
-		 binRailToBottom = new JoystickButton(operatorStickFront,6);
-		 binRailToTop = new JoystickButton(operatorStickFront,5);
+		 //binRailToBottom = new JoystickButton(operatorStickFront,6);
+		 //binRailToTop = new JoystickButton(operatorStickFront,5);
 		 
 		 invertMotors = new JoystickButton(drivingStick,4);
 		 
@@ -109,10 +112,11 @@ public class OI {
 		 moveBoxRailBackOneDown.whenPressed(new MoveBoxRailDown(false));
 		 moveBoxRaillBackBottom.whenPressed(new MoveBoxRailToBottom(false));*/
 		 
-		 binRailToBottom.whenPressed(new MoveBinRailToBottom());
-		 binRailToTop.whenPressed(new MoveBinRailToTop());
+		 //binRailToBottom.whenPressed(new MoveBinRailToBottom());
+		 //binRailToTop.whenPressed(new MoveBinRailToTop());
 		 invertMotors.whenPressed(new InvertMotors());
 		 
+		 rumble.whenPressed(new Rumble());
 		 
 		 decreaseDrivingSpeed.whenPressed(new ChangeMaxDrivingSpeed(-1));
 		 increaseDrivingSpeed.whenPressed(new ChangeMaxDrivingSpeed(1));
