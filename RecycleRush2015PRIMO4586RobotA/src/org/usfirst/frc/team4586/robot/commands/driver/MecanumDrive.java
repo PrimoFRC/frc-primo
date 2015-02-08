@@ -42,7 +42,7 @@ public class MecanumDrive extends Command {
     	
     	z -= CommandBase.driver.getSpinFactor();
     	y -= Math.abs(CommandBase.driver.getSpinFactor());
-    	if (z > -0.05 && z < 0.05 && timer.get() > 1)
+    	if (z > -0.05 && z < 0.05 && (y > 0.05 || y < -0.05 || x > 0.05 || x < -0.05) &&timer.get() > 1)
     	{
     		z += CommandBase.driver.getGyro()*SmartDashboard.getNumber("Gyro factor", 0.1);
     	}

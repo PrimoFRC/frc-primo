@@ -22,7 +22,7 @@ public class RobotMap {
 	// public static int rangefinderModule = 1;
 	public static Talon lifterFront;
 	public static Talon lifterFront2;
-	public static Talon lifterBack;
+	//public static Talon lifterBack;
 	public static Talon binRailMotor;
 	
 	public static Jaguar motorFrontLeft;
@@ -48,28 +48,28 @@ public class RobotMap {
 
 	public static void init()// to be tested
 	{
-		lifterFront = new Talon(3);
+		lifterFront = new Talon(6);
 		lifterFront2 = new Talon(4);
-		lifterBack = new Talon(8);
-		binRailMotor = new Talon(7);
+		//lifterBack = new Talon();
+		binRailMotor = new Talon(5);
 		
 		motorFrontLeft = new Jaguar(2);
-		motorFrontRight = new Jaguar(5);
-		motorBackLeft = new Jaguar(1);
-		motorBackRight = new Jaguar(6);
+		motorFrontRight = new Jaguar(0);
+		motorBackLeft = new Jaguar(3);
+		motorBackRight = new Jaguar(1);
 
 		/*
 		checkContactBack1 = new DigitalInput(1);
 		checkContactBack2 = new DigitalInput(8);
 		*/
-		checkContactFront1 = new DigitalInput(9);
-		checkContactFront2 = new DigitalInput(4);
+		checkContactFront1 = new DigitalInput(0);
+		checkContactFront2 = new DigitalInput(3);
 		
-		autoSwitch = new DigitalInput(3);
+		autoSwitch = new DigitalInput(1);
 
 		//valveBack = new DigitalInput(5);
 		valveFront = new DigitalInput(2);
 		
-		binRailSwitch= new DigitalInput(7);
+		binRailSwitch= new DigitalInput(4);
 	}
 }
