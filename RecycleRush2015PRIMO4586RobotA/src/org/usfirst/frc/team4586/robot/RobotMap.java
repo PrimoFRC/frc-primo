@@ -44,6 +44,7 @@ public class RobotMap {
 	
 	public static DigitalInput binRailSwitch;
 	
+	public static DigitalInput cylinderStuck;
 	
 
 	public static void init()// to be tested
@@ -70,6 +71,8 @@ public class RobotMap {
 		//valveBack = new DigitalInput(5);
 		valveFront = new DigitalInput(2);
 		
-		binRailSwitch= new DigitalInput(4);
+		binRailSwitch= new DigitalInput(5);
+		
+		cylinderStuck = new DigitalInput(4);
 	}
 }

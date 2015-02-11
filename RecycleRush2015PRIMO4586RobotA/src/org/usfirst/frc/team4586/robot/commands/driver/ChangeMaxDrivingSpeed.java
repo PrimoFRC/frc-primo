@@ -21,7 +21,7 @@ public class ChangeMaxDrivingSpeed extends Command {
     protected void initialize() {
     	if(SmartDashboard.getNumber("max driving speed") < 1 && sign > 0
     			||SmartDashboard.getNumber("max driving speed") > 0 && sign < 0)
-    		SmartDashboard.putNumber("max driving speed", SmartDashboard.getNumber("max driving speed")+(sign*0.05));
+    		SmartDashboard.putNumber("max driving speed", SmartDashboard.getNumber("max driving speed")+(sign*0.1));
     	
     }
 
