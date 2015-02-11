@@ -1,8 +1,10 @@
 package org.usfirst.frc.team4586.robot.commands.autonomusCommands;
 
+import org.usfirst.frc.team4586.robot.commands.Wait;
 import org.usfirst.frc.team4586.robot.commands.BoxLifter.MoveBoxRailByTime;
 import org.usfirst.frc.team4586.robot.commands.BoxLifter.MoveBoxRailDown;
 import org.usfirst.frc.team4586.robot.commands.BoxLifter.MoveBoxRailUp;
+import org.usfirst.frc.team4586.robot.commands.BoxLifter.MoveBoxRailUpNoMicro;
 import org.usfirst.frc.team4586.robot.commands.binLifter.MoveBinRailToBottom;
 import org.usfirst.frc.team4586.robot.commands.binLifter.MoveBinRailToTop;
 import org.usfirst.frc.team4586.robot.commands.driver.MoveRobot;
@@ -33,12 +35,13 @@ public class AutoTakeTrashAndBox extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	
-    	addSequential(new MoveBoxRailUp(true));
-    	addSequential(new MoveBoxRailUp(true));
+    	addSequential(new MoveBoxRailUpNoMicro(true));
+    	addSequential(new MoveBoxRailUpNoMicro(true));
     	//addSequential(new MoveBinRailToTop());	//lifting the trash
-    	addSequential(new MoveRobot(-0.3, 0, 0, 3, true));	
-    	addSequential(new MoveRobot(0, 0.3, 0, 1.5,false));
-    	addSequential(new MoveBoxRailUp(true));
-    	addSequential(new MoveRobot(0, -0.6, 0, 5,false));
+    	addSequential(new MoveRobot(-0.5, 0, 0, 1.2, true));	
+    	addSequential(new MoveRobot(0, 0.3, 0,2,false));
+    	addParallel (new MoveBoxRailUp(true));
+    	addSequential(new Wait(0.75));
+    	addSequential(new MoveRobot(0, -0.6, 0, 6.5,false));
     }
 }

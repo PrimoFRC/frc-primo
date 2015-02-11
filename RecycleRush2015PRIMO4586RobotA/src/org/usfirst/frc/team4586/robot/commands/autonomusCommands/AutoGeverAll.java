@@ -58,18 +58,18 @@ public class AutoGeverAll extends CommandGroup {
     	*/
     	
     	addSequential(new MoveBoxRailUp(true));
-    	addSequential(new MoveRobot(0, -1, 0, 0.75, false));
-    	addSequential(new MoveRobot(1, 0, 0, 2, true));
-		addSequential(new MoveRobot(0, 1, 0, 1.4, false));
+    	addSequential(new MoveRobot(0, -1, 0, 0.95, false));
+    	addSequential(new MoveRobot(1, 0, 0, 1.5, true));
+		addSequential(new MoveRobot(0, 1, 0, 0.9, false));
 		addSequential(new MoveRobotMicroSwitch(0.5, 0, 0));
 		
 		
 		addSequential(new MoveRobot(0, 0.3, 0, 2, false));
 		addParallel(new MoveBoxRailUp(true));
 		addSequential(new Wait(0.75));
-		addSequential(new MoveRobot(0, -1, 0, 0.9, false));
-		addSequential(new MoveRobot(1, 0, 0, 2, true));
-		addSequential(new MoveRobot(0, 1, 0, 1.3, false));
+		addSequential(new MoveRobot(0, -1, 0, 1.4, false));
+		addSequential(new MoveRobot(1, 0, 0, 1.5, true));
+		addSequential(new MoveRobot(0, 1, 0, 1.0, false));
 		addSequential(new MoveRobotMicroSwitch(0.5, 0, 0));
 		
 		
@@ -79,7 +79,7 @@ public class AutoGeverAll extends CommandGroup {
 		addSequential(new MoveRobot(0, -1, 0, 4, false));
 		addSequential(new MoveRobot(0, 1, 0, 0.4, false));
 		
-    	addSequential(new MoveBoxRailByTime(-1, 1));
-    	addSequential(new MoveRobot(0, -1, 0, 0.2,false));
+    	addSequential(new MoveBoxRailByTime(-1, 1.2));
+    	addSequential(new MoveRobot(0, -1, 0, 0.3,false));
     }
 }

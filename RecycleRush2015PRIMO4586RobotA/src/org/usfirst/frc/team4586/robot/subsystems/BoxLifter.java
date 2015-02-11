@@ -5,7 +5,9 @@ import org.usfirst.frc.team4586.robot.RobotMap;
 import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -13,6 +15,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class BoxLifter extends Subsystem {
 	private boolean wasReleased;
     public static final int numOfValves=5;
+	private Timer time;
     
     private boolean isMovingDown;
 	// Put methods for controlling this subsystem
@@ -21,7 +24,9 @@ public class BoxLifter extends Subsystem {
 	private Talon lifter2;
     
 	private DigitalInput checkContact1;
-	private DigitalInput checkContact2;;
+	private DigitalInput checkContact2;
+	
+	private DigitalInput cylinderStuck;
 
 	private DigitalInput hookInPlace;
     //private Counter count;
@@ -38,11 +43,36 @@ public class BoxLifter extends Subsystem {
 		//this.count=new Counter();
 		//this.count.setUpSource(hookInPlace);
 		boxes = 1;
+    	time=new Timer();
+    	
+    	cylinderStuck = RobotMap.cylinderStuck;
 	}
 
+	public void checkStuck() {
+		
+		if (getSpeed() >= 0 || !cylinderStuck.get() || SmartDashboard.getNumber("disable stuck micro" , 0) == 1)
+		{
+			
+		}
+		else
+		{
+			this.lifter.set(0);
+			this.lifter2.set(0);
+		}
+	}
+	
 	public void setSpeed(double speed) {
-		this.lifter.set(speed);
-		this.lifter2.set(speed);
+		
+		if (speed >= 0 || !cylinderStuck.get() || SmartDashboard.getNumber("disable stuck micro" , 0) == 1)
+		{
+			this.lifter.set(speed);
+			this.lifter2.set(speed);
+		}
+		else
+		{
+			this.lifter.set(0);
+			this.lifter2.set(0);
+		}
 	}
 
 	public double getSpeed() {
@@ -66,6 +96,7 @@ public class BoxLifter extends Subsystem {
     public void decrementCounter()
     {
     	this.boxes--;
+		time.reset();
     	if(boxes<1)
     		boxes+=numOfValves;
     }
@@ -82,6 +113,10 @@ public class BoxLifter extends Subsystem {
 
 	public boolean getHookState() {
 		return this.hookInPlace.get();
+	}
+	
+	public boolean getCylinderStuck() {
+		return this.cylinderStuck.get();
 	}
 	
 	public void count()
@@ -118,7 +153,10 @@ public class BoxLifter extends Subsystem {
 			}
 		}
 	}
-
+	public Timer getTime()
+	{
+		return time;
+	}
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());

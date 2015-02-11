@@ -113,6 +113,7 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		smartDashboardPeriodic();
+		CommandBase.boxLifterFront.checkStuck();
 	}
 
 	/**
@@ -125,6 +126,7 @@ public class Robot extends IterativeRobot {
 	public void smartDashboardInit() {
 		//initGyro.addDefault("init Gyro", new InitGyro());
 		//SmartDashboard::PutData("init Gyro",new InitGyro());
+		SmartDashboard.putNumber("disable stuck micro" , 0);
 		
 		SmartDashboard.putNumber("Spin factor" , 0.2);
 		
@@ -146,7 +148,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putBoolean("Autonomus Gever!!!!!!!", false);
 		*/
         
-		SmartDashboard.putNumber("max driving speed", 0.7);
+		SmartDashboard.putNumber("max driving speed", 0.6);
 
 		SmartDashboard.putNumber("autonomus drive back time", 0.4);
 		SmartDashboard.putNumber("autonomus drive left time", 0.7);
@@ -187,6 +189,7 @@ public class Robot extends IterativeRobot {
 				CommandBase.boxLifterBack.getSpeed());*/
 		SmartDashboard.putNumber("Max Bin Rail Speed", 0.7);
 		SmartDashboard.putBoolean("micro bin rail", CommandBase.binLifter.isBinRailSwitch());
+		SmartDashboard.putBoolean("cylinder stuck", CommandBase.boxLifterFront.getCylinderStuck());
 		
 		SmartDashboard.putNumber("Move Rail Down Time", 1);
 		SmartDashboard.putNumber("move left speed", 1);
@@ -220,6 +223,8 @@ public class Robot extends IterativeRobot {
 
 		SmartDashboard.putBoolean("Autonomus MicroSwitch", 
 				CommandBase.driver.getAutonomusSwitch());
+		
+		SmartDashboard.putBoolean("cylinder stuck", CommandBase.boxLifterFront.getCylinderStuck());
 		
 		/*SmartDashboard.putBoolean("Microswitch 1 Back Rail",
 				CommandBase.boxLifterBack.getCheckContact1());
