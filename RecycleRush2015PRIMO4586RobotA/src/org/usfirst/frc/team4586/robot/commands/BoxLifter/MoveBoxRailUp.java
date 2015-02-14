@@ -66,7 +66,7 @@ public class MoveBoxRailUp extends Command {
 				&& boxLifter.getCheckContact1() && boxLifter.getCheckContact2()) {
 			
 			if (boxLifter.getCounter() < 3)
-				boxLifter.setSpeed(SmartDashboard.getNumber("Max speed of rails") * SmartDashboard.getNumber("Down factor"));
+				boxLifter.setSpeed(SmartDashboard.getNumber("Max speed of rails") * 1.2*SmartDashboard.getNumber("Down factor"));
 			else
 				boxLifter.setSpeed(SmartDashboard.getNumber("Max speed of rails"));
 			timer.start();

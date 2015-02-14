@@ -43,7 +43,7 @@ public class MoveBoxRailUpNoMicro extends Command {
 				//&& boxLifter.getCheckContact1() && boxLifter.getCheckContact2())
 		{
 			if (boxLifter.getCounter() < 3)
-				boxLifter.setSpeed(SmartDashboard.getNumber("Max speed of rails") * SmartDashboard.getNumber("Down factor"));
+				boxLifter.setSpeed(SmartDashboard.getNumber("Max speed of rails") * 1.2*SmartDashboard.getNumber("Down factor"));
 			else
 				boxLifter.setSpeed(SmartDashboard.getNumber("Max speed of rails"));
 			wasInitialized=true;
@@ -81,6 +81,7 @@ public class MoveBoxRailUpNoMicro extends Command {
 			wasReleased = true;
 		}
 		
+		/*
 		if(!boxLifter.getCheckContact1() && boxLifter.getCheckContact2())
 		{
 			CommandBase.driver.setSpinFactor(SmartDashboard.getNumber("Spin factor" , 0.2));
@@ -93,6 +94,7 @@ public class MoveBoxRailUpNoMicro extends Command {
 		{
 			CommandBase.driver.setSpinFactor(0);
 		}
+		*/
 		
 	}
 

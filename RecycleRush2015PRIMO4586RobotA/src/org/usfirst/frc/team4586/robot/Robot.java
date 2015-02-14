@@ -132,7 +132,7 @@ public class Robot extends IterativeRobot {
 		
 		SmartDashboard.putNumber("Gyro factor", 0.05);
 		
-		SmartDashboard.putNumber("Down factor", 0.75);
+		SmartDashboard.putNumber("Down factor", 0.6);
 		SmartDashboard.putNumber("Back wheels over power: " , 1);
 		
 		autonomousMode.addDefault("All", new AutoGeverAll());

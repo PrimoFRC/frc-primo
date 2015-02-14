@@ -59,7 +59,7 @@ public class AutoGeverAll extends CommandGroup {
     	
     	addSequential(new MoveBoxRailUp(true));
     	addSequential(new MoveRobot(0, -1, 0, 0.95, false));
-    	addSequential(new MoveRobot(1, 0, 0, 1.5, true));
+    	addSequential(new MoveRobot(1, 0, 0, 2.2, true));
 		addSequential(new MoveRobot(0, 1, 0, 0.9, false));
 		addSequential(new MoveRobotMicroSwitch(0.5, 0, 0));
 		
@@ -68,7 +68,7 @@ public class AutoGeverAll extends CommandGroup {
 		addParallel(new MoveBoxRailUp(true));
 		addSequential(new Wait(0.75));
 		addSequential(new MoveRobot(0, -1, 0, 1.4, false));
-		addSequential(new MoveRobot(1, 0, 0, 1.5, true));
+		addSequential(new MoveRobot(1, 0, 0, 2.2, true));
 		addSequential(new MoveRobot(0, 1, 0, 1.0, false));
 		addSequential(new MoveRobotMicroSwitch(0.5, 0, 0));
 		
