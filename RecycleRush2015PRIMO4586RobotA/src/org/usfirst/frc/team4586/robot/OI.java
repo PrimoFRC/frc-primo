@@ -9,7 +9,9 @@ import org.usfirst.frc.team4586.robot.commands.Rumble;
 import org.usfirst.frc.team4586.robot.commands.BoxLifter.MoveBoxRailDown;
 import org.usfirst.frc.team4586.robot.commands.BoxLifter.MoveBoxRailToBottom;
 import org.usfirst.frc.team4586.robot.commands.BoxLifter.MoveBoxRailUp;
+import org.usfirst.frc.team4586.robot.commands.BoxLifter.MoveBoxRailUpNoMicro;
 import org.usfirst.frc.team4586.robot.commands.BoxLifter.ResetCounter;
+import org.usfirst.frc.team4586.robot.commands.BoxLifter.ResetRail;
 import org.usfirst.frc.team4586.robot.commands.binLifter.MoveBinRailToBottom;
 import org.usfirst.frc.team4586.robot.commands.binLifter.MoveBinRailToTop;
 import org.usfirst.frc.team4586.robot.commands.driver.ChangeMaxDrivingSpeed;
@@ -53,9 +55,11 @@ public class OI {
 
 	public JoystickButton resetCounter;
 	public JoystickButton moveBoxRailFrontOneUp;
+	public JoystickButton moveBoxRailFrontOneUpNoMicro;
 	public JoystickButton moveBoxRailFrontOneDown;
 	public JoystickButton moveBoxRailFrontBottom;
 	
+	public JoystickButton resetRail;
 	
 	public JoystickButton moveBoxRailFrontOneUpDriver;
 	public JoystickButton moveBoxRailFrontOneDownDriver;
@@ -72,6 +76,9 @@ public class OI {
 	public JoystickButton initGyro;
 	public JoystickButton rumble;
 	
+	public JoystickButton freeStick;
+	public JoystickButton freeDrivingStick;
+	
 	public OI() // to be tested
 	{
 		operatorStickFront = new Joystick(1);
@@ -80,9 +87,12 @@ public class OI {
 		
 		 resetCounter = new JoystickButton (operatorStickFront , 12 );
 		 moveBoxRailFrontOneUp = new JoystickButton(operatorStickFront,3);
+		 moveBoxRailFrontOneUpNoMicro = new JoystickButton(operatorStickFront,5);
 		 moveBoxRailFrontOneDown = new JoystickButton(operatorStickFront,4);
 		 moveBoxRailFrontBottom = new JoystickButton(operatorStickFront,11);
 
+		 resetRail = new JoystickButton(operatorStickFront, 9);
+		 
 		 moveBoxRailFrontOneUpDriver = new JoystickButton(drivingStick,6);
 		 moveBoxRailFrontOneDownDriver = new JoystickButton(drivingStick,5);
 		 /*moveBoxRailBackOneUp = new JoystickButton(operatorStickBack,3);
@@ -100,13 +110,19 @@ public class OI {
 		 
 		 invertMotors = new JoystickButton(drivingStick,4);
 		 
+		 freeStick = new JoystickButton(operatorStickFront, 2);
+		 freeDrivingStick = new JoystickButton(drivingStick, 8);
+
 		 
 		 resetCounter.whenPressed(new ResetCounter() );
 		 moveBoxRailFrontOneUp.whenPressed(new MoveBoxRailUp(true));
+		 moveBoxRailFrontOneUpNoMicro.whenPressed(new MoveBoxRailUpNoMicro(true));
 		 moveBoxRailFrontOneDown.whenPressed(new MoveBoxRailDown(true));
 		 moveBoxRailFrontBottom.whenPressed(new MoveBoxRailToBottom(true));
 		 
-		 moveBoxRailFrontOneUpDriver.whenPressed(new MoveBoxRailUp(true));
+		 resetRail.whenPressed(new ResetRail());
+		 
+		 moveBoxRailFrontOneUpDriver.whenPressed(new MoveBoxRailUpNoMicro(true));
 		 moveBoxRailFrontOneDownDriver.whenPressed(new MoveBoxRailDown(true));
 		 /*moveBoxRailBackOneUp.whenPressed(new MoveBoxRailUp(false));
 		 moveBoxRailBackOneDown.whenPressed(new MoveBoxRailDown(false));

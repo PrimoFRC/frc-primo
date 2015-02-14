@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class BoxLifter extends Subsystem {
 	private boolean wasReleased;
-    public static final int numOfValves=5;
+    public static final int numOfValves=4;
 	private Timer time;
     
     private boolean isMovingDown;
@@ -101,7 +101,7 @@ public class BoxLifter extends Subsystem {
     		boxes+=numOfValves;
     }
 	public void resetCounter() {
-		this.boxes = 0;
+		this.boxes = 1;
 	}
 	public boolean getCheckContact1() {
 		return this.checkContact1.get();
