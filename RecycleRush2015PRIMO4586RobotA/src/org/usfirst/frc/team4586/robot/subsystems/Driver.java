@@ -94,10 +94,10 @@ public class Driver extends Subsystem {
     }
     public void mecanumDrive(double x, double y, double z)
     {
-        setFL(y-x+z);
-        setBL(y+x+z);
-        setFR(y+x-z);
-        setBR(y-x-z);
+        setFL(y-1.5*x+z);
+        setBL(y+1.5*x+z);
+        setFR(y+1.5*x-z);
+        setBR(y-1.5*x-z);
     }
     public void invert()
     {

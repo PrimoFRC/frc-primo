@@ -17,6 +17,7 @@ public class MoveBoxRailByStick extends Command {
 	private boolean wasItMoved;
 	private boolean wasReleased;
 	private boolean wasItZero;
+	
 	public MoveBoxRailByStick(boolean isFront) {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
@@ -63,6 +64,7 @@ public class MoveBoxRailByStick extends Command {
 		if ((yAxis > 0.1 || yAxis < -0.1) && boxLifter.getHookState() && wasReleased && !CommandBase.oi.freeStick.get() && !CommandBase.oi.freeDrivingStick.get())
 		{
 			boxLifter.setSpeed(0);
+			wasItZero = false;
 		}
 		else
 		{
@@ -74,7 +76,7 @@ public class MoveBoxRailByStick extends Command {
 				wasReleased = false;
 			}
 			
-			if (yAxis > 0.1 /* && wasItZero*/) {
+			if (yAxis > 0.1 && wasItZero) {
 				boxLifter.setSpeed(yAxis * SmartDashboard.getNumber("Max speed of rails"));
 				wasItMoved = true;
 				/*
@@ -95,7 +97,7 @@ public class MoveBoxRailByStick extends Command {
 					wasReleased = true;
 				}
 				 */
-			} else if (yAxis < -0.1 /* && wasItZero*/) {
+			} else if (yAxis < -0.1 && wasItZero) {
 				boxLifter.setSpeed(yAxis * SmartDashboard.getNumber("Max speed of rails"));
 				wasItMoved = true;
 
@@ -109,10 +111,10 @@ public class MoveBoxRailByStick extends Command {
 				}
 				 */
 			
-			} else if ((wasItMoved) /*|| (CommandBase.boxLifterFront.getHookState())*/) {
+			} else if ((wasItMoved && yAxis > -0.1 && yAxis < 0.1) /*|| (CommandBase.boxLifterFront.getHookState())*/) {
 				boxLifter.setSpeed(0);
 				wasItMoved = false;
-				//wasItZero = false;
+				wasItZero = true;
 			}
 		}
 	}

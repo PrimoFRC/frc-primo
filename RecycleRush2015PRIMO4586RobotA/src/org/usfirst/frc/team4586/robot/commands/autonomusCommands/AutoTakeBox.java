@@ -3,6 +3,7 @@ package org.usfirst.frc.team4586.robot.commands.autonomusCommands;
 import org.usfirst.frc.team4586.robot.commands.BoxLifter.MoveBoxRailByTime;
 import org.usfirst.frc.team4586.robot.commands.BoxLifter.MoveBoxRailDown;
 import org.usfirst.frc.team4586.robot.commands.BoxLifter.MoveBoxRailUp;
+import org.usfirst.frc.team4586.robot.commands.BoxLifter.MoveBoxRailUpNoMicro;
 import org.usfirst.frc.team4586.robot.commands.driver.MoveRobot;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -31,8 +32,8 @@ public class AutoTakeBox extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	
-    	addSequential(new MoveBoxRailUp(true));
-    	addSequential(new MoveRobot(0, -0.6, 0, 5,false));
+    	addSequential(new MoveBoxRailUpNoMicro(true));
+    	addSequential(new MoveRobot(0, -0.6, 0, 6.5,false));
     	//addSequential(new MoveBoxRailByTime(-0.5,1));
     }
 }

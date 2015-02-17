@@ -1,47 +1,39 @@
 package org.usfirst.frc.team4586.robot.commands.driver;
 
-import org.usfirst.frc.team4586.robot.OI;
 import org.usfirst.frc.team4586.robot.commands.CommandBase;
 
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
-public class MoveRobotMicroSwitch extends Command {
-	
-	DigitalInput microSwitch;
-	double x,y,z;
+public class RotateRobot extends Command {
 
-    public MoveRobotMicroSwitch(double x, double y, double z, DigitalInput microSwitch) {
+	double degree, startingDegree;
+	double z;
+    public RotateRobot(double degree) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	
-    	this.microSwitch = microSwitch;
-    	this.x = x;
-    	this.y = y;
-    	this.z = z;
+    	this.degree = degree;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	startingDegree = CommandBase.driver.getGyro();
+    	
     	CommandBase.driver.resetGyro();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	z = CommandBase.driver.getGyro()*SmartDashboard.getNumber("Gyro factor", 0.05);
-    	
-    	CommandBase.driver.mecanumDrive(x*SmartDashboard.getNumber("move left speed", 0.5),
-    			-y*SmartDashboard.getNumber("move back speed"), z*SmartDashboard.getNumber("max driving speed"));
-    	
+
+    	z = (degree > CommandBase.driver.getGyro())? -0.5:0.5;
+    	CommandBase.driver.mecanumDrive(0, 0, z);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return microSwitch.get();
+        return (Math.abs(CommandBase.driver.getGyro() - degree) < 2);
     }
 
     // Called once after isFinished returns true

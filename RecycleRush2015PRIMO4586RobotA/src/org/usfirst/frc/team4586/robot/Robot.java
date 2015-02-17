@@ -130,7 +130,7 @@ public class Robot extends IterativeRobot {
 		
 		SmartDashboard.putNumber("Spin factor" , 0.2);
 		
-		SmartDashboard.putNumber("Gyro factor", 0.05);
+		SmartDashboard.putNumber("Gyro factor", 0.15);
 		
 		SmartDashboard.putNumber("Down factor", 0.6);
 		SmartDashboard.putNumber("Back wheels over power: " , 1);
@@ -139,6 +139,7 @@ public class Robot extends IterativeRobot {
         autonomousMode.addObject("Box", new AutoTakeBox());
         autonomousMode.addObject("Trash", new AutoTakeTrash());
         autonomousMode.addObject("Trash & Box", new AutoTakeTrashAndBox());
+        autonomousMode.addObject("All Lift Boxes", new AutoAllLiftBoxes());
         SmartDashboard.putData("Autonomous Mode" , autonomousMode);
         
         /*

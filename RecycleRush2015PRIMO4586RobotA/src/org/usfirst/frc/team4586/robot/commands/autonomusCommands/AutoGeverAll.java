@@ -1,5 +1,6 @@
 package org.usfirst.frc.team4586.robot.commands.autonomusCommands;
 
+import org.usfirst.frc.team4586.robot.RobotMap;
 import org.usfirst.frc.team4586.robot.commands.Wait;
 import org.usfirst.frc.team4586.robot.commands.BoxLifter.MoveBoxRailByTime;
 import org.usfirst.frc.team4586.robot.commands.BoxLifter.MoveBoxRailUp;
@@ -58,19 +59,19 @@ public class AutoGeverAll extends CommandGroup {
     	*/
     	
     	addSequential(new MoveBoxRailUp(true));
-    	addSequential(new MoveRobot(0, -1, 0, 0.95, false));
-    	addSequential(new MoveRobot(1, 0, 0, 2.2, true));
+    	addSequential(new MoveRobot(0, -1, 0, 1.15, false));
+    	addSequential(new MoveRobot(1, 0, 0, 1.5, true));
 		addSequential(new MoveRobot(0, 1, 0, 0.9, false));
-		addSequential(new MoveRobotMicroSwitch(0.5, 0, 0));
+		addSequential(new MoveRobotMicroSwitch(0.5, 0, 0, RobotMap.autoSwitch));
 		
 		
 		addSequential(new MoveRobot(0, 0.3, 0, 2, false));
 		addParallel(new MoveBoxRailUp(true));
 		addSequential(new Wait(0.75));
 		addSequential(new MoveRobot(0, -1, 0, 1.4, false));
-		addSequential(new MoveRobot(1, 0, 0, 2.2, true));
+		addSequential(new MoveRobot(1, 0, 0, 1.5, true));
 		addSequential(new MoveRobot(0, 1, 0, 1.0, false));
-		addSequential(new MoveRobotMicroSwitch(0.5, 0, 0));
+		addSequential(new MoveRobotMicroSwitch(0.5, 0, 0, RobotMap.autoSwitch));
 		
 		
 		addSequential(new MoveRobot(0, 0.3, 0, 2.5, false));

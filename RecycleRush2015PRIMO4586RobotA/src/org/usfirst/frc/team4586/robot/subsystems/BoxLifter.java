@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class BoxLifter extends Subsystem {
 	private boolean wasReleased;
-    public static final int numOfValves=4;
+    public static final int numOfValves=5;
 	private Timer time;
     
     private boolean isMovingDown;
@@ -29,7 +29,7 @@ public class BoxLifter extends Subsystem {
 	private DigitalInput cylinderStuck;
 
 	private DigitalInput hookInPlace;
-    //private Counter count;
+    private Counter counter;
 	private int boxes;
 
 	public BoxLifter(DigitalInput checkContact1, DigitalInput checkContact2,
@@ -40,8 +40,8 @@ public class BoxLifter extends Subsystem {
 		this.lifter = lifter;
 		this.lifter2=lifter2;
 		this.hookInPlace = hookInPlace;
-		//this.count=new Counter();
-		//this.count.setUpSource(hookInPlace);
+		this.counter=new Counter();
+		this.counter.setUpSource(hookInPlace);
 		boxes = 1;
     	time=new Timer();
     	
@@ -121,6 +121,7 @@ public class BoxLifter extends Subsystem {
 	
 	public void count()
 	{
+		System.out.println(this.counter.get());
 		if(getSpeed() < 0)
 		{
 			isMovingDown = true;
@@ -132,6 +133,9 @@ public class BoxLifter extends Subsystem {
 		
 		if(isMovingDown)
 		{
+			//this.counter.clearUpSource();
+			//this.counter.setDownSource(hookInPlace);
+			this.counter.setReverseDirection(true);
 			if(getHookState())
 				wasReleased = false;
 			else if (!wasReleased)
@@ -143,7 +147,9 @@ public class BoxLifter extends Subsystem {
 		}
 		else
 		{
-		
+			//this.counter.clearDownSource();
+			//this.counter.setUpSource(hookInPlace);
+			//this.counter.setReverseDirection(false);
 			if(!getHookState())
 				wasReleased = true;
 			else if (wasReleased)
