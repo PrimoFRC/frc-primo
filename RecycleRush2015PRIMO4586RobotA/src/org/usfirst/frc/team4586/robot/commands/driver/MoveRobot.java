@@ -33,6 +33,7 @@ public class MoveRobot extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	CommandBase.driver.resetGyro();
     	System.out.println("init move robot");
     	runTime =(isX)?time*SmartDashboard.getNumber("autonomus drive left time"):time*SmartDashboard.getNumber("autonomus drive back time");
     	
@@ -45,7 +46,7 @@ public class MoveRobot extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-    	z = CommandBase.driver.getGyro()*SmartDashboard.getNumber("Gyro factor", 0.05);
+    	z = (CommandBase.driver.getGyro())*SmartDashboard.getNumber("Gyro factor", 0.05);
     	CommandBase.driver.mecanumDrive(x*SmartDashboard.getNumber("move left speed", 0.5),
     			-y*SmartDashboard.getNumber("move back speed"), z*SmartDashboard.getNumber("max driving speed"));
     	
