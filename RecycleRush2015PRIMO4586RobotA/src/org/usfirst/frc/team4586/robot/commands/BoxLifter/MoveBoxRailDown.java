@@ -17,18 +17,20 @@ public class MoveBoxRailDown extends Command {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		wasReleased = false;
-		//if (isFront) {
-			boxLifter = CommandBase.boxLifterFront;
-		//} else {
-			//boxLifter = CommandBase.boxLifterBack;
-		//}
+		// if (isFront) {
+		boxLifter = CommandBase.boxLifterFront;
+		// } else {
+		// boxLifter = CommandBase.boxLifterBack;
+		// }
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
 		wasReleased = false;
-		if (boxLifter.getCounter() > 1 || (boxLifter.getCounter() == 1 && !boxLifter.getHookState()))
-			boxLifter.setSpeed(-SmartDashboard.getNumber("Max speed of rails")*SmartDashboard.getNumber("Down factor"));
+		if (boxLifter.getCounter() > 1
+				|| (boxLifter.getCounter() == 1 && !boxLifter.getHookState()))
+			boxLifter.setSpeed(-SmartDashboard.getNumber("Max speed of rails")
+					* SmartDashboard.getNumber("Down factor"));
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -38,19 +40,20 @@ public class MoveBoxRailDown extends Command {
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
-	protected boolean isFinished() {		
-		if( CommandBase.oi.operatorStickFront.getY() > 0.1 || CommandBase.oi.operatorStickFront.getY() < -0.1)
-		{
+	protected boolean isFinished() {
+		if (CommandBase.oi.operatorStickFront.getY() > 0.1
+				|| CommandBase.oi.operatorStickFront.getY() < -0.1) {
 			return true;
 		}
-		return (!(boxLifter.getCounter() > 1 || (boxLifter.getCounter() == 1 && !boxLifter.getHookState())) || (wasReleased && boxLifter.getHookState()));
+		return (!(boxLifter.getCounter() > 1 || (boxLifter.getCounter() == 1 && !boxLifter
+				.getHookState())) || (wasReleased && boxLifter.getHookState()));
 	}
 
 	// Called once after isFinished returns true
 	protected void end() {
 		boxLifter.setSpeed(0);
-		//if ((wasReleased && boxLifter.getHookState()))
-		//boxLifter.decrementCounter();
+		// if ((wasReleased && boxLifter.getHookState()))
+		// boxLifter.decrementCounter();
 	}
 
 	// Called when another command which requires one or more of the same
