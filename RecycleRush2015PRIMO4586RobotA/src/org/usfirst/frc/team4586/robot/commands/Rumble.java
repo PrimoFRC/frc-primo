@@ -11,38 +11,42 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class Rumble extends Command {
-	//Joystick operatorStick;
-    public Rumble() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	//operatorStick = CommandBase.oi.operatorStickFront;
-    	
-    }
+	// Joystick operatorStick;
+	public Rumble() {
+		// Use requires() here to declare subsystem dependencies
+		// eg. requires(chassis);
+		// operatorStick = CommandBase.oi.operatorStickFront;
 
-    // Called just before this Command runs the first time
-    protected void initialize() {
-    	CommandBase.oi.drivingStick.setRumble(RumbleType.kLeftRumble, (float) 0.5);
-    	CommandBase.oi.drivingStick.setRumble(RumbleType.kRightRumble, (float) 0.5);
-    setTimeout(2);
-    }
+	}
 
-    // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-    }
+	// Called just before this Command runs the first time
+	protected void initialize() {
+		CommandBase.oi.drivingStick.setRumble(RumbleType.kLeftRumble,
+				(float) 0.5);
+		CommandBase.oi.drivingStick.setRumble(RumbleType.kRightRumble,
+				(float) 0.5);
+		setTimeout(2);
+	}
 
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-        return isTimedOut();
-    }
+	// Called repeatedly when this Command is scheduled to run
+	protected void execute() {
+	}
 
-    // Called once after isFinished returns true
-    protected void end() {
-    	CommandBase.oi.drivingStick.setRumble(RumbleType.kLeftRumble, (float) 0);
-    	CommandBase.oi.drivingStick.setRumble(RumbleType.kRightRumble, (float) 0);
-    }
+	// Make this return true when this Command no longer needs to run execute()
+	protected boolean isFinished() {
+		return isTimedOut();
+	}
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    protected void interrupted() {
-    }
+	// Called once after isFinished returns true
+	protected void end() {
+		CommandBase.oi.drivingStick
+				.setRumble(RumbleType.kLeftRumble, (float) 0);
+		CommandBase.oi.drivingStick.setRumble(RumbleType.kRightRumble,
+				(float) 0);
+	}
+
+	// Called when another command which requires one or more of the same
+	// subsystems is scheduled to run
+	protected void interrupted() {
+	}
 }

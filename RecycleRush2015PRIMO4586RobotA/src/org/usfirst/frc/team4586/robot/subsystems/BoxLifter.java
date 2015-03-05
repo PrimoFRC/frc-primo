@@ -14,22 +14,22 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class BoxLifter extends Subsystem {
 	private boolean wasReleased;
-    public static final int numOfValves=5;
+	public static final int numOfValves = 5;
 	private Timer time;
-    
-    private boolean isMovingDown;
+
+	private boolean isMovingDown;
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands
 	private Talon lifter;
 	private Talon lifter2;
-    
+
 	private DigitalInput checkContact1;
 	private DigitalInput checkContact2;
-	
+
 	private DigitalInput cylinderStuck;
 
 	private DigitalInput hookInPlace;
-    private Counter counter;
+	private Counter counter;
 	private int boxes;
 
 	public BoxLifter(DigitalInput checkContact1, DigitalInput checkContact2,
@@ -38,38 +38,34 @@ public class BoxLifter extends Subsystem {
 		this.checkContact1 = checkContact1;
 		this.checkContact2 = checkContact2;
 		this.lifter = lifter;
-		this.lifter2=lifter2;
+		this.lifter2 = lifter2;
 		this.hookInPlace = hookInPlace;
-		this.counter=new Counter();
+		this.counter = new Counter();
 		this.counter.setUpSource(hookInPlace);
 		boxes = 1;
-    	time=new Timer();
-    	
-    	cylinderStuck = RobotMap.cylinderStuck;
+		time = new Timer();
+
+		cylinderStuck = RobotMap.cylinderStuck;
 	}
 
 	public void checkStuck() {
-		
-		if (getSpeed() >= 0 || !cylinderStuck.get() || SmartDashboard.getNumber("disable stuck micro" , 0) == 1)
-		{
-			
-		}
-		else
-		{
+
+		if (getSpeed() >= 0 || !cylinderStuck.get()
+				|| SmartDashboard.getNumber("disable stuck micro", 0) == 1) {
+
+		} else {
 			this.lifter.set(0);
 			this.lifter2.set(0);
 		}
 	}
-	
+
 	public void setSpeed(double speed) {
-		
-		if (speed >= 0 || !cylinderStuck.get() || SmartDashboard.getNumber("disable stuck micro" , 0) == 1)
-		{
+
+		if (speed >= 0 || !cylinderStuck.get()
+				|| SmartDashboard.getNumber("disable stuck micro", 0) == 1) {
 			this.lifter.set(speed);
 			this.lifter2.set(speed);
-		}
-		else
-		{
+		} else {
 			this.lifter.set(0);
 			this.lifter2.set(0);
 		}
@@ -82,27 +78,28 @@ public class BoxLifter extends Subsystem {
 	public int getCounter() {
 		return this.boxes;
 	}
-	
-	public void setCounter(int level)
-	{
+
+	public void setCounter(int level) {
 		this.boxes = level;
 	}
-    public void incrementCounter()
-    {
-    	this.boxes++;
-    	if(boxes>numOfValves)
-    		boxes-=numOfValves;
-    }
-    public void decrementCounter()
-    {
-    	this.boxes--;
+
+	public void incrementCounter() {
+		this.boxes++;
+		if (boxes > numOfValves)
+			boxes -= numOfValves;
+	}
+
+	public void decrementCounter() {
+		this.boxes--;
 		time.reset();
-    	if(boxes<1)
-    		boxes+=numOfValves;
-    }
+		if (boxes < 1)
+			boxes += numOfValves;
+	}
+
 	public void resetCounter() {
 		this.boxes = 1;
 	}
+
 	public boolean getCheckContact1() {
 		return this.checkContact1.get();
 	}
@@ -114,55 +111,47 @@ public class BoxLifter extends Subsystem {
 	public boolean getHookState() {
 		return this.hookInPlace.get();
 	}
-	
+
 	public boolean getCylinderStuck() {
 		return this.cylinderStuck.get();
 	}
-	
-	public void count()
-	{
+
+	public void count() {
 		System.out.println(this.counter.get());
-		if(getSpeed() < 0)
-		{
+		if (getSpeed() < 0) {
 			isMovingDown = true;
-		}
-		else if(getSpeed() > 0)
-		{
+		} else if (getSpeed() > 0) {
 			isMovingDown = false;
 		}
-		
-		if(isMovingDown)
-		{
-			//this.counter.clearUpSource();
-			//this.counter.setDownSource(hookInPlace);
+
+		if (isMovingDown) {
+			// this.counter.clearUpSource();
+			// this.counter.setDownSource(hookInPlace);
 			this.counter.setReverseDirection(true);
-			if(getHookState())
+			if (getHookState())
 				wasReleased = false;
-			else if (!wasReleased)
-			{
+			else if (!wasReleased) {
 				decrementCounter();
 				wasReleased = true;
 			}
-			
-		}
-		else
-		{
-			//this.counter.clearDownSource();
-			//this.counter.setUpSource(hookInPlace);
-			//this.counter.setReverseDirection(false);
-			if(!getHookState())
+
+		} else {
+			// this.counter.clearDownSource();
+			// this.counter.setUpSource(hookInPlace);
+			// this.counter.setReverseDirection(false);
+			if (!getHookState())
 				wasReleased = true;
-			else if (wasReleased)
-			{
+			else if (wasReleased) {
 				incrementCounter();
 				wasReleased = false;
 			}
 		}
 	}
-	public Timer getTime()
-	{
+
+	public Timer getTime() {
 		return time;
 	}
+
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());

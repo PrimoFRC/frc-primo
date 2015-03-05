@@ -9,56 +9,52 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class MoveBinRailByStick extends Command {
 	boolean isZero;
-    public MoveBinRailByStick() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    }
 
-    // Called just before this Command runs the first time
-    protected void initialize() {
-    	
-    	isZero=true;
-    }
+	public MoveBinRailByStick() {
+		// Use requires() here to declare subsystem dependencies
+		// eg. requires(chassis);
+	}
 
-    // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-    	int port = 3;
-    	/*if((CommandBase.oi.operatorStickFront.getRawAxis(port)>0.1)||(CommandBase.oi.operatorStickFront.getRawAxis(port)<-0.1))
-    	{
-    		isZero=false;
-    		CommandBase.binLifter.moveBinRail(CommandBase.oi.operatorStickFront.getRawAxis(port));
-    	}
-    	else if (!isZero)
-    	{
-    		isZero=true;
-    		CommandBase.binLifter.moveBinRail(-0);
-    	}*/
-    	if(CommandBase.oi.operatorStickFront.getPOV()!=-1)
-    	{
-    		isZero=false;
-    		if (CommandBase.oi.operatorStickFront.getPOV()==0)
-    			CommandBase.binLifter.moveBinRail(1);
-    		else if (CommandBase.oi.operatorStickFront.getPOV()==180)
-    			CommandBase.binLifter.moveBinRail(-1);
-    	}
-    	else if (!isZero)
-    	{
-    		isZero=true;
-    		CommandBase.binLifter.moveBinRail(0);
-    	}
-    }
+	// Called just before this Command runs the first time
+	protected void initialize() {
 
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-        return false;
-    }
+		isZero = true;
+	}
 
-    // Called once after isFinished returns true
-    protected void end() {
-    }
+	// Called repeatedly when this Command is scheduled to run
+	protected void execute() {
+		int port = 3;
+		/*
+		 * if((CommandBase.oi.operatorStickFront.getRawAxis(port)>0.1)||(CommandBase
+		 * .oi.operatorStickFront.getRawAxis(port)<-0.1)) { isZero=false;
+		 * CommandBase
+		 * .binLifter.moveBinRail(CommandBase.oi.operatorStickFront.getRawAxis
+		 * (port)); } else if (!isZero) { isZero=true;
+		 * CommandBase.binLifter.moveBinRail(-0); }
+		 */
+		if (CommandBase.oi.operatorStickFront.getPOV() != -1) {
+			isZero = false;
+			if (CommandBase.oi.operatorStickFront.getPOV() == 0)
+				CommandBase.binLifter.moveBinRail(1);
+			else if (CommandBase.oi.operatorStickFront.getPOV() == 180)
+				CommandBase.binLifter.moveBinRail(-1);
+		} else if (!isZero) {
+			isZero = true;
+			CommandBase.binLifter.moveBinRail(0);
+		}
+	}
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    protected void interrupted() {
-    }
+	// Make this return true when this Command no longer needs to run execute()
+	protected boolean isFinished() {
+		return false;
+	}
+
+	// Called once after isFinished returns true
+	protected void end() {
+	}
+
+	// Called when another command which requires one or more of the same
+	// subsystems is scheduled to run
+	protected void interrupted() {
+	}
 }

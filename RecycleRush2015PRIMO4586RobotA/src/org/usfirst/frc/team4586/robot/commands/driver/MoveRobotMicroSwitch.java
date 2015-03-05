@@ -11,46 +11,50 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class MoveRobotMicroSwitch extends Command {
-	
+
 	DigitalInput microSwitch;
-	double x,y,z;
+	double x, y, z;
 
-    public MoveRobotMicroSwitch(double x, double y, double z, DigitalInput microSwitch) {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	
-    	this.microSwitch = microSwitch;
-    	this.x = x;
-    	this.y = y;
-    	this.z = z;
-    }
+	public MoveRobotMicroSwitch(double x, double y, double z,
+			DigitalInput microSwitch) {
+		// Use requires() here to declare subsystem dependencies
+		// eg. requires(chassis);
 
-    // Called just before this Command runs the first time
-    protected void initialize() {
-    	CommandBase.driver.resetGyro();
-    }
+		this.microSwitch = microSwitch;
+		this.x = x;
+		this.y = y;
+		this.z = z;
+	}
 
-    // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-    	z = CommandBase.driver.getGyro()*SmartDashboard.getNumber("Gyro factor", 0.05);
-    	
-    	CommandBase.driver.mecanumDrive(x*SmartDashboard.getNumber("move left speed", 0.5),
-    			-y*SmartDashboard.getNumber("move back speed"), z*SmartDashboard.getNumber("max driving speed"));
-    	
-    }
+	// Called just before this Command runs the first time
+	protected void initialize() {
+		CommandBase.driver.resetGyro();
+	}
 
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-        return microSwitch.get();
-    }
+	// Called repeatedly when this Command is scheduled to run
+	protected void execute() {
+		z = CommandBase.driver.getGyro()
+				* SmartDashboard.getNumber("Gyro factor", 0.05);
 
-    // Called once after isFinished returns true
-    protected void end() {
-    	CommandBase.driver.stop();
-    }
+		CommandBase.driver.mecanumDrive(
+				x * SmartDashboard.getNumber("move left speed", 0.5), -y
+						* SmartDashboard.getNumber("move back speed"), z
+						* SmartDashboard.getNumber("max driving speed"));
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    protected void interrupted() {
-    }
+	}
+
+	// Make this return true when this Command no longer needs to run execute()
+	protected boolean isFinished() {
+		return microSwitch.get();
+	}
+
+	// Called once after isFinished returns true
+	protected void end() {
+		CommandBase.driver.stop();
+	}
+
+	// Called when another command which requires one or more of the same
+	// subsystems is scheduled to run
+	protected void interrupted() {
+	}
 }
